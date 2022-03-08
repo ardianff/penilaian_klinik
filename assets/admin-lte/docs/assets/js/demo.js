@@ -20,7 +20,6 @@
         Date.now() + 15 * 60 * 1000
       );
       // eslint-disable-next-line no-alert
-      // alert('You load AdminLTE\'s "demo.js", \nthis file is only created for testing purposes!')
     }
   }, 1000);
 

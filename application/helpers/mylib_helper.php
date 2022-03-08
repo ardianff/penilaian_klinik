@@ -20,21 +20,24 @@ function check_session(){
         redirect('auth');
     }
 }
+// function nama_admin(){
+// 	$data = array('nama_user'=>$session->nama_user);
+// }
 
 function no_penilaian() {
 	$txt = 'TASK';
 	$ci = &get_instance();
-	$q = $ci->db->query("SELECT MAX(RIGHT(no_cm,4)) AS kd_max FROM tbl_pasien");
+	$q = $ci->db->query("SELECT MAX(RIGHT(no_penilaian,4)) AS kd_max FROM tbl_penilaian");
 	$kd = "";
 	if($q->num_rows()>0){
 		foreach($q->result() as $k){
 			$tmp = ((int)$k->kd_max)+1;
-			$kd = $txt. sprintf("%04s", $tmp);
+			$kd = sprintf("%04s", $tmp);
 		}
 	}else{
 		$kd = "0001";
 	}
 	date_default_timezone_set('Asia/Jakarta');
-	return date('dmy').$kd;
+	return $txt. date('dmy').$kd;
 }
 ?>

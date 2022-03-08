@@ -4,13 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
-            </ol>
+            <h1>Data Penilaian Klinik</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -27,7 +21,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-							<table id="example1" class="table table-bordered table-striped width="100%"">
+							<table id="example1" class="table table-bordered table-striped " width="auto" height="auto">
                         <thead>
                             <tr>
                                 <th class="text-center" rowspan="2">No</th>
@@ -55,10 +49,10 @@
                                     <td class="text-center"><?php echo $row->kemampuan_pelayanan; ?></td>
                                     <td class="text-center"><?php echo $row->jenis_pelayanan_klinik; ?></td>
                                     <td class="text-center"><?php echo $row->alamat_klinik; ?></td>
-                                    <td class="text-center"><?php echo $row->nama_anggota1; ?>, <?php echo $row->nama_anggota2; ?></td>
-                                    <td class="text-center"><?php echo anchor('penilaian/view/' . $row->id_penilaian, '<span class="fa fa-tasks"></span>', array('class' => 'btn btn-primary btn-sm', 'title' => "Penilaian")) ?></td>
-                                    <td class="text-center"><?php echo anchor('penilaian/edit/' . $row->id_penilaian, '<span class="fa fa-eye"></span>', array('class' => 'btn btn-warning btn-sm', 'title' => "Edit")) ?></td>
-                                   	<td class="text-center"><?php echo anchor('penilaian/hapus/' . $row->id_penilaian, '<span class="fa fa-trash"></span>', array('class' => 'btn btn-danger btn-sm', 'title' => "Hapus")) ?></td>
+                                    <td class="text-center"><?php echo $row->nama_anggota1; ?>, <br><?php echo $row->nama_anggota2; ?>, <br><?php echo $row->nama_anggota3; ?>, <br><?php echo $row->nama_anggota4; ?></td>
+                                    <td class="text-center"><?php echo anchor('penilaian/nilai/' . $row->no_penilaian, '<span class="fa fa-tasks"></span>', array('class' => 'btn btn-primary btn-sm', 'title' => "Penilaian")) ?></td>
+                                    <td class="text-center"><?php echo anchor('penilaian/edit/' . $row->no_penilaian, '<span class="fa fa-eye"></span>', array('class' => 'btn btn-warning btn-sm', 'title' => "Edit")) ?></td>
+                                   	<td class="text-center"><?php echo anchor('penilaian/hapus/' . $row->no_penilaian, '<span class="fa fa-trash"></span>', array('class' => 'btn btn-danger btn-sm', 'title' => "Hapus", 'onclick'=> "return confirm('Apakah anda yakin menghapus penilaian ?)" )) ?></td>
                                 </tr>
                                 <?php
                                 $no++;
