@@ -13,7 +13,7 @@ function cmb_dinamis($name, $table, $field, $pk, $selected = NULL, $extra = NULL
     return $cmb;
 }
 
-function chek_seesion(){
+function check_session(){
     $ci=&get_instance();
     $session=$ci->session->userdata('status_login');
     if($session!='ok') {
@@ -21,19 +21,20 @@ function chek_seesion(){
     }
 }
 
-function no_cm() {
+function no_penilaian() {
+	$txt = 'TASK';
 	$ci = &get_instance();
 	$q = $ci->db->query("SELECT MAX(RIGHT(no_cm,4)) AS kd_max FROM tbl_pasien");
 	$kd = "";
 	if($q->num_rows()>0){
 		foreach($q->result() as $k){
 			$tmp = ((int)$k->kd_max)+1;
-			$kd = sprintf("%04s", $tmp);
+			$kd = $txt. sprintf("%04s", $tmp);
 		}
 	}else{
 		$kd = "0001";
 	}
 	date_default_timezone_set('Asia/Jakarta');
-	return date('ymd').$kd;
+	return date('dmy').$kd;
 }
 ?>
