@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Nama Penilai Klinik</h1>
+            <h1>Data User</h1>
           </div>
           <div class="col-sm-6">
           </div>
@@ -19,7 +19,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-								&nbsp;<?php echo anchor('tim/add','Input Data Anggota Baru',array('class'=>'btn btn-success btn-sm'))?>
+								&nbsp;<?php echo anchor('user/add','Input Data User',array('class'=>'btn btn-success btn-sm'))?>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -29,6 +29,7 @@
                                 <th class="text-center" rowspan="2">No</th>
                                 <th class="text-center" rowspan="2">Nama Anggota</th>
                                 <th class="text-center" rowspan="2">NIP</th>
+                                <th class="text-center" rowspan="2">Username</th>
                                 <th class="text-center" colspan="2">Action</th>
                             </tr>
 														<tr>
@@ -43,10 +44,11 @@
                                 ?>
                                 <tr>
                                     <td class="text-center"><?php echo $no; ?></td>
-                                    <td class="text-center"><?php echo $row->nama_anggota; ?></td>
-                                    <td class="text-center"><?php echo $row->nip_anggota; ?></td>
-                                    <td class="text-center"><?php echo anchor('tim/edit/' . $row->nip_anggota, '<span class="fa fa-pencil-alt"></span>', array('class' => 'btn btn-warning btn-sm', 'title' => "Edit")) ?></td>
-                                   	<td class="text-center"><?php echo anchor('tim/hapus/' . $row->nip_anggota, '<span class="fa fa-trash"></span>', array('class' => 'btn btn-danger btn-sm', 'title' => "Hapus", 'onclick'=> "return confirm('Apakah anda yakin menghapus data ?)")) ?></td>
+                                    <td class="text-center"><?php echo $row->nama_user; ?></td>
+                                    <td class="text-center"><?php echo $row->nip_user; ?></td>
+                                    <td class="text-center"><?php echo $row->username; ?></td>
+                                    <td class="text-center"><?php echo anchor('user/edit/' . $row->nip_user, '<span class="fa fa-pencil-alt"></span>', array('class' => 'btn btn-warning btn-sm', 'title' => "Edit")) ?></td>
+                                   	<td class="text-center"><?php echo anchor('user/hapus/' . $row->nip_user, '<span class="fa fa-trash"></span>', array('class' => 'btn btn-danger btn-sm', 'title' => "Hapus", 'onclick'=> "return confirm('Apakah anda yakin menghapus data ?)")) ?></td>
                                 </tr>
                                 <?php
                                 $no++;

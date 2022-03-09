@@ -8,32 +8,38 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/fontawesome-free/css/all.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	  <!-- daterange picker -->
-	<link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/daterangepicker/daterangepicker.css">
   <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- Select2 -->
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- Bootstrap4 Duallistbox -->
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
   <!-- BS Stepper -->
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/bs-stepper/css/bs-stepper.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/bs-stepper/css/bs-stepper.min.css">
   <!-- dropzonejs -->
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/dropzone/min/dropzone.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/dropzone/min/dropzone.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php  echo base_url() ?>assets/admin-lte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/dist/css/adminlte.min.css">
+	<style>
+		img.center {
+    display: block;
+    margin: 0 auto;
+}
+	</style>
 </head>
 <!--
 `body` tag options:
@@ -57,11 +63,36 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
+      
+	<!-- <?php
+ //ubah timezone menjadi jakarta
+ date_default_timezone_set('Asia/Jakarta');
 
+ //ambil jam dan menit
+ $jam = date('H:i');
+
+ //atur salam menggunakan IF
+ if ($jam > '05:30' && $jam < '10:00') {
+     $salam = 'Pagi';
+ } elseif ($jam >= '10:00' && $jam < '15:00') {
+     $salam = 'Siang';
+ } elseif ($jam < '18:00') {
+     $salam = 'Sore';
+ } else {
+     $salam = 'Malam';
+ }
+
+ //tampilkan pesan
+ echo 'Selamat ' . $salam;
+ ?> -->
       <!-- Messages Dropdown Menu -->
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item">
+        <a class="nav-link" href="#" role="button">
+				<?php echo $this->session->userdata('nama_user'); ?>
+        </a>
+      </li>     
+			<li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
@@ -77,15 +108,20 @@
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+	<!-- <a href="#" class="brand-link">
+      <img src="https://semarangkota.go.id/assets/img/favicon.png"alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light"></span>
+    </a> -->
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <!-- <div class="image">
-          <img src="<?php  echo base_url() ?>assets/admin-lte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div> -->
+        <div class="image">
+          <img src="https://semarangkota.go.id/assets/img/favicon.png" class="img center" alt="User Image">
+        </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $this->session->userdata('nama_user') ?></a>
+          <a href="#" class="d-block">Sistem Penilaian Klinik</a>
         </div>
       </div>
       <!-- Sidebar Menu -->
@@ -94,7 +130,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="<?php echo site_url('dashboard') ?>" class="nav-link">
+            <a href="<?php echo site_url('dashboard'); ?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -102,7 +138,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo site_url('penilaian') ?>" class="nav-link">
+            <a href="<?php echo site_url('penilaian'); ?>" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Penilaian Klinik
@@ -110,15 +146,42 @@
             </a>
           </li>          
 					<li class="nav-item">
-            <a href="<?php echo site_url('tim') ?>" class="nav-link">
+            <a href="<?php echo site_url('tim'); ?>" class="nav-link">
               <i class="nav-icon fas fa-user-plus"></i>
               <p>
                 Anggota Penilai
               </p>
             </a>
+          </li>					
+					<li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                Users
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo site_url('user'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo site_url(
+                    'user/ubahpassword'
+                ); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ubah Password</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
-            <a href="<?php echo site_url('auth/logout') ?>" class="nav-link" onclick="return confirm('Apakah anda yakin ingin keluar ?')">
+            <a href="<?php echo site_url(
+                'auth/logout'
+            ); ?>" class="nav-link" onclick = "return confirm('Apakah anda yakin ingin keluar ?')">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Logout
@@ -129,11 +192,12 @@
       </nav>
       <!-- /.sidebar-menu -->
     </div>
+		
     <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-		<?php echo $contents  ?>
+		<?php echo $contents; ?>
   <!-- /.content-wrapper -->
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -155,64 +219,61 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/dist/js/adminlte.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/adminlte.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/chart.js/Chart.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/chart.js/Chart.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/dist/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/dist/js/pages/dashboard3.js"></script>
-
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/pages/dashboard3.js"></script>
 <!-- Bootstrap 4 -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables  & Plugins -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/jszip/jszip.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/jszip/jszip.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/select2/js/select2.full.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/select2/js/select2.full.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- InputMask -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/moment/moment.min.js"></script>
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/inputmask/jquery.inputmask.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/moment/moment.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/inputmask/jquery.inputmask.min.js"></script>
 <!-- date-range-picker -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap color picker -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Bootstrap Switch -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- BS-Stepper -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <!-- dropzonejs -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/plugins/dropzone/min/dropzone.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/plugins/dropzone/min/dropzone.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php  echo base_url() ?>assets/admin-lte/plugins/dist/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
-  $(function () {
+  $(document).ready(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
@@ -227,6 +288,11 @@
       "responsive": true,
     });
 		
+		window.setTimeout(function() {
+			$(".alert").fadeTo(500, 0).slideUp(500, function(){
+				$(this).remove(); 
+			});
+		}, 5000);
   });
 </script>
 <script>

@@ -73,25 +73,7 @@
                     <div class="col-sm-10">
                       <input type="name" class="form-control" name="nama_klinik" placeholder="Nama Klinik">
                     </div>
-                  </div>
-				  <div class="form-group row">
-                    <label for="Nama_Anggota" class="col-sm-2 col-form-label">Kemampuan Pelayanan</label>
-                    <div class="col-sm-10">
-										<?php echo form_dropdown('kemampuan_pelayanan', array('- Pilih -','Pratama' => 'Pratama', 'Utama' => 'Utama'), null,"class='form-control', 'required'");?>
-                    </div>
-                  </div>				  			  
-				  <div class="form-group row">
-                    <label for="Nama_Anggota" class="col-sm-2 col-form-label">Jenis Pelayanan Klinik</label>
-                    <div class="col-sm-10">
-										<?php echo form_dropdown('jenis_pelayanan', array('- Pilih -','Rawat Jalan' => 'Rawat Jalan', 'Rawat Inap' => 'Rawat Inap'), null,"class='form-control', 'required'");?>
-                    </div>
-                  </div>				  
-				  <div class="form-group row">
-                    <label for="Nama_Anggota" class="col-sm-2 col-form-label">Alamat Klinik</label>
-                    <div class="col-sm-10">
-                      <textarea type="text" class="form-control" name="alamat_klinik" placeholder="Alamat Klinik"></textarea>
-                    </div>
-                  </div>
+                  </div>				  			  				  
                 </div>
                 <!-- /.card-body -->
                 <!-- /.card-footer -->
@@ -105,20 +87,26 @@
 
               <!-- /.card-header -->
               <!-- form start -->
-                <!-- <div class="card-body">
+                <div class="card-body">
                   <div class="form-group row">
-                    <label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Klinik</label>
+                    <label for="Nama_Anggota" class="col-sm-2 col-form-label">Kemampuan Pelayanan</label>
                     <div class="col-sm-10">
-                      <input type="name" class="form-control" name="nama_anggota" placeholder="Nama">
+										<?php echo form_dropdown('kemampuan_pelayanan', array('- Pilih -','Pratama' => 'Pratama', 'Utama' => 'Utama'), null,"class='form-control', 'required'");?>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="NIP_Anggota" class="col-sm-2 col-form-label">Kemampuan Pelayanan</label>
+                    <label for="NIP_Anggota" class="col-sm-2 col-form-label">Jenis Pelayanan Klinik</label>
                     <div class="col-sm-10">
-                      <input type="name" class="form-control" name="nip_anggota" placeholder="NIP">
+										<?php echo form_dropdown('jenis_pelayanan', array('- Pilih -','Rawat Jalan' => 'Rawat Jalan', 'Rawat Inap' => 'Rawat Inap'), null,"class='form-control', 'required'");?>
+                    </div>
+                  </div>                  
+									<div class="form-group row">
+                    <label for="NIP_Anggota" class="col-sm-2 col-form-label">Alamat Klinik</label>
+                    <div class="col-sm-10">
+										<textarea type="text" class="form-control" name="alamat_klinik" placeholder="Alamat Klinik"></textarea>
                     </div>
                   </div>
-                </div> -->
+                </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" name="submit" class="btn btn-success">Simpan</button>

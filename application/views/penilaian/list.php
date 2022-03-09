@@ -52,7 +52,7 @@
                                     <td class="text-center"><?php echo $row->nama_anggota1; ?>, <br><?php echo $row->nama_anggota2; ?>, <br><?php echo $row->nama_anggota3; ?>, <br><?php echo $row->nama_anggota4; ?></td>
                                     <td class="text-center"><?php echo anchor('penilaian/nilai/' . $row->no_penilaian, '<span class="fa fa-tasks"></span>', array('class' => 'btn btn-primary btn-sm', 'title' => "Penilaian")) ?></td>
                                     <td class="text-center"><?php echo anchor('penilaian/edit/' . $row->no_penilaian, '<span class="fa fa-eye"></span>', array('class' => 'btn btn-warning btn-sm', 'title' => "Edit")) ?></td>
-                                   	<td class="text-center"><?php echo anchor('penilaian/hapus/' . $row->no_penilaian, '<span class="fa fa-trash"></span>', array('class' => 'btn btn-danger btn-sm', 'title' => "Hapus", 'onclick'=> "return confirm('Apakah anda yakin menghapus penilaian ?)" )) ?></td>
+                                   	<td class="text-center"><?php echo anchor('penilaian/hapus/' . $row->no_penilaian, '<span class="fa fa-trash"></span>', array('class' => 'btn btn-danger btn-sm', 'title' => "Hapus" ))?></td>
                                 </tr>
                                 <?php
                                 $no++;

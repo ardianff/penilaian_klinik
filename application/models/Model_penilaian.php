@@ -1,11 +1,12 @@
 <?php
 
-Class Model_penilaian extends CI_Model {
-
-    function add() {
-        $data = array(
-			'no_penilaian'=> no_penilaian(),
-			'nama_admin' => $this->session->userdata('nama_user'),
+class Model_penilaian extends CI_Model
+{
+    function add()
+    {
+        $data = [
+            'no_penilaian' => no_penilaian(),
+            'nama_admin' => $this->session->userdata('nama_user'),
             'nama_anggota1' => $this->input->post('nama_anggota1'),
             'nama_anggota2' => $this->input->post('nama_anggota2'),
             'nama_anggota3' => $this->input->post('nama_anggota3'),
@@ -14,13 +15,13 @@ Class Model_penilaian extends CI_Model {
             'kemampuan_pelayanan' => $this->input->post('kemampuan_pelayanan'),
             'jenis_pelayanan_klinik' => $this->input->post('jenis_pelayanan'),
             'alamat_klinik' => $this->input->post('alamat_klinik'),
-            
-        );
-        $this->db->insert('tbl_penilaian',$data);
+        ];
+        $this->db->insert('tbl_klinik', $data);
     }
-    
-    function update(){
-        $data = array(
+
+    function update()
+    {
+        $data = [
             'nama_pasien' => $this->input->post('nama_pasien'),
             'no_ktp' => $this->input->post('no_ktp'),
             'jenis_kelamin' => $this->input->post('jenis_kelamin'),
@@ -29,18 +30,33 @@ Class Model_penilaian extends CI_Model {
             'agama' => $this->input->post('agama_pasien'),
             'alamat_pasien' => $this->input->post('alamat_pasien'),
             'keluhan_pasien' => $this->input->post('keluhan_pasien'),
-            'tgl_kedatangan_pasien' => $this->input->post('tgl_kedatangan_pasien'),
+            'tgl_kedatangan_pasien' => $this->input->post(
+                'tgl_kedatangan_pasien'
+            ),
             'tgl_lahir_pasien' => $this->input->post('tgl_lahir_pasien'),
-        );
-        $no_cm= $this->input->post('no_cm');
-        $this->db->where('no_cm',$no_cm);
-        $this->db->update('tbl_pasien',$data);
+        ];
+        $no_cm = $this->input->post('no_cm');
+        $this->db->where('no_cm', $no_cm);
+        $this->db->update('tbl_pasien', $data);
     }
-	public function get_anggota(){
-		$query = $this->db->get('tbl_anggota')->result();
-		return $query;
-	   }
-
+    public function get_anggota()
+    {
+        $query = $this->db->get('tbl_anggota')->result();
+        return $query;
+    }
+    public function get_setting()
+    {
+        $site = $this->db->get('tbl_klinik')->result();
+        return $site;
+    }
+    // public function get_setting($kemampuan_pelayanan)
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from('tbl_klinik');
+    //     $this->db->where('kemampuan_pelayanan', $kemampuan_pelayanan);
+    //     $query = $this->db->get();
+    //     return $query->result();
+    // }
 }
 
 ?>

@@ -20,14 +20,10 @@ function check_session(){
         redirect('auth');
     }
 }
-// function nama_admin(){
-// 	$data = array('nama_user'=>$session->nama_user);
-// }
-
 function no_penilaian() {
 	$txt = 'TASK';
 	$ci = &get_instance();
-	$q = $ci->db->query("SELECT MAX(RIGHT(no_penilaian,4)) AS kd_max FROM tbl_penilaian");
+	$q = $ci->db->query("SELECT MAX(RIGHT(no_penilaian,4)) AS kd_max FROM tbl_klinik");
 	$kd = "";
 	if($q->num_rows()>0){
 		foreach($q->result() as $k){
@@ -39,5 +35,30 @@ function no_penilaian() {
 	}
 	date_default_timezone_set('Asia/Jakarta');
 	return $txt. date('dmy').$kd;
+}
+
+if(!function_exists('get_hash'))
+{
+    
+    function get_hash($PlainPassword)
+    {
+
+    	$option=[
+                'cost'=>5,// proses hash sebanyak: 2^5 = 32x
+    	        ];
+    	return password_hash($PlainPassword, PASSWORD_DEFAULT, $option);
+
+   }
+}
+
+if(!function_exists('hash_verified'))
+{
+    
+    function hash_verified($PlainPassword,$HashPassword)
+    {
+
+    	return password_verify($PlainPassword,$HashPassword) ? true : false;
+
+   }
 }
 ?>

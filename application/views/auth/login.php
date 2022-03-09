@@ -1,82 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/login/fonts/icomoon/style.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/login/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/login/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/login/css/style.css">
-		<link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/logo-rs.png">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/plugins/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/plugins/simple-line-icons.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/plugins/animate.min.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/plugins/icheck/skins/flat/aero.css" />
-
-    <title>Sistem Data Pasien</title>
-  </head>
-  <body>
-  <div class="content">
-  <?php echo form_open('Auth/Chek_login', 'class="form-signin"') ?>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <img src="<?php echo base_url() ?>assets/login/images/hospital.png" height="auto" width="auto" alt="Image" class="img-fluid">
-        </div>
-        <div class="col-md-6 contents">
-          <div class="row justify-content-center">
-            <div class="col-md-8">
-              <div class="mb-4">
-              <h3>Login Sistem Data Pasien</h3>
-              <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
-            </div>
-              <div class="form-group first">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" id="username">
-
-              </div>
-              <div class="form-group last mb-4">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" id="password">
-              </div>
-              <input type="submit" name="submit" value="Log In" class="btn btn-block btn-primary">
-              <div class="mb-4">
-                <?php
-                if ($this->session->flashdata('gagal')) {
-                  echo "<div class='panel-body'>
-                            <div class='col-md-12'><div class='alert alert-danger alert-border alert-dismissible fade in bg-danger' role='alert'>";
-                  echo "  <h3 style='color:black'><b>GAGAL</b>
-                        <button type='button btn-dark' class='close pull-right' data-dismiss='alert' aria-label='Close'><span aria-hidden='true' >×</span></button>
-                                </h3>
-                        <p style='color:white'>" . $this->session->flashdata('gagal') . "</p>";
-                  echo "</div>";
-                  echo "</div>";
-                  echo "</div>";
-                }
-                ?>
-              </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistem Penilaian Klinik</title>
+  <link rel="shortcut icon" href="https://semarangkota.go.id/assets/img/favicon.png" type="image/x-icon"/>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/dist/css/adminlte.min.css">
+	<style>
+		img.center {
+    display: block;
+    margin: 0 auto;
+}
+	</style>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <h1><b>Sistem Penilaian Klinik</b></h1>
+    </div>
+    <div class="card-body">
+			<!-- <img src="https://semarangkota.go.id/assets/img/logo-icon.png" height="auto" width="auto" alt="Image" class="login-box-msg center"> -->
+			<?= $this->session->flashdata('message') ?>
+			<!-- <?php echo validation_errors(); ?> -->
+      <?php echo form_open('auth/check_login', 'class="form-signin"'); ?>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Username" name="username" required>
+					<!-- <?= form_error(
+         'username',
+         '<small class="text-danger pl-3">',
+         '</small>'
+     ) ?> -->
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
-      </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password" name="password" required>
+					<!-- <?= form_error(
+         'password',
+         '<small class="text-danger pl-3">',
+         '</small>'
+     ) ?> -->
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+          </div>
+          <div class="col-4">
+            <button type="submit" name="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+		  
+        </div>
+		<?php echo form_close(); ?>
     </div>
-	<?php echo form_close(); ?>
+    <!-- /.card-body -->
   </div>
-
-  
-    <script src="<?php echo base_url() ?>assets/login/js/jquery-3.3.1.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/login/js/popper.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/login/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/login/js/main.js"></script>
-	<script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/js/jquery.ui.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/js/plugins/moment.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/js/plugins/icheck.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/js/main.js"></script>
-  </body>
+  <!-- /.card -->
+</div>
+<!-- jQuery -->
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/adminlte.min.js"></script>
+</body>
 </html>
