@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Nama Penilai Klinik</h1>
+            <h1><strong>Rincian Penilaian Klinik Pratama</strong></h1>
           </div>
           <div class="col-sm-6">
           </div>
@@ -19,18 +19,22 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-								&nbsp;<?php echo anchor('tim/add', 'Input Data Anggota Baru', [
-            'class' => 'btn btn-success btn-sm',
-        ]); ?>
+								&nbsp;<?php echo anchor(
+            'rincian_penilaian_pratama/add',
+            'Input Data Rincian Penilaian',
+            [
+                'class' => 'btn btn-success btn-sm',
+            ]
+        ); ?>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-							<table id="example2" class="table table-bordered table-striped width="100%"">
+							<table id="example2" class="table table-bordered table-striped" width="auto">
                         <thead>
                             <tr>
                                 <th class="text-center" rowspan="2">No</th>
-                                <th class="text-center" rowspan="2">Nama Anggota</th>
-                                <th class="text-center" rowspan="2">NIP</th>
+                                <th class="text-center" rowspan="2">Rincian Penilaian</th>
+                                <th class="text-center" rowspan="2">Keterangan</th>
                                 <th class="text-center" colspan="2">Action</th>
                             </tr>
 														<tr>
@@ -44,10 +48,11 @@
                             foreach ($daftar as $row): ?>
                                 <tr>
                                     <td class="text-center"><?php echo $no; ?></td>
-                                    <td class="text-center"><?php echo $row->nama_anggota; ?></td>
-                                    <td class="text-center"><?php echo $row->nip_anggota; ?></td>
+                                    <td class="text-justify"><?php echo $row->rincian_penilaian; ?></td>
+                                    <td class="text-center"><?php echo $row->keterangan_penilaian; ?></td>
                                     <td class="text-center"><?php echo anchor(
-                                        'tim/edit/' . $row->nip_anggota,
+                                        'rincian_penilaian_pratama/edit/' .
+                                            $row->id_rincian_penilaian,
                                         '<span class="fa fa-pencil-alt"></span>',
                                         [
                                             'class' => 'btn btn-warning btn-sm',
@@ -55,7 +60,8 @@
                                         ]
                                     ); ?></td>
                                    	<td class="text-center"><?php echo anchor(
-                                        'tim/hapus/' . $row->nip_anggota,
+                                        'rincian_penilaian_pratama/hapus/' .
+                                            $row->id_rincian_penilaian,
                                         '<span class="fa fa-trash"></span>',
                                         [
                                             'class' => 'btn btn-danger btn-sm',

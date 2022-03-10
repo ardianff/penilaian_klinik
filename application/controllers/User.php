@@ -1,17 +1,25 @@
 <?php
 
-Class User extends CI_Controller {
-
-    function __construct() {
+class User extends CI_Controller
+{
+    function __construct()
+    {
         parent::__construct();
         $this->load->Model('Model_auth');
+        check_session();
     }
 
-    function index() {
-        $data['daftar'] = $this->db->query("SELECT ts.username,ts.nama_user,ts.nip_user FROM tbl_user as ts")->result();
+    function index()
+    {
+        $data['daftar'] = $this->db
+            ->query(
+                'SELECT ts.username,ts.nama_user,ts.nip_user FROM tbl_user as ts'
+            )
+            ->result();
         $this->template->load('template', 'user/list', $data);
     }
-	function add() {
+    function add()
+    {
         if (isset($_POST['submit'])) {
             $this->Model_auth->add();
             redirect('user');
@@ -19,35 +27,26 @@ Class User extends CI_Controller {
             $this->template->load('template', 'user/add');
         }
     }
-	function edit(){
+    function edit()
+    {
         if (isset($_POST['submit'])) {
             $this->Model_auth->update();
             redirect('user');
         } else {
-			$nip_user = $this->uri->segment(3);
-            $data['user'] = $this->db->get_where('tbl_user',array('nip_user'=>$nip_user))->row_array();
-            $this->template->load('template', 'user/edit',$data);
-            
+            $nip_user = $this->uri->segment(3);
+            $data['user'] = $this->db
+                ->get_where('tbl_user', ['nip_user' => $nip_user])
+                ->row_array();
+            $this->template->load('template', 'user/edit', $data);
         }
     }
-	function ubahpassword(){
-        if (isset($_POST['submit'])) {
-            $this->Model_auth->ubah_password();
-            redirect('user');
-        } else {
-			$nip_user = $this->uri->segment(3);
-            $data['user'] = $this->db->get_where('tbl_user',array('nip_user'=>$nip_user))->row_array();
-            $this->template->load('template', 'user/ubahpassword',$data);
-            
-        }
-    }
-	
-    function hapus(){
-        $id= $this->uri->segment(3);
-        $this->db->where('nip_user',$id);
+    function hapus()
+    {
+        $id = $this->uri->segment(3);
+        $this->db->where('nip_user', $id);
         $this->db->delete('tbl_user');
         redirect('user');
-    }    
+    }
 }
 
 ?>

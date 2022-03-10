@@ -1,6 +1,6 @@
 <?php
 
-class Model_penilaian extends CI_Model
+class Model_penilaian_pratama extends CI_Model
 {
     function add()
     {
@@ -15,6 +15,7 @@ class Model_penilaian extends CI_Model
             'kemampuan_pelayanan' => $this->input->post('kemampuan_pelayanan'),
             'jenis_pelayanan_klinik' => $this->input->post('jenis_pelayanan'),
             'alamat_klinik' => $this->input->post('alamat_klinik'),
+            'tgl_penilaian' => $this->input->post('tgl_penilaian'),
         ];
         $this->db->insert('tbl_klinik', $data);
     }
@@ -49,14 +50,6 @@ class Model_penilaian extends CI_Model
         $site = $this->db->get('tbl_klinik')->result();
         return $site;
     }
-    // public function get_setting($kemampuan_pelayanan)
-    // {
-    //     $this->db->select('*');
-    //     $this->db->from('tbl_klinik');
-    //     $this->db->where('kemampuan_pelayanan', $kemampuan_pelayanan);
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
 }
 
 ?>

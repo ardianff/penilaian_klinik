@@ -14,36 +14,34 @@
             <!-- Horizontal Form -->
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Edit Data Anggota</h3>
+                <h3 class="card-title">Input Rincian Penilaian Utama</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-		   <?php
-     echo form_open('tim/edit', 'class="form-horizontal"');
-     echo form_hidden('nip_anggota', $anggota['nip_anggota']);
-     ?>
+							<?php echo form_open(
+           'rincian_penilaian_utama/add',
+           'class="form-horizontal"'
+       ); ?>
                 <div class="card-body">
                   <div class="form-group row">
-                    <label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Anggota</label>
+                    <label for="rincian_penilaian" class="col-sm-2 col-form-label">Rincian Penilaian</label>
                     <div class="col-sm-10">
-                      <input type="name" class="form-control" name="nama_anggota" value="<?php echo $anggota[
-                          'nama_anggota'
-                      ]; ?>" placeholder="Nama">
+                      <input type="text" class="form-control" name="rincian_penilaian" placeholder="Rincian Penilaian" required>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="NIP_Anggota" class="col-sm-2 col-form-label">NIP Anggota</label>
+                    <label for="keterangan_penilaian" class="col-sm-2 col-form-label">Keterangan</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control" name="nip_anggota" value="<?php echo $anggota[
-                          'nip_anggota'
-                      ]; ?>"placeholder="NIP">
+                      <input type="text" class="form-control" name="keterangan_penilaian" placeholder="Keterangan">
                     </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-									<?php echo anchor('tim', 'Kembali', ['class' => 'btn btn-warning']); ?>
+									<?php echo anchor('rincian_penilaian_utama', 'Kembali', [
+             'class' => 'btn btn-warning',
+         ]); ?>
                 </div>
                 <!-- /.card-footer -->
 								<?php echo form_close(); ?>

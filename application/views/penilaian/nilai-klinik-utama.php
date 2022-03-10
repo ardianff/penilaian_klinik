@@ -7,10 +7,10 @@
             <h1>Penilaian Klinik Utama</h1>
           </div>
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+            <!-- <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">DataTables</li>
-            </ol>
+            </ol> -->
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -29,7 +29,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example" class="table table-bordered table-striped">
+                <table id="example2" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th class="text-center" rowspan="2" style="vertical-align: middle;">No</th>
@@ -90,7 +90,7 @@
 				  <tr>
 					<td></td>
                     <td>a. Bangunan Klinik bersifat permanen dan tidak bergabung fisik bangunanya dengan tempat tinggal perorangan</td>
-                    <td><input type="radio" name="profil_klinik_hasil" value="Ya" class="text-center"></input></td>
+                    <td><input type="radio" name="profil_klinik_hasil" value="Ya" class="text-center"><label> Ya</label></input></td></input></td>
 					<td><input type="radio" name="profil_klinik_hasil" value="Tidak"> <label> Tidak</label></input></td>
                     <td></td>
 					<td><input type="radio" name="profil_klinik_hasil" value="Ya"> <label> Ya</label></input></td>
@@ -102,7 +102,7 @@
                     <td>b. Bangunan klinik memperhatikan fungsi keamanan, kenyamananan,dan kemudahan pelayanan termasuk penyandang disabilitas,anak-anak,dan lanjut usia</td>
                     <td><input type="radio" name="profil_klinik_hasil" value="Ya"> <label> Ya</label></input></td>
 					<td><input type="radio" name="profil_klinik_hasil" value="Tidak"> <label> Tidak</label></input></td>
-                    <td><textarea name="profil_klinik_catatan"></textarea></td>
+                    <td></textarea></td>
 					<td><input type="radio" name="profil_klinik_hasil" value="Ya"> <label> Ya</label></input></td>
 					<td><input type="radio" name="profil_klinik_hasil" value="Tidak"> <label> Tidak</label></input></td>
 					<td><textarea name="profil_klinik_catatan"></textarea></td>
@@ -112,11 +112,12 @@
                     <td>c. Kawasan di dalam bangunan klinik harus bebas asap rokok</td>
                     <td><input type="radio" name="profil_klinik_hasil" value="Ya"> <label> Ya</label></input></td>
 					<td><input type="radio" name="profil_klinik_hasil" value="Tidak"> <label> Tidak</label></input></td>
-                    <td><textarea name="profil_klinik_catatan"></textarea></td>
+                    <td></td>
 					<td><input type="radio" name="profil_klinik_hasil" value="Ya"> <label> Ya</label></input></td>
 					<td><input type="radio" name="profil_klinik_hasil" value="Tidak"> <label> Tidak</label></input></td>
 					<td><textarea name="profil_klinik_catatan"></textarea></td>
-                  </tr>					  	
+                  </tr>	
+									<tr>				  	
 				  <td></td>
                     <td>d. Terpasang papan nama dengan ukuran minimal 1 m2 dengan dasar putih huruf hitam yang memuat informasi :</td>
 					<td></td>
@@ -125,15 +126,46 @@
 					<td></td>
 					<td></td>
 					<td></td>
-                  </tr>					  
-				  <td>1)</td>
-                    <td>Jenis Klinik Utama</td>
+                  </tr>
+									<tr>					  
+				  <td></td>
+                    <td>1) Jenis Klinik Utama</td>
                     <td><input type="radio" name="profil_klinik_hasil" value="Ya"> <label> Ya</label></input></td>
 					<td><input type="radio" name="profil_klinik_hasil" value="Tidak"> <label> Tidak</label></input></td>
-                    <td><textarea name="profil_klinik_catatan"></textarea></td>
+                    <td></td>
 					<td><input type="radio" name="profil_klinik_hasil" value="Ya"> <label> Ya</label></input></td>
 					<td><input type="radio" name="profil_klinik_hasil" value="Tidak"> <label> Tidak</label></input></td>
 					<td><textarea name="profil_klinik_catatan"></textarea></td>
+                  </tr>										
+									<tr>					  
+				  <td></td>
+                    <td>2) Nama Klinik</td>
+                    <td><input type="radio" name="profil_klinik_hasil" value="Ya"> <label> Ya</label></input></td>
+					<td><input type="radio" name="profil_klinik_hasil" value="Tidak"> <label> Tidak</label></input></td>
+                    <td></td>
+					<td><input type="radio" name="profil_klinik_hasil" value="Ya"> <label> Ya</label></input></td>
+					<td><input type="radio" name="profil_klinik_hasil" value="Tidak"> <label> Tidak</label></input></td>
+					<td><textarea name="profil_klinik_catatan"></textarea></td>
+                  </tr>										
+									<tr>					  
+				  <td></td>
+                    <td>3) Jam Buka Klinik</td>
+                    <td><input type="radio" name="profil_klinik_hasil" value="Ya"> <label> Ya</label></input></td>
+					<td><input type="radio" name="profil_klinik_hasil" value="Tidak"> <label> Tidak</label></input></td>
+                    <td></td>
+					<td><input type="radio" name="profil_klinik_hasil" value="Ya"> <label> Ya</label></input></td>
+					<td><input type="radio" name="profil_klinik_hasil" value="Tidak"> <label> Tidak</label></input></td>
+					<td><textarea name="profil_klinik_catatan"></textarea></td>
+                  </tr>										
+									<tr>					  
+				  <td></td>
+                    <td>e. Ruang Penerimaan</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
                   </tr>	
                   </tbody>
                   <!-- <tfoot>

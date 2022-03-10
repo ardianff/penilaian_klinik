@@ -4,9 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Nama Penilai Klinik</h1>
-          </div>
-          <div class="col-sm-6">
+            <h1><strong>Data Penilaian Klinik Pratama</strong></h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -19,24 +17,28 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-								&nbsp;<?php echo anchor('tim/add', 'Input Data Anggota Baru', [
+								&nbsp;<?php echo anchor('penilaian_pratama/add', 'Input Data Penilaian Baru', [
             'class' => 'btn btn-success btn-sm',
         ]); ?>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-							<table id="example2" class="table table-bordered table-striped width="100%"">
+							<table id="example2" class="table table-bordered table-striped " width="auto" height="auto">
                         <thead>
                             <tr>
                                 <th class="text-center" rowspan="2">No</th>
-                                <th class="text-center" rowspan="2">Nama Anggota</th>
-                                <th class="text-center" rowspan="2">NIP</th>
-                                <th class="text-center" colspan="2">Action</th>
+                                <th class="text-center" rowspan="2">Nama Klinik</th>
+                                <th class="text-center" rowspan="2">Kemampuan Pelayanan</th>
+                                <th class="text-center" rowspan="2">Jenis Klinik</th>
+                                <th class="text-center" rowspan="2">Alamat</th>
+                                <th class="text-center" rowspan="2">Anggota Penilaian</th>
+                                <th class="text-center" colspan="3">Action</th>
                             </tr>
 														<tr>
-															<th></th>
-															<th></th>
-														</tr>
+																<td></td>
+																<td></td>
+																<td></td>
+															</tr>
                         </thead>
                         <tbody>
                             <?php
@@ -44,24 +46,36 @@
                             foreach ($daftar as $row): ?>
                                 <tr>
                                     <td class="text-center"><?php echo $no; ?></td>
-                                    <td class="text-center"><?php echo $row->nama_anggota; ?></td>
-                                    <td class="text-center"><?php echo $row->nip_anggota; ?></td>
+                                    <td class="text-center"><?php echo $row->nama_klinik; ?></td>
+                                    <td class="text-center"><?php echo $row->kemampuan_pelayanan; ?></td>
+                                    <td class="text-center"><?php echo $row->jenis_pelayanan_klinik; ?></td>
+                                    <td class="text-center"><?php echo $row->alamat_klinik; ?></td>
+                                    <td class="text-center"><?php echo $row->nama_anggota1; ?>, <br><?php echo $row->nama_anggota2; ?>, <br><?php echo $row->nama_anggota3; ?>, <br><?php echo $row->nama_anggota4; ?></td>
                                     <td class="text-center"><?php echo anchor(
-                                        'tim/edit/' . $row->nip_anggota,
-                                        '<span class="fa fa-pencil-alt"></span>',
+                                        'penilaian_pratama/nilai/' .
+                                            $row->no_penilaian,
+                                        '<span class="fa fa-tasks"></span>',
+                                        [
+                                            'class' => 'btn btn-primary btn-sm',
+                                            'title' => 'Penilaian',
+                                        ]
+                                    ); ?></td>
+                                    <td class="text-center"><?php echo anchor(
+                                        'penilaian_pratama/edit/' .
+                                            $row->no_penilaian,
+                                        '<span class="fa fa-eye"></span>',
                                         [
                                             'class' => 'btn btn-warning btn-sm',
                                             'title' => 'Edit',
                                         ]
                                     ); ?></td>
                                    	<td class="text-center"><?php echo anchor(
-                                        'tim/hapus/' . $row->nip_anggota,
+                                        'penilaian_pratama/hapus/' .
+                                            $row->no_penilaian,
                                         '<span class="fa fa-trash"></span>',
                                         [
                                             'class' => 'btn btn-danger btn-sm',
                                             'title' => 'Hapus',
-                                            'onclick' =>
-                                                "return confirm('Apakah anda yakin menghapus data ?)",
                                         ]
                                     ); ?></td>
                                 </tr>

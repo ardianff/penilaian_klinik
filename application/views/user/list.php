@@ -19,11 +19,13 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-								&nbsp;<?php echo anchor('user/add','Input Data User',array('class'=>'btn btn-success btn-sm'))?>
+								&nbsp;<?php echo anchor('user/add', 'Input Data User', [
+            'class' => 'btn btn-success btn-sm',
+        ]); ?>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-							<table id="example1" class="table table-bordered table-striped width="100%"">
+							<table id="example2" class="table table-bordered table-striped width="100%"">
                         <thead>
                             <tr>
                                 <th class="text-center" rowspan="2">No</th>
@@ -40,19 +42,32 @@
                         <tbody>
                             <?php
                             $no = 1;
-                            foreach ($daftar as $row):
-                                ?>
+                            foreach ($daftar as $row): ?>
                                 <tr>
                                     <td class="text-center"><?php echo $no; ?></td>
                                     <td class="text-center"><?php echo $row->nama_user; ?></td>
                                     <td class="text-center"><?php echo $row->nip_user; ?></td>
                                     <td class="text-center"><?php echo $row->username; ?></td>
-                                    <td class="text-center"><?php echo anchor('user/edit/' . $row->nip_user, '<span class="fa fa-pencil-alt"></span>', array('class' => 'btn btn-warning btn-sm', 'title' => "Edit")) ?></td>
-                                   	<td class="text-center"><?php echo anchor('user/hapus/' . $row->nip_user, '<span class="fa fa-trash"></span>', array('class' => 'btn btn-danger btn-sm', 'title' => "Hapus", 'onclick'=> "return confirm('Apakah anda yakin menghapus data ?)")) ?></td>
+                                    <td class="text-center"><?php echo anchor(
+                                        'user/edit/' . $row->nip_user,
+                                        '<span class="fa fa-pencil-alt"></span>',
+                                        [
+                                            'class' => 'btn btn-warning btn-sm',
+                                            'title' => 'Edit',
+                                        ]
+                                    ); ?></td>
+                                   	<td class="text-center"><?php echo anchor(
+                                        'user/hapus/' . $row->nip_user,
+                                        '<span class="fa fa-trash"></span>',
+                                        [
+                                            'class' => 'btn btn-danger btn-sm',
+                                            'title' => 'Hapus',
+                                            'onclick' =>
+                                                "return confirm('Apakah anda yakin menghapus data ?)",
+                                        ]
+                                    ); ?></td>
                                 </tr>
-                                <?php
-                                $no++;
-                            endforeach;
+                                <?php $no++;endforeach;
                             ?>
                         </tbody>
                     </table>

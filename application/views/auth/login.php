@@ -30,6 +30,7 @@
     <div class="card-body">
 			<!-- <img src="https://semarangkota.go.id/assets/img/logo-icon.png" height="auto" width="auto" alt="Image" class="login-box-msg center"> -->
 			<?= $this->session->flashdata('message') ?>
+			<hr class="solid">
 			<!-- <?php echo validation_errors(); ?> -->
       <?php echo form_open('auth/check_login', 'class="form-signin"'); ?>
         <div class="input-group mb-3">
@@ -78,5 +79,14 @@
 <script src="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/adminlte.min.js"></script>
+<script>
+  $(document).ready(function () {
+		window.setTimeout(function() {
+			$(".alert").fadeTo(500, 0).slideUp(500, function(){
+				$(this).remove(); 
+			});
+		}, 3500);
+  });
+</script>
 </body>
 </html>

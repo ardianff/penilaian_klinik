@@ -67,8 +67,19 @@ class Auth extends CI_Controller
 
     function logout()
     {
-        $this->session->sess_destroy();
-
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-success alert-dismissible fade show">
+			Anda berhasil Log out
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>'
+        );
+        // $this->session->sess_destroy();
+        $this->session->unset_userdata('username');
+        $this->session->unset_userdata('password');
+        $this->session->set_userdata(['status_login' => 'logout']);
         redirect('auth');
     }
 }

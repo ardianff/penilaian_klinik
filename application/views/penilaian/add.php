@@ -22,15 +22,15 @@
             <div class="card card-info">
               <!-- /.card-header -->
               <!-- form start -->
-							<?php echo form_open('penilaian/add','class="form-horizontal"'); ?>
+							<?php echo form_open('penilaian/add', 'class="form-horizontal"'); ?>
                 <div class="card-body">
                   <div class="form-group row">
                     <label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Penilai 1</label>
                     <div class="col-sm-10">
 										<select class="form-control" name="nama_anggota1">
                 			<option  value="">- Pilih Nama -</option>                    
-            					<?php foreach($anggota as $p) : ?>
-    										<option value="<?php echo $p->nama_anggota;?>"> <?php echo $p->nama_anggota; ?></option>
+            					<?php foreach ($anggota as $p): ?>
+    										<option value="<?php echo $p->nama_anggota; ?>"> <?php echo $p->nama_anggota; ?></option>
    										<?php endforeach; ?>
         						</select>   
                     </div>
@@ -40,8 +40,8 @@
                     <div class="col-sm-10">
 										<select class="form-control" name="nama_anggota2">
                 			<option  value="">- Pilih Nama -</option>                    
-            					<?php foreach($anggota as $p) : ?>
-    										<option value="<?php echo $p->nama_anggota;?>"> <?php echo $p->nama_anggota; ?></option>
+            					<?php foreach ($anggota as $p): ?>
+    										<option value="<?php echo $p->nama_anggota; ?>"> <?php echo $p->nama_anggota; ?></option>
    										<?php endforeach; ?>
         						</select> 
                     </div>
@@ -51,8 +51,8 @@
                     <div class="col-sm-10">
 										<select class="form-control" name="nama_anggota3">
                 			<option  value="">- Pilih Nama -</option>                    
-            					<?php foreach($anggota as $p) : ?>
-    										<option value="<?php echo $p->nama_anggota;?>"> <?php echo $p->nama_anggota; ?></option>
+            					<?php foreach ($anggota as $p): ?>
+    										<option value="<?php echo $p->nama_anggota; ?>"> <?php echo $p->nama_anggota; ?></option>
    										<?php endforeach; ?>
         						</select> 
                     </div>
@@ -62,8 +62,8 @@
                     <div class="col-sm-10">
 										<select class="form-control" name="nama_anggota4">
                 			<option  value="">- Pilih Nama -</option>                    
-            					<?php foreach($anggota as $p) : ?>
-    										<option value="<?php echo $p->nama_anggota;?>"> <?php echo $p->nama_anggota; ?></option>
+            					<?php foreach ($anggota as $p): ?>
+    										<option value="<?php echo $p->nama_anggota; ?>"> <?php echo $p->nama_anggota; ?></option>
    										<?php endforeach; ?>
         						</select> 
                     </div>
@@ -91,13 +91,27 @@
                   <div class="form-group row">
                     <label for="Nama_Anggota" class="col-sm-2 col-form-label">Kemampuan Pelayanan</label>
                     <div class="col-sm-10">
-										<?php echo form_dropdown('kemampuan_pelayanan', array('- Pilih -','Pratama' => 'Pratama', 'Utama' => 'Utama'), null,"class='form-control', 'required'");?>
+										<?php echo form_dropdown(
+              'kemampuan_pelayanan',
+              ['- Pilih -', 'Pratama' => 'Pratama', 'Utama' => 'Utama'],
+              null,
+              "class='form-control', 'required'"
+          ); ?>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="NIP_Anggota" class="col-sm-2 col-form-label">Jenis Pelayanan Klinik</label>
                     <div class="col-sm-10">
-										<?php echo form_dropdown('jenis_pelayanan', array('- Pilih -','Rawat Jalan' => 'Rawat Jalan', 'Rawat Inap' => 'Rawat Inap'), null,"class='form-control', 'required'");?>
+										<?php echo form_dropdown(
+              'jenis_pelayanan',
+              [
+                  '- Pilih -',
+                  'Rawat Jalan' => 'Rawat Jalan',
+                  'Rawat Inap' => 'Rawat Inap',
+              ],
+              null,
+              "class='form-control', 'required'"
+          ); ?>
                     </div>
                   </div>                  
 									<div class="form-group row">
@@ -105,12 +119,18 @@
                     <div class="col-sm-10">
 										<textarea type="text" class="form-control" name="alamat_klinik" placeholder="Alamat Klinik"></textarea>
                     </div>
+                  </div>									
+									<div class="form-group row">
+                    <label for="tgl_penilaian" class="col-sm-2 col-form-label">Tanggal Penilaian</label>
+                    <div class="col-sm-10">
+										<input type="date" class="form-control" name="tgl_penilaian" required autofocus></input>
+                    </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-									<?php echo anchor('tim', 'Kembali', array('class' => 'btn btn-warning')); ?>
+									<?php echo anchor('tim', 'Kembali', ['class' => 'btn btn-warning']); ?>
                 </div>
                 <!-- /.card-footer -->
 								<?php echo form_close(); ?>

@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Penilaian Klinik</h1>
+            <h1><strong>Data Penilaian Klinik Utama</strong></h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -17,11 +17,13 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-								&nbsp;<?php echo anchor('penilaian/add','Input Data Penilaian Baru',array('class'=>'btn btn-success btn-sm'))?>
+								&nbsp;<?php echo anchor('penilaian/add', 'Input Data Penilaian Baru', [
+            'class' => 'btn btn-success btn-sm',
+        ]); ?>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-							<table id="example1" class="table table-bordered table-striped " width="auto" height="auto">
+							<table id="example2" class="table table-bordered table-striped " width="auto" height="auto">
                         <thead>
                             <tr>
                                 <th class="text-center" rowspan="2">No</th>
@@ -41,8 +43,7 @@
                         <tbody>
                             <?php
                             $no = 1;
-                            foreach ($daftar as $row):
-                                ?>
+                            foreach ($daftar as $row): ?>
                                 <tr>
                                     <td class="text-center"><?php echo $no; ?></td>
                                     <td class="text-center"><?php echo $row->nama_klinik; ?></td>
@@ -50,13 +51,32 @@
                                     <td class="text-center"><?php echo $row->jenis_pelayanan_klinik; ?></td>
                                     <td class="text-center"><?php echo $row->alamat_klinik; ?></td>
                                     <td class="text-center"><?php echo $row->nama_anggota1; ?>, <br><?php echo $row->nama_anggota2; ?>, <br><?php echo $row->nama_anggota3; ?>, <br><?php echo $row->nama_anggota4; ?></td>
-                                    <td class="text-center"><?php echo anchor('penilaian/nilai/' . $row->no_penilaian, '<span class="fa fa-tasks"></span>', array('class' => 'btn btn-primary btn-sm', 'title' => "Penilaian")) ?></td>
-                                    <td class="text-center"><?php echo anchor('penilaian/edit/' . $row->no_penilaian, '<span class="fa fa-eye"></span>', array('class' => 'btn btn-warning btn-sm', 'title' => "Edit")) ?></td>
-                                   	<td class="text-center"><?php echo anchor('penilaian/hapus/' . $row->no_penilaian, '<span class="fa fa-trash"></span>', array('class' => 'btn btn-danger btn-sm', 'title' => "Hapus" ))?></td>
+                                    <td class="text-center"><?php echo anchor(
+                                        'penilaian/nilai/' . $row->no_penilaian,
+                                        '<span class="fa fa-tasks"></span>',
+                                        [
+                                            'class' => 'btn btn-primary btn-sm',
+                                            'title' => 'Penilaian',
+                                        ]
+                                    ); ?></td>
+                                    <td class="text-center"><?php echo anchor(
+                                        'penilaian/edit/' . $row->no_penilaian,
+                                        '<span class="fa fa-eye"></span>',
+                                        [
+                                            'class' => 'btn btn-warning btn-sm',
+                                            'title' => 'Edit',
+                                        ]
+                                    ); ?></td>
+                                   	<td class="text-center"><?php echo anchor(
+                                        'penilaian/hapus/' . $row->no_penilaian,
+                                        '<span class="fa fa-trash"></span>',
+                                        [
+                                            'class' => 'btn btn-danger btn-sm',
+                                            'title' => 'Hapus',
+                                        ]
+                                    ); ?></td>
                                 </tr>
-                                <?php
-                                $no++;
-                            endforeach;
+                                <?php $no++;endforeach;
                             ?>
                         </tbody>
                     </table>

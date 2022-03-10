@@ -14,28 +14,37 @@
             <!-- Horizontal Form -->
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Ubah Password</h3>
+                <h3 class="card-title">Input Rincian Penilaian Pratama</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-
-				 <form class="user form-horizontal" method="post" action="<?= base_url('user/ubahpassword/'); ?>">
-                <div class="card-body">				  
-				  			<div class="form-group row">
-                    <label for="username" class="col-sm-2 col-form-label">Password</label>
+							<?php echo form_open(
+           'rincian_penilaian_pratama/add',
+           'class="form-horizontal"'
+       ); ?>
+                <div class="card-body">
+                  <div class="form-group row">
+                    <label for="rincian_penilaian" class="col-sm-2 col-form-label">Rincian Penilaian</label>
                     <div class="col-sm-10">
-                      <input type="password" class="form-control" name="password" placeholder="Masukkan Password">
+                      <textarea type="text" class="form-control" name="rincian_penilaian" placeholder="Rincian Penilaian" required></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="keterangan_penilaian" class="col-sm-2 col-form-label">Keterangan</label>
+                    <div class="col-sm-10">
+                      <textarea type="text" class="form-control" name="keterangan_penilaian" placeholder="Keterangan"></textarea>
                     </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-									<?php echo anchor('user', 'Kembali', array('class' => 'btn btn-warning')); ?>
+									<?php echo anchor('rincian_penilaian_pratama', 'Kembali', [
+             'class' => 'btn btn-warning',
+         ]); ?>
                 </div>
                 <!-- /.card-footer -->
-				</form>
-								
+								<?php echo form_close(); ?>
             </div>
             <!-- /.card -->
 
