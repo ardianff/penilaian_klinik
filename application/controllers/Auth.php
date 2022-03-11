@@ -21,29 +21,30 @@ class Auth extends CI_Controller
             'trim|required'
         );
         if ($this->form_validation->run() == false) {
+            $this->load->view('auth/login');
+        } else {
+            $this->check_login();
         }
-        $this->load->view('auth/login');
     }
 
     function check_login()
     {
-        if (isset($_POST['submit'])) {
-            $username = $this->input->post('username');
-            $password = password_verify(
-                $this->input->post('password'),
-                PASSWORD_DEFAULT
-            );
-            $result = $this->Model_auth->check_login($username, $password);
-            if (!empty($result)) {
-                $this->session->set_userdata($result);
+        $username = $this->input->post('username', true);
+        $password = $this->input->post('password', true);
+
+        $user = $this->db->get_where('tbl_user', ['username' => $username]);
+        if ($user->num_rows() > 0) {
+            $hasil = $user->row();
+            if (password_verify($password, $hasil->password)) {
+                $this->session->set_userdata('id', $hasil->id);
+                $this->session->set_userdata('nama_user', $hasil->nama_user);
                 $this->session->set_userdata(['status_login' => 'ok']);
                 redirect('dashboard');
             } else {
                 $this->session->set_flashdata(
                     'message',
-                    // '<div class="alert alert-danger" role="alert">Username atau Password yang Anda masukkan salah</div>'
                     '<div class="alert alert-danger alert-dismissible fade show">
-					Username atau Password yang Anda masukkan salah
+					Password yang Anda masukkan salah !
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -52,8 +53,45 @@ class Auth extends CI_Controller
                 redirect('auth');
             }
         } else {
-            $this->load->view('auth/login');
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show">
+				Username tidak tersedia !
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>'
+            );
+            redirect('auth');
         }
+        // if (isset($_POST['submit'])) {
+        //     $username = $this->input->post('username');
+        //     $password = $this->input->post('password');
+        //     $password = password_verify(
+        //         $this->input->post('password'),
+        //         PASSWORD_DEFAULT
+        //     );
+        //     $result = $this->Model_auth->check_login($username, $password);
+        //     if (!empty($result)) {
+        //         $this->session->set_userdata($result);
+        //         $this->session->set_userdata(['status_login' => 'ok']);
+        //         redirect('dashboard');
+        //     } else {
+        //         $this->session->set_flashdata(
+        //             'message',
+        //             // '<div class="alert alert-danger" role="alert">Username atau Password yang Anda masukkan salah</div>'
+        //             '<div class="alert alert-danger alert-dismissible fade show">
+        // 			Username atau Password yang Anda masukkan salah
+        // 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        // 				<span aria-hidden="true">&times;</span>
+        // 			</button>
+        // 		</div>'
+        //         );
+        //         redirect('auth');
+        //     }
+        // } else {
+        //     $this->load->view('auth/login');
+        // }
     }
     function add()
     {

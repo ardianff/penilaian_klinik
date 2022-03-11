@@ -25,6 +25,15 @@ function check_session()
     $ci = &get_instance();
     $session = $ci->session->userdata('status_login');
     if ($session != 'ok') {
+        $ci->session->set_flashdata(
+            'message',
+            '<div class="alert alert-danger alert-dismissible fade show">
+		Silahkan Login terlebih dahulu !
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>'
+        );
         redirect('auth');
     }
 }

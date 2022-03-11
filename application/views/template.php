@@ -37,19 +37,16 @@
 	<style>
 		img.center {
     display: block;
-    margin: 0 auto;
+    margin: 0 auto;		
+}
+#card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
 }
 	</style>
 </head>
-<!--
-`body` tag options:
 
-  Apply one or more of the following classes to to the body tag
-  to get the desired effect
-
-  * sidebar-collapse
-  * sidebar-mini
--->
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
@@ -66,7 +63,7 @@
       <!-- Notifications Dropdown Menu -->
 			<li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-							<?php echo $this->session->userdata('nama_user'); ?>
+							Halo, <?php echo $this->session->userdata('nama_user'); ?>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <a href="<?php echo site_url(
@@ -303,7 +300,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/demo.js"></script>
 <!-- Page specific script -->
-<script>
+<script type="text/javascript">
   $(document).ready(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -318,12 +315,6 @@
       "autoWidth": false,
       "responsive": true,
     });
-		
-		window.setTimeout(function() {
-			$(".alert").fadeTo(500, 0).slideUp(500, function(){
-				$(this).remove(); 
-			});
-		}, 5000);
   });
 </script>
 </body>

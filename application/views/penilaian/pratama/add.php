@@ -22,7 +22,7 @@
             <div class="card card-info">
               <!-- /.card-header -->
               <!-- form start -->
-							<?php echo form_open('penilaian/add', 'class="form-horizontal"'); ?>
+							<?php echo form_open('penilaian_pratama/add', 'class="form-horizontal"'); ?>
                 <div class="card-body">
                   <div class="form-group row">
                     <label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Penilai 1</label>
@@ -130,7 +130,9 @@
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-									<?php echo anchor('tim', 'Kembali', ['class' => 'btn btn-warning']); ?>
+									<?php echo anchor('penilaian_pratama', 'Kembali', [
+             'class' => 'btn btn-warning',
+         ]); ?>
                 </div>
                 <!-- /.card-footer -->
 								<?php echo form_close(); ?>

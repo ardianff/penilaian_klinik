@@ -13,7 +13,7 @@ class Profile extends CI_Controller
     {
         $data['user'] = $this->db
             ->get_where('tbl_user', [
-                'nip_user' => $this->session->userdata('nip_user'),
+                'id' => $this->session->userdata('id'),
             ])
             ->row_array();
         $this->template->load('template', 'profile/profile', $data);
@@ -22,7 +22,7 @@ class Profile extends CI_Controller
     {
         $data['user'] = $this->db
             ->get_where('tbl_user', [
-                'nip_user' => $this->session->userdata('nip_user'),
+                'id' => $this->session->userdata('id'),
             ])
             ->row_array();
 

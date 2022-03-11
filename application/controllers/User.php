@@ -16,7 +16,10 @@ class User extends CI_Controller
                 'SELECT ts.username,ts.nama_user,ts.nip_user FROM tbl_user as ts'
             )
             ->result();
-        $this->template->load('template', 'user/list', $data);
+        $nama_user['user'] = $this->db
+            ->get_where('tbl_user', ['id' => $this->session->userdata('id')])
+            ->row_array();
+        $this->template->load('template', 'user/list', $data, $nama_user);
     }
     function add()
     {

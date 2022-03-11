@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Profile</h1>
+            <h1><strong>Profile</strong></h1>
           </div>
           <div class="col-sm-6">
           </div>
@@ -15,11 +15,11 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-4 align-self-center">
+          <div class="col-md-4" id="card">
 
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
-              <div class="card-body box-profile ml-10">    
+              <div class="card-body box-profile">    
                 <!-- <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
                        src="<?php echo base_url(); ?>assets/admin-lte/dist/img/user4-128x128.jpg"
@@ -39,9 +39,7 @@
                     ] ?></a>
                   </li>
                 </ul>
-                <!-- <a href="<?php echo site_url(
-                    'profile/ubahdata'
-                ); ?>" class="btn btn-primary btn-block"><b>Ubah Data</b></a> -->
+              
 				<?php echo anchor('profile/ubahdata/' . $user['nip_user'], '<b>Ubah Data</b>', [
         'class' => 'btn btn-primary btn-block',
     ]); ?>

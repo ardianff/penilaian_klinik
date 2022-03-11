@@ -76,6 +76,8 @@
                                         [
                                             'class' => 'btn btn-danger btn-sm',
                                             'title' => 'Hapus',
+                                            'onclick' =>
+                                                "return confirm('Apakah anda yakin hapus data ini ?')",
                                         ]
                                     ); ?></td>
                                 </tr>

@@ -24,9 +24,9 @@ class Penilaian_Pratama extends CI_Controller
         $data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
         if (isset($_POST['submit'])) {
             $this->Model_penilaian_pratama->add();
-            redirect('penilaian');
+            redirect('penilaian_pratama');
         } else {
-            $this->template->load('template', 'penilaian/add', $data);
+            $this->template->load('template', 'penilaian/pratama/add', $data);
         }
     }
     function edit()
