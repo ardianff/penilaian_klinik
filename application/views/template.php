@@ -226,6 +226,58 @@
 		
     <!-- /.sidebar -->
   </aside>
+	<!-- Delete Confirmation-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apakah Anda yakin menghapus data ini ?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Data yang dihapus tidak akan bisa dikembalikan.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a id="btn-delete" class="btn btn-danger" href="#">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>	
+<!-- Edit Confirmation-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apakah Anda yakin mengedit data ini ?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+        <a id="btn-edit" class="btn btn-danger" href="#">Ya</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Simpan Confirmation-->
+<div class="modal fade" id="simpanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apakah Anda yakin menyimpan perubahan ?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+        <a id="btn-save" class="btn btn-danger" href="#">Ya</a>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Content Wrapper. Contains page content -->
 		<?php echo $contents; ?>
@@ -316,6 +368,24 @@
       "responsive": true,
     });
   });
+</script>
+<script>
+function deleteConfirm(url){
+	$('#btn-delete').attr('href', url);
+	$('#deleteModal').modal();
+}
+</script>
+<script>
+function editConfirm(url){
+	$('#btn-edit').attr('href', url);
+	$('#editModal').modal();
+}
+</script>
+<script>
+function saveConfirm(url){
+	$('#btn-save').attr('href', url);
+	$('#saveModal').modal();
+}
 </script>
 </body>
 </html>

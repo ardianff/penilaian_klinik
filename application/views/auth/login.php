@@ -31,7 +31,7 @@
 			<!-- <img src="https://semarangkota.go.id/assets/img/logo-icon.png" height="auto" width="auto" alt="Image" class="login-box-msg center"> -->
 			<?= $this->session->flashdata('message') ?>
 			<hr class="solid">
-			<?php echo validation_errors(); ?>
+			<!-- <?php echo validation_errors(); ?> -->
       <?php echo form_open('auth/check_login', 'class="form-signin"'); ?>
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Username" name="username">

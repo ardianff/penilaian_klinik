@@ -77,4 +77,42 @@ function greetings()
     //tampilkan pesan
     echo 'Selamat ' . $salam;
 }
+function kode_user()
+{
+    $ci = &get_instance();
+    $ci->db->select('RIGHT(tbl_user.kode_user,5) as kode_user', false);
+    $ci->db->order_by('kode_user', 'DESC');
+    $ci->db->limit(1);
+    $query = $ci->db->get('tbl_user');
+    if ($query->num_rows() != 0) {
+        $data = $query->row();
+        $kode = intval($data->kode_user) + 1;
+    } else {
+        $kode = 1;
+    }
+    $batas = str_pad($kode, 5, '0', STR_PAD_LEFT);
+    date_default_timezone_set('Asia/Jakarta');
+    $kodetampil = 'USR' . date('dmy') . $batas;
+
+    return $kodetampil;
+}
+function kode_anggota()
+{
+    $ci = &get_instance();
+    $ci->db->select('RIGHT(tbl_anggota.kode_anggota,5) as kode_anggota', false);
+    $ci->db->order_by('kode_anggota', 'DESC');
+    $ci->db->limit(1);
+    $query = $ci->db->get('tbl_anggota');
+    if ($query->num_rows() != 0) {
+        $data = $query->row();
+        $kode = intval($data->kode_anggota) + 1;
+    } else {
+        $kode = 1;
+    }
+    $batas = str_pad($kode, 5, '0', STR_PAD_LEFT);
+    $kodetampil = 'DKK' . $batas;
+
+    return $kodetampil;
+}
+
 ?>

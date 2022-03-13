@@ -29,12 +29,22 @@ class Profile extends CI_Controller
         $this->form_validation->set_rules(
             'username',
             'Username',
-            'required|trim|min_length[5]|max_length[12]'
+            'required|trim|min_length[5]|max_length[12]|xss_clean|is_unique[tbl_user.username]',
+            [
+                'required' => 'Username Wajib di isi',
+                'min_length' => 'Username wajib berisi minimal 5 karakter',
+                'max_length' => 'Username yang diinputkan maksimal 20 karakter',
+                'is_unique' => 'Username yang diinputkan sudah ada',
+            ]
         );
         $this->form_validation->set_rules(
             'password',
             'Password',
-            'min_length[8]|max_length[20]'
+            'min_length[8]|max_length[20]|xss_clean',
+            [
+                'min_length' => 'Password wajib berisi minimal 5 karakter',
+                'max_length' => 'Password yang diinputkan maksimal 20 karakter',
+            ]
         );
 
         if ($this->form_validation->run() == false) {

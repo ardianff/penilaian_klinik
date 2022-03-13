@@ -49,6 +49,7 @@
                     <label for="password" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
                       <input type="password" class="form-control" name="password" placeholder="Password">
+											<?= form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                   </div>
                 </div>

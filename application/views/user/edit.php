@@ -18,38 +18,42 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-				<?php echo form_open('user/edit','class="form-horizontal"');
-				echo form_hidden('nip_user', $user['nip_user']); ?>
+				<?php echo form_open('user/update', 'class="form-horizontal"'); ?>
+				<input type="hidden" name="kode_user" value="<?php echo $user->kode_user; ?>"/>
                 <div class="card-body">
                   <div class="form-group row">
-                    <label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Anggota</label>
+                    <label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama User</label>
                     <div class="col-sm-10">
-                      <input type="name" class="form-control" name="nama_user" placeholder="Nama" value="<?php echo $user['nama_user'] ?>" required>
+                      <input type="name" class="form-control" name="nama_user" placeholder="Nama" value="<?php echo $user->nama_user; ?>" >
+											<?= form_error('nama_user', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="NIP_Anggota" class="col-sm-2 col-form-label">NIP Anggota</label>
+                    <label for="NIP_Anggota" class="col-sm-2 col-form-label">NIP User</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control" name="nip_user" placeholder="NIP" value="<?php echo $user['nip_user'] ?>" required>
+                      <input type="number" class="form-control" name="nip_user" placeholder="NIP" value="<?php echo $user->nip_user; ?>" >
+											<?= form_error('nip_user', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                   </div>                  
 				  <div class="form-group row">
                     <label for="username" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="username" placeholder="Username" value="<?php echo $user['username'] ?>">
+                      <input type="text" class="form-control" name="username" placeholder="Username" value="<?php echo $user->username; ?>">
+											<?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                   </div>				  
 				  			<div class="form-group row">
                     <label for="username" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
                       <input type="password" class="form-control" name="password" placeholder="Password">
+											<?= form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-									<?php echo anchor('user', 'Kembali', array('class' => 'btn btn-warning')); ?>
+									<?php echo anchor('user', 'Kembali', ['class' => 'btn btn-warning']); ?>
                 </div>
                 <!-- /.card-footer -->
 								<?php echo form_close(); ?>
