@@ -18,27 +18,35 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-				<?php echo form_open('user/update', 'class="form-horizontal"'); ?>
-				<input type="hidden" name="kode_user" value="<?php echo $user->kode_user; ?>"/>
+				<?php
+    echo form_open('user/update', 'class="form-horizontal"');
+    echo form_hidden('kode_user', $user->kode_user);
+    ?>
                 <div class="card-body">
                   <div class="form-group row">
                     <label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama User</label>
                     <div class="col-sm-10">
-                      <input type="name" class="form-control" name="nama_user" placeholder="Nama" value="<?php echo $user->nama_user; ?>" >
+                      <input type="name" class="form-control" name="nama_user" placeholder="Nama" value="<?= htmlentities(
+                          $user->nama_user
+                      ) ?>" >
 											<?= form_error('nama_user', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="NIP_Anggota" class="col-sm-2 col-form-label">NIP User</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control" name="nip_user" placeholder="NIP" value="<?php echo $user->nip_user; ?>" >
+                      <input type="number" class="form-control" name="nip_user" placeholder="NIP" value="<?= htmlentities(
+                          $user->nip_user
+                      ) ?>" >
 											<?= form_error('nip_user', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                   </div>                  
 				  <div class="form-group row">
                     <label for="username" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="username" placeholder="Username" value="<?php echo $user->username; ?>">
+                      <input type="text" class="form-control" name="username" placeholder="Username" value="<?= htmlentities(
+                          $user->username
+                      ) ?>">
 											<?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                   </div>				  

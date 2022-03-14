@@ -19,25 +19,27 @@
               <!-- /.card-header -->
               <!-- form start -->
 		   <?php
-     echo form_open('tim/edit', 'class="form-horizontal"');
-     echo form_hidden('nip_anggota', $anggota['nip_anggota']);
+     echo form_open('tim/update', 'class="form-horizontal"');
+     echo form_hidden('kode_anggota', $anggota->kode_anggota);
      ?>
                 <div class="card-body">
                   <div class="form-group row">
                     <label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Anggota</label>
                     <div class="col-sm-10">
-                      <input type="name" class="form-control" name="nama_anggota" value="<?php echo $anggota[
-                          'nama_anggota'
-                      ]; ?>" placeholder="Nama">
-                    </div>
+                      <input type="name" class="form-control" name="nama_anggota" value="<?php echo $anggota->nama_anggota; ?>" placeholder="Nama">
+											<?= form_error(
+               'nama_anggota',
+               '<small class="text-danger pl-3">',
+               '</small>'
+           ) ?>
+										</div>
                   </div>
                   <div class="form-group row">
                     <label for="NIP_Anggota" class="col-sm-2 col-form-label">NIP Anggota</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control" name="nip_anggota" value="<?php echo $anggota[
-                          'nip_anggota'
-                      ]; ?>"placeholder="NIP">
-                    </div>
+                      <input type="number" class="form-control" name="nip_anggota" value="<?php echo $anggota->nip_anggota; ?>"placeholder="NIP">
+											<?= form_error('nip_anggota', '<small class="text-danger pl-3">', '</small>') ?>
+										</div>
                   </div>
                 </div>
                 <!-- /.card-body -->

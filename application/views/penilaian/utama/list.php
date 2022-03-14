@@ -17,7 +17,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-								&nbsp;<?php echo anchor('penilaian/add', 'Input Data Penilaian Baru', [
+								&nbsp;<?php echo anchor('penilaian_utama/add', 'Input Data Penilaian Baru', [
             'class' => 'btn btn-success btn-sm',
         ]); ?>
               </div>
@@ -32,9 +32,10 @@
                                 <th class="text-center" rowspan="2">Jenis Klinik</th>
                                 <th class="text-center" rowspan="2">Alamat</th>
                                 <th class="text-center" rowspan="2">Anggota Penilaian</th>
-                                <th class="text-center" colspan="3">Action</th>
+                                <th class="text-center" colspan="4">Action</th>
                             </tr>
 														<tr>
+																<td></td>
 																<td></td>
 																<td></td>
 																<td></td>
@@ -43,7 +44,7 @@
                         <tbody>
                             <?php
                             $no = 1;
-                            foreach ($daftar as $row): ?>
+                            foreach ($data as $row): ?>
                                 <tr>
                                     <td class="text-center"><?php echo $no; ?></td>
                                     <td class="text-center"><?php echo $row->nama_klinik; ?></td>
@@ -52,15 +53,25 @@
                                     <td class="text-center"><?php echo $row->alamat_klinik; ?></td>
                                     <td class="text-center"><?php echo $row->nama_anggota1; ?>, <br><?php echo $row->nama_anggota2; ?>, <br><?php echo $row->nama_anggota3; ?>, <br><?php echo $row->nama_anggota4; ?></td>
                                     <td class="text-center"><?php echo anchor(
-                                        'penilaian/nilai/' . $row->no_penilaian,
+                                        'penilaian_utama/nilai/' .
+                                            $row->no_penilaian,
                                         '<span class="fa fa-tasks"></span>',
                                         [
                                             'class' => 'btn btn-primary btn-sm',
                                             'title' => 'Penilaian',
                                         ]
                                     ); ?></td>
+																		<td class="text-center"><?php echo anchor(
+                      'penilaian_utama/pdf/' . $row->no_penilaian,
+                      '<span class="fa fa-file-pdf"></span>',
+                      [
+                          'class' => 'btn btn-success btn-sm',
+                          'title' => 'Export PDF',
+                      ]
+                  ); ?></td>
                                     <td class="text-center"><?php echo anchor(
-                                        'penilaian/edit/' . $row->no_penilaian,
+                                        'penilaian_utama/edit/' .
+                                            $row->no_penilaian,
                                         '<span class="fa fa-eye"></span>',
                                         [
                                             'class' => 'btn btn-warning btn-sm',
@@ -68,7 +79,8 @@
                                         ]
                                     ); ?></td>
                                    	<td class="text-center"><?php echo anchor(
-                                        'penilaian/hapus/' . $row->no_penilaian,
+                                        'penilaian_utama/hapus/' .
+                                            $row->no_penilaian,
                                         '<span class="fa fa-trash"></span>',
                                         [
                                             'class' => 'btn btn-danger btn-sm',
@@ -93,5 +105,6 @@
       </div>
       <!-- /.container-fluid -->
     </section>
+		<?php echo form_close(); ?>
     <!-- /.content -->
   </div>

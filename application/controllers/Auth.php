@@ -6,37 +6,77 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->Model('Model_auth');
+        $this->id = $this->session->userdata('id');
     }
 
     function index()
     {
-        $this->form_validation->set_rules('username', 'Username', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        if ($this->form_validation->run() == false) {
-            $this->load->view('auth/login');
-        } else {
-            $this->check_login();
-        }
+        // if ($this->session->userdata('id')) {
+        //     redirect('dashboard');
+        // }
+        // $this->form_validation->set_rules(
+        //     'username',
+        //     'Username',
+        //     'required|xss_clean|trim'
+        // );
+        // $this->form_validation->set_rules(
+        //     'password',
+        //     'Password',
+        //     'required|xss_clean|trim|'
+        // );
+        // if ($this->form_validation->run() == false) {
+        //     $this->load->view('auth/login');
+        // } else {
+        //     $this->check_login();
+        // }
+        $this->load->view('auth/login');
     }
 
     function check_login()
     {
-        $username = $this->input->post('username', true);
-        $password = $this->input->post('password', true);
+        $this->form_validation->set_rules(
+            'username',
+            'Username',
+            'required|xss_clean|trim',
+            ['required' => 'Username wajib diisi']
+        );
+        $this->form_validation->set_rules('password', 'Password', 'required', [
+            'required' => 'Password wajib diisi',
+        ]);
+        if ($this->form_validation->run() == false) {
+            $this->load->view('auth/login');
+        } else {
+            $username = $this->input->post('username', true);
+            $password = $this->input->post('password', true);
 
-        $user = $this->db->get_where('tbl_user', ['username' => $username]);
-        if ($user->num_rows() > 0) {
-            $hasil = $user->row();
-            if (password_verify($password, $hasil->password)) {
-                $this->session->set_userdata('id', $hasil->id);
-                $this->session->set_userdata('nama_user', $hasil->nama_user);
-                $this->session->set_userdata(['status_login' => 'ok']);
-                redirect('dashboard');
+            $user = $this->db->get_where('tbl_user', ['username' => $username]);
+            if ($user->num_rows() > 0) {
+                $hasil = $user->row();
+                if (password_verify($password, $hasil->password)) {
+                    $this->session->set_userdata('id', $hasil->id);
+                    $this->session->set_userdata(
+                        'nama_user',
+                        $hasil->nama_user
+                    );
+                    $this->session->set_userdata(['status_login' => 'ok']);
+                    redirect('dashboard');
+                } else {
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-danger alert-dismissible fade show">
+						Password yang Anda masukkan salah !
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>'
+                    );
+                    redirect('auth');
+                }
             } else {
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-danger alert-dismissible fade show">
-					Password yang Anda masukkan salah !
+					Username tidak tersedia !
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -44,17 +84,6 @@ class Auth extends CI_Controller
                 );
                 redirect('auth');
             }
-        } else {
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-danger alert-dismissible fade show">
-				Username tidak tersedia !
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>'
-            );
-            redirect('auth');
         }
     }
     function add()

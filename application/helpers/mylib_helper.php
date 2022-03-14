@@ -28,7 +28,7 @@ function check_session()
         $ci->session->set_flashdata(
             'message',
             '<div class="alert alert-danger alert-dismissible fade show">
-		Silahkan Login terlebih dahulu !
+		Silahkan Sign In terlebih dahulu !
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -37,9 +37,28 @@ function check_session()
         redirect('auth');
     }
 }
-function no_penilaian()
+function no_penilaian_pratama()
 {
-    $txt = 'TASK';
+    $txt = 'TAS-_PRTM';
+    $ci = &get_instance();
+    $q = $ci->db->query(
+        'SELECT MAX(RIGHT(no_penilaian,4)) AS kd_max FROM tbl_klinik'
+    );
+    $kd = '';
+    if ($q->num_rows() > 0) {
+        foreach ($q->result() as $k) {
+            $tmp = ((int) $k->kd_max) + 1;
+            $kd = sprintf('%04s', $tmp);
+        }
+    } else {
+        $kd = '0001';
+    }
+    date_default_timezone_set('Asia/Jakarta');
+    return $txt . date('dmy') . $kd;
+}
+function no_penilaian_utama()
+{
+    $txt = 'TASK-UTM';
     $ci = &get_instance();
     $q = $ci->db->query(
         'SELECT MAX(RIGHT(no_penilaian,4)) AS kd_max FROM tbl_klinik'

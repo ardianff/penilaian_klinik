@@ -51,23 +51,63 @@ class Tim extends CI_Controller
             }
         }
     }
-    function edit()
+    // function edit()
+    // {
+    //     if (isset($_POST['submit'])) {
+    //         $this->Model_tim->update();
+    //         redirect('tim');
+    //     } else {
+    //         $nip_anggota = $this->uri->segment(3);
+    //         $data['anggota'] = $this->db
+    //             ->get_where('tbl_anggota', ['nip_anggota' => $nip_anggota])
+    //             ->row_array();
+    //         $this->template->load('template', 'tim/edit', $data);
+    //     }
+    // }
+    function edit($id)
     {
-        if (isset($_POST['submit'])) {
-            $this->Model_tim->update();
+        $data['anggota'] = $this->Model_tim->getById($id);
+        $this->template->load('template', 'tim/edit', $data);
+    }
+    function update()
+    {
+        $this->form_validation->set_rules(
+            'nama_anggota',
+            'Nama',
+            'required|trim|xss_clean|min_length[5]|max_length[50]',
+            [
+                'required' => 'Nama User Wajib di isi',
+                'min_length' => 'Nama User yang diinputkan minimal 5 karakter',
+                'max_length' =>
+                    'Nama User yang diinputkan maksimal 50 karakter',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'nip_anggota',
+            'NIP',
+            'required|trim|xss_clean|min_length[18]|max_length[20]',
+            [
+                'required' => 'NIP User Wajib di isi',
+                'min_length' => 'NIP berisi minimal 18 karakter',
+                'max_length' => 'NIP berisi maksimal 20 karakter',
+            ]
+        );
+        if ($this->form_validation->run() == true) {
+            $id = $this->input->post('kode_anggota');
+            $data['nama_anggota'] = $this->input->post('nama_anggota');
+            $data['nip_anggota'] = $this->input->post('nip_anggota');
+            $this->Model_tim->update($data, $id);
             redirect('tim');
         } else {
-            $nip_anggota = $this->uri->segment(3);
-            $data['anggota'] = $this->db
-                ->get_where('tbl_anggota', ['nip_anggota' => $nip_anggota])
-                ->row_array();
+            $id = $this->input->post('kode_anggota');
+            $data['anggota'] = $this->Model_tim->getById($id);
             $this->template->load('template', 'tim/edit', $data);
         }
     }
     function hapus()
     {
         $id = $this->uri->segment(3);
-        $this->db->where('nip_anggota', $id);
+        $this->db->where('kode_anggota', $id);
         $this->db->delete('tbl_anggota');
         redirect('tim');
     }

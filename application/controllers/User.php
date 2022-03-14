@@ -11,11 +11,6 @@ class User extends CI_Controller
 
     function index()
     {
-        // $data['daftar'] = $this->db
-        //     ->query(
-        //         'SELECT ts.username,ts.nama_user,ts.nip_user FROM tbl_user as ts'
-        //     )
-        //     ->result();
         $data['data'] = $this->Model_auth->getAll();
         $nama_user['user'] = $this->db
             ->get_where('tbl_user', ['id' => $this->session->userdata('id')])
@@ -80,73 +75,15 @@ class User extends CI_Controller
     }
     function edit($id)
     {
-        // $nip_user = $this->uri->segment(3);
-        // $data['user'] = $this->db
-        //     ->get_where('tbl_user', ['nip_user' => $nip_user])
-        //     ->row_array();
         $data['user'] = $this->Model_auth->getById($id);
         $this->template->load('template', 'user/edit', $data);
-        // if ($this->form_validation->run() == false) {
-        //     // echo 'masuk kesini';
-        //     $nip_user = $this->uri->segment(3);
-        //     $data['user'] = $this->db
-        //         ->get_where('tbl_user', ['nip_user' => $nip_user])
-        //         ->row_array();
-        //     $this->template->load('template', 'user/edit', $data);
-        // } else {
-        //     if (isset($_POST['submit'])) {
-        //         $this->Model_auth->update();
-        //         redirect('user');
-        //     } else {
-        //         $nip_user = $this->uri->segment(3);
-        //         $data['user'] = $this->db
-        //             ->get_where('tbl_user', ['nip_user' => $nip_user])
-        //             ->row_array();
-        //         $this->template->load('template', 'user/edit', $data);
-        //     }
-        // }
-        // if ($this->form_validation->run() == true) {
-        //     if ($this->input->post('password') != '') {
-        //         $nip_user = $this->input->post('nip_user');
-        //         $data['nama_user'] = $this->input->post('nama_user');
-        //         $data['nip_user'] = $this->input->post('nip_user');
-        //         $data['username'] = $this->input->post('username');
-        //         $data['password'] = password_hash(
-        //             $this->input->post('tanggal_lahir'),
-        //             PASSWORD_DEFAULT
-        //         );
-        //         $this->Model_auth->update($data, $nip_user);
-        //         redirect('user');
-        //     } else {
-        //         $nip_user = $this->input->post('nip_user');
-        //         $data['nama_user'] = $this->input->post('nama_user');
-        //         $data['nip_user'] = $this->input->post('nip_user');
-        //         $data['username'] = $this->input->post('username');
-        //         $this->Model_auth->update($data, $nip_user);
-        //         redirect('user');
-        //     }
-        // } else {
-        //     $nip_user = $this->input->post('nip_user');
-        //     $data['data'] = $this->Model_auth->getById($nip_user);
-        //     $this->template->load('template', 'user/edit', $data);
-        // }
-        // if (isset($_POST['submit'])) {
-        //     $this->Model_auth->update();
-        //     redirect('user');
-        // } else {
-        //     $nip_user = $this->uri->segment(3);
-        //     $data['user'] = $this->db
-        //         ->get_where('tbl_user', ['nip_user' => $nip_user])
-        //         ->row_array();
-        //     $this->template->load('template', 'user/edit', $data);
-        // }
     }
     function update()
     {
         $this->form_validation->set_rules(
             'nama_user',
             'Nama',
-            'required|trim|min_length[5]|max_length[50]',
+            'required|trim|min_length[5]|max_length[50]|xss_clean',
             [
                 'required' => 'Nama User Wajib di isi',
                 'min_length' => 'Nama User yang diinputkan minimal 5 karakter',
@@ -157,7 +94,7 @@ class User extends CI_Controller
         $this->form_validation->set_rules(
             'nip_user',
             'NIP',
-            'required|trim|min_length[18]|max_length[20]',
+            'required|trim|min_length[18]|max_length[20]|xss_clean',
             [
                 'required' => 'NIP User Wajib di isi',
                 'min_length' => 'NIP berisi minimal 18 karakter',

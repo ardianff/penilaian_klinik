@@ -32,9 +32,10 @@
                                 <th class="text-center" rowspan="2">Jenis Klinik</th>
                                 <th class="text-center" rowspan="2">Alamat</th>
                                 <th class="text-center" rowspan="2">Anggota Penilaian</th>
-                                <th class="text-center" colspan="3">Action</th>
+                                <th class="text-center" colspan="4">Aksi</th>
                             </tr>
 														<tr>
+																<td></td>
 																<td></td>
 																<td></td>
 																<td></td>
@@ -43,7 +44,7 @@
                         <tbody>
                             <?php
                             $no = 1;
-                            foreach ($daftar as $row): ?>
+                            foreach ($data as $row): ?>
                                 <tr>
                                     <td class="text-center"><?php echo $no; ?></td>
                                     <td class="text-center"><?php echo $row->nama_klinik; ?></td>
@@ -68,7 +69,15 @@
                                             'class' => 'btn btn-warning btn-sm',
                                             'title' => 'Edit',
                                         ]
-                                    ); ?></td>
+                                    ); ?></td>                                    
+																		<td class="text-center"><?php echo anchor(
+                      'penilaian_pratama/pdf/' . $row->no_penilaian,
+                      '<span class="fa fa-file-pdf"></span>',
+                      [
+                          'class' => 'btn btn-success btn-sm',
+                          'title' => 'Export PDF',
+                      ]
+                  ); ?></td>
                                    	<td class="text-center"><?php echo anchor(
                                         'penilaian_pratama/hapus/' .
                                             $row->no_penilaian,

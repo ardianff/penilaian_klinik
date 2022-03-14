@@ -20,29 +20,36 @@
               <!-- form start -->
 							<?php
        echo form_open(
-           'rincian_penilaian_pratama/edit',
+           'rincian_penilaian_pratama/update',
            'class="form-horizontal"'
        );
-       echo form_hidden(
-           'id_rincian_penilaian',
-           $rincian['id_rincian_penilaian']
-       );
+       echo form_hidden('id_rincian_penilaian', $rincian->id_rincian_penilaian);
        ?>
                 <div class="card-body">
                   <div class="form-group row">
                     <label for="rincian_penilaian" class="col-sm-2 col-form-label">Rincian Penilaian</label>
                     <div class="col-sm-10">
-                      <textarea type="text" class="form-control" name="rincian_penilaian" placeholder="Rincian Penilaian" required><?php echo htmlspecialchars(
-                          $rincian['rincian_penilaian']
+                      <textarea type="text" class="form-control" name="rincian_penilaian" placeholder="Rincian Penilaian"><?php echo htmlspecialchars(
+                          $rincian->rincian_penilaian
                       ); ?></textarea>
+											<?= form_error(
+               'rincian_penilaian',
+               '<small class="text-danger pl-3">',
+               '</small>'
+           ) ?>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="keterangan_penilaian" class="col-sm-2 col-form-label">Keterangan</label>
                     <div class="col-sm-10">
                       <textarea type="text" class="form-control" name="keterangan_penilaian" placeholder="Keterangan"><?php echo htmlspecialchars(
-                          $rincian['keterangan_penilaian']
+                          $rincian->keterangan_penilaian
                       ); ?></textarea>
+											<?= form_error(
+               'keterangan_penilaian',
+               '<small class="text-danger pl-3">',
+               '</small>'
+           ) ?>
                     </div>
                   </div>
                 </div>

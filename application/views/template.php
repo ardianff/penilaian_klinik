@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sistem Penilaian Klinik</title>
-	<link rel="shortcut icon" href="https://semarangkota.go.id/assets/img/favicon.png" type="image/x-icon"/>
+	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.png" type="image/x-icon"/>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -105,7 +105,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="https://semarangkota.go.id/assets/img/favicon.png" class="img center" alt="User Image">
+          <img src="<?php echo base_url(); ?>assets/img/favicon.png" class="img center" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Sistem Penilaian Klinik</a>
@@ -210,10 +210,8 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?php echo site_url(
-                'auth/logout'
-            ); ?>" class="nav-link" onclick = "return confirm('Apakah anda yakin ingin keluar ?')">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
+							<a onclick="logoutConfirm('<?php echo site_url('auth/logout'); ?>')"
+											 href="#" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Logout
               </p>
@@ -238,8 +236,8 @@
       </div>
       <div class="modal-body">Data yang dihapus tidak akan bisa dikembalikan.</div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a id="btn-delete" class="btn btn-danger" href="#">Delete</a>
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+        <a id="btn-delete" class="btn btn-danger" href="#">Hapus</a>
       </div>
     </div>
   </div>
@@ -274,6 +272,23 @@
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
         <a id="btn-save" class="btn btn-danger" href="#">Ya</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Logout Confirmation-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apakah Anda yakin keluar dari sistem ini ?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+        <a id="btn-logout" class="btn btn-danger" href="#">Ya</a>
       </div>
     </div>
   </div>
@@ -360,11 +375,13 @@
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
+			"pageLength": 25,
+			"lengthMenu": [10, 25, 50, 100, 200, 300],
       "lengthChange": true,
-      "searching": false,
+      "searching": true,
       "ordering": true,
       "info": true,
-      "autoWidth": false,
+      "autoWidth": true,
       "responsive": true,
     });
   });
@@ -373,18 +390,17 @@
 function deleteConfirm(url){
 	$('#btn-delete').attr('href', url);
 	$('#deleteModal').modal();
-}
-</script>
-<script>
-function editConfirm(url){
+}; function editConfirm(url){
 	$('#btn-edit').attr('href', url);
 	$('#editModal').modal();
-}
-</script>
-<script>
+};
 function saveConfirm(url){
 	$('#btn-save').attr('href', url);
 	$('#saveModal').modal();
+}
+function logoutConfirm(url){
+	$('#btn-logout').attr('href', url);
+	$('#logoutModal').modal();
 }
 </script>
 </body>

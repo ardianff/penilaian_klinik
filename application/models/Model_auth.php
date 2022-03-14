@@ -31,7 +31,6 @@ class Model_auth extends CI_Model
     }
     function ubah()
     {
-        // $data['password'] = password_hash(trim($this->input->post('password')), PASSWORD_DEFAULT);
         if ($this->input->post('password') != '') {
             $data = [
                 'nama_user' => $this->input->post('nama_user'),

@@ -45,31 +45,21 @@
                         <tbody>
                             <?php
                             $no = 1;
-                            foreach ($daftar as $row): ?>
+                            foreach ($data as $row): ?>
                                 <tr>
                                     <td class="text-center"><?php echo $no; ?></td>
                                     <td class="text-center"><?php echo $row->rincian_penilaian; ?></td>
                                     <td class="text-center"><?php echo $row->keterangan_penilaian; ?></td>
-                                    <td class="text-center"><?php echo anchor(
+                                    <td class="text-center"><a onclick="editConfirm('<?php echo site_url(
                                         'rincian_penilaian_utama/edit/' .
-                                            $row->id_rincian_penilaian,
-                                        '<span class="fa fa-pencil-alt"></span>',
-                                        [
-                                            'class' => 'btn btn-warning btn-sm',
-                                            'title' => 'Edit',
-                                        ]
-                                    ); ?></td>
-                                   	<td class="text-center"><?php echo anchor(
+                                            $row->id_rincian_penilaian
+                                    ); ?>')"
+											 href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
+                                   	<td class="text-center"><a onclick="deleteConfirm('<?php echo site_url(
                                         'rincian_penilaian_utama/hapus/' .
-                                            $row->id_rincian_penilaian,
-                                        '<span class="fa fa-trash"></span>',
-                                        [
-                                            'class' => 'btn btn-danger btn-sm',
-                                            'title' => 'Hapus',
-                                            'onclick' =>
-                                                "return confirm('Apakah anda yakin menghapus data ?)",
-                                        ]
-                                    ); ?></td>
+                                            $row->id_rincian_penilaian
+                                    ); ?>')"
+											 href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
                                 </tr>
                                 <?php $no++;endforeach;
                             ?>

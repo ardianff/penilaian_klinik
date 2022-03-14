@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Form Penilaian Klinik</h1>
+            <h1>Form Penilaian Klinik Pratama</h1>
           </div>
           <div class="col-sm-6">
           </div>
@@ -93,7 +93,7 @@
                     <div class="col-sm-10">
 										<?php echo form_dropdown(
               'kemampuan_pelayanan',
-              ['- Pilih -', 'Pratama' => 'Pratama', 'Utama' => 'Utama'],
+              ['- Pilih -', 'Pratama' => 'Pratama'],
               null,
               "class='form-control', 'required'"
           ); ?>

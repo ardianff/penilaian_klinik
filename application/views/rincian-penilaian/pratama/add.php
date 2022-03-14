@@ -26,13 +26,23 @@
                   <div class="form-group row">
                     <label for="rincian_penilaian" class="col-sm-2 col-form-label">Rincian Penilaian</label>
                     <div class="col-sm-10">
-                      <textarea type="text" class="form-control" name="rincian_penilaian" placeholder="Rincian Penilaian" required></textarea>
+                      <textarea type="text" class="form-control" name="rincian_penilaian" placeholder="Rincian Penilaian"></textarea>
+											<?= form_error(
+               'rincian_penilaian',
+               '<small class="text-danger pl-3">',
+               '</small>'
+           ) ?>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="keterangan_penilaian" class="col-sm-2 col-form-label">Keterangan</label>
                     <div class="col-sm-10">
                       <textarea type="text" class="form-control" name="keterangan_penilaian" placeholder="Keterangan"></textarea>
+											<?= form_error(
+               'keterangan_penilaian',
+               '<small class="text-danger pl-3">',
+               '</small>'
+           ) ?>
                     </div>
                   </div>
                 </div>

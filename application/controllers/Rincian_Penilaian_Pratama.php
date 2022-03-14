@@ -9,11 +9,9 @@ class Rincian_penilaian_pratama extends CI_Controller
     }
     function index()
     {
-        $data['daftar'] = $this->db
-            ->query(
-                'SELECT ts.id_rincian_penilaian,ts.rincian_penilaian, ts.keterangan_penilaian FROM tbl_rincian_penilaian_pratama as ts'
-            )
-            ->result();
+        $data[
+            'data'
+        ] = $this->Model_rincian_penilaian_pratama->get_rincian_penilaian_klinik_pratama();
         $this->template->load(
             'template',
             'rincian-penilaian/pratama/list',
@@ -22,25 +20,101 @@ class Rincian_penilaian_pratama extends CI_Controller
     }
     function add()
     {
-        if (isset($_POST['submit'])) {
-            $this->Model_rincian_penilaian_pratama->add();
-            redirect('rincian_penilaian_pratama');
-        } else {
+        $this->form_validation->set_rules(
+            'rincian_penilaian',
+            'Rincian Penilaian',
+            'required|xss_clean|trim|min_length[5]',
+            [
+                'required' => 'Rincian Penilaian Wajib di isi',
+                'min_length' => 'Rincian Penilaian berisi minimal 5 karakter',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'keterangan_penilaian',
+            'Keterangan',
+            'xss_clean|trim|min_length[5]',
+            [
+                'min_length' =>
+                    'Keterangan Penilaian berisi minimal 5 karakter',
+            ]
+        );
+        if ($this->form_validation->run() == false) {
             $this->template->load('template', 'rincian-penilaian/pratama/add');
+        } else {
+            if (isset($_POST['submit'])) {
+                $this->Model_rincian_penilaian_pratama->add();
+                redirect('rincian_penilaian_pratama');
+            } else {
+                $this->template->load(
+                    'template',
+                    'rincian-penilaian/pratama/add'
+                );
+            }
         }
     }
-    function edit()
+    // function edit()
+    // {
+    //     if (isset($_POST['submit'])) {
+    //         $this->Model_rincian_penilaian_pratama->update();
+    //         redirect('rincian_penilaian_pratama');
+    //     } else {
+    //         $id_rincian_penilaian = $this->uri->segment(3);
+    //         $data['rincian'] = $this->db
+    //             ->get_where('tbl_rincian_penilaian_pratama', [
+    //                 'id_rincian_penilaian' => $id_rincian_penilaian,
+    //             ])
+    //             ->row_array();
+    //         $this->template->load(
+    //             'template',
+    //             'rincian-penilaian/pratama/edit',
+    //             $data
+    //         );
+    //     }
+    // }
+    function edit($id)
     {
-        if (isset($_POST['submit'])) {
-            $this->Model_rincian_penilaian_pratama->update();
+        $data['rincian'] = $this->Model_rincian_penilaian_pratama->getById($id);
+        $this->template->load(
+            'template',
+            'rincian-penilaian/pratama/edit',
+            $data
+        );
+    }
+    function update()
+    {
+        $this->form_validation->set_rules(
+            'rincian_penilaian',
+            'Rincian Penilaian',
+            'required|xss_clean|trim|min_length[5]',
+            [
+                'required' => 'Rincian Penilaian Wajib di isi',
+                'min_length' => 'Rincian Penilaian berisi minimal 5 karakter',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'keterangan_penilaian',
+            'Keterangan',
+            'xss_clean|trim|min_length[5]',
+            [
+                'min_length' =>
+                    'Keterangan Penilaian berisi minimal 5 karakter',
+            ]
+        );
+        if ($this->form_validation->run() == true) {
+            $id = $this->input->post('id_rincian_penilaian');
+            $data['rincian_penilaian'] = $this->input->post(
+                'rincian_penilaian'
+            );
+            $data['keterangan_penilaian'] = $this->input->post(
+                'keterangan_penilaian'
+            );
+            $this->Model_rincian_penilaian_pratama->update($data, $id);
             redirect('rincian_penilaian_pratama');
         } else {
-            $id_rincian_penilaian = $this->uri->segment(3);
-            $data['rincian'] = $this->db
-                ->get_where('tbl_rincian_penilaian_pratama', [
-                    'id_rincian_penilaian' => $id_rincian_penilaian,
-                ])
-                ->row_array();
+            $id = $this->input->post('id_rincian_penilaian');
+            $data['rincian'] = $this->Model_rincian_penilaian_pratama->getById(
+                $id
+            );
             $this->template->load(
                 'template',
                 'rincian-penilaian/pratama/edit',
