@@ -6,7 +6,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->Model('Model_auth');
-        $this->id = $this->session->userdata('id');
+        $this->id_user = $this->session->userdata('id_user');
     }
 
     function index()
@@ -53,7 +53,7 @@ class Auth extends CI_Controller
             if ($user->num_rows() > 0) {
                 $hasil = $user->row();
                 if (password_verify($password, $hasil->password)) {
-                    $this->session->set_userdata('id', $hasil->id);
+                    $this->session->set_userdata('id_user', $hasil->id_user);
                     $this->session->set_userdata(
                         'nama_user',
                         $hasil->nama_user

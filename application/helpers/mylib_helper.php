@@ -39,7 +39,7 @@ function check_session()
 }
 function no_penilaian_pratama()
 {
-    $txt = 'TAS-_PRTM';
+    $txt = 'TASK-PRTM';
     $ci = &get_instance();
     $q = $ci->db->query(
         'SELECT MAX(RIGHT(no_penilaian,4)) AS kd_max FROM tbl_klinik'

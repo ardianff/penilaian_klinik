@@ -33,38 +33,35 @@ class Penilaian_Pratama extends CI_Controller
     {
         if (isset($_POST['submit'])) {
             $this->Model_penilaian_pratama->update();
-            redirect('penilaian');
+            redirect('penilaian_pratama');
         } else {
             $no_penilaian = $this->uri->segment(3);
             $data['no_penilaian'] = $this->db
                 ->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian])
                 ->row_array();
-            $this->template->load('template', 'penilaian/edit', $data);
+            $this->template->load('template', 'penilaian/pratama/edit', $data);
         }
     }
     function nilai()
     {
         // $site = $this->Model_penilaian->get_setting();
         // if (isset($site['kemampuan_pelayanan']) == 'Pratama') {
-        // $this->template->load('template', 'penilaian/nilai');
-        if (isset($_POST['submit'])) {
-            $this->Model_penilaian_pratama->simpan_penilaian();
-            redirect('penilaian');
-        } else {
-            //$no_penilaian = $this->uri->segment(3);
-            // $data['no_penilaian'] = $this->db
-            //     ->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian])
-            //     ->row_array();
-            $rincian[
-                'data'
-            ] = $this->Model_penilaian_pratama->get_rincian_penilaian();
-            $this->template->load(
-                'template',
-                'penilaian/pratama/nilai',
-                $rincian
-            );
-        }
+        //     $this->template->load('template', 'penilaian/nilai');
+        //     if (isset($_POST['submit'])) {
+        //         $this->Model_penilaian_pratama->simpan_penilaian();
+        //         redirect('penilaian');
+        //     } else {
+        //         $no_penilaian = $this->uri->segment(3);
+        //         $data['no_penilaian'] = $this->db
+        //             ->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian])
+        //             ->row_array();
+        //     }
         // }
+        $no_penilaian = $this->uri->segment(3);
+        $data['penilaian'] = $this->db
+            ->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian])
+            ->row_array();
+        $this->template->load('template', 'penilaian/pratama/nilai', $data);
     }
 
     function hapus()
@@ -74,5 +71,13 @@ class Penilaian_Pratama extends CI_Controller
         $this->db->delete('tbl_klinik');
         redirect('penilaian_pratama');
     }
+    function simpan_penilaian_pratama()
+    {
+        if (isset($_POST['submit'])) {
+            $this->Model_penilaian_pratama->simpan_penilaian();
+            redirect('penilaian_pratama');
+        } else {
+            echo 'Error';
+        }
+    }
 } ?>
-

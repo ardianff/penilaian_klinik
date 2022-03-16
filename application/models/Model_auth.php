@@ -15,6 +15,7 @@ class Model_auth extends CI_Model
     //         'username' => $this->input->post('username'),
     //     ]);
     // }
+    
     function add()
     {
         $data = [
