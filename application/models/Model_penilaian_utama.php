@@ -60,5 +60,3 @@ class Model_penilaian_utama extends CI_Model
         return $site;
     }
 }
-
-?>

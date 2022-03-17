@@ -79,5 +79,3 @@ class Model_auth extends CI_Model
         return $this->db->get($this->table)->result();
     }
 }
-
-?>

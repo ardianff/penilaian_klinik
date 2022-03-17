@@ -13,7 +13,7 @@ class Profile extends CI_Controller
     {
         $data['user'] = $this->db
             ->get_where('tbl_user', [
-                'id' => $this->session->userdata('id'),
+                'id_user' => $this->session->userdata('id_user'),
             ])
             ->row_array();
         $this->template->load('template', 'profile/profile', $data);
@@ -84,5 +84,3 @@ class Profile extends CI_Controller
         }
     }
 }
-
-?>

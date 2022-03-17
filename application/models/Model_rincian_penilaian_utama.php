@@ -42,4 +42,3 @@ class Model_rincian_penilaian_utama extends CI_Model
             ->row();
     }
 }
-?>
