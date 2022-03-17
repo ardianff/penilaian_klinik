@@ -23,6 +23,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+							<?= $this->session->flashdata('simpan') ?>
                             <table id="example2" class="table table-bordered table-striped " width="auto" height="auto">
                                 <thead>
                                     <tr>

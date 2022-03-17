@@ -74,9 +74,7 @@
                                                 name="hasil_verifikasi[<?php echo $no ?>]"
                                                 value="Tidak" ></input></td>
                                         <td><textarea
-                                                name="catatan_penilaian[<?php echo $no ?>]"><?php echo htmlentities(
-                                            $no_penilaian['catatan_penilaian']
-                                        ); ?></textarea>
+                                                name="catatan_penilaian[<?php echo $no ?>]"></textarea>
                                         </td>
                                     </tr>
                                     <?php $no++;endforeach;

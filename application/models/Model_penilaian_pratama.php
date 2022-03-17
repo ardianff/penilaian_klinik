@@ -40,7 +40,7 @@ class Model_penilaian_pratama extends CI_Model
     }
 	public function get_data_all()
     {
-        $query = $this->db->get_where('tbl_klinik', array('kemampuan_pelayanan'=="pratama"))->result();
+        $query = $this->db->get_where('tbl_klinik', array('kemampuan_pelayanan'=>"pratama"))->result();
         return $query;
     }
     public function get_anggota()
@@ -67,22 +67,6 @@ class Model_penilaian_pratama extends CI_Model
     }
     function simpan_penilaian()
     {
-        // $data = array(
-		// 	array(
-		// 	   'no_penilaian' => $this->input->post('no_penilaian') ,
-		// 	   'id_rincian_penilaian' => $this->input->post('rincian1'), 
-		// 	   'jawab_hasil' => $this->input->post('hasil1'),
-		// 	   'jawab_hasil_verif' => $this->input->post('hasil_verifikasi1'),
-		// 	   'catatan_hasil_penilaian' => $this->input->post('catatan_penilaian1')
-		// 	),
-		// 	array(
-		// 		'no_penilaian' => $this->input->post('no_penilaian') ,
-		// 		'id_rincian_penilaian' => $this->input->post('rincian2'),
-		// 		'jawab_hasil' => $this->input->post('hasil2'),
-		// 		'jawab_hasil_verif' => $this->input->post('hasil_verifikasi2'),
-		// 		'catatan_hasil_penilaian' => $this->input->post('catatan_penilaian2')
-		// 	)
-		//  );
 		$rincian = $_POST['rincian'];
 		$no_penilaian = $_POST['no_penilaian'];
 		$jawab_hasil = $_POST['hasil'];
@@ -102,11 +86,6 @@ class Model_penilaian_pratama extends CI_Model
 			$i++;
 		}
 		$this->db->insert_batch('tbl_penilaian_pratama', $data);
-		// if($this->db->insert_batch('tbl_penilaian_pratama', $data) == true){ // Jika sukses
-		// 	echo "<script>alert('Data berhasil disimpan');window.location = '".base_url('penilaian_pratama')."';</script>";
-		// }else{ // Jika gagal
-		// 	echo "<script>alert('Data gagal disimpan');window.location = '".base_url('penilaian_pratama')."';</script>";
-		// }
     }
 }
 

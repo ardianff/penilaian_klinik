@@ -313,9 +313,9 @@
         <?php echo $contents; ?>
         <!-- /.content-wrapper -->
         <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
+        <!-- <aside class="control-sidebar control-sidebar-dark"> -->
             <!-- Control sidebar content goes here -->
-        </aside>
+        <!-- </aside> -->
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
@@ -418,6 +418,13 @@
             "responsive": true,
         });
     });
+	$(document).ready(function () {
+		window.setTimeout(function() {
+			$(".alert").fadeTo(500, 0).slideUp(500, function(){
+				$(this).remove(); 
+			});
+		}, 3500);
+  });
     </script>
     <script type="text/javascript">
     function deleteConfirm(url) {

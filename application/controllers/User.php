@@ -13,7 +13,7 @@ class User extends CI_Controller
     {
         $data['data'] = $this->Model_auth->getAll();
         $nama_user['user'] = $this->db
-            ->get_where('tbl_user', ['id' => $this->session->userdata('id')])
+            ->get_where('tbl_user', ['id_user' => $this->session->userdata('id_user')])
             ->row_array();
         $this->template->load('template', 'user/list', $data, $nama_user);
     }

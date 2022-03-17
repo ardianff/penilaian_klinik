@@ -78,7 +78,16 @@ class Penilaian_Pratama extends CI_Controller
     {
         if (isset($_POST['submit'])) {
             $this->Model_penilaian_pratama->simpan_penilaian();
-            redirect('penilaian_pratama');
+			$this->session->set_flashdata(
+				'simpan',
+				'<div class="alert alert-success alert-dismissible fade show">
+				Data Penilaian Berhasil Disimpan!
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>'
+			);
+			redirect('penilaian_pratama');
         } else {
             echo 'Error';
         }

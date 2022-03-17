@@ -11,7 +11,7 @@ class Tim extends CI_Controller
     {
         $data['data'] = $this->Model_tim->getAll();
         $nama_session['user'] = $this->db
-            ->get_where('tbl_user', ['id' => $this->session->userdata('id')])
+            ->get_where('tbl_user', ['id_user' => $this->session->userdata('id_user')])
             ->row_array();
         $this->template->load('template', 'tim/list', $data, $nama_session);
     }
