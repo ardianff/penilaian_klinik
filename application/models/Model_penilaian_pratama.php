@@ -38,6 +38,11 @@ class Model_penilaian_pratama extends CI_Model
         $this->db->where('no_penilaian', $no_penilaian);
         $this->db->update('tbl_klinik', $data);
     }
+	public function get_data_all()
+    {
+        $query = $this->db->get_where('tbl_klinik', array('kemampuan_pelayanan'=="pratama"))->result();
+        return $query;
+    }
     public function get_anggota()
     {
         // $query = $this->db->get('tbl_anggota')->result();
@@ -62,20 +67,46 @@ class Model_penilaian_pratama extends CI_Model
     }
     function simpan_penilaian()
     {
-        if ($this->input->post('hasil1') == 'Ya') {
-            $data = [
-                'no_penilaian' => $this->input->post('no_penilaian'),
-                'id_rincian_penilaian' => $this->input->post('rincian1'),
-                'p1' => $this->input->post('hasil1'),
-                'p2' => $this->input->post('hasil_verifikasi1'),
-                'p3' => $this->input->post('catatan_penilaian1'),
-                'id_rincian_penilaian' => $this->input->post('rincian2'),
-                'p4' => $this->input->post('hasil2'),
-                'p5' => $this->input->post('hasil_verifikasi2'),
-                'p6' => $this->input->post('catatan_penilaian2'),
-            ];
-            $this->db->insert('tbl_penilaian_pratama', $data);
-        }
+        // $data = array(
+		// 	array(
+		// 	   'no_penilaian' => $this->input->post('no_penilaian') ,
+		// 	   'id_rincian_penilaian' => $this->input->post('rincian1'), 
+		// 	   'jawab_hasil' => $this->input->post('hasil1'),
+		// 	   'jawab_hasil_verif' => $this->input->post('hasil_verifikasi1'),
+		// 	   'catatan_hasil_penilaian' => $this->input->post('catatan_penilaian1')
+		// 	),
+		// 	array(
+		// 		'no_penilaian' => $this->input->post('no_penilaian') ,
+		// 		'id_rincian_penilaian' => $this->input->post('rincian2'),
+		// 		'jawab_hasil' => $this->input->post('hasil2'),
+		// 		'jawab_hasil_verif' => $this->input->post('hasil_verifikasi2'),
+		// 		'catatan_hasil_penilaian' => $this->input->post('catatan_penilaian2')
+		// 	)
+		//  );
+		$rincian = $_POST['rincian'];
+		$no_penilaian = $_POST['no_penilaian'];
+		$jawab_hasil = $_POST['hasil'];
+		$jawab_hasil_verif = $_POST['hasil_verifikasi'];
+		$catatan_penilaian = $_POST['catatan_penilaian'];
+		$data = array();
+
+		$i = 1;
+		foreach ($rincian as $rinci){
+			array_push($data,array(
+				'id_rincian_penilaian'=>$rinci,
+				'no_penilaian'=>$no_penilaian,
+				'catatan_hasil_penilaian' => $catatan_penilaian[$i],
+				'jawab_hasil' => $jawab_hasil[$i],
+				'jawab_hasil_verif' => $jawab_hasil_verif[$i]
+			));
+			$i++;
+		}
+		$this->db->insert_batch('tbl_penilaian_pratama', $data);
+		// if($this->db->insert_batch('tbl_penilaian_pratama', $data) == true){ // Jika sukses
+		// 	echo "<script>alert('Data berhasil disimpan');window.location = '".base_url('penilaian_pratama')."';</script>";
+		// }else{ // Jika gagal
+		// 	echo "<script>alert('Data gagal disimpan');window.location = '".base_url('penilaian_pratama')."';</script>";
+		// }
     }
 }
 

@@ -11,11 +11,14 @@ class Penilaian_Pratama extends CI_Controller
 
     function index()
     {
-        $data['data'] = $this->db
-            ->query(
-                'SELECT ts.no_penilaian,ts.nama_admin, ts.nama_klinik, ts.kemampuan_pelayanan, ts.jenis_pelayanan_klinik,ts.alamat_klinik, ts.nama_anggota1, ts.nama_anggota2,ts.nama_anggota3,ts.nama_anggota4 FROM tbl_klinik as ts where kemampuan_pelayanan="pratama"'
-            )
-            ->result();
+        // $data['data'] = $this->db
+        //     ->query(
+        //         'SELECT ts.no_penilaian,ts.status_penilaian,ts.nama_admin, ts.nama_klinik, ts.kemampuan_pelayanan, ts.jenis_pelayanan_klinik,ts.alamat_klinik, ts.nama_anggota1, ts.nama_anggota2,ts.nama_anggota3,ts.nama_anggota4 FROM tbl_klinik as ts where kemampuan_pelayanan="pratama"'
+        //     )
+        //     ->result();
+		$data[
+            'data'
+        ] = $this->Model_penilaian_pratama->get_data_all();
         $this->template->load('template', 'penilaian/pratama/list', $data);
     }
 

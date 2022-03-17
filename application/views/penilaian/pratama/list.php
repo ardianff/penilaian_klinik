@@ -47,7 +47,13 @@
                             foreach ($data as $row): ?>
                                     <tr>
                                         <td class="text-center"><?php echo $no; ?></td>
-                                        <td class="text-center"><?php echo $row->nama_klinik; ?></td>
+                                        <td class="text-center"><?php echo $row->nama_klinik; ?><br>
+										<?php if ($row->status_penilaian == "Sudah"){
+											echo '<button type="button" class="btn btn-outline-success">Sudah Dinilai</button>';
+										}else{
+											echo '<button type="button" class="btn btn-outline-danger">Belum Dinilai</button>';
+										} ?>
+										</td>
                                         <td class="text-center"><?php echo $row->kemampuan_pelayanan; ?></td>
                                         <td class="text-center"><?php echo $row->jenis_pelayanan_klinik; ?></td>
                                         <td class="text-center"><?php echo $row->alamat_klinik; ?></td>

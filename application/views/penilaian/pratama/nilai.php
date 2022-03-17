@@ -12,7 +12,7 @@
 
     <!-- Main content -->
     <?php
-    echo form_open_multipart(
+    echo form_open(
         'penilaian_pratama/simpan_penilaian_pratama',
         'class="form-horizontal"'
     );
@@ -25,11 +25,10 @@
                     <!-- /.card -->
                     <div class="card">
                         <div class="card-header">
-                            <!-- <h3 class="card-title">DataTable with default features</h3> -->
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example2" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th class="text-center" rowspan="2" style="vertical-align: middle;">No</th>
@@ -53,29 +52,31 @@
                                     $data = $this->Model_penilaian_pratama->get_rincian_penilaian();
                                     $no = 1;
                                     foreach ($data as $row): ?>
-                                    <input type="text" name="rincian<?php echo $row->id_rincian_penilaian; ?>"
-                                        value="<?php echo $row->id_rincian_penilaian; ?>" />
+                                   
                                     <tr>
                                         <td><?php echo $no; ?></td>
-                                        <td name="penilaian<?php echo $row->id_rincian_penilaian; ?>">
+                                        <td class="text-justify"><input type="hidden" name="rincian[<?php echo $no ?>]"
+                                        value="<?php echo $row->id_rincian_penilaian; ?>" />
                                             <?php echo $row->rincian_penilaian; ?></td>
                                         <td class="text-center"><input type="radio"
-                                                name="hasil<?php echo $row->id_rincian_penilaian; ?>"
-                                                value="Ya"></input>
+                                                name="hasil[<?php echo $no ?>]"
+                                                value="Ya" required></input>
                                         </td>
                                         <td class="text-center"><input type="radio"
-                                                name="hasil<?php echo $row->id_rincian_penilaian; ?>"
-                                                value="Tidak"></input>
+                                                name="hasil[<?php echo $no ?>]"
+                                                value="Tidak" ></input>
                                         </td>
                                         <td><?php echo $row->keterangan_penilaian; ?></td>
                                         <td class="text-center"><input type="radio"
-                                                name="hasil_verifikasi<?php echo $row->id_rincian_penilaian; ?>"
-                                                value="Ya"></input></td>
+                                                name="hasil_verifikasi[<?php echo $no ?>]"
+                                                value="Ya" required></input></td>
                                         <td class="text-center"><input type="radio"
-                                                name="hasil_verifikasi<?php echo $row->id_rincian_penilaian; ?>"
-                                                value="Tidak"></input></td>
+                                                name="hasil_verifikasi[<?php echo $no ?>]"
+                                                value="Tidak" ></input></td>
                                         <td><textarea
-                                                name="catatan_penilaian<?php echo $row->id_rincian_penilaian; ?>"></textarea>
+                                                name="catatan_penilaian[<?php echo $no ?>]"><?php echo htmlentities(
+                                            $no_penilaian['catatan_penilaian']
+                                        ); ?></textarea>
                                         </td>
                                     </tr>
                                     <?php $no++;endforeach;
