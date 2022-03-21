@@ -20,16 +20,19 @@
 					<div class="card">
 						<div class="card-header">
 							&nbsp;<?php echo anchor('tim/add', 'Input Data Anggota Penilai', [
-											'class' => 'btn btn-success btn-sm',
-										]); ?>
+										'class' => 'btn btn-success btn-sm',
+									]); ?>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
+							<?= $this->session->flashdata('add') ?>
+							<?= $this->session->flashdata('update') ?>
+							<?= $this->session->flashdata('delete') ?>
 							<table id="example2" class="table table-bordered table-striped width=" 100%"">
 								<thead>
 									<tr>
 										<th class="text-center" rowspan="2">No</th>
-										<th class="text-center" rowspan="2">Nama Anggota</th>
+										<th class="text-center" rowspan="2">Nama Penilai</th>
 										<th class="text-center" rowspan="2">NIP</th>
 										<th class="text-center" colspan="2">Aksi</th>
 									</tr>
@@ -46,9 +49,7 @@
 											<td class="text-center"><?php echo $no; ?></td>
 											<td class="text-center"><?php echo $row->nama_anggota; ?></td>
 											<td class="text-center"><?php echo $row->nip_anggota; ?></td>
-											<td class="text-center"><a onclick="editConfirm('<?php echo site_url(
-																																					'tim/edit/' . $row->kode_anggota
-																																				); ?>')" href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
+											<td class="text-center"><a onclick="editConfirm('<?php echo site_url('tim/edit/' . $row->kode_anggota); ?>')" href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
 											<td class="text-center"><a onclick="deleteConfirm('<?php echo site_url('tim/hapus/' . $row->kode_anggota); ?>')" href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
 										</tr>
 									<?php $no++;

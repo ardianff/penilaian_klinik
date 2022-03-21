@@ -29,6 +29,9 @@
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
+							<?= $this->session->flashdata('add') ?>
+							<?= $this->session->flashdata('update') ?>
+							<?= $this->session->flashdata('delete') ?>
 							<table id="example2" class="table table-bordered table-striped" width="auto">
 								<thead>
 									<tr>

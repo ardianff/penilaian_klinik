@@ -107,20 +107,6 @@
 									<input type="name" class="form-control" name="nama_klinik" placeholder="Nama Klinik" value="<?php echo $no_penilaian['nama_klinik']; ?>" required>
 								</div>
 							</div>
-						</div>
-						<!-- /.card-body -->
-						<!-- /.card-footer -->
-					</div>
-					<!-- /.card -->
-
-				</div>
-				<div class="col-md-6">
-					<!-- Horizontal Form -->
-					<div class="card card-info">
-
-						<!-- /.card-header -->
-						<!-- form start -->
-						<div class="card-body">
 							<div class="form-group row">
 								<label for="Nama_Anggota" class="col-sm-2 col-form-label">Kemampuan Pelayanan</label>
 								<div class="col-sm-10">
@@ -135,6 +121,20 @@
 									); ?>
 								</div>
 							</div>
+						</div>
+						<!-- /.card-body -->
+						<!-- /.card-footer -->
+					</div>
+					<!-- /.card -->
+
+				</div>
+				<div class="col-md-6">
+					<!-- Horizontal Form -->
+					<div class="card card-info">
+
+						<!-- /.card-header -->
+						<!-- form start -->
+						<div class="card-body">
 							<div class="form-group row">
 								<label for="NIP_Anggota" class="col-sm-2 col-form-label">Jenis Pelayanan Klinik</label>
 								<div class="col-sm-10">
@@ -156,6 +156,24 @@
 									<textarea type="text" class="form-control" name="alamat_klinik" placeholder="Alamat Klinik" required><?php echo htmlentities(
 																																				$no_penilaian['alamat_klinik']
 																																			); ?></textarea>
+								</div>
+							</div>
+							<div class="form-group row" id="id__isian_kecamatan">
+								<label for="nama_kecamatan" class="col-sm-2 col-form-label">Kecamatan</label>
+								<div class="col-sm-10">
+									<select class="form-control" id="id_kecamatan" name="nama_kecamatan">
+										<option value="">- Pilih Kecamatan -</option>
+										<?php foreach ($kecamatan as $kec) : ?>
+											<option value="<?php echo $kec->id_kecamatan; ?>" <?php if ($kec->id_kecamatan == $no_penilaian['id_kecamatan_klinik']) { ?> selected <?php } ?>><?php echo $kec->nama_kecamatan; ?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row" id="id_isian_kelurahan">
+								<label for="nama_kelurahan" class="col-sm-2 col-form-label">Kelurahan</label>
+								<div class="col-sm-10">
+									<select class="form-control" id="id_kelurahan" name="nama_kelurahan">
+									</select>
 								</div>
 							</div>
 							<div class="form-group row">

@@ -20,11 +20,14 @@
 					<div class="card">
 						<div class="card-header">
 							&nbsp;<?php echo anchor('user/add', 'Input Data User', [
-											'class' => 'btn btn-success btn-sm',
-										]); ?>
+										'class' => 'btn btn-success btn-sm',
+									]); ?>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
+							<?= $this->session->flashdata('add') ?>
+							<?= $this->session->flashdata('update') ?>
+							<?= $this->session->flashdata('delete') ?>
 							<table id="example2" class="table table-bordered table-striped width=" 100%"">
 								<thead>
 									<tr>
@@ -49,8 +52,8 @@
 											<td class="text-center"><?php echo $row->nip_user; ?></td>
 											<td class="text-center"><?php echo $row->username; ?></td>
 											<td class="text-center"><a onclick="editConfirm('<?php echo site_url(
-																																					'user/edit/' . $row->kode_user
-																																				); ?>')" href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
+																									'user/edit/' . $row->kode_user
+																								); ?>')" href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
 											<td class="text-center">
 												<a onclick="deleteConfirm('<?php echo site_url('user/hapus/' . $row->kode_user); ?>')" href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
 											</td>

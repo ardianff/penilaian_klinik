@@ -46,25 +46,21 @@ class Tim extends CI_Controller
 		} else {
 			if (isset($_POST['submit'])) {
 				$this->Model_tim->add();
+				$this->session->set_flashdata(
+					'add',
+					'<div class="alert alert-success alert-dismissible fade show">
+					Data Penilai Berhasil Disimpan!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>'
+				);
 				redirect('tim');
 			} else {
 				$this->template->load('template', 'tim/add');
 			}
 		}
 	}
-	// function edit()
-	// {
-	//     if (isset($_POST['submit'])) {
-	//         $this->Model_tim->update();
-	//         redirect('tim');
-	//     } else {
-	//         $nip_anggota = $this->uri->segment(3);
-	//         $data['anggota'] = $this->db
-	//             ->get_where('tbl_anggota', ['nip_anggota' => $nip_anggota])
-	//             ->row_array();
-	//         $this->template->load('template', 'tim/edit', $data);
-	//     }
-	// }
 	function edit($id)
 	{
 		$data['anggota'] = $this->Model_tim->getById($id);
@@ -98,6 +94,15 @@ class Tim extends CI_Controller
 			$data['nama_anggota'] = $this->input->post('nama_anggota');
 			$data['nip_anggota'] = $this->input->post('nip_anggota');
 			$this->Model_tim->update($data, $id);
+			$this->session->set_flashdata(
+				'update',
+				'<div class="alert alert-warning alert-dismissible fade show">
+				Data Penilai Berhasil Diubah!
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>'
+			);
 			redirect('tim');
 		} else {
 			$id = $this->input->post('kode_anggota');
@@ -110,6 +115,15 @@ class Tim extends CI_Controller
 		$id = $this->uri->segment(3);
 		$this->db->where('kode_anggota', $id);
 		$this->db->delete('tbl_anggota');
+		$this->session->set_flashdata(
+			'delete',
+			'<div class="alert alert-danger alert-dismissible fade show">
+			Data Penilai Berhasil Dihapus!
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+			</div>'
+		);
 		redirect('tim');
 	}
 }

@@ -23,6 +23,9 @@
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
+							<?= $this->session->flashdata('add') ?>
+							<?= $this->session->flashdata('update') ?>
+							<?= $this->session->flashdata('delete') ?>
 							<?= $this->session->flashdata('simpan') ?>
 							<table id="example2" class="table table-bordered table-striped " width="auto" height="auto">
 								<thead>
@@ -84,9 +87,7 @@
 																			'title' => 'Export PDF',
 																		]
 																	); ?></td>
-											<td class="text-center"><a onclick="deleteConfirm('<?php echo site_url('penilaian_pratama/hapus/' . $row->no_penilaian) ?>')" href="#" class="btn btn-danger btn-sm">
-													<i class="fas fa-trash"></i>
-												</a></td>
+											<td class="text-center"><a onclick="deleteConfirm('<?php echo site_url('penilaian_pratama/hapus/' . $row->no_penilaian) ?>')" href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
 										</tr>
 									<?php $no++;
 									endforeach;

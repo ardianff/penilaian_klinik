@@ -20,15 +20,18 @@
 					<div class="card">
 						<div class="card-header">
 							&nbsp;<?php echo anchor(
-											'rincian_penilaian_utama/add',
-											'Input Data Rincian Penilaian',
-											[
-												'class' => 'btn btn-success btn-sm',
-											]
-										); ?>
+										'rincian_penilaian_utama/add',
+										'Input Data Rincian Penilaian',
+										[
+											'class' => 'btn btn-success btn-sm',
+										]
+									); ?>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
+							<?= $this->session->flashdata('add') ?>
+							<?= $this->session->flashdata('update') ?>
+							<?= $this->session->flashdata('delete') ?>
 							<table id="example2" class="table table-bordered table-striped width=" 100%"">
 								<thead>
 									<tr>
@@ -51,9 +54,9 @@
 											<td class="text-center"><?php echo $row->rincian_penilaian; ?></td>
 											<td class="text-center"><?php echo $row->keterangan_penilaian; ?></td>
 											<td class="text-center"><a onclick="editConfirm('<?php echo site_url(
-																																					'rincian_penilaian_utama/edit/' .
-																																						$row->id_rincian_penilaian
-																																				); ?>')" href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
+																									'rincian_penilaian_utama/edit/' .
+																										$row->id_rincian_penilaian
+																								); ?>')" href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
 											<td class="text-center"><a onclick="deleteConfirm('<?php echo site_url('rincian_penilaian_utama/hapus/' . $row->id_rincian_penilaian); ?>')" href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
 										</tr>
 									<?php $no++;

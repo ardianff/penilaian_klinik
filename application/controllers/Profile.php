@@ -56,7 +56,7 @@ class Profile extends CI_Controller
 				$password = $this->input->post('password');
 				$nip_user = $this->input->post('nip_user');
 
-				$password_hash = password_hash($password, PASSWORD_DEFAULT);
+				$password_hash = password_hash($password, PASSWORD_BCRYPT);
 
 				$this->db->set('username', $username);
 				$this->db->set('password', $password_hash);
@@ -64,8 +64,13 @@ class Profile extends CI_Controller
 				$this->db->update('tbl_user');
 
 				$this->session->set_flashdata(
-					'message',
-					'<div class="alert alert-success" role="alert">Your profile has been updated!</div>'
+					'update',
+					'<div class="alert alert-secondary alert-dismissible fade show">
+					Data Profile Anda Berhasil Diubah!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>'
 				);
 				redirect('profile');
 			} else {
@@ -77,8 +82,13 @@ class Profile extends CI_Controller
 				$this->db->update('tbl_user');
 
 				$this->session->set_flashdata(
-					'message',
-					'<div class="alert alert-success" role="alert">Your profile has been updated!</div>'
+					'update',
+					'<div class="alert alert-secondary alert-dismissible fade show">
+					Data Profile Anda Berhasil Diubah!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>'
 				);
 				redirect('profile');
 			}

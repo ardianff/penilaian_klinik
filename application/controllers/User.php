@@ -34,7 +34,7 @@ class User extends CI_Controller
 		$this->form_validation->set_rules(
 			'nip_user',
 			'NIP',
-			'required|trim|min_length[18]|max_length[20]|is_unique[tbl_user.nip_user]',
+			'required|trim|min_length[18]|max_length[20]|is_unique[tbl_user.nip_user]|is_numeric',
 			[
 				'required' => 'NIP User Wajib di isi',
 				'min_length' => 'NIP wajib berisi minimal 18 karakter',
@@ -45,7 +45,7 @@ class User extends CI_Controller
 		$this->form_validation->set_rules(
 			'username',
 			'Username',
-			'required|trim|min_length[5]|xss_clean|max_length[12]|is_unique[tbl_user.username]',
+			'required|trim|min_length[5]|xss_clean|max_length[20]|is_unique[tbl_user.username]',
 			[
 				'required' => 'Username Wajib di isi',
 				'min_length' => 'Username wajib berisi minimal 5 karakter',
@@ -68,6 +68,15 @@ class User extends CI_Controller
 		} else {
 			if (isset($_POST['submit'])) {
 				$this->Model_auth->add();
+				$this->session->set_flashdata(
+					'add',
+					'<div class="alert alert-success alert-dismissible fade show">
+					Data User Berhasil Disimpan!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>'
+				);
 				redirect('user');
 			} else {
 				$this->template->load('template', 'user/add');
@@ -105,11 +114,11 @@ class User extends CI_Controller
 		$this->form_validation->set_rules(
 			'username',
 			'Username',
-			'required|trim|min_length[5]|xss_clean|max_length[10]',
+			'required|trim|min_length[5]|xss_clean|max_length[20]',
 			[
 				'required' => 'Username Wajib di isi',
 				'min_length' => 'Username wajib berisi minimal 5 karakter',
-				'max_length' => 'Username yang diinputkan maksimal 10 karakter',
+				'max_length' => 'Username yang diinputkan maksimal 20 karakter',
 			]
 		);
 		$this->form_validation->set_rules(
@@ -129,9 +138,18 @@ class User extends CI_Controller
 				$data['username'] = $this->input->post('username');
 				$data['password'] = password_hash(
 					$this->input->post('password'),
-					PASSWORD_DEFAULT
+					PASSWORD_BCRYPT
 				);
 				$this->Model_auth->update($data, $id);
+				$this->session->set_flashdata(
+					'update',
+					'<div class="alert alert-warning alert-dismissible fade show">
+					Data User Berhasil Diubah!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>'
+				);
 				redirect('user');
 			} else {
 				$id = $this->input->post('kode_user');
@@ -139,6 +157,15 @@ class User extends CI_Controller
 				$data['nip_user'] = $this->input->post('nip_user');
 				$data['username'] = $this->input->post('username');
 				$this->Model_auth->update($data, $id);
+				$this->session->set_flashdata(
+					'update',
+					'<div class="alert alert-warning alert-dismissible fade show">
+					Data User Berhasil Diubah!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>'
+				);
 				redirect('user');
 			}
 		} else {
@@ -152,6 +179,15 @@ class User extends CI_Controller
 		$id = $this->uri->segment(3);
 		$this->db->where('kode_user', $id);
 		$this->db->delete('tbl_user');
+		$this->session->set_flashdata(
+			'delete',
+			'<div class="alert alert-danger alert-dismissible fade show">
+			Data User Berhasil Dihapus!
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+			</div>'
+		);
 		redirect('user');
 	}
 }

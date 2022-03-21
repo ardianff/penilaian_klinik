@@ -107,4 +107,53 @@
 		$('#btn-logout').attr('href', url);
 		$('#logoutModal').modal();
 	};
+
+	function goBack() {
+		window.history.back();
+	}
 </script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#id_kelurahan").hide();
+		$("#id_isian_kelurahan").hide();
+
+		loadKelurahan();
+	});
+
+	function loadKelurahan() {
+		$("#id_kecamatan").change(function() {
+			var getkecamatan = $("#id_kecamatan").val();
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				url: "<?= base_url(); ?>/penilaian_pratama/get_data_kelurahan",
+				data: {
+					kecamatan: getkecamatan
+				},
+				success: function(data) {
+					var html = '';
+					var i;
+					for (i = 0; i < data.length; i++) {
+						html += '<option value="' + data[i].id_kelurahan + '">' + data[i].nama_kelurahan + '</option>';
+					}
+					$("#id_kelurahan").html(html);
+					$("#id_isian_kelurahan").show();
+					$("#id_kelurahan").show();
+				}
+			});
+
+		});
+	}
+</script>
+<!-- <script>
+	// angka 500 dibawah ini artinya pesan akan muncul dalam 0,5 detik setelah document ready
+	$(document).ready(function() {
+		setTimeout(function() {
+			$('#helloModal').modal('show');
+		}, 500);
+	});
+	// angka 3000 dibawah ini artinya pesan akan hilang dalam 3 detik setelah muncul
+	setTimeout(function() {
+		$('#helloModal').modal('remove');
+	}, 3000);
+</script> -->

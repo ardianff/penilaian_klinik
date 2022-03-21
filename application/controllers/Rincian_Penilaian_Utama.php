@@ -42,6 +42,15 @@ class Rincian_Penilaian_Utama extends CI_Controller
 		} else {
 			if (isset($_POST['submit'])) {
 				$this->Model_rincian_penilaian_utama->add();
+				$this->session->set_flashdata(
+					'add',
+					'<div class="alert alert-success alert-dismissible fade show">
+					Data Rincian Penilaian Berhasil Disimpan!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>'
+				);
 				redirect('rincian_penilaian_utama');
 			} else {
 				$this->template->load(
@@ -108,6 +117,15 @@ class Rincian_Penilaian_Utama extends CI_Controller
 				'keterangan_penilaian'
 			);
 			$this->Model_rincian_penilaian_utama->update($data, $id);
+			$this->session->set_flashdata(
+				'update',
+				'<div class="alert alert-warning alert-dismissible fade show">
+				Data Rincian Penilaian Berhasil Diubah!
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>'
+			);
 			redirect('rincian_penilaian_utama');
 		} else {
 			$id = $this->input->post('id_rincian_penilaian');
@@ -126,6 +144,15 @@ class Rincian_Penilaian_Utama extends CI_Controller
 		$id = $this->uri->segment(3);
 		$this->db->where('id_rincian_penilaian', $id);
 		$this->db->delete('tbl_rincian_penilaian_utama');
+		$this->session->set_flashdata(
+			'delete',
+			'<div class="alert alert-danger alert-dismissible fade show">
+			Data Rincian Penilaian Berhasil Dihapus!
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+			</div>'
+		);
 		redirect('rincian_penilaian_utama');
 	}
 }
