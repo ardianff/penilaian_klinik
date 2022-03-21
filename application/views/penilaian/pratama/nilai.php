@@ -69,7 +69,7 @@
 											<td><?php echo $row->keterangan_penilaian; ?></td>
 											<td class="text-center"><input type="radio" name="hasil_verifikasi[<?php echo $no ?>]" value="Ya" required></input></td>
 											<td class="text-center"><input type="radio" name="hasil_verifikasi[<?php echo $no ?>]" value="Tidak"></input></td>
-											<td><textarea name="catatan_penilaian[<?php echo $no ?>]"></textarea>
+											<td><textarea name="catatan_penilaian[<?php echo $no ?>]" placeholder="Catatan..."></textarea>
 											</td>
 										</tr>
 									<?php $no++;
@@ -88,7 +88,16 @@
 		</div>
 		<div class="col d-flex justify-content-center">
 			<div class="card-footer">
-				<button type="submit" name="submit" class="btn btn-success">Next</button>
+				<?php echo anchor(
+					'penilaian_pratama/nilai_kedua/' . $penilaian['no_penilaian'],
+					'<span>Next</span>',
+					[
+						'class' => 'btn btn-primary',
+						'title' => 'Lanjut Ke Halaman Berikutnya',
+						'name' => 'submit'
+					]
+				); ?>
+				<!-- <button type="submit" name="submit" class="btn btn-success">Next</button> -->
 				<?php echo anchor('penilaian_pratama', 'Kembali', [
 					'class' => 'btn btn-warning',
 				]); ?>

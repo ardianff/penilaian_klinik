@@ -6,7 +6,7 @@
 				<img src="<?php echo base_url(); ?>assets/img/favicon.png" class="img center" alt="User Image">
 			</div>
 			<div class="info">
-				<a href="#" class="d-block">Sistem Penilaian Klinik</a>
+				<a href="<?php echo base_url('dashboard'); ?>" class="d-block">Sistem Penilaian Klinik</a>
 			</div>
 		</div>
 		<!-- Sidebar Menu -->

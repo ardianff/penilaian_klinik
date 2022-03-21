@@ -18,7 +18,7 @@ class Penilaian_Pratama extends CI_Controller
 
 	function add()
 	{
-		$data['title'] = 'Input Data Penilaian Klinik Pratama';
+		$data['title'] = 'Input Data Klinik Pratama';
 		$data['kecamatan'] = $this->Model_penilaian_pratama->get_data_kecamatan();
 		$data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
 		if (isset($_POST['submit'])) {
@@ -86,6 +86,29 @@ class Penilaian_Pratama extends CI_Controller
 			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian])
 			->row_array();
 		$this->template->load('template', 'penilaian/pratama/nilai', $data);
+	}
+	function nilai_kedua()
+	{
+		$data['title'] = 'Penilaian Klinik Pratama';
+		$no_penilaian = $this->uri->segment(3);
+		$data['penilaian'] = $this->db
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
+			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian])
+			->row_array();
+		$this->template->load('template', 'penilaian/pratama/nilai-kedua', $data);
+	}
+
+	function nilai_ketiga()
+	{
+		$data['title'] = 'Penilaian Klinik Pratama';
+		$no_penilaian = $this->uri->segment(3);
+		$data['penilaian'] = $this->db
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
+			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian])
+			->row_array();
+		$this->template->load('template', 'penilaian/pratama/nilai-ketiga', $data);
 	}
 
 	function hapus()
