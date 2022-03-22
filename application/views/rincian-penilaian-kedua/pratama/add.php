@@ -13,8 +13,10 @@
 				<div class="col-md-8">
 					<!-- Horizontal Form -->
 					<div class="card card-info">
+						<!-- <a href="#" class="btn btn-danger">Tambah Group Name</a> -->
 						<div class="card-header">
-							<h3 class="card-title">Input Rincian Penilaian Pratama Form Kedua</h3>
+							<h3 class="card-title">Input Rincian Penilaian Pratama Form Kedua</h3><br>
+							<a href="<?php echo base_url('rincian_penilaian_pratama_kedua/group_name'); ?>" class="btn btn-danger btn-sm">Group Name</a>
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
@@ -33,7 +35,7 @@
 											</option>
 										<?php endforeach; ?>
 									</select>
-									<!-- <?= form_error('group_name', '<small class="text-danger pl-3">', '</small>') ?> -->
+									<?= form_error('group_name', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
 							<div class="form-group row">

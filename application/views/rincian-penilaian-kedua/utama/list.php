@@ -20,7 +20,7 @@
 					<div class="card">
 						<div class="card-header">
 							&nbsp;<?php echo anchor(
-										'rincian_penilaian_utama/add',
+										'rincian_penilaian_utama_kedua/add',
 										'Input Data Rincian Penilaian',
 										[
 											'class' => 'btn btn-success btn-sm',
@@ -32,13 +32,15 @@
 							<?= $this->session->flashdata('add') ?>
 							<?= $this->session->flashdata('update') ?>
 							<?= $this->session->flashdata('delete') ?>
-							<table id="example2" class="table table-bordered table-striped width=" 100%"">
+							<table id="example2" class="table table-bordered table-striped" width="auto">
 								<thead>
 									<tr>
 										<th class="text-center" rowspan="2">No</th>
-										<th class="text-center" rowspan="2">Rincian Penilaian</th>
-										<th class="text-center" rowspan="2">Keterangan</th>
-										<th class="text-center" colspan="2">Action</th>
+										<th class="text-center" rowspan="2">Group Name</th>
+										<th class="text-center" rowspan="2">Rincian Penilaian Klinik Utama</th>
+										<th class="text-center" rowspan="2">Jumlah</th>
+										<th class="text-center" rowspan="2">Satuan</th>
+										<th class="text-center" colspan="2">Aksi</th>
 									</tr>
 									<tr>
 										<th></th>
@@ -51,10 +53,12 @@
 									foreach ($data as $row) : ?>
 										<tr>
 											<td class="text-center"><?php echo $no; ?></td>
-											<td class="text-justify"><?php echo $row->rincian_penilaian; ?></td>
-											<td class="text-center"><?php echo $row->keterangan_penilaian; ?></td>
-											<td class="text-center"><a onclick="editConfirm('<?php echo site_url('rincian_penilaian_utama/edit/' . $row->id_rincian_penilaian); ?>')" href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
-											<td class="text-center"><a onclick="deleteConfirm('<?php echo site_url('rincian_penilaian_utama/hapus/' . $row->id_rincian_penilaian); ?>')" href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+											<td class="text-justify"><?php echo $row->group_name; ?></td>
+											<td class="text-justify"><?php echo $row->kriteria_penilaian_utama; ?></td>
+											<td class="text-center"><?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
+											<td class="text-center"><?php echo $row->satuan_penilaian_utama; ?></td>
+											<td class="text-center"><a onclick="editConfirm('<?php echo site_url('rincian_penilaian_utama_kedua/edit/' . $row->id_deskripsi) ?>')" href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
+											<td class="text-center"><a onclick="deleteConfirm('<?php echo site_url('rincian_penilaian_utama_kedua/hapus/' . $row->id_deskripsi) ?>')" href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
 										</tr>
 									<?php $no++;
 									endforeach;

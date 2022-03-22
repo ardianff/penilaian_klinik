@@ -47,7 +47,7 @@
 									foreach ($data as $row) : ?>
 										<tr>
 											<td class="text-center"><?php echo $no; ?></td>
-											<td class="text-center"><?php echo $row->nama_anggota; ?></td>
+											<td class="text-justify"><?php echo $row->nama_anggota; ?></td>
 											<td class="text-center"><?php echo $row->nip_anggota; ?></td>
 											<td class="text-center"><a onclick="editConfirm('<?php echo site_url('tim/edit/' . $row->kode_anggota); ?>')" href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
 											<td class="text-center"><a onclick="deleteConfirm('<?php echo site_url('tim/hapus/' . $row->kode_anggota); ?>')" href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>

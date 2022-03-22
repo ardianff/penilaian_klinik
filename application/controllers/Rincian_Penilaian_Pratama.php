@@ -9,7 +9,7 @@ class Rincian_penilaian_pratama extends CI_Controller
 	}
 	function index()
 	{
-		$data['title'] = 'Rincian Penilaian Klinik Pratama';
+		$data['title'] = 'Rincian Penilaian Klinik Pratama Form 1';
 		$data['data'] = $this->Model_rincian_penilaian_pratama->get_rincian_penilaian_klinik_pratama();
 		$this->template->load(
 			'template',

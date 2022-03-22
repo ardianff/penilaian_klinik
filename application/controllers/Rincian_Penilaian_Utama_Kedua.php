@@ -1,21 +1,17 @@
 <?php
-class Rincian_penilaian_pratama_kedua extends CI_Controller
+class Rincian_penilaian_utama_kedua extends CI_Controller
 {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->Model('Model_rincian_penilaian_pratama');
+		$this->load->Model('Model_rincian_penilaian_utama');
 		check_session();
 	}
 	function index()
 	{
-		$data['title'] = 'Rincian Penilaian Klinik Pratama Form 2';
-		$data['data'] = $this->Model_rincian_penilaian_pratama->get_rincian_penilaian_klinik_pratama_kedua();
-		$this->template->load(
-			'template',
-			'rincian-penilaian-kedua/pratama/list',
-			$data
-		);
+		$data['title'] = 'Rincian Penilaian Klinik Utama Form 2';
+		$data['data'] = $this->Model_rincian_penilaian_utama->get_rincian_penilaian_klinik_utama_kedua();
+		$this->template->load('template', 'rincian-penilaian-kedua/utama/list', $data);
 	}
 	function add()
 	{
@@ -58,12 +54,12 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 			]
 		);
 		if ($this->form_validation->run() == false) {
-			$data['title'] = 'Tambah Rincian Penilaian Klinik Pratama';
-			$data['data'] = $this->Model_rincian_penilaian_pratama->get_group_penilaian_pratama();
-			$this->template->load('template', 'rincian-penilaian-kedua/pratama/add', $data);
+			$data['title'] = 'Tambah Rincian Penilaian Klinik Utama';
+			$data['data'] = $this->Model_rincian_penilaian_utama->get_group_penilaian_utama();
+			$this->template->load('template', 'rincian-penilaian-kedua/utama/add', $data);
 		} else {
 			if (isset($_POST['submit'])) {
-				$this->Model_rincian_penilaian_pratama->simpan_penilaian_pratama_kedua();
+				$this->Model_rincian_penilaian_utama->simpan_penilaian_utama_kedua();
 				$this->session->set_flashdata(
 					'add',
 					'<div class="alert alert-success alert-dismissible fade show">
@@ -73,22 +69,22 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 					</button>
 					</div>'
 				);
-				redirect('rincian_penilaian_pratama_kedua');
+				redirect('rincian_penilaian_utama_kedua');
 			} else {
-				$data['title'] = 'Tambah Rincian Penilaian Klinik Pratama';
-				$data['data'] = $this->Model_rincian_penilaian_pratama->get_group_penilaian_pratama();
-				$this->template->load('template', 'rincian-penilaian-kedua/pratama/add', $data);
+				$data['title'] = 'Tambah Rincian Penilaian Klinik Utama';
+				$data['data'] = $this->Model_rincian_penilaian_utama->get_group_penilaian_utama();
+				$this->template->load('template', 'rincian-penilaian-kedua/utama/add', $data);
 			}
 		}
 	}
 	function edit($id)
 	{
-		$data['title'] = "Edit Rincian Penilaian Pratama 2";
-		$data['data'] = $this->Model_rincian_penilaian_pratama->get_group_penilaian_pratama();
-		$data['id_deskripsi'] = $this->Model_rincian_penilaian_pratama->getByIdKedua($id);
+		$data['title'] = "Edit Rincian Penilaian Utama 2";
+		$data['data'] = $this->Model_rincian_penilaian_utama->get_group_penilaian_utama();
+		$data['id_deskripsi'] = $this->Model_rincian_penilaian_utama->getByIdKedua($id);
 		$this->template->load(
 			'template',
-			'rincian-penilaian-kedua/pratama/edit',
+			'rincian-penilaian-kedua/utama/edit',
 			$data
 		);
 	}
@@ -99,7 +95,7 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 			'Group Name',
 			'required',
 			[
-				'required' => 'Group Name Wajib di isi',
+				'required' => 'Group Name Wajib di pilih',
 			]
 		);
 		$this->form_validation->set_rules(
@@ -135,10 +131,10 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 		if ($this->form_validation->run() == true) {
 			$id = $this->input->post('id_deskripsi_penilaian');
 			$data['id_group'] = $this->input->post('group_name');
-			$data['kriteria_penilaian_pratama'] = $this->input->post('rincian_penilaian');
-			$data['jumlah_minimal_penilaian_pratama'] = $this->input->post('jumlah_penilaian');
-			$data['satuan_penilaian_pratama'] = $this->input->post('satuan_penilaian');
-			$this->Model_rincian_penilaian_pratama->update_kedua($data, $id);
+			$data['kriteria_penilaian_utama'] = $this->input->post('rincian_penilaian');
+			$data['jumlah_minimal_penilaian_utama'] = $this->input->post('jumlah_penilaian');
+			$data['satuan_penilaian_utama'] = $this->input->post('satuan_penilaian');
+			$this->Model_rincian_penilaian_utama->update_kedua($data, $id);
 			$this->session->set_flashdata(
 				'update',
 				'<div class="alert alert-warning alert-dismissible fade show">
@@ -148,15 +144,15 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 				</button>
 				</div>'
 			);
-			redirect('rincian_penilaian_pratama_kedua');
+			redirect('rincian_penilaian_utama_kedua');
 		} else {
 			$id = $this->input->post('id_deskripsi_penilaian');
-			$data['title'] = "Edit Rincian Penilaian Pratama 2";
-			$data['data'] = $this->Model_rincian_penilaian_pratama->get_group_penilaian_pratama();
-			$data['id_deskripsi'] = $this->Model_rincian_penilaian_pratama->getByIdKedua($id);
+			$data['title'] = "Edit Rincian Penilaian Utama 2";
+			$data['data'] = $this->Model_rincian_penilaian_utama->get_group_penilaian_utama();
+			$data['id_deskripsi'] = $this->Model_rincian_penilaian_utama->getByIdKedua($id);
 			$this->template->load(
 				'template',
-				'rincian-penilaian-kedua/pratama/edit',
+				'rincian-penilaian-kedua/utama/edit',
 				$data
 			);
 		}
@@ -165,7 +161,7 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 	{
 		$id = $this->uri->segment(3);
 		$this->db->where('id_deskripsi', $id);
-		$this->db->delete('tbl_deskripsi_penilaian_pratama');
+		$this->db->delete('tbl_deskripsi_penilaian_utama');
 		$this->session->set_flashdata(
 			'delete',
 			'<div class="alert alert-danger alert-dismissible fade show">
@@ -175,13 +171,13 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 			</button>
 			</div>'
 		);
-		redirect('rincian_penilaian_pratama_kedua');
+		redirect('rincian_penilaian_utama_kedua');
 	}
 	function group_name()
 	{
-		$data['title'] = 'Group Name Rincian Penilaian Klinik Pratama';
-		$data['data'] = $this->Model_rincian_penilaian_pratama->get_group_penilaian_pratama();
-		$this->template->load('template', 'rincian-penilaian-kedua/pratama/group-name/data', $data);
+		$data['title'] = 'Group Name Rincian Penilaian Klinik Utama';
+		$data['data'] = $this->Model_rincian_penilaian_utama->get_group_penilaian_utama();
+		$this->template->load('template', 'rincian-penilaian-kedua/utama/group-name/data', $data);
 	}
 	function tambah_group()
 	{
@@ -195,10 +191,10 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 			]
 		);
 		if ($this->form_validation->run() == false) {
-			$this->template->load('template', 'rincian-penilaian-kedua/pratama/group-name/tambah');
+			$this->template->load('template', 'rincian-penilaian-kedua/utama/group-name/tambah');
 		} else {
 			if (isset($_POST['submit'])) {
-				$this->Model_rincian_penilaian_pratama->add_group();
+				$this->Model_rincian_penilaian_utama->add_group();
 				$this->session->set_flashdata(
 					'add',
 					'<div class="alert alert-success alert-dismissible fade show">
@@ -208,11 +204,11 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 					</button>
 					</div>'
 				);
-				redirect('rincian_penilaian_pratama_kedua/group_name');
+				redirect('rincian_penilaian_utama_kedua/group_name');
 			} else {
 				$this->template->load(
 					'template',
-					'rincian-penilaian-kedua/pratama/group-name/tambah'
+					'rincian-penilaian-kedua/utama/group-name/tambah'
 				);
 			}
 		}
@@ -220,10 +216,10 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 	function edit_group($id)
 	{
 		$data['title'] = 'Edit Group Name';
-		$data['group'] = $this->Model_rincian_penilaian_pratama->getByIdGroup($id);
+		$data['group'] = $this->Model_rincian_penilaian_utama->getByIdGroup($id);
 		$this->template->load(
 			'template',
-			'rincian-penilaian-kedua/pratama/group-name/edit',
+			'rincian-penilaian-kedua/utama/group-name/edit',
 			$data
 		);
 	}
@@ -241,7 +237,7 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 		if ($this->form_validation->run() == true) {
 			$id = $this->input->post('id_group');
 			$data['group_name'] = $this->input->post('nama_group');
-			$this->Model_rincian_penilaian_pratama->update_group($data, $id);
+			$this->Model_rincian_penilaian_utama->update_group($data, $id);
 			$this->session->set_flashdata(
 				'update',
 				'<div class="alert alert-warning alert-dismissible fade show">
@@ -251,14 +247,14 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 				</button>
 				</div>'
 			);
-			redirect('rincian_penilaian_pratama_kedua/group_name');
+			redirect('rincian_penilaian_utama_kedua/group_name');
 		} else {
 			$id = $this->input->post('id_group');
 			$data['title'] = 'Edit Group Name';
-			$data['group'] = $this->Model_rincian_penilaian_pratama->getByIdGroup($id);
+			$data['group'] = $this->Model_rincian_penilaian_utama->getByIdGroup($id);
 			$this->template->load(
 				'template',
-				'rincian-penilaian-kedua/pratama/group-name/edit',
+				'rincian-penilaian-kedua/utama/group-name/edit',
 				$data
 			);
 		}
@@ -267,7 +263,7 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 	{
 		$id = $this->uri->segment(3);
 		$this->db->where('id_group', $id);
-		$this->db->delete('tbl_group_pratama');
+		$this->db->delete('tbl_group_utama');
 		$this->session->set_flashdata(
 			'delete',
 			'<div class="alert alert-danger alert-dismissible fade show">
@@ -277,6 +273,6 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 			</button>
 			</div>'
 		);
-		redirect('rincian_penilaian_pratama_kedua/group_name');
+		redirect('rincian_penilaian_utama_kedua/group_name');
 	}
 }

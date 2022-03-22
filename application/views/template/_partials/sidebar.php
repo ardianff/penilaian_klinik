@@ -53,9 +53,9 @@
 				</li>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-user-cog"></i>
+						<i class="nav-icon fas fa-book-open"></i>
 						<p>
-							Rincian Penilaian
+							Rincian Penilaian 1
 							<i class="fas fa-angle-left right"></i>
 						</p>
 					</a>
@@ -65,7 +65,7 @@
 											'rincian_penilaian_pratama'
 										); ?>" class="nav-link">
 								<i class="fab fa-circle nav-icon"></i>
-								<p>Klinik Pratama</p>
+								<p>Klinik Pratama Form 1</p>
 							</a>
 						</li>
 						<li class="nav-item">
@@ -73,7 +73,34 @@
 											'rincian_penilaian_utama'
 										); ?>" class="nav-link">
 								<i class="fab fa-circle nav-icon"></i>
-								<p>Klinik Utama</p>
+								<p>Klinik Utama Form 1</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-book-open"></i>
+						<p>
+							Rincian Penilaian 2
+							<i class="fas fa-angle-left right"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?php echo site_url(
+											'rincian_penilaian_pratama_kedua'
+										); ?>" class="nav-link">
+								<i class="fab fa-circle nav-icon"></i>
+								<p>Klinik Pratama Form 2</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url(
+											'rincian_penilaian_utama_kedua'
+										); ?>" class="nav-link">
+								<i class="fab fa-circle nav-icon"></i>
+								<p>Klinik Utama Form 2</p>
 							</a>
 						</li>
 					</ul>

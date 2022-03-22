@@ -13,17 +13,17 @@
 				<div class="col-md-8">
 					<!-- Horizontal Form -->
 					<div class="card card-info">
+						<!-- <a href="#" class="btn btn-danger">Tambah Group Name</a> -->
 						<div class="card-header">
-							<h3 class="card-title">Edit Rincian Penilaian Pratama Form Kedua</h3><br>
-							<a href="<?php echo base_url('rincian_penilaian_pratama_kedua/group_name'); ?>" class="btn btn-danger btn-sm">Group Name</a>
+							<h3 class="card-title">Input Rincian Penilaian Utama Form Kedua</h3><br>
+							<a href="<?php echo base_url('rincian_penilaian_utama_kedua/group_name'); ?>" class="btn btn-danger btn-sm">Group Name</a>
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
 						<?php echo form_open(
-							'rincian_penilaian_pratama_kedua/update',
+							'rincian_penilaian_utama_kedua/add',
 							'class="form-horizontal"'
-						);
-						echo form_hidden('id_deskripsi_penilaian', $id_deskripsi->id_deskripsi); ?>
+						); ?>
 						<div class="card-body">
 							<div class="form-group row">
 								<label for="group_name" class="col-sm-2 col-form-label">Group Name</label>
@@ -31,7 +31,7 @@
 									<select class="form-control" name="group_name">
 										<option value="">- Pilih Group -</option>
 										<?php foreach ($data as $dt) : ?>
-											<option value="<?php echo $dt->id_group; ?>" <?php if ($dt->id_group == $id_deskripsi->id_group) { ?> selected <?php } ?>><?php echo $dt->group_name; ?>
+											<option value="<?php echo $dt->id_group; ?>"><?php echo $dt->group_name; ?>
 											</option>
 										<?php endforeach; ?>
 									</select>
@@ -41,21 +41,21 @@
 							<div class="form-group row">
 								<label for="rincian_penilaian" class="col-sm-2 col-form-label">Rincian Penilaian</label>
 								<div class="col-sm-10">
-									<textarea type="text" class="form-control" name="rincian_penilaian" placeholder="Rincian Penilaian"><?php echo htmlentities($id_deskripsi->kriteria_penilaian_pratama) ?></textarea>
+									<textarea type="text" class="form-control" name="rincian_penilaian" placeholder="Rincian Penilaian"></textarea>
 									<?= form_error('rincian_penilaian', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="jumlah_penilaian" class="col-sm-2 col-form-label">Jumlah</label>
 								<div class="col-sm-10">
-									<textarea type="text" class="form-control" name="jumlah_penilaian" placeholder="Jumlah"><?php echo htmlentities($id_deskripsi->jumlah_minimal_penilaian_pratama) ?></textarea>
+									<textarea type="text" class="form-control" name="jumlah_penilaian" placeholder="Jumlah"></textarea>
 									<?= form_error('jumlah_penilaian', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="keterangan_penilaian" class="col-sm-2 col-form-label">Satuan</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="satuan_penilaian" placeholder="Satuan" value="<?php echo ($id_deskripsi->satuan_penilaian_pratama) ?>"></input>
+									<input type="text" class="form-control" name="satuan_penilaian" placeholder="Satuan"></input>
 									<?= form_error('satuan_penilaian', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>
@@ -63,7 +63,7 @@
 						<!-- /.card-body -->
 						<div class="card-footer">
 							<button type="submit" name="submit" class="btn btn-success">Simpan</button>
-							<?php echo anchor('rincian_penilaian_pratama_kedua', 'Kembali', [
+							<?php echo anchor('rincian_penilaian_utama_kedua', 'Kembali', [
 								'class' => 'btn btn-warning',
 							]); ?>
 						</div>
