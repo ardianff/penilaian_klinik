@@ -32,7 +32,7 @@
 							<?= $this->session->flashdata('add') ?>
 							<?= $this->session->flashdata('update') ?>
 							<?= $this->session->flashdata('delete') ?>
-							<table id="example2" class="table table-bordered table-striped" width="auto">
+							<table id="example2" class="table table-bordered table-striped" width="100%">
 								<thead>
 									<tr>
 										<th class="text-center" rowspan="2">No</th>
@@ -53,7 +53,7 @@
 									foreach ($data as $row) : ?>
 										<tr>
 											<td class="text-center"><?php echo $no; ?></td>
-											<td class="text-justify"><?php echo $row->group_name; ?></td>
+											<td class="text-center"><?php echo $row->group_name; ?></td>
 											<td class="text-justify"><?php echo $row->kriteria_penilaian_pratama; ?></td>
 											<td class="text-center"><?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
 											<td class="text-center"><?php echo $row->satuan_penilaian_pratama; ?></td>

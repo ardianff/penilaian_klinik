@@ -13,7 +13,7 @@
 	<!-- Main content -->
 	<?php
 	echo form_open(
-		'penilaian_pratama/simpan_penilaian_pratama',
+		'penilaian_pratama/simpan_penilaian_pratama_pertama',
 		'class="form-horizontal"'
 	);
 	echo form_hidden('no_penilaian', $penilaian['no_penilaian']);
@@ -26,10 +26,13 @@
 					<div class="card">
 						<div class="card-header">
 							<h2 class="card-title">
-								<span><b><?php echo $penilaian['nama_klinik']; ?></b><br>
+								<span>
+									<h3><b><?php echo $penilaian['nama_klinik']; ?></h3>
+									</b>
 									Alamat : <?php echo $penilaian['alamat_klinik']; ?><br>
 									Kecamatan : <?php echo $penilaian['nama_kecamatan']; ?><br>
-									Kelurahan : <?php echo $penilaian['nama_kelurahan']; ?> (<?php echo $penilaian['kode_pos_kelurahan']; ?>)</span>
+									Kelurahan : <?php echo $penilaian['nama_kelurahan']; ?> (<?php echo $penilaian['kode_pos_kelurahan']; ?>)
+								</span>
 							</h2>
 						</div>
 						<!-- /.card-header -->
@@ -88,16 +91,16 @@
 		</div>
 		<div class="col d-flex justify-content-center">
 			<div class="card-footer">
-				<?php echo anchor(
-					'penilaian_pratama/nilai_kedua/' . $penilaian['no_penilaian'],
-					'<span>Next</span>',
-					[
-						'class' => 'btn btn-primary',
-						'title' => 'Lanjut Ke Halaman Berikutnya',
-						'name' => 'submit'
-					]
-				); ?>
-				<!-- <button type="submit" name="submit" class="btn btn-success">Next</button> -->
+				<!-- <?php echo anchor(
+							'penilaian_pratama/nilai_kedua/' . $penilaian['no_penilaian'],
+							'<span>Next</span>',
+							[
+								'class' => 'btn btn-success',
+								'title' => 'Lanjut Ke Halaman Berikutnya',
+								'name' => 'submit'
+							]
+						); ?> -->
+				<button type="submit" name="submit" title="Lanjut Ke Halaman Berikutnya" class="btn btn-success">Next</button>
 				<?php echo anchor('penilaian_pratama', 'Kembali', [
 					'class' => 'btn btn-warning',
 				]); ?>

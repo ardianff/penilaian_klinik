@@ -27,7 +27,7 @@
 							<?= $this->session->flashdata('update') ?>
 							<?= $this->session->flashdata('delete') ?>
 							<?= $this->session->flashdata('simpan') ?>
-							<table id="example2" class="table table-bordered table-striped " width="auto" height="auto">
+							<table id="example2" class="table table-bordered table-striped " width="100%" height="100%">
 								<thead>
 									<tr>
 										<th class="text-center" rowspan="2">No</th>
@@ -81,13 +81,13 @@
 																			); ?>')" href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
 											<td class="text-center"><?php echo anchor(
 																		'penilaian_pratama/pdf/' . $row->no_penilaian,
-																		'<span class="fa fa-file-pdf"></span>',
+																		'<span class="fa-solid fa-file-pdf"></span>',
 																		[
 																			'class' => 'btn btn-success btn-sm',
 																			'title' => 'Export PDF',
 																		]
 																	); ?></td>
-											<td class="text-center"><a onclick="deleteConfirm('<?php echo site_url('penilaian_pratama/hapus/' . $row->no_penilaian) ?>')" href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+											<td class="text-center"><a onclick="deleteConfirm('<?php echo site_url('penilaian_pratama/hapus/' . $row->no_penilaian) ?>')" href="#" class="btn btn-danger btn-sm"><i class="fa-regular fa-trash-can"></i></a></td>
 										</tr>
 									<?php $no++;
 									endforeach;

@@ -78,7 +78,7 @@ class Penilaian_Pratama extends CI_Controller
 		//             ->row_array();
 		//     }
 		// }
-		$data['title'] = 'Penilaian Klinik Pratama';
+		$data['title'] = 'Form Pertama Penilaian Klinik Pratama';
 		$no_penilaian = $this->uri->segment(3);
 		$data['penilaian'] = $this->db
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
@@ -89,7 +89,7 @@ class Penilaian_Pratama extends CI_Controller
 	}
 	function nilai_kedua()
 	{
-		$data['title'] = 'Penilaian Klinik Pratama';
+		$data['title'] = 'Form Kedua Penilaian Klinik Pratama';
 		$no_penilaian = $this->uri->segment(3);
 		$data['penilaian'] = $this->db
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
@@ -101,7 +101,7 @@ class Penilaian_Pratama extends CI_Controller
 
 	function nilai_ketiga()
 	{
-		$data['title'] = 'Penilaian Klinik Pratama';
+		$data['title'] = 'Form Ketiga Penilaian Klinik Pratama';
 		$no_penilaian = $this->uri->segment(3);
 		$data['penilaian'] = $this->db
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
@@ -134,22 +134,54 @@ class Penilaian_Pratama extends CI_Controller
 
 		echo json_encode($get_data_kel);
 	}
-	function simpan_penilaian_pratama()
+	function simpan_penilaian_pratama_pertama()
 	{
 		if (isset($_POST['submit'])) {
-			$this->Model_penilaian_pratama->simpan_penilaian();
+			$this->Model_penilaian_pratama->simpan_penilaian_pratama_pertama();
 			$this->session->set_flashdata(
 				'simpan',
 				'<div class="alert alert-secondary alert-dismissible fade show">
-				Penilaian Klinik Pratama ' . $this->input->post('no_penilaian') . ' Berhasil Disimpan!
+				Penilaian Klinik Pratama Form Pertama' . $this->input->post('no_penilaian') . ' Berhasil Disimpan!
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
 				</div>'
 			);
-			redirect('penilaian_pratama_next');
+			$no_penilaian = $this->input->post('no_penilaian');
+			redirect('penilaian_pratama/nilai_kedua/' . $no_penilaian);
 		} else {
 			show_404();
 		}
 	}
+	function simpan_penilaian_pratama_kedua()
+	{
+		if (isset($_POST['submit'])) {
+			$this->Model_penilaian_pratama->simpan_penilaian_pratama_kedua();
+			$this->session->set_flashdata(
+				'simpan',
+				'<div class="alert alert-secondary alert-dismissible fade show">
+				Penilaian Klinik Pratama Form Kedua' . $this->input->post('no_penilaian') . ' Berhasil Disimpan!
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>'
+			);
+			$no_penilaian = $this->input->post('no_penilaian');
+			redirect('penilaian_pratama/nilai_ketiga/' . $no_penilaian);
+		} else {
+			show_404();
+		}
+	}
+	// public function upload()
+	// {
+	// 	$folderPath = "assets/tanda-tangan";
+	// 	$image_parts = explode(";base64,", $this->input->post('signed'));
+	// 	$image_type_aux = explode("image/", $image_parts[0]);
+	// 	$image_type = $image_type_aux[1];
+	// 	$image_base64 = base64_decode($image_parts[1]);
+	// 	$file = $folderPath . uniqid() . '.' . $image_type;
+
+	// 	file_put_contents($file, $image_base64);
+	// 	echo "<h3><i>Upload Tanda Tangan Berhasil...</i></h3>";
+	// }
 }

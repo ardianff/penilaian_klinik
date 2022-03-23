@@ -26,10 +26,10 @@ class Rincian_penilaian_utama_kedua extends CI_Controller
 		$this->form_validation->set_rules(
 			'rincian_penilaian',
 			'Rincian Penilaian',
-			'xss_clean|trim|min_length[5]|required',
+			'xss_clean|trim|min_length[3]|required',
 			[
 				'min_length' =>
-				'Rincian Penilaian berisi minimal 5 karakter',
+				'Rincian Penilaian berisi minimal 3 karakter',
 				'required' => 'Rincian Wajib di isi'
 			]
 		);
@@ -101,10 +101,10 @@ class Rincian_penilaian_utama_kedua extends CI_Controller
 		$this->form_validation->set_rules(
 			'rincian_penilaian',
 			'Rincian Penilaian',
-			'xss_clean|trim|min_length[5]|required',
+			'xss_clean|trim|min_length[3]|required',
 			[
 				'min_length' =>
-				'Rincian Penilaian berisi minimal 5 karakter',
+				'Rincian Penilaian berisi minimal 3 karakter',
 				'required' => 'Rincian Wajib di isi'
 			]
 		);

@@ -29,6 +29,7 @@ class Auth extends CI_Controller
 		// } else {
 		//     $this->check_login();
 		// }
+		check_sudah_login();
 		$this->load->view('auth/login');
 	}
 

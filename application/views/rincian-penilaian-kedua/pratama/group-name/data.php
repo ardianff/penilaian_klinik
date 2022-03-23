@@ -39,7 +39,7 @@
 							<?= $this->session->flashdata('add') ?>
 							<?= $this->session->flashdata('update') ?>
 							<?= $this->session->flashdata('delete') ?>
-							<table id="example2" class="table table-bordered table-striped" width="auto">
+							<table id="example2" class="table table-bordered table-striped" width="100%">
 								<thead>
 									<tr>
 										<th class="text-center" rowspan="2">No</th>

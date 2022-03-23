@@ -57,6 +57,9 @@
 <!-- AdminLTE App -->
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/demo.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/signature-pad.js"></script> -->
 <!-- Page specific script -->
 <script type="text/javascript">
 	$(document).ready(function() {

@@ -2,6 +2,11 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1><strong><?= $title ?></strong></h1>
+				</div>
+			</div>
 		</div><!-- /.container-fluid -->
 	</section>
 
@@ -10,18 +15,20 @@
 		<div class="container-fluid">
 			<div class="row">
 				<!-- left column -->
-				<div class="col-md-10" id="card">
+				<div class="col-md-12" id="card">
 					<!-- Horizontal Form -->
-					<div class="card card-info">
+					<div class="card">
 
 						<div class="card-header">
 							<!-- <h3 class="card-title">Penilaian Klinik Pratama</h3> -->
 							<h2 class="card-title">
-								<span><b>Klinik Suka Suka</b><br>
-									Alamat : Semarang<br>
-									Kecamatan : Tugu<br>
-									Kelurahan : Mangkang Wetan</span>
-							</h2>
+								<span>
+									<h3><b><?php echo $penilaian['nama_klinik']; ?></h3>
+									</b>
+									Alamat : <?php echo $penilaian['alamat_klinik']; ?><br>
+									Kecamatan : <?php echo $penilaian['nama_kecamatan']; ?><br>
+									Kelurahan : <?php echo $penilaian['nama_kelurahan']; ?> (<?php echo $penilaian['kode_pos_kelurahan']; ?>)
+								</span>
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
@@ -34,7 +41,7 @@
 									<br>
 									<input type="radio" name="pilihan_jawaban" value="Belum Memenuhi"> Belum memenuhi persyaratan minimal sebagai <del>Klinik Utama</del>/Pratama</input>
 									<br><br>
-									<textarea placeholder="Isian Uraian......."></textarea>
+									<textarea placeholder="Isian Uraian..." class="p-3"></textarea>
 								</div>
 							</div>
 							<div class="form-group row">
@@ -53,18 +60,50 @@
 									<input type="text" name="nama_perwakilan_klinik" placeholder="Jabatan" class="form-control" required>
 								</div>
 							</div>
-							<!-- <div class="form-group row">
-								<label for="NIP_Anggota" class="col-sm-2 col-form-label">NIP Anggota</label>
-								<div class="col-sm-10">
-									<input type="number" class="form-control" name="nip_anggota" placeholder="NIP">
-									<?= form_error('nip_anggota', '<small class="text-danger pl-3">', '</small>') ?>
+							<!-- <div>
+								<div class="col-md-6">
+									<hr>
+									<h4>Tanda Tangan</h4>
+									<div class="text-right">
+										<button type="button" class="btn btn-default btn-sm" id="undo"><i class="fa fa-undo"></i> Undo</button>
+										<button type="button" class="btn btn-danger btn-sm" id="clear"><i class="fa fa-eraser"></i> Clear</button>
+									</div>
+									<br>
+									<form method="POST" action="<?php echo base_url('upload') ?>">
+										<div class="wrapper">
+											<canvas id="signature-pad" class="signature-pad"></canvas>
+										</div>
+										<br>
+										<button type="button" class="btn btn-primary btn-sm" id="save-png">Save as PNG</button>
+										<button type="button" class="btn btn-info btn-sm" id="save-jpeg">Save as JPEG</button>
+										<button type="button" class="btn btn-default btn-sm" id="save-svg">Save as SVG</button>
+										
+										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+											<div class="modal-dialog" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+														<h4 class="modal-title" id="myModalLabel">Preview Tanda Tangan</h4>
+													</div>
+													<div class="modal-body">
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+														<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Submit</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
 								</div>
 							</div> -->
 						</div>
 						<!-- /.card-body -->
+						<div class="col d-flex justify-content-center"></div>
 						<div class="card-footer">
 							<button type="submit" name="submit" class="btn btn-success">Simpan</button>
-							<?php echo anchor('penilaian_pratama', 'Kembali', ['class' => 'btn btn-warning']); ?>
+							<button type="submit" name="back" onclick="history.back();" class="btn btn-warning">Kembali</button>
+							<!-- <?php echo anchor('penilaian_pratama', 'Kembali', ['class' => 'btn btn-warning']); ?> -->
 						</div>
 						<!-- /.card-footer -->
 						<?php echo form_close(); ?>

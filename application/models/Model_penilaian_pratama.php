@@ -25,7 +25,6 @@ class Model_penilaian_pratama extends CI_Model
 	function update()
 	{
 		$data = [
-			'no_penilaian' => no_penilaian_pratama(),
 			'nama_admin' => $this->session->userdata('nama_user'),
 			'nama_anggota1' => $this->input->post('nama_anggota1'),
 			'nama_anggota2' => $this->input->post('nama_anggota2'),
@@ -35,6 +34,8 @@ class Model_penilaian_pratama extends CI_Model
 			'kemampuan_pelayanan' => $this->input->post('kemampuan_pelayanan'),
 			'jenis_pelayanan_klinik' => $this->input->post('jenis_pelayanan'),
 			'alamat_klinik' => $this->input->post('alamat_klinik'),
+			'id_kecamatan_klinik' => $this->input->post('nama_kecamatan'),
+			'id_kelurahan_klinik' => $this->input->post('nama_kelurahan'),
 			'tgl_penilaian' => $this->input->post('tgl_penilaian'),
 		];
 		$no_penilaian = $this->input->post('no_penilaian');
@@ -71,7 +72,7 @@ class Model_penilaian_pratama extends CI_Model
 	}
 	public function get_question_next()
 	{
-		$query = $this->db->query("SELECT tbl_group_pratama.group_name, tbl_deskripsi_penilaian_pratama.kriteria_penilaian_pratama, tbl_deskripsi_penilaian_pratama.jumlah_minimal_penilaian_pratama, tbl_deskripsi_penilaian_pratama.satuan_penilaian_pratama FROM tbl_deskripsi_penilaian_pratama INNER JOIN tbl_group_pratama ON tbl_group_pratama.id_group = tbl_deskripsi_penilaian_pratama.id_group")->result();
+		$query = $this->db->query("SELECT tbl_group_pratama.group_name,tbl_deskripsi_penilaian_pratama.id_deskripsi, tbl_deskripsi_penilaian_pratama.kriteria_penilaian_pratama, tbl_deskripsi_penilaian_pratama.jumlah_minimal_penilaian_pratama, tbl_deskripsi_penilaian_pratama.satuan_penilaian_pratama FROM tbl_deskripsi_penilaian_pratama INNER JOIN tbl_group_pratama ON tbl_group_pratama.id_group = tbl_deskripsi_penilaian_pratama.id_group")->result();
 		return $query;
 	}
 	function getById($id)
@@ -90,7 +91,7 @@ class Model_penilaian_pratama extends CI_Model
 		$query = $this->db->query("SELECT * FROM tbl_kelurahan WHERE tbl_kelurahan.id_kecamatan = '$id_kecamatan' ORDER BY tbl_kelurahan.nama_kelurahan ASC");
 		return $query->result();
 	}
-	function simpan_penilaian()
+	function simpan_penilaian_pratama_pertama()
 	{
 		$rincian = $_POST['rincian'];
 		$no_penilaian = $_POST['no_penilaian'];
@@ -110,6 +111,30 @@ class Model_penilaian_pratama extends CI_Model
 			));
 			$i++;
 		}
-		$this->db->insert_batch('tbl_penilaian_pratama', $data);
+		$this->db->insert_batch('tbl_penilaian_pratama_form_satu', $data);
+	}
+	function simpan_penilaian_pratama_kedua()
+	{
+		$kriteria = $_POST['kriteria'];
+		$no_penilaian = $_POST['no_penilaian'];
+		$hasil_penilaian = $_POST['hasil_nilai'];
+		$jumlah_ketersediaan = $_POST['jumlah_ketersediaan'];
+		$satuan_penilaian = $_POST['satuan_nilai'];
+		$catatan_penilaian = $_POST['catatan_penilaian'];
+		$data = array();
+
+		$i = 1;
+		foreach ($kriteria as $kt) {
+			array_push($data, array(
+				'id_deskripsi' => $kt,
+				'no_penilaian' => $no_penilaian,
+				'hasil_penilaian' => $hasil_penilaian[$i],
+				'jumlah_ketersediaan' => $jumlah_ketersediaan[$i],
+				'satuan_penilaian' => $satuan_penilaian[$i],
+				'catatan_penilaian' => $catatan_penilaian[$i]
+			));
+			$i++;
+		}
+		$this->db->insert_batch('tbl_penilaian_pratama_form_kedua', $data);
 	}
 }
