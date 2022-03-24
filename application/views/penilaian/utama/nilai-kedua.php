@@ -12,7 +12,7 @@
 	<!-- Main content -->
 	<?php
 	echo form_open(
-		'penilaian_pratama/nilai_kedua',
+		'penilaian_utama/nilai_kedua',
 		'class="form-horizontal"'
 	);
 	echo form_hidden('no_penilaian', $penilaian['no_penilaian']);
@@ -64,14 +64,14 @@
 										<!-- <th colspan="9" class="text-justify"><?php echo $row->group_name; ?></th> -->
 										<tr>
 											<td><?php echo $no ?></td>
-											<td class="text-justify"><input type="hidden" name="kriteria[<?php echo $no ?>]" value="<?php echo $row->id_deskripsi; ?>"> <?php echo $row->kriteria_penilaian_pratama; ?></td>
-											<td class=" text-justify"><?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
-											<td class="text-justify"><?php echo $row->satuan_penilaian_pratama; ?></td>
+											<td class="text-justify"><input type="hidden" name="kriteria[<?php echo $no ?>]" value="<?php echo $row->id_deskripsi; ?>"> <?php echo $row->kriteria_penilaian_utama; ?></td>
+											<td class=" text-justify"><?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
+											<td class="text-justify"><?php echo $row->satuan_penilaian_utama; ?></td>
 											<td><input type="radio" value="Ya" name="hasil_nilai[<?php echo $no ?>]" required /> Ya</td>
 											<td><input type="radio" value="Tidak" name="hasil_nilai[<?php echo $no ?>]" /> tidak</td>
-											<td><textarea placeholder="Jumlah" name="jumlah_ketersediaan[<?php echo $no ?>]"></textarea></td>
-											<td class="text-justify"><input class="form-control" type="text" name="satuan_nilai[<?php echo $no ?>]" value="<?php echo $row->satuan_penilaian_pratama; ?>" /></td>
-											<td><textarea name="catatan_penilaian[<?php echo $no ?>]" placeholder="Catatan Penilaian..."></textarea></td>
+											<td><textarea placeholder="Jumlah" class="form-control" name="jumlah_ketersediaan[<?php echo $no ?>]" required></textarea></td>
+											<td class="text-justify"><input class="form-control" type="text" name="satuan_nilai[<?php echo $no ?>]" value="<?php echo $row->satuan_penilaian_utama; ?>" /></td>
+											<td><textarea name="catatan_penilaian[<?php echo $no ?>]" class="form-control" placeholder="Catatan Penilaian..."></textarea></td>
 										</tr>
 									<?php $no++;
 									endforeach;
@@ -91,7 +91,7 @@
 			<div class="card-footer">
 				<button type="submit" name="submit" class="btn btn-success">Next</button>
 				<!-- <?php echo anchor(
-							'penilaian_pratama/nilai_ketiga/' . $penilaian['no_penilaian'],
+							'penilaian_utama/nilai_ketiga/' . $penilaian['no_penilaian'],
 							'<span>Next</span>',
 							[
 								'class' => 'btn btn-success',
@@ -99,7 +99,7 @@
 								'name' => 'submit'
 							]
 						); ?> -->
-				<button type="submit" href="<?php echo base_url('penilaian_pratama/nilai' . $penilaian['no_penilaian']); ?>" name="back" onclick="history.back();" class="btn btn-warning">Kembali</button>
+				<button type="submit" href="<?php echo base_url('penilaian_utama/nilai' . $penilaian['no_penilaian']); ?>" name="back" onclick="history.back();" class="btn btn-warning">Kembali</button>
 				<!-- <?php echo anchor('penilaian_pratama', 'Kembali', [
 							'class' => 'btn btn-warning',
 						]); ?> -->

@@ -56,7 +56,7 @@ class User extends CI_Controller
 		$this->form_validation->set_rules(
 			'password',
 			'Password',
-			'required|trim|xss_clean|min_length[8]|max_length[12]',
+			'required|trim|xss_clean|min_length[8]|max_length[20]',
 			[
 				'required' => 'Password Wajib di isi',
 				'min_length' => 'Password wajib berisi minimal 8 karakter',

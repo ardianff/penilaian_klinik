@@ -39,9 +39,9 @@
 							<div class="form-group row">
 								<label for="usulan_rekomendasi" class="col-sm-2 col-form-label">Usulan rekomendasi<span style="color:red">*</span></label>
 								<div class="col-sm-8">
-									<input type="radio" name="pilihan_jawaban" value="Telah Memenuhi" required> Telah memenuhi persyaratan minimal sebagai <del>Klinik Utama</del>/Pratama</input>
+									<input type="radio" name="pilihan_jawaban" value="Telah Memenuhi" required> Telah memenuhi persyaratan minimal sebagai Klinik Utama/<del>Pratama</del></input>
 									<br>
-									<input type="radio" name="pilihan_jawaban" value="Belum Memenuhi"> Belum memenuhi persyaratan minimal sebagai <del>Klinik Utama</del>/Pratama</input>
+									<input type="radio" name="pilihan_jawaban" value="Belum Memenuhi"> Belum memenuhi persyaratan minimal sebagai Klinik Utama/<del>Pratama</del></input>
 									<br><br>
 									<textarea placeholder="Isian Uraian..." class="form-control" rows="3" name="uraian_penilaian_klinik"></textarea>
 								</div>

@@ -52,56 +52,61 @@
 					</ul>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama' || $this->uri->segment(1) == 'rincian_penilaian_utama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+					<a href="#" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama' || $this->uri->segment(1) == 'rincian_penilaian_utama' || $this->uri->segment(1) == 'rincian_penilaian_utama_kedua' || $this->uri->segment(1) == 'rincian_penilaian_pratama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
 						<i class="nav-icon fas fa-book-open"></i>
 						<p>
-							Rincian Penilaian 1
-							<i class="fas fa-angle-left right"></i>
+							Rincian Penilaian
+							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="<?php echo site_url(
-											'rincian_penilaian_pratama'
-										); ?>" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
-								<i class="fa-solid fa-list-dropdown nav-icon"></i>
-								<p>Klinik Pratama Form 1</p>
+							<a href="#" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama' || $this->uri->segment(1) == 'rincian_penilaian_utama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Form 1
+									<i class="right fas fa-angle-left"></i>
+								</p>
 							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?php echo site_url(
-											'rincian_penilaian_utama'
-										); ?>" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_utama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
-								<i class="fa-solid fa-list-dropdown nav-icon"></i>
-								<p>Klinik Utama Form 1</p>
-							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?php echo site_url('rincian_penilaian_pratama') ?>" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+										<i class="fa-solid fa-list-dropdown nav-icon"></i>
+										<p>Klinik Pratama Form 1</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?php echo site_url('rincian_penilaian_utama') ?>" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_utama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+										<i class="fa-solid fa-list-dropdown nav-icon"></i>
+										<p>Klinik Utama Form 1</p>
+									</a>
+								</li>
+							</ul>
 						</li>
 					</ul>
-				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama_kedua' || $this->uri->segment(1) == 'rincian_penilaian_utama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
-						<i class="nav-icon fas fa-book-open"></i>
-						<p>
-							Rincian Penilaian 2
-							<i class="fas fa-angle-left right"></i>
-						</p>
-					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="<?php echo site_url(
-											'rincian_penilaian_pratama_kedua'
-										); ?>" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
-								<i class="fa-solid fa-list-dropdown nav-icon"></i>
-								<p>Klinik Pratama Form 2</p>
+							<a href="#" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama_kedua' || $this->uri->segment(1) == 'rincian_penilaian_utama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Form 2
+									<i class="right fas fa-angle-left"></i>
+								</p>
 							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?php echo site_url(
-											'rincian_penilaian_utama_kedua'
-										); ?>" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_utama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
-								<i class="fa-solid fa-list-dropdown nav-icon"></i>
-								<p>Klinik Utama Form 2</p>
-							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?php echo site_url('rincian_penilaian_pratama_kedua') ?>" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+										<i class="fa-solid fa-list-dropdown nav-icon"></i>
+										<p>Klinik Pratama Form 2</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?php echo site_url('rincian_penilaian_utama_kedua') ?>" class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_utama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+										<i class="fa-solid fa-list-dropdown nav-icon"></i>
+										<p>Klinik Utama Form 2</p>
+									</a>
+								</li>
+							</ul>
 						</li>
 					</ul>
 				</li>

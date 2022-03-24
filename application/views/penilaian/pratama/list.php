@@ -53,9 +53,9 @@
 											<td class="text-center"><?php echo $no; ?></td>
 											<td class="text-center"><?php echo $row->nama_klinik; ?><br>
 												<?php if ($row->status_penilaian == "Sudah") {
-													echo '<button type="button" class="btn btn-outline-success">Sudah Dinilai</button>';
+													echo '<button type="button" class="btn btn-block bg-gradient-success" title="' . $row->no_penilaian . ' Sudah Dinilai">Sudah Dinilai</button>';
 												} else {
-													echo '<button type="button" class="btn btn-outline-danger">Belum Dinilai</button>';
+													echo '<button type="button" class="btn btn-block bg-gradient-danger" title="' . $row->no_penilaian . ' Belum Dinilai">Belum Dinilai</button>';
 												} ?>
 											</td>
 											<td class="text-center"><?php echo $row->kemampuan_pelayanan; ?></td>
@@ -66,27 +66,33 @@
 												<br><?php echo $row->nama_anggota3; ?>,
 												<br><?php echo $row->nama_anggota4; ?>
 											</td>
-											<td class="text-center"><?php echo anchor(
-																		'penilaian_pratama/nilai/' .
-																			$row->no_penilaian,
-																		'<span class="fa fa-tasks"></span>',
-																		[
-																			'class' => 'btn btn-primary btn-sm',
-																			'title' => 'Penilaian',
-																		]
-																	); ?>
+											<td>
+												<div class="btn-group">
+													<!-- <button type="button" class="btn btn-danger"><i class="fa-solid fa-ellipsis-stroke-vertical"></i></button> -->
+													<button type="button" class="btn btn-success btn-sm dropdown-toggle dropdown-hover" data-toggle="dropdown">
+														<span class="sr-only">Toggle Dropdown</span>
+														<i class="fa-solid fa-ellipsis-stroke-vertical"></i>
+													</button>
+													<div class="dropdown-menu" role="menu">
+														<a class="dropdown-item" href="<?php echo site_url('penilaian_pratama/print/' . $row->no_penilaian); ?>">Print</a>
+														<div class="dropdown-divider"></div>
+														<a class="dropdown-item" href="<?php echo site_url('penilaian_pratama/pdf/' . $row->no_penilaian); ?>">Export PDF</a>
+													</div>
+												</div>
+											</td>
+											<td class=" text-center"><?php echo anchor(
+																			'penilaian_pratama/nilai/' .
+																				$row->no_penilaian,
+																			'<span class="fa fa-tasks"></span>',
+																			[
+																				'class' => 'btn btn-primary btn-sm',
+																				'title' => 'Penilaian',
+																			]
+																		); ?>
 											<td><a onclick="editConfirm('<?php echo site_url(
 																				'penilaian_pratama/edit/' .
 																					$row->no_penilaian
 																			); ?>')" href="#" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a></td>
-											<td class="text-center"><?php echo anchor(
-																		'penilaian_pratama/pdf/' . $row->no_penilaian,
-																		'<span class="fa-solid fa-file-pdf"></span>',
-																		[
-																			'class' => 'btn btn-success btn-sm',
-																			'title' => 'Export PDF',
-																		]
-																	); ?></td>
 											<td class="text-center"><a onclick="deleteConfirm('<?php echo site_url('penilaian_pratama/hapus/' . $row->no_penilaian) ?>')" href="#" class="btn btn-danger btn-sm"><i class="fa-regular fa-trash-can"></i></a></td>
 										</tr>
 									<?php $no++;

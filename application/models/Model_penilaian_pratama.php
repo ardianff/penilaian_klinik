@@ -6,7 +6,7 @@ class Model_penilaian_pratama extends CI_Model
 	{
 		$data = [
 			'no_penilaian' => no_penilaian_pratama(),
-			'nama_admin' => $this->session->userdata('nama_user'),
+			'nama_user' => $this->session->userdata('nama_user'),
 			'nama_anggota1' => $this->input->post('nama_anggota1'),
 			'nama_anggota2' => $this->input->post('nama_anggota2'),
 			'nama_anggota3' => $this->input->post('nama_anggota3'),
@@ -25,7 +25,7 @@ class Model_penilaian_pratama extends CI_Model
 	function update()
 	{
 		$data = [
-			'nama_admin' => $this->session->userdata('nama_user'),
+			'nama_user' => $this->session->userdata('nama_user'),
 			'nama_anggota1' => $this->input->post('nama_anggota1'),
 			'nama_anggota2' => $this->input->post('nama_anggota2'),
 			'nama_anggota3' => $this->input->post('nama_anggota3'),
@@ -42,7 +42,7 @@ class Model_penilaian_pratama extends CI_Model
 		$this->db->where('no_penilaian', $no_penilaian);
 		$this->db->update('tbl_klinik', $data);
 	}
-	public function get_data_all()
+	public function get_data_pratama()
 	{
 		$query = $this->db->order_by('status_penilaian', 'DESC')
 			->order_by('no_penilaian', 'DESC')
@@ -136,5 +136,22 @@ class Model_penilaian_pratama extends CI_Model
 			$i++;
 		}
 		$this->db->insert_batch('tbl_penilaian_pratama_form_kedua', $data);
+	}
+	function simpan_penilaian_pratama_ketiga()
+	{
+		$data = [
+			'no_penilaian' => $this->input->post('no_penilaian'),
+			'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
+			'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
+			'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
+			'nama_perwakilan_pihak_klinik' => $this->input->post('nama_perwakilan_klinik'),
+			'jabatan_perwakilan_pihak_klinik' => $this->input->post('jabatan_perwakilan_klinik'),
+		];
+		$this->db->insert('tbl_penilaian_pratama_form_ketiga', $data);
+
+		$update = ['status_penilaian' => "Sudah"];
+		$no_penilaian = $this->input->post('no_penilaian');
+		$this->db->where('no_penilaian', $no_penilaian);
+		$this->db->update('tbl_klinik', $update);
 	}
 }

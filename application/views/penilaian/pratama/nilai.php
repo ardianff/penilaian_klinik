@@ -4,7 +4,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1><strong>Form Penilaian Klinik Pratama</strong></h1>
+					<h1><strong><?= $title ?></strong></h1>
 				</div>
 			</div>
 		</div><!-- /.container-fluid -->
@@ -13,7 +13,7 @@
 	<!-- Main content -->
 	<?php
 	echo form_open(
-		'penilaian_pratama/simpan_penilaian_pratama_pertama',
+		'penilaian_pratama/nilai',
 		'class="form-horizontal"'
 	);
 	echo form_hidden('no_penilaian', $penilaian['no_penilaian']);
