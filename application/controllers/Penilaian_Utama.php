@@ -97,7 +97,7 @@ class Penilaian_Utama extends CI_Controller
 			$this->session->set_flashdata(
 				'simpan',
 				'<div class="alert alert-secondary alert-dismissible fade show">
-				Penilaian Klinik Utama Form Kedua' . $this->input->post('no_penilaian') . ' Berhasil Disimpan!
+				Penilaian Klinik Utama Form Pertama' . $this->input->post('no_penilaian') . ' Berhasil Disimpan!
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
@@ -122,7 +122,7 @@ class Penilaian_Utama extends CI_Controller
 		$this->template->load('template', 'penilaian/utama/nilai-kedua', $data);
 
 		if (isset($_POST['submit'])) {
-			$this->Model_penilaian_utama->simpan_penilaian_pratama_kedua();
+			$this->Model_penilaian_utama->simpan_penilaian_utama_kedua();
 			$this->session->set_flashdata(
 				'simpan',
 				'<div class="alert alert-secondary alert-dismissible fade show">
@@ -133,7 +133,7 @@ class Penilaian_Utama extends CI_Controller
 				</div>'
 			);
 			$no_penilaian = $this->input->post('no_penilaian');
-			redirect('penilaian_pratama/nilai_ketiga/' . $no_penilaian);
+			redirect('penilaian_utama/nilai_ketiga/' . $no_penilaian);
 		} else {
 			// show_404();
 		}

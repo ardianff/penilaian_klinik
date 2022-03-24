@@ -197,4 +197,15 @@ class Penilaian_Pratama extends CI_Controller
 	// 	file_put_contents($file, $image_base64);
 	// 	echo "<h3><i>Upload Tanda Tangan Berhasil...</i></h3>";
 	// }
+
+	function print()
+	{
+		$data['title'] = 'Cetak Penilaian Klinik Pratama';
+		$data['data'] = $this->Model_penilaian_pratama->get_data_pratama();
+		// $this->template->load('template', 'penilaian/pratama/list', $data);
+		$this->load->view('penilaian/pratama/print', $data);
+	}
+	function export_pdf()
+	{
+	}
 }

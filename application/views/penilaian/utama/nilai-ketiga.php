@@ -32,7 +32,7 @@
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
-						<?php echo form_open_multipart('penilaian_pratama/nilai_ketiga', 'class="form-horizontal"');
+						<?php echo form_open_multipart('penilaian_utama/nilai_ketiga', 'class="form-horizontal"');
 						echo form_hidden('no_penilaian', $penilaian['no_penilaian']);
 						?>
 						<div class="card-body">

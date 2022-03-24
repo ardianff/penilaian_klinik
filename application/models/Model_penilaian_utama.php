@@ -98,7 +98,7 @@ class Model_penilaian_utama extends CI_Model
 		}
 		$this->db->insert_batch('tbl_penilaian_utama_form_satu', $data);
 	}
-	function simpan_penilaian_kedua_kedua()
+	function simpan_penilaian_utama_kedua()
 	{
 		$kriteria = $_POST['kriteria'];
 		$no_penilaian = $_POST['no_penilaian'];
@@ -121,5 +121,22 @@ class Model_penilaian_utama extends CI_Model
 			$i++;
 		}
 		$this->db->insert_batch('tbl_penilaian_utama_form_kedua', $data);
+	}
+	function simpan_penilaian_utama_ketiga()
+	{
+		$data = [
+			'no_penilaian' => $this->input->post('no_penilaian'),
+			'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
+			'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
+			'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
+			'nama_perwakilan_pihak_klinik' => $this->input->post('nama_perwakilan_klinik'),
+			'jabatan_perwakilan_pihak_klinik' => $this->input->post('jabatan_perwakilan_klinik'),
+		];
+		$this->db->insert('tbl_penilaian_utama_form_ketiga', $data);
+
+		$update = ['status_penilaian' => "Sudah"];
+		$no_penilaian = $this->input->post('no_penilaian');
+		$this->db->where('no_penilaian', $no_penilaian);
+		$this->db->update('tbl_klinik', $update);
 	}
 }
