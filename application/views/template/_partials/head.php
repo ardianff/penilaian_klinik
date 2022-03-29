@@ -1,5 +1,6 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sistem Penilaian Klinik | <?= $title; ?></title>
 <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.png" type="image/x-icon" />
 <!-- Google Font: Source Sans Pro -->
@@ -39,5 +40,13 @@
 		border-radius: 5px;
 		width: 100%;
 		height: 260px;
+	}
+
+	.logodisp {
+		float: left;
+		position: relative;
+		width: 80px;
+		height: 80px;
+		margin: .5rem 0 0 .5rem;
 	}
 </style>

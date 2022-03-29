@@ -56,7 +56,7 @@ class Penilaian_Pratama extends CI_Controller
 			$data['no_penilaian'] = $this->db
 				->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
 				->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-				->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian])
+				->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
 				->row_array();
 			$data['title'] = 'Edit Data Penilaian Klinik Pratama';
 			$data['kecamatan'] = $this->Model_penilaian_pratama->get_data_kecamatan();
@@ -107,7 +107,7 @@ class Penilaian_Pratama extends CI_Controller
 		$data['penilaian'] = $this->db
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
 			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian])
+			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
 			->row_array();
 		$this->template->load('template', 'penilaian/pratama/nilai', $data);
 
@@ -135,7 +135,7 @@ class Penilaian_Pratama extends CI_Controller
 		$data['penilaian'] = $this->db
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
 			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian])
+			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
 			->row_array();
 		$data['rincian'] = $this->Model_penilaian_pratama->get_question_next();
 		$this->template->load('template', 'penilaian/pratama/nilai-kedua', $data);
@@ -165,7 +165,7 @@ class Penilaian_Pratama extends CI_Controller
 		$data['penilaian'] = $this->db
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
 			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian])
+			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
 			->row_array();
 		$this->template->load('template', 'penilaian/pratama/nilai-ketiga', $data);
 		if (isset($_POST['submit'])) {
@@ -201,11 +201,84 @@ class Penilaian_Pratama extends CI_Controller
 	function print()
 	{
 		$data['title'] = 'Cetak Penilaian Klinik Pratama';
+		$no_penilaian = $this->uri->segment(3);
+		$data['penilaian'] = $this->db
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
+			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
+			->row_array();
+		$cek_data = $this->db
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
+			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
+			->row_array();
 		$data['data'] = $this->Model_penilaian_pratama->get_data_pratama();
-		// $this->template->load('template', 'penilaian/pratama/list', $data);
-		$this->load->view('penilaian/pratama/print', $data);
+		if ($cek_data['status_penilaian'] == "Belum") {
+			$this->session->set_flashdata(
+				'nilai',
+				'<div class="alert alert-danger alert-dismissible fade show">
+				Tidak dapat mencetak. <b>' . $cek_data['nama_klinik'] . '</b> Belum dinilai!
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>'
+			);
+			redirect('penilaian_pratama');
+		} else {
+
+			$this->load->view('penilaian/pratama/print', $data);
+		}
 	}
 	function export_pdf()
 	{
+		$no_penilaian = $this->uri->segment(3);
+		$cek_data = $this->db
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
+			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
+			->row_array();
+		$data['title'] = 'Export PDF Berita Acara ' . $cek_data['nama_klinik'] . '';
+		$data['penilaian'] = $this->db
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
+			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
+			->row_array();
+		$data['data'] = $this->Model_penilaian_pratama->get_data_pratama();
+		$data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
+		if ($cek_data['status_penilaian'] == "Belum") {
+			$this->session->set_flashdata(
+				'nilai',
+				'<div class="alert alert-danger alert-dismissible fade show">
+				Tidak dapat Export ke PDF. <b>' . $cek_data['nama_klinik'] . '</b> Belum dinilai!
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>'
+			);
+			redirect('penilaian_pratama');
+		} else {
+			// $this->load->library('pdfgenerator');
+			// $this->pdfgenerator->setPaper('Legal', 'portrait');
+			// $this->pdfgenerator->filename = 'Berita Acara ' . $cek_data['nama_klinik'] . '.pdf';
+			// $this->pdfgenerator->load_view('penilaian/pratama/pdf', $data);
+
+
+			// $this->load->library('pdf');
+			// $file_pdf = 'Berita Acara ' . $cek_data['nama_klinik'] . '.pdf';
+			// $paper = 'A4';
+			// $orientation = "potrait";
+			// $html = $this->load->view('penilaian/pratama/pdf', $data);
+			// $this->pdf->generate($html, $file_pdf,$paper,$orientation);
+
+			// $this->load->library('mypdf');
+			// $html = $this->load->view('penilaian/pratama/pdf', $data);
+			// $this->mypdf->generate($html);
+
+			$mpdf = new \Mpdf\Mpdf(['orientation' => 'P', 'format' => 'Legal']);
+			$mpdf->debug = true;
+			$html = $this->load->view('penilaian/pratama/pdf', $data, true);
+			$mpdf->WriteHTML($html);
+			$mpdf->Output('Berita Acara ' . $cek_data['nama_klinik'] . '.pdf', 'I');
+		}
 	}
 }

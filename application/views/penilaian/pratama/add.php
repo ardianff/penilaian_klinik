@@ -33,7 +33,7 @@
 									<select class="form-control" name="nama_anggota1">
 										<option value="">- Pilih Nama -</option>
 										<?php foreach ($anggota as $p) : ?>
-											<option value="<?php echo $p->nama_anggota; ?>"><?php echo $p->nama_anggota; ?>
+											<option value="<?php echo $p->id_anggota; ?>"><?php echo $p->nama_anggota; ?>
 												- <?php echo $p->nip_anggota; ?>
 											</option>
 										<?php endforeach; ?>
@@ -46,7 +46,7 @@
 									<select class="form-control" name="nama_anggota2">
 										<option value="">- Pilih Nama -</option>
 										<?php foreach ($anggota as $p) : ?>
-											<option value="<?php echo $p->nama_anggota; ?>"><?php echo $p->nama_anggota; ?>
+											<option value="<?php echo $p->id_anggota; ?>"><?php echo $p->nama_anggota; ?>
 												- <?php echo $p->nip_anggota; ?>
 											</option>
 										<?php endforeach; ?>
@@ -59,7 +59,7 @@
 									<select class="form-control" name="nama_anggota3">
 										<option value="">- Pilih Nama -</option>
 										<?php foreach ($anggota as $p) : ?>
-											<option value="<?php echo $p->nama_anggota; ?>"><?php echo $p->nama_anggota; ?>
+											<option value="<?php echo $p->id_anggota; ?>"><?php echo $p->nama_anggota; ?>
 												- <?php echo $p->nip_anggota; ?>
 											</option>
 										<?php endforeach; ?>
@@ -72,7 +72,7 @@
 									<select class="form-control" name="nama_anggota4">
 										<option value="">- Pilih Nama -</option>
 										<?php foreach ($anggota as $p) : ?>
-											<option value="<?php echo $p->nama_anggota; ?>"><?php echo $p->nama_anggota; ?>
+											<option value="<?php echo $p->id_anggota; ?>"><?php echo $p->nama_anggota; ?>
 												- <?php echo $p->nip_anggota; ?></option>
 										<?php endforeach; ?>
 									</select>

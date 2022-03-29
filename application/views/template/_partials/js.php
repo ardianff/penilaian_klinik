@@ -111,6 +111,11 @@
 		$('#logoutModal').modal();
 	};
 
+	function penilaianConfirm(url) {
+		$('#btn-penilaian').attr('href', url);
+		$('#penilaianModal').modal();
+	};
+
 	function goBack() {
 		window.history.back();
 	}
