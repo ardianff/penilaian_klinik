@@ -2,42 +2,49 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Penilaian Klinik | <?= $title; ?></title>
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
     <style>
+    .text-center {
+        text-align: center !important
+    }
+
     .logodisp {
         float: left;
         position: relative;
         width: 80px;
         height: 80px;
-        margin: .5rem 0 0 .5rem;
+        margin: .5rem 0 5 .5rem;
+        ;
     }
 
     .header {
         text-align: center;
+        margin: 0;
 
     }
 
     .pemkot {
-        font-size: 18pt;
+        font-size: 20pt;
         font-family: Arial, Helvetica, sans-serif;
     }
 
     .dinas {
-        font-size: 26pt;
+        font-size: 28pt;
         font-family: Arial, Helvetica, sans-serif;
     }
 
     .alamat {
         text-align: center;
         font-family: 'Times New Roman', Times, serif;
-        font-size: 8pt;
+        font-size: 10pt;
     }
 
     .title {
+        margin-top: 10;
         text-align: center;
         font-family: 'Times New Roman';
         font-size: 12pt;
@@ -48,6 +55,39 @@
         font-family: 'Times New Roman';
         font-size: 12pt;
         line-height: 1.6;
+    }
+
+    .hr-satu {
+        display: block;
+        color: #000;
+        height: 1px;
+        border: 0;
+        border-top: 5px solid #000;
+        margin-top: 10;
+    }
+
+    .hr-dua {
+        display: block;
+        height: 1px;
+        border: 1;
+        border-top: 1px solid #000;
+    }
+
+    .table-content {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    .th-content,
+    .td-content {
+        text-align: left;
+        padding: 8px;
+    }
+
+    .tr-content:nth-child(even) {
+        background-color: #f2f2f2
     }
 
     /* ol {
@@ -77,7 +117,8 @@
         <b class="alamat">Jl. Pandanaran No. 79 Telp.(024)8415269 - 8318070 Fax.(024) 8318771 Kode Pos : 50241
             SEMARANG</b>
     </p>
-    <hr style="color:black; border:100px">
+    <hr class="hr-satu">
+    <hr class="hr-dua">
     <p class="title"><u><b>BERITA ACARA PENILAIAN KESESUAIAN
                 KLINIK</b></u></p>
     <p class="title">NOMOR :
@@ -228,27 +269,12 @@
         <span style='font-size:16px;font-family:"Times New Roman",serif;color:black;'>Dengan ini menyatakan sebagai
             berikut :</span>
     </p>
-    <!-- <div style='margin-top:0in;margin-right:0in;margin-bottom:10.0pt;margin-left:0in;line-height:115%;font-size:15px;font-family:"Calibri",sans-serif;'>
-        <ol style="margin-bottom:0in;list-style-type: upper-roman;margin-left:24.6px;">
-            <li
-                style='margin-top:0in;margin-right:0in;margin-bottom:10.0pt;margin-left:0in;line-height:115%;font-size:15px;font-family:"Calibri",sans-serif;'>
-                <span style='line-height:130%;font-family:"Times New Roman",serif;color:black;color:black;'>Telah
-                    melakukan penilaian kesesuaian dalam rangka verifikasi pemenuhan persyaratan klinik dengan cara
-                    pengecekan administrasi dan pengecekan lapangan terhadap :</span>
-            </li>
-            <li><span style='line-height:130%;font-family:"Times New Roman",serif;color:black;color:black;'>Berdasarkan
-                    hasil pengecekan administrasi melalui aplikasi, dinilai dari sisi dokumen bahwa Klinik telah
-                    memenuhi persyaratan minimal sesuai jenis klinik dan pelayanan yang diusulkan.</span></li>
-            <li><span style='line-height:130%;font-family:"Times New Roman",serif;color:black;color:black;'>Berdasarkan
-                    hasil pengecekan lapangan ke klinik dilakukan verifikasi sebagai berikut :</span></li>
-        </ol>
-    </div> -->
     <ol style="list-style-type: upper-roman;">
         <li class="text-bap">
             Telah melakukan penilaian kesesuian dalam rangka verifikasi pemenuhan persyaratan klinik
             dengan cara
             pengecekan administrasi dan pengecekan lapangan terhadap :<br>
-            <table border="2" class="class=" text-bap"">
+            <table border="0" class="class=" text-bap"">
                 <tbody>
                     <tr>
                         <td>Nama Klinik</td>
@@ -289,34 +315,54 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table border="1" width="100%" height="100%">
+                        <table border="1" class="table-content" width="100%" height="100%">
                             <thead>
-                                <tr>
-                                    <th class="text-center" rowspan="2">No</th>
-                                    <th class="text-center" rowspan="2">Rincian Penilaian</th>
-                                    <th class="text-center" colspan="2">Hasil</th>
-                                    <th class="text-center" rowspan="2">Keterangan</th>
-                                    <th class="text-center" colspan="2">Hasil Verifikasi Persyaratan Minimal **</th>
-                                    <th class="text-center" rowspan="2">Catatan</th>
+                                <tr class="tr-content">
+                                    <th class="text-center th-content" rowspan="2">No</th>
+                                    <th class="text-center th-content" rowspan="2">Rincian Penilaian</th>
+                                    <th class="text-center th-content" th-content colspan="2">Hasil</th>
+                                    <th class="text-center th-content" rowspan="2">Keterangan</th>
+                                    <th class="text-center th-content" colspan="2">Hasil Verifikasi Persyaratan Minimal
+                                        **</th>
+                                    <th class="text-center th-content" rowspan="2">Catatan</th>
                                 </tr>
-                                <tr>
-                                    <td>Ya</td>
-                                    <td>Tidak</td>
-                                    <td>Memenuhi Syarat</td>
-                                    <td>Tidak Memenuhi Syarat</td>
+                                <tr class="tr-content">
+                                    <td class="text-center td-content">Ya</td>
+                                    <td class="text-center td-content">Tidak</td>
+                                    <td class="text-center td-content">Memenuhi Syarat</td>
+                                    <td class="text-center td-content">Tidak Memenuhi Syarat</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">Profil Klinik</td>
-                                    <td class="text-center"><span>&#10004;</span></td>
-                                    <td class="text-center"><span></span></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"><span>&#10004;</span></td>
-                                    <td class="text-center"><span></span></td>
-                                    <td class="text-center"></td>
+                                <?php
+								$no = 1;
+								foreach ($penilaiansatu as $row) : ?>
+                                <tr class="tr-content">
+                                    <td class="text-center td-content"><?php echo $no; ?></td>
+                                    <td class="text-justify td-content"><?php echo $row->rincian_penilaian; ?></td>
+                                    <?php if ($row->jawab_hasil == "Ya") {
+											echo "<td class='text-center td-content'><span style='font-family: fontawesome;'>&#xf00c;</span> </td>
+                                    <td class='text-center td-content'><span></span></td>";
+										} else {
+											echo "<td class='text-center td-content'><span></span></td>
+                                    <td class='text-center td-content'><span style='font-family: fontawesome;'>&#xf00c;</span></td>";
+										}
+										?>
+                                    <td class="text-justify td-content"><?php echo $row->keterangan_penilaian; ?></td>
+                                    <?php if ($row->jawab_hasil_verif == "Ya") {
+											echo "<td class='text-center td-content'><span style='font-family: fontawesome;'>&#xf00c;</span></td>
+											<td class='text-center td-content'><span></span></td>";
+										} else {
+											echo "<td class='text-center td-content'><span></span></td>
+											<td class='text-center td-content'><span style='font-family: fontawesome;'>&#xf00c;</span></td>";
+										}
+										?>
+                                    <td class="text-justify td-content"><?php echo $row->catatan_hasil_penilaian; ?>
+                                    </td>
                                 </tr>
+                                <?php $no++;
+								endforeach;
+								?>
                             </tbody>
                         </table>
                     </div>
@@ -324,7 +370,50 @@
                 </div>
                 <!-- /.card -->
             </div>
-            <!-- /.col
-		</body>
+            <!-- /.col-->
+        </div>
+    </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </html>

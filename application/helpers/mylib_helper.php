@@ -45,24 +45,27 @@ function check_sudah_login()
 		redirect('dashboard');
 	}
 }
-function no_penilaian_pratama()
+function id_klinik()
 {
-	$txt = 'TASK-PRTM';
 	$ci = &get_instance();
-	$q = $ci->db->query(
-		'SELECT MAX(RIGHT(no_penilaian,4)) AS kd_max FROM tbl_klinik'
-	);
+	$q = $ci->db->query('SELECT MAX(RIGHT(id_klinik,2)) AS kd_max FROM tbl_klinik');
 	$kd = '';
 	if ($q->num_rows() > 0) {
 		foreach ($q->result() as $k) {
+			$tmp = 100;
 			$tmp = ((int) $k->kd_max) + 1;
-			$kd = sprintf('%04s', $tmp);
+			$kd = sprintf('%03s', $tmp);
 		}
 	} else {
-		$kd = '0001';
+		$kd = '001';
 	}
+	return "PR" . $kd;
+}
+function no_penilaian_pratama()
+{
+	$txt = 'TASK-PRTM';
 	date_default_timezone_set('Asia/Jakarta');
-	return $txt . date('dmy') . $kd;
+	return $txt . date('dmY') . id_klinik();
 }
 function no_penilaian_utama()
 {

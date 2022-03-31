@@ -6,6 +6,7 @@ class Model_penilaian_pratama extends CI_Model
 	{
 		$data = [
 			'no_penilaian' => no_penilaian_pratama(),
+			'id_klinik' => id_klinik(),
 			'nama_user' => $this->session->userdata('nama_user'),
 			'nama_anggota1' => $this->input->post('nama_anggota1'),
 			'nama_anggota2' => $this->input->post('nama_anggota2'),
@@ -51,9 +52,8 @@ class Model_penilaian_pratama extends CI_Model
 	}
 	public function get_anggota()
 	{
-		// $query = $this->db->get('tbl_anggota')->result();
-		// return $query;
-		return $this->db->get('tbl_anggota')->result();
+		$query = $this->db->get('tbl_anggota')->result();
+		return $query;
 	}
 	public function get_setting()
 	{
@@ -99,6 +99,8 @@ class Model_penilaian_pratama extends CI_Model
 		$jawab_hasil_verif = $_POST['hasil_verifikasi'];
 		$catatan_penilaian = $_POST['catatan_penilaian'];
 		$data = array();
+
+
 
 		$i = 1;
 		foreach ($rincian as $rinci) {
