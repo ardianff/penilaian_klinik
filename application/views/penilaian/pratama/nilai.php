@@ -17,6 +17,8 @@
 		'class="form-horizontal"'
 	);
 	echo form_hidden('no_penilaian', $penilaian['no_penilaian']);
+	echo form_hidden('id_klinik', $penilaian['id_klinik']);
+	echo form_hidden('nama_klinik', $penilaian['nama_klinik']);
 	?>
     <section class="content">
         <div class="container-fluid">
@@ -79,7 +81,7 @@
                                         <td class="text-center"><input type="radio"
                                                 name="hasil_verifikasi[<?php echo $no ?>]" value="Tidak"></input></td>
                                         <td><textarea name="catatan_penilaian[<?php echo $no ?>]"
-                                                placeholder="Catatan..."></textarea>
+                                                placeholder="Catatan..."><?php echo htmlentities($penilaian['catatan_hasil_penilaian']); ?></textarea>
                                         </td>
                                     </tr>
                                     <?php $no++;
@@ -109,10 +111,10 @@
 						); ?> -->
                 <button type="submit" name="submit" title="Lanjut Ke Halaman Berikutnya"
                     class="btn btn-success">Next</button>
-                <?php echo anchor('penilaian_pratama', 'Kembali', [
-					'
-class' => 'btn btn-warning',
-				]); ?>
+                <?php echo anchor('penilaian_pratama', 'Kembali', ['class' => 'btn btn-warning',]); ?>
+
+
+
 
 
 

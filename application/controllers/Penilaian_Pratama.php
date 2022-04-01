@@ -53,13 +53,14 @@ class Penilaian_Pratama extends CI_Controller
 			);
 			redirect('penilaian_pratama');
 		} else {
-			$no_penilaian = $this->uri->segment(3);
-			$data['no_penilaian'] = $this->db
-				->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
-				->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-				->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
+			$id_klinik = $this->uri->segment(3);
+			$data['id_klinik'] = $this->db
+				->join('tbl_kecamatan as kec', 'kec.id_kecamatan = k.id_kecamatan_klinik')
+				->join('tbl_kelurahan as kel', 'kel.id_kelurahan = k.id_kelurahan_klinik')
+				->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'k.kemampuan_pelayanan' => 'Pratama'])
 				->row_array();
 			$data['title'] = 'Edit Data Penilaian Klinik Pratama';
+			$data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
 			$data['kecamatan'] = $this->Model_penilaian_pratama->get_data_kecamatan();
 			$this->template->load('template', 'penilaian/pratama/edit', $data);
 		}
@@ -68,7 +69,7 @@ class Penilaian_Pratama extends CI_Controller
 	function hapus()
 	{
 		$id = $this->uri->segment(3);
-		$this->db->where('no_penilaian', $id);
+		$this->db->where('id_klinik', $id);
 		$this->db->delete('tbl_klinik');
 		$this->session->set_flashdata(
 			'delete',
@@ -91,44 +92,66 @@ class Penilaian_Pratama extends CI_Controller
 	function nilai()
 	{
 		$data['title'] = 'Form Pertama Penilaian Klinik Pratama';
-		$no_penilaian = $this->uri->segment(3);
-		$data['penilaian'] = $this->db
-			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
-			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
-			->row_array();
-		$data['rincian'] = $this->Model_penilaian_pratama->get_rincian_penilaian();
-		$this->template->load('template', 'penilaian/pratama/nilai', $data);
-		if (($this->db->query("SELECT * FROM tbl_penilaian_pratama_form_satu WHERE no_penilaian LIKE '$no_penilaian'") == '')) {
-			echo "Belum Ada Nilai";
-		} else {
-			echo "Sudah Ada Nilai";
-		}
-		if (isset($_POST['submit'])) {
-			$this->Model_penilaian_pratama->simpan_penilaian_pratama_pertama();
-			$this->session->set_flashdata(
-				'simpan',
-				'<div class="alert alert-secondary alert-dismissible fade show">
-				Penilaian Klinik Pratama Form Pertama ' . $this->input->post('no_penilaian') . ' Berhasil Disimpan!
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-				</div>'
-			);
-			$no_penilaian = $this->input->post('no_penilaian');
-			redirect('penilaian_pratama/nilai_kedua/' . $no_penilaian);
-		} else {
-			// show_404();
-		}
+		$id_klinik = $this->uri->segment(3);
+		$data['penilaian'] = $this->db->select('p.no_penilaian  , k.id_klinik, k.nama_klinik , kel.nama_kelurahan, kel.kode_pos_kelurahan, kec.nama_kecamatan, k.kemampuan_pelayanan,k.jenis_pelayanan_klinik, k.alamat_klinik, k.tgl_penilaian,
+		k.status_penilaian, k.created_at,k.update_at,pfs.jawab_hasil, pfs.jawab_hasil_verif, pfs.catatan_hasil_penilaian')
+			->join('tbl_kecamatan as kec', 'kec.id_kecamatan = k.id_kecamatan_klinik')
+			->join('tbl_kelurahan as kel', 'kel.id_kelurahan = k.id_kelurahan_klinik')
+			->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik', 'left')
+			->join('tbl_penilaian_pratama_form_satu as pfs', 'pfs.no_penilaian = p.no_penilaian', 'left')
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'k.kemampuan_pelayanan' => 'Pratama'])
+			->result_array();
+		// $cekdata = $this->db->select('p.no_penilaian', 'kec.nama_kecamatan', 'kel.nama_kelurahan', 'k.nama_klinik', 'k.nama_anggota1')
+		// 	->join('tbl_kecamatan as kec', 'kec.id_kecamatan = k.id_kecamatan_klinik')
+		// 	->join('tbl_kelurahan as kel', 'kel.id_kelurahan = k.id_kelurahan_klinik')
+		// 	->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik', 'left')
+		// 	->join('tbl_penilaian_pratama_form_satu as pfs', 'pfs.no_penilaian = p.no_penilaian', 'left')
+		// 	->get_where('tbl_klinik k', ['k.id_klinik' => $no_penilaian, 'k.kemampuan_pelayanan' => 'Pratama']);
+		// $row = $cekdata->row_array();
+		// if (isset($row)) {
+		// 	echo $row['no_penilaian'];
+		// }
+		// print_r($this->db->last_query());
+		print_r($data);
+		// echo $data['penilaian']['no_penilaian'];
+		// echo $data['penilaian']['nama_klinik'];
+		// echo $data['penilaian']['nama_anggota1'];
+		// echo $data['penilaian']['jawab_hasil'];
+		// echo $data['penilaian']['jawab_hasil_verif'];
+
+		// $data['rincian'] = $this->Model_penilaian_pratama->get_rincian_penilaian();
+		// $this->template->load('template', 'penilaian/pratama/nilai', $data);
+		// if ($data['penilaian']['jawab_hasil'] == null && $data['penilaian']['jawab_hasil_verif'] == null) {
+		// 	// echo "Data Kosong";
+		// 	if (isset($_POST['submit'])) {
+		// 		$this->Model_penilaian_pratama->simpan_penilaian_pratama_pertama();
+		// 		$this->session->set_flashdata(
+		// 			'simpan',
+		// 			'<div class="alert alert-secondary alert-dismissible fade show">
+		// 			Penilaian Klinik Pratama Form Pertama ' . $this->input->post('nama_klinik') . ' Berhasil Disimpan!
+		// 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		// 			<span aria-hidden="true">&times;</span>
+		// 			</button>
+		// 			</div>'
+		// 		);
+		// 		$id_klinik = $this->input->post('id_klinik');
+		// 		redirect('penilaian_pratama/nilai_kedua/' . $id_klinik);
+		// 	}
+		// } else {
+		// 	echo "Data Ada";
+		// }
 	}
 	function nilai_kedua()
 	{
 		$data['title'] = 'Form Kedua Penilaian Klinik Pratama';
-		$no_penilaian = $this->uri->segment(3);
-		$data['penilaian'] = $this->db
-			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
-			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
+		$id_klinik = $this->uri->segment(3);
+		$data['penilaian'] = $this->db->select('p.no_penilaian  , k.id_klinik, k.nama_klinik , kel.nama_kelurahan, kel.kode_pos_kelurahan, kec.nama_kecamatan, k.kemampuan_pelayanan,k.jenis_pelayanan_klinik, k.alamat_klinik, k.tgl_penilaian,
+		k.status_penilaian, k.created_at,k.update_at,pfs.hasil_penilaian, pfs.jumlah_ketersediaan,pfs.satuan_penilaian, pfs.catatan_penilaian')
+			->join('tbl_kecamatan as kec', 'kec.id_kecamatan = k.id_kecamatan_klinik')
+			->join('tbl_kelurahan as kel', 'kel.id_kelurahan = k.id_kelurahan_klinik')
+			->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik', 'left')
+			->join('tbl_penilaian_pratama_form_kedua as pfs', 'pfs.no_penilaian = p.no_penilaian', 'left')
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'k.kemampuan_pelayanan' => 'Pratama'])
 			->row_array();
 		$data['rincian'] = $this->Model_penilaian_pratama->get_question_next();
 		$this->template->load('template', 'penilaian/pratama/nilai-kedua', $data);

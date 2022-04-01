@@ -5,8 +5,7 @@ class Model_penilaian_pratama extends CI_Model
 	function add()
 	{
 		$data = [
-			'no_penilaian' => no_penilaian_pratama(),
-			'id_klinik' => id_klinik(),
+			'id_klinik' => id_klinik_pratama(),
 			'nama_user' => $this->session->userdata('nama_user'),
 			'nama_anggota1' => $this->input->post('nama_anggota1'),
 			'nama_anggota2' => $this->input->post('nama_anggota2'),
@@ -22,6 +21,11 @@ class Model_penilaian_pratama extends CI_Model
 			'status_penilaian' => "Belum",
 		];
 		$this->db->insert('tbl_klinik', $data);
+		$data = [
+			'id_klinik' => id_klinik_pratama_penilaian(),
+			'no_penilaian' => no_penilaian_pratama(),
+		];
+		$this->db->insert('tbl_penilaian', $data);
 	}
 	function update()
 	{
@@ -39,15 +43,15 @@ class Model_penilaian_pratama extends CI_Model
 			'id_kelurahan_klinik' => $this->input->post('nama_kelurahan'),
 			'tgl_penilaian' => $this->input->post('tgl_penilaian'),
 		];
-		$no_penilaian = $this->input->post('no_penilaian');
-		$this->db->where('no_penilaian', $no_penilaian);
+		$id_klinik = $this->input->post('id_klinik');
+		$this->db->where('id_klinik', $id_klinik);
 		$this->db->update('tbl_klinik', $data);
 	}
 	public function get_data_pratama()
 	{
 		$query = $this->db->order_by('status_penilaian', 'DESC')
-			->order_by('no_penilaian', 'DESC')
-			->get_where('tbl_klinik', array('kemampuan_pelayanan' => "pratama"))->result();
+			->order_by('id_klinik', 'DESC')
+			->get_where('tbl_klinik', array('kemampuan_pelayanan' => "Pratama"))->result();
 		return $query;
 	}
 	public function get_anggota()
@@ -95,17 +99,16 @@ class Model_penilaian_pratama extends CI_Model
 	{
 		$rincian = $_POST['rincian'];
 		$no_penilaian = $_POST['no_penilaian'];
+		$id_klinik = $_POST['id_klinik'];
 		$jawab_hasil = $_POST['hasil'];
 		$jawab_hasil_verif = $_POST['hasil_verifikasi'];
 		$catatan_penilaian = $_POST['catatan_penilaian'];
 		$data = array();
-
-
-
 		$i = 1;
 		foreach ($rincian as $rinci) {
 			array_push($data, array(
 				'id_rincian_penilaian' => $rinci,
+				'id_klinik' => $id_klinik,
 				'no_penilaian' => $no_penilaian,
 				'catatan_hasil_penilaian' => $catatan_penilaian[$i],
 				'jawab_hasil' => $jawab_hasil[$i],

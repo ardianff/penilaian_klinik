@@ -34,7 +34,8 @@
 <!-- Select2 -->
 <script src="<?php echo base_url(); ?>assets/admin-lte/plugins/select2/js/select2.full.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
-<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js">
+<script
+    src="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js">
 </script>
 <!-- InputMask -->
 <script src="<?php echo base_url(); ?>assets/admin-lte/plugins/moment/moment.min.js"></script>
@@ -45,7 +46,8 @@
 <script src="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js">
 </script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js">
+<script
+    src="<?php echo base_url(); ?>assets/admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js">
 </script>
 <!-- Bootstrap Switch -->
 <script src="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap-switch/js/bootstrap-switch.min.js">
@@ -62,96 +64,100 @@
 <script src="<?php echo base_url(); ?>assets/js/signature-pad.js"></script> -->
 <!-- Page specific script -->
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#example1").DataTable({
-			"responsive": true,
-			"lengthChange": false,
-			"autoWidth": true,
-			"paging": false,
-			// "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-		$('#example2').DataTable({
-			"paging": true,
-			"pageLength": 25,
-			"lengthMenu": [10, 25, 50, 100, 200, 300],
-			"lengthChange": true,
-			"searching": true,
-			"ordering": true,
-			"info": true,
-			"autoWidth": true,
-			"responsive": true,
-		});
-	});
-	$(document).ready(function() {
-		window.setTimeout(function() {
-			$(".alert").fadeTo(500, 0).slideUp(500, function() {
-				$(this).remove();
-			});
-		}, 3500);
-	});
+$(document).ready(function() {
+    $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": true,
+        "paging": false,
+        // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+        "paging": true,
+        "pageLength": 25,
+        "lengthMenu": [10, 25, 50, 100, 200, 300],
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
+    });
+});
+$(document).ready(function() {
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function() {
+            $(this).remove();
+        });
+    }, 3500);
+});
 </script>
 <script type="text/javascript">
-	function deleteConfirm(url) {
-		$('#btn-delete').attr('href', url);
-		$('#deleteModal').modal();
-	};
+function deleteConfirm(url) {
+    $('#btn-delete').attr('href', url);
+    $('#deleteModal').modal();
+};
 
-	function editConfirm(url) {
-		$('#btn-edit').attr('href', url);
-		$('#editModal').modal();
-	};
+function editConfirm(url) {
+    $('#btn-edit').attr('href', url);
+    $('#editModal').modal();
+};
 
-	function saveConfirm(url) {
-		$('#btn-save').attr('href', url);
-		$('#saveModal').modal();
-	};
+function saveConfirm(url) {
+    $('#btn-save').attr('href', url);
+    $('#saveModal').modal();
+};
 
-	function logoutConfirm(url) {
-		$('#btn-logout').attr('href', url);
-		$('#logoutModal').modal();
-	};
+function logoutConfirm(url) {
+    $('#btn-logout').attr('href', url);
+    $('#logoutModal').modal();
+};
 
-	function penilaianConfirm(url) {
-		$('#btn-penilaian').attr('href', url);
-		$('#penilaianModal').modal();
-	};
+function penilaianConfirm(url) {
+    $('#btn-penilaian').attr('href', url);
+    $('#penilaianModal').modal();
+};
 
-	function goBack() {
-		window.history.back();
-	}
+function goBack() {
+    window.history.back();
+}
 </script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#id_kelurahan").hide();
-		$("#id_isian_kelurahan").hide();
+$(document).ready(function() {
+    // var a =
 
-		loadKelurahan();
-	});
+    $("#id_kelurahan").hide();
+    $("#id_isian_kelurahan").hide();
 
-	function loadKelurahan() {
-		$("#id_kecamatan").change(function() {
-			var getkecamatan = $("#id_kecamatan").val();
-			$.ajax({
-				type: "POST",
-				dataType: "json",
-				url: "<?= base_url(); ?>/penilaian_pratama/get_data_kelurahan",
-				data: {
-					kecamatan: getkecamatan
-				},
-				success: function(data) {
-					var html = '';
-					var i;
-					for (i = 0; i < data.length; i++) {
-						html += '<option value="' + data[i].id_kelurahan + '">' + data[i].nama_kelurahan + '</option>';
-					}
-					$("#id_kelurahan").html(html);
-					$("#id_isian_kelurahan").show();
-					$("#id_kelurahan").show();
-				}
-			});
+    loadKelurahan();
+});
 
-		});
-	}
+function loadKelurahan() {
+    $("#id_kecamatan").change(function() {
+        var getkecamatan = $("#id_kecamatan").val();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "<?= base_url(); ?>/penilaian_pratama/get_data_kelurahan",
+            data: {
+                kecamatan: getkecamatan
+            },
+            success: function(data) {
+                console.log(data);
+                var html = '';
+                var i;
+                for (i = 0; i < data.length; i++) {
+                    html += '<option value="' + data[i].id_kelurahan + '">' + data[i]
+                        .nama_kelurahan + '</option>';
+                }
+                $("#id_kelurahan").html(html);
+                $("#id_isian_kelurahan").show();
+                $("#id_kelurahan").show();
+            }
+        });
+
+    });
+}
 </script>
 <!-- <script>
 	// angka 500 dibawah ini artinya pesan akan muncul dalam 0,5 detik setelah document ready
@@ -161,7 +167,18 @@
 		}, 500);
 	});
 	// angka 3000 dibawah ini artinya pesan akan hilang dalam 3 detik setelah muncul
-	setTimeout(function() {
-		$('#helloModal').modal('remove');
+	setTimeout(f
+unction() {
+		$('#helloMo
+dal').modal('
+remove');
+
+
+
+
+
+
+
+
 	}, 3000);
 </script> -->
