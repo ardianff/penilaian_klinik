@@ -76,9 +76,9 @@
 											</td>';
 											echo '<td class="text-center"><input type="radio" name="hasil_nilai[' . $no . ']"  value="Tidak" required> Tidak</input>
 											</td>';
-											echo '<td><textarea placeholder="Jumlah" name="jumlah_ketersediaan[' . $no . ']"></textarea></td>';
+											echo '<td><textarea class="form-control" placeholder="Jumlah" name="jumlah_ketersediaan[' . $no . ']"></textarea></td>';
 											echo '<td class="text-justify"><input class="form-control" type="text" name="satuan_nilai[' . $no . ']" value="' . $rincian[$i]->satuan_penilaian_pratama . '" /></td>';
-											echo '<td><textarea name="catatan_penilaian[' . $no . ']" placeholder="Catatan..."></textarea>
+											echo '<td><textarea class="form-control" name="catatan_penilaian[' . $no . ']" placeholder="Catatan..."></textarea>
 											</td>';
 											echo '<tr>';
 										}
@@ -93,7 +93,7 @@
 											echo '<td class= "text-justify">' . $cek_hasil[$i]->satuan_penilaian_pratama . '</td>';
 											echo '<td class="text-center"><input type="radio" name="hasil_nilai[' . $no . ']"  ' . ($cek_hasil[$i]->hasil_penilaian == 'Ya' ? 'checked' : '')  . ' value="Ya" required> Ya</input>
 											</td>';
-											echo '<td class="text-center"><input type="radio" name="hasil_nilai[' . $no . ']"  value="Tidak" required> Tidak</input>
+											echo '<td class="text-center"><input type="radio" name="hasil_nilai[' . $no . ']"  ' . ($cek_hasil[$i]->hasil_penilaian == 'Tidak' ? 'checked' : '')  . ' value="Tidak" required> Tidak</input>
 											</td>';
 											echo '<td><textarea class="form-control" placeholder="Jumlah" name="jumlah_ketersediaan[' . $no . ']">' . $cek_hasil[$i]->jumlah_ketersediaan . '</textarea></td>';
 											echo '<td class="text-justify"><input class="form-control" type="text" name="satuan_nilai[' . $no . ']" value="' . $cek_hasil[$i]->satuan_penilaian . '" /></td>';

@@ -142,6 +142,7 @@
 								<label for="nama_kelurahan" class="col-sm-2 col-form-label">Kelurahan</label>
 								<div class="col-sm-10">
 									<select class="form-control" id="id_kelurahan" name="nama_kelurahan">
+										<option value="">- Pilih Kelurahan -</option>
 									</select>
 								</div>
 							</div>

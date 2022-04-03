@@ -57,9 +57,10 @@
 	var base_url = "<?= base_url(); ?>";
 </script>
 <?php
-$url = base_url('penilaian_pratama/edit/' . $klinik = $this->uri->segment(3));
+$url_satu = base_url('penilaian_pratama/edit/' . $klinik = $this->uri->segment(3));
+$url_dua = base_url('penilaian_utama/edit/' . $klinik = $this->uri->segment(3));
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-if ($url == $actual_link) {
+if ($url_satu == $actual_link || $url_dua == $actual_link) {
 	echo '<script>var id_kel = ' . $id_klinik['id_kelurahan_klinik'] . '</script>';
 } else {
 	echo '';

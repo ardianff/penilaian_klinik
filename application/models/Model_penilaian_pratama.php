@@ -45,6 +45,8 @@ class Model_penilaian_pratama extends CI_Model
 	public function get_data_pratama()
 	{
 		$query = $this->db->order_by('status_penilaian', 'DESC')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan = tbl_klinik.id_kelurahan_klinik')
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_klinik.id_kecamatan_klinik')
 			->order_by('id_klinik', 'DESC')
 			->get_where('tbl_klinik', array('kemampuan_pelayanan' => "Pratama"))->result();
 		return $query;
@@ -95,11 +97,6 @@ class Model_penilaian_pratama extends CI_Model
 		$query = $this->db->get_where('tbl_klinik', array('id_klinik' =>  $id_klinik));
 		return $query;
 	}
-	// function get_data_kelurahan_all()
-	// {
-	// 	$query = $this->db->order_by('nama_kelurahan', 'ASC')->get('tbl_kelurahan')->result();
-	// 	return $query;
-	// }
 	function get_data_kelurahan($id_kecamatan)
 	{
 		$query = $this->db->query("SELECT * FROM tbl_kelurahan WHERE tbl_kelurahan.id_kecamatan = '$id_kecamatan' ORDER BY tbl_kelurahan.nama_kelurahan ASC");
@@ -110,15 +107,6 @@ class Model_penilaian_pratama extends CI_Model
 		$query = $this->db->get_where('tbl_klinik', array('id_klinik' =>  $id_klinik));
 		return $query;
 	}
-	// function add_penilaian()
-	// {
-	// 	$id_klinik = $this->uri->segment(3);
-	// 	$data = [
-	// 		'id_klinik' => 'PR002',
-	// 		'no_penilaian' => no_penilaian_pratama(),
-	// 	];
-	// 	$this->db->insert('tbl_penilaian', $data);
-	// }
 	function simpan_penilaian_pratama_pertama()
 	{
 		$rincian = $_POST['rincian'];
@@ -197,10 +185,37 @@ class Model_penilaian_pratama extends CI_Model
 		}
 		$this->db->insert_batch('tbl_penilaian_pratama_form_kedua', $data);
 	}
+	function update_penilaian_pratama_kedua()
+	{
+		$kriteria = $_POST['kriteria'];
+		$id_klinik = $_POST['id_klinik'];
+		$no_penilaian = $_POST['no_penilaian'];
+		$hasil_penilaian = $_POST['hasil_nilai'];
+		$jumlah_ketersediaan = $_POST['jumlah_ketersediaan'];
+		$satuan_penilaian = $_POST['satuan_nilai'];
+		$catatan_penilaian = $_POST['catatan_penilaian'];
+		$data = array();
+
+		$i = 1;
+		foreach ($kriteria as $kt) {
+			array_push($data, array(
+				'id_deskripsi' => $kt,
+				'id_klinik' => $id_klinik,
+				'no_penilaian' => $no_penilaian,
+				'hasil_penilaian' => $hasil_penilaian[$i],
+				'jumlah_ketersediaan' => $jumlah_ketersediaan[$i],
+				'satuan_penilaian' => $satuan_penilaian[$i],
+				'catatan_penilaian' => $catatan_penilaian[$i]
+			));
+			$i++;
+		}
+		$this->db->update_batch('tbl_penilaian_pratama_form_kedua', $data, 'id_deskripsi');
+	}
 	function simpan_penilaian_pratama_ketiga()
 	{
 		$data = [
 			'no_penilaian' => $this->input->post('no_penilaian'),
+			'id_klinik' => $this->input->post('id_klinik'),
 			'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
 			'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
 			'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
@@ -210,8 +225,24 @@ class Model_penilaian_pratama extends CI_Model
 		$this->db->insert('tbl_penilaian_pratama_form_ketiga', $data);
 
 		$update = ['status_penilaian' => "Sudah"];
-		$no_penilaian = $this->input->post('no_penilaian');
-		$this->db->where('no_penilaian', $no_penilaian);
+		$id_klinik = $this->input->post('id_klinik');
+		$this->db->where('id_klinik', $id_klinik);
 		$this->db->update('tbl_klinik', $update);
+	}
+	function update_penilaian_pratama_ketiga()
+	{
+		$data = [
+			'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
+			'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
+			'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
+			'nama_perwakilan_pihak_klinik' => $this->input->post('nama_perwakilan_klinik'),
+			'jabatan_perwakilan_pihak_klinik' => $this->input->post('jabatan_perwakilan_klinik'),
+		];
+		$id_klinik = $this->input->post('id_klinik');
+		$no_penilaian = $this->input->post('no_penilaian');
+		$this->db->where('id_klinik', $id_klinik);
+		$this->db->where('no_penilaian', $no_penilaian);
+		$cek_data = $this->db->update('tbl_penilaian_pratama_form_ketiga', $data);
+		print_r($this->db->last_query($cek_data));
 	}
 }

@@ -28,8 +28,8 @@
 							'class="form-horizontal"'
 						);
 						echo form_hidden(
-							'no_penilaian',
-							$no_penilaian['no_penilaian']
+							'id_klinik',
+							$id_klinik['id_klinik']
 						);
 						?>
 						<div class="card-body">
@@ -41,7 +41,7 @@
 										<?php
 										foreach ($anggota as $p) { ?>
 											<option value="<?php echo $p->nama_anggota; ?>" <?php if (
-																								$p->nama_anggota == $no_penilaian['nama_anggota1']
+																								$p->nama_anggota == $id_klinik['nama_anggota1']
 																							) { ?> selected <?php } ?>>
 												<?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
 										<?php }
@@ -57,7 +57,7 @@
 										<?php
 										foreach ($anggota as $p) { ?>
 											<option value="<?php echo $p->nama_anggota; ?>" <?php if (
-																								$p->nama_anggota == $no_penilaian['nama_anggota2']
+																								$p->nama_anggota == $id_klinik['nama_anggota2']
 																							) { ?> selected <?php } ?>>
 												<?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
 										<?php }
@@ -73,7 +73,7 @@
 										<?php
 										foreach ($anggota as $p) { ?>
 											<option value="<?php echo $p->nama_anggota; ?>" <?php if (
-																								$p->nama_anggota == $no_penilaian['nama_anggota3']
+																								$p->nama_anggota == $id_klinik['nama_anggota3']
 																							) { ?> selected <?php } ?>>
 												<?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
 										<?php }
@@ -89,7 +89,7 @@
 										<?php
 										foreach ($anggota as $p) { ?>
 											<option value="<?php echo $p->nama_anggota; ?>" <?php if (
-																								$p->nama_anggota == $no_penilaian['nama_anggota4']
+																								$p->nama_anggota == $id_klinik['nama_anggota4']
 																							) { ?> selected <?php } ?>>
 												<?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
 										<?php }
@@ -100,7 +100,7 @@
 							<div class="form-group row">
 								<label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Klinik</label>
 								<div class="col-sm-10">
-									<input type="name" class="form-control" name="nama_klinik" placeholder="Nama Klinik" value="<?php echo $no_penilaian['nama_klinik']; ?>" required>
+									<input type="name" class="form-control" name="nama_klinik" placeholder="Nama Klinik" value="<?php echo $id_klinik['nama_klinik']; ?>" required>
 								</div>
 							</div>
 							<div class="form-group row">
@@ -112,7 +112,7 @@
 											'' => '- Pilih -',
 											'Utama' => 'Utama',
 										],
-										$no_penilaian['kemampuan_pelayanan'],
+										$id_klinik['kemampuan_pelayanan'],
 										"class='form-control', 'required'"
 									); ?>
 								</div>
@@ -141,7 +141,7 @@
 											'Rawat Jalan' => 'Rawat Jalan',
 											'Rawat Inap' => 'Rawat Inap',
 										],
-										$no_penilaian['jenis_pelayanan_klinik'],
+										$id_klinik['jenis_pelayanan_klinik'],
 										"class='form-control', 'required'"
 									); ?>
 								</div>
@@ -150,32 +150,33 @@
 								<label for="NIP_Anggota" class="col-sm-2 col-form-label">Alamat Klinik</label>
 								<div class="col-sm-10">
 									<textarea type="text" class="form-control" name="alamat_klinik" placeholder="Alamat Klinik" required><?php echo htmlentities(
-																																				$no_penilaian['alamat_klinik']
+																																				$id_klinik['alamat_klinik']
 																																			); ?></textarea>
 								</div>
 							</div>
-							<div class="form-group row" id="id__isian_kecamatan">
+							<div class="form-group row" id="id_isian_kecamatan">
 								<label for="nama_kecamatan" class="col-sm-2 col-form-label">Kecamatan</label>
 								<div class="col-sm-10">
-									<select class="form-control" id="id_kecamatan" name="nama_kecamatan">
+									<select class="form-control kecamatan" id="kecamatan" name="nama_kecamatan">
 										<option value="">- Pilih Kecamatan -</option>
 										<?php foreach ($kecamatan as $kec) : ?>
-											<option value="<?php echo $kec->id_kecamatan; ?>" <?php if ($kec->id_kecamatan == $no_penilaian['id_kecamatan_klinik']) { ?> selected <?php } ?>><?php echo $kec->nama_kecamatan; ?></option>
+											<option value="<?php echo $kec->id_kecamatan; ?>" <?php if ($kec->id_kecamatan == $id_klinik['id_kecamatan_klinik']) { ?> selected <?php } ?>><?php echo $kec->nama_kecamatan; ?> </option>
 										<?php endforeach; ?>
 									</select>
 								</div>
 							</div>
-							<div class="form-group row" id="id_isian_kelurahan">
+							<div class="form-group row">
 								<label for="nama_kelurahan" class="col-sm-2 col-form-label">Kelurahan</label>
 								<div class="col-sm-10">
-									<select class="form-control" id="id_kelurahan" name="nama_kelurahan">
+									<select class="form-control kelurahan" name="nama_kelurahan">
+										<option value="">- Pilih Kelurahan -</option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="tgl_penilaian" class="col-sm-2 col-form-label">Tanggal Penilaian</label>
 								<div class="col-sm-10">
-									<input type="date" class="form-control" name="tgl_penilaian" required autofocus value="<?php echo $no_penilaian['tgl_penilaian']; ?>" required></input>
+									<input type="date" class="form-control" name="tgl_penilaian" required autofocus value="<?php echo $id_klinik['tgl_penilaian']; ?>" required></input>
 								</div>
 							</div>
 						</div>

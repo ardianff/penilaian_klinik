@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2022 at 12:25 AM
+-- Generation Time: Apr 03, 2022 at 06:12 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -546,8 +546,8 @@ CREATE TABLE `tbl_klinik` (
 --
 
 INSERT INTO `tbl_klinik` (`id_klinik`, `nama_user`, `nama_anggota1`, `nama_anggota2`, `nama_anggota3`, `nama_anggota4`, `nama_klinik`, `kemampuan_pelayanan`, `jenis_pelayanan_klinik`, `alamat_klinik`, `id_kecamatan_klinik`, `id_kelurahan_klinik`, `tgl_penilaian`, `status_penilaian`, `created_at`, `update_at`) VALUES
-('PR001', 'Dinkes', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Amelia Medika', 'Pratama', 'Rawat Jalan', 'Jl. Puri Dinar', 15, 167, '2022-04-01', 'Belum', '2022-04-01 05:56:39', '2022-04-02 20:38:05'),
-('PR002', 'Dinkes', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Subur Sehat', 'Pratama', 'Rawat Jalan', 'JL. Klipang Raya', 15, 158, '2022-04-03', 'Belum', '2022-04-02 20:37:49', '2022-04-02 20:37:49');
+('PR002', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Subur Sehat', 'Pratama', 'Rawat Jalan', 'Jl. Klipang Raya', 15, 158, '2022-04-03', 'Sudah', '2022-04-02 20:37:49', '2022-04-03 14:13:51'),
+('UT003', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Amanda', 'Utama', 'Rawat Jalan', 'Jl. Kedungmundu Raya', 15, 159, '2022-04-03', 'Sudah', '2022-04-03 14:51:46', '2022-04-03 16:11:21');
 
 -- --------------------------------------------------------
 
@@ -563,6 +563,15 @@ CREATE TABLE `tbl_penilaian` (
   `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_penilaian`
+--
+
+INSERT INTO `tbl_penilaian` (`id_penilaian`, `no_penilaian`, `id_klinik`, `created_at`, `update_at`) VALUES
+(54, 'TASK-PRTM03042022', 'PR002', '2022-04-03 07:24:36', '2022-04-03 07:24:36'),
+(56, 'TASK-UTM03042022', 'UT003', '2022-04-03 15:20:50', '2022-04-03 15:20:50'),
+(57, 'TASK-PRTM03042022', 'UT003', '2022-04-03 15:41:30', '2022-04-03 15:41:30');
+
 -- --------------------------------------------------------
 
 --
@@ -572,11 +581,14 @@ CREATE TABLE `tbl_penilaian` (
 CREATE TABLE `tbl_penilaian_pratama_form_kedua` (
   `id_penilaian` int(20) NOT NULL,
   `no_penilaian` varchar(100) NOT NULL,
+  `id_klinik` varchar(20) NOT NULL,
   `id_deskripsi` int(20) NOT NULL,
   `hasil_penilaian` enum('Ya','Tidak') NOT NULL,
   `jumlah_ketersediaan` varchar(200) NOT NULL,
   `satuan_penilaian` varchar(50) NOT NULL,
-  `catatan_penilaian` varchar(300) NOT NULL
+  `catatan_penilaian` varchar(300) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -588,11 +600,14 @@ CREATE TABLE `tbl_penilaian_pratama_form_kedua` (
 CREATE TABLE `tbl_penilaian_pratama_form_ketiga` (
   `id_penilaian` int(20) NOT NULL,
   `no_penilaian` varchar(100) NOT NULL,
+  `id_klinik` varchar(20) NOT NULL,
   `usulan_rekomendasi` varchar(100) NOT NULL,
   `uraian_penilaian` varchar(1000) NOT NULL,
   `tindak_lanjut_klinik` varchar(100) NOT NULL,
   `nama_perwakilan_pihak_klinik` varchar(100) NOT NULL,
-  `jabatan_perwakilan_pihak_klinik` varchar(100) NOT NULL
+  `jabatan_perwakilan_pihak_klinik` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -622,12 +637,114 @@ CREATE TABLE `tbl_penilaian_pratama_form_satu` (
 CREATE TABLE `tbl_penilaian_utama_form_kedua` (
   `id_penilaian` int(20) NOT NULL,
   `no_penilaian` varchar(100) NOT NULL,
+  `id_klinik` varchar(20) NOT NULL,
   `id_deskripsi` int(20) NOT NULL,
   `hasil_penilaian` enum('Ya','Tidak') NOT NULL,
   `jumlah_ketersediaan` varchar(200) NOT NULL,
   `satuan_penilaian` varchar(50) NOT NULL,
-  `catatan_penilaian` varchar(300) NOT NULL
+  `catatan_penilaian` varchar(300) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_penilaian_utama_form_kedua`
+--
+
+INSERT INTO `tbl_penilaian_utama_form_kedua` (`id_penilaian`, `no_penilaian`, `id_klinik`, `id_deskripsi`, `hasil_penilaian`, `jumlah_ketersediaan`, `satuan_penilaian`, `catatan_penilaian`, `created_at`, `update_at`) VALUES
+(280, 'TASK-UTM03042022', 'UT003', 1, 'Ya', '12', 'buah', 'Oke', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(281, 'TASK-UTM03042022', 'UT003', 2, 'Ya', '12', 'buah', 'ookoek', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(282, 'TASK-UTM03042022', 'UT003', 3, 'Ya', '20190', 'set', 'bagus', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(283, 'TASK-UTM03042022', 'UT003', 4, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(284, 'TASK-UTM03042022', 'UT003', 5, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(285, 'TASK-UTM03042022', 'UT003', 6, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(286, 'TASK-UTM03042022', 'UT003', 7, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(287, 'TASK-UTM03042022', 'UT003', 8, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(288, 'TASK-UTM03042022', 'UT003', 9, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(289, 'TASK-UTM03042022', 'UT003', 10, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(290, 'TASK-UTM03042022', 'UT003', 11, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(291, 'TASK-UTM03042022', 'UT003', 12, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(292, 'TASK-UTM03042022', 'UT003', 13, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(293, 'TASK-UTM03042022', 'UT003', 14, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(294, 'TASK-UTM03042022', 'UT003', 15, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(295, 'TASK-UTM03042022', 'UT003', 16, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(296, 'TASK-UTM03042022', 'UT003', 17, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(297, 'TASK-UTM03042022', 'UT003', 18, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(298, 'TASK-UTM03042022', 'UT003', 19, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(299, 'TASK-UTM03042022', 'UT003', 20, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(300, 'TASK-UTM03042022', 'UT003', 21, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(301, 'TASK-UTM03042022', 'UT003', 22, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(302, 'TASK-UTM03042022', 'UT003', 23, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(303, 'TASK-UTM03042022', 'UT003', 24, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(304, 'TASK-UTM03042022', 'UT003', 25, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(305, 'TASK-UTM03042022', 'UT003', 26, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(306, 'TASK-UTM03042022', 'UT003', 27, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(307, 'TASK-UTM03042022', 'UT003', 28, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(308, 'TASK-UTM03042022', 'UT003', 29, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(309, 'TASK-UTM03042022', 'UT003', 30, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(310, 'TASK-UTM03042022', 'UT003', 31, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(311, 'TASK-UTM03042022', 'UT003', 32, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(312, 'TASK-UTM03042022', 'UT003', 33, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(313, 'TASK-UTM03042022', 'UT003', 34, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(314, 'TASK-UTM03042022', 'UT003', 35, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(315, 'TASK-UTM03042022', 'UT003', 36, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(316, 'TASK-UTM03042022', 'UT003', 37, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(317, 'TASK-UTM03042022', 'UT003', 38, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(318, 'TASK-UTM03042022', 'UT003', 39, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(319, 'TASK-UTM03042022', 'UT003', 40, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(320, 'TASK-UTM03042022', 'UT003', 41, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(321, 'TASK-UTM03042022', 'UT003', 42, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(322, 'TASK-UTM03042022', 'UT003', 43, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(323, 'TASK-UTM03042022', 'UT003', 44, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(324, 'TASK-UTM03042022', 'UT003', 45, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(325, 'TASK-UTM03042022', 'UT003', 46, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(326, 'TASK-UTM03042022', 'UT003', 47, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(327, 'TASK-UTM03042022', 'UT003', 48, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(328, 'TASK-UTM03042022', 'UT003', 49, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(329, 'TASK-UTM03042022', 'UT003', 50, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(330, 'TASK-UTM03042022', 'UT003', 51, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(331, 'TASK-UTM03042022', 'UT003', 52, 'Ya', '', 'set', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(332, 'TASK-UTM03042022', 'UT003', 53, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(333, 'TASK-UTM03042022', 'UT003', 54, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(334, 'TASK-UTM03042022', 'UT003', 55, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(335, 'TASK-UTM03042022', 'UT003', 56, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(336, 'TASK-UTM03042022', 'UT003', 57, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(337, 'TASK-UTM03042022', 'UT003', 58, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(338, 'TASK-UTM03042022', 'UT003', 59, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(339, 'TASK-UTM03042022', 'UT003', 60, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(340, 'TASK-UTM03042022', 'UT003', 61, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(341, 'TASK-UTM03042022', 'UT003', 62, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(342, 'TASK-UTM03042022', 'UT003', 63, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(343, 'TASK-UTM03042022', 'UT003', 64, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(344, 'TASK-UTM03042022', 'UT003', 65, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(345, 'TASK-UTM03042022', 'UT003', 66, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(346, 'TASK-UTM03042022', 'UT003', 67, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(347, 'TASK-UTM03042022', 'UT003', 68, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(348, 'TASK-UTM03042022', 'UT003', 69, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(349, 'TASK-UTM03042022', 'UT003', 70, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(350, 'TASK-UTM03042022', 'UT003', 71, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(351, 'TASK-UTM03042022', 'UT003', 72, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(352, 'TASK-UTM03042022', 'UT003', 73, 'Ya', '22223', 'Sesuai Kebutuhan', 'oke', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(353, 'TASK-UTM03042022', 'UT003', 74, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(354, 'TASK-UTM03042022', 'UT003', 75, 'Ya', '', 'unit', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(355, 'TASK-UTM03042022', 'UT003', 76, 'Ya', '', 'unit', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(356, 'TASK-UTM03042022', 'UT003', 77, 'Ya', '', 'unit', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(357, 'TASK-UTM03042022', 'UT003', 78, 'Ya', '', 'Sesuai kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(358, 'TASK-UTM03042022', 'UT003', 79, 'Ya', '', 'Sesuai kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(359, 'TASK-UTM03042022', 'UT003', 80, 'Ya', '', 'Sesuai kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(360, 'TASK-UTM03042022', 'UT003', 81, 'Ya', '', 'Sesuai kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(361, 'TASK-UTM03042022', 'UT003', 82, 'Ya', '', 'Sesuai kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(362, 'TASK-UTM03042022', 'UT003', 83, 'Ya', '', 'Sesuai kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(363, 'TASK-UTM03042022', 'UT003', 84, 'Ya', '', 'Sesuai kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(364, 'TASK-UTM03042022', 'UT003', 85, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(365, 'TASK-UTM03042022', 'UT003', 86, 'Ya', '', 'Sesuai kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(366, 'TASK-UTM03042022', 'UT003', 87, 'Ya', '', 'Sesuai kebutuhan', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(367, 'TASK-UTM03042022', 'UT003', 88, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(368, 'TASK-UTM03042022', 'UT003', 89, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(369, 'TASK-UTM03042022', 'UT003', 90, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(370, 'TASK-UTM03042022', 'UT003', 91, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(371, 'TASK-UTM03042022', 'UT003', 92, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22'),
+(372, 'TASK-UTM03042022', 'UT003', 93, 'Ya', '', 'buah', '', '2022-04-03 15:58:22', '2022-04-03 15:58:22');
 
 -- --------------------------------------------------------
 
@@ -638,12 +755,22 @@ CREATE TABLE `tbl_penilaian_utama_form_kedua` (
 CREATE TABLE `tbl_penilaian_utama_form_ketiga` (
   `id_penilaian` int(20) NOT NULL,
   `no_penilaian` varchar(100) NOT NULL,
+  `id_klinik` varchar(20) NOT NULL,
   `usulan_rekomendasi` varchar(100) NOT NULL,
   `uraian_penilaian` varchar(1000) NOT NULL,
   `tindak_lanjut_klinik` varchar(100) NOT NULL,
   `nama_perwakilan_pihak_klinik` varchar(100) NOT NULL,
-  `jabatan_perwakilan_pihak_klinik` varchar(100) NOT NULL
+  `jabatan_perwakilan_pihak_klinik` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_penilaian_utama_form_ketiga`
+--
+
+INSERT INTO `tbl_penilaian_utama_form_ketiga` (`id_penilaian`, `no_penilaian`, `id_klinik`, `usulan_rekomendasi`, `uraian_penilaian`, `tindak_lanjut_klinik`, `nama_perwakilan_pihak_klinik`, `jabatan_perwakilan_pihak_klinik`, `created_at`, `update_at`) VALUES
+(3, 'TASK-UTM03042022', 'UT003', 'Belum Memenuhi', 'Segera lengkapi data yang belum disetujui', 'Ditolak', 'dr. Rismawan Sudarsono', 'Dokter Umum', '2022-04-03 16:11:21', '2022-04-03 16:11:21');
 
 -- --------------------------------------------------------
 
@@ -654,11 +781,42 @@ CREATE TABLE `tbl_penilaian_utama_form_ketiga` (
 CREATE TABLE `tbl_penilaian_utama_form_satu` (
   `id_penilaian` int(10) NOT NULL,
   `no_penilaian` varchar(50) NOT NULL,
+  `id_klinik` varchar(20) NOT NULL,
   `id_rincian_penilaian` int(20) NOT NULL,
   `jawab_hasil` varchar(10) NOT NULL,
   `jawab_hasil_verif` varchar(20) NOT NULL,
-  `catatan_hasil_penilaian` varchar(200) NOT NULL
+  `catatan_hasil_penilaian` varchar(200) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_penilaian_utama_form_satu`
+--
+
+INSERT INTO `tbl_penilaian_utama_form_satu` (`id_penilaian`, `no_penilaian`, `id_klinik`, `id_rincian_penilaian`, `jawab_hasil`, `jawab_hasil_verif`, `catatan_hasil_penilaian`, `created_at`, `update_at`) VALUES
+(89, 'TASK-UTM03042022', 'UT003', 1, 'Ya', 'Ya', 'Oke', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(90, 'TASK-UTM03042022', 'UT003', 5, 'Ya', 'Tidak', 'Manteb', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(91, 'TASK-UTM03042022', 'UT003', 8, 'Ya', 'Tidak', 'Oke', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(92, 'TASK-UTM03042022', 'UT003', 9, 'Ya', 'Ya', 'Manteb', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(93, 'TASK-UTM03042022', 'UT003', 10, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(94, 'TASK-UTM03042022', 'UT003', 11, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(95, 'TASK-UTM03042022', 'UT003', 12, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(96, 'TASK-UTM03042022', 'UT003', 13, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(97, 'TASK-UTM03042022', 'UT003', 14, 'Ya', 'Tidak', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(98, 'TASK-UTM03042022', 'UT003', 15, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(99, 'TASK-UTM03042022', 'UT003', 16, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(100, 'TASK-UTM03042022', 'UT003', 17, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(101, 'TASK-UTM03042022', 'UT003', 18, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(102, 'TASK-UTM03042022', 'UT003', 19, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(103, 'TASK-UTM03042022', 'UT003', 20, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(104, 'TASK-UTM03042022', 'UT003', 21, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(105, 'TASK-UTM03042022', 'UT003', 22, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(106, 'TASK-UTM03042022', 'UT003', 23, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(107, 'TASK-UTM03042022', 'UT003', 24, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(108, 'TASK-UTM03042022', 'UT003', 25, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(109, 'TASK-UTM03042022', 'UT003', 26, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48'),
+(110, 'TASK-UTM03042022', 'UT003', 27, 'Ya', 'Ya', '', '2022-04-03 15:37:48', '2022-04-03 15:37:48');
 
 -- --------------------------------------------------------
 
@@ -669,39 +827,41 @@ CREATE TABLE `tbl_penilaian_utama_form_satu` (
 CREATE TABLE `tbl_rincian_penilaian_pratama` (
   `id_rincian_penilaian` int(10) NOT NULL,
   `rincian_penilaian` varchar(500) NOT NULL,
-  `keterangan_penilaian` varchar(500) NOT NULL
+  `keterangan_penilaian` varchar(500) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_rincian_penilaian_pratama`
 --
 
-INSERT INTO `tbl_rincian_penilaian_pratama` (`id_rincian_penilaian`, `rincian_penilaian`, `keterangan_penilaian`) VALUES
-(1, 'Profil klinik', ''),
-(2, 'Kemampuan pelayanan klinik\n- Pelayanan medik dasar\n', 'Wajib untuk klinik pratama'),
-(3, 'Kemampuan Pelayanan penunjang medik', ''),
-(4, 'Sarana : Bangunan dan ruang Klinik\r\na. Bangunan klinik bersifat permanen dan tidak bergabung fisik bangunannya dengan tempat tinggal per\r\norangan', ''),
-(5, 'b. bangunan klinik memperhatikan fungsi keamanan, kenyamanan, dan kemudahan pelyanan termasuk penyandang disabilitas, anak-anak, dan lanjut usia.\r\n', ''),
-(6, 'c. Kawasan di dalam bangunan klinik harus bebas asap rokok', ''),
-(7, 'd. Terpasang papan nama dengan ukuran minimal 1 m2 dengan dasar putih huruf hitam yang memuat informasi :\n1) Jenis klinik utama', ''),
-(8, '2) Nama Klinik', ''),
-(9, '3) Jam buka klinik', ''),
-(10, 'e.	Ruang penerimaan :\r\n1)	Ruang administrasi						\r\n', ''),
-(11, '2) Ruang tunggu( nama dokter/drg wajib dicantumkan di ruang tunggu klinik )', ''),
-(12, 'f.	Ruang pelayanan medik\r\n1)	Ruang pemeriksaan umum						\r\n', ''),
-(21, '2) Ruang tindakan ', ''),
-(22, '3) Ruang farmasi', ''),
-(23, '4) Ruang steril', 'Harus tersedia sendiri'),
-(24, '5) Ruang rawat inap', '5-10 TT, pintu bukaan keluar, kamar mandi, jarak antar tepi TT 1 m'),
-(25, 'g. Ruang Penunjang Non Medik :\r\n1) Ruang Asi', 'Wajib ada'),
-(26, '2) Laboratorium', 'Lantai, dinding berwarna terang, tidak bercelah, tidak bersudut'),
-(27, '3) Kamar mandi', 'Minimal 1, bukaan pintu mengarah keluar'),
-(28, 'Prasarana Klinik :\r\na. Sistem penghawaan', ''),
-(29, 'b. Sistem pencahayaan', ''),
-(30, 'c. Sistem air dan sanitasi', ''),
-(31, 'd. Pengolahan limbah cair', ''),
-(32, 'e. Sistem proteksi kebakaran', ''),
-(33, 'f. Tabung oksigen', 'R Tindakan, R RI');
+INSERT INTO `tbl_rincian_penilaian_pratama` (`id_rincian_penilaian`, `rincian_penilaian`, `keterangan_penilaian`, `created_at`, `update_at`) VALUES
+(1, 'Profil klinik', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(2, 'Kemampuan pelayanan klinik\n- Pelayanan medik dasar\n', 'Wajib untuk klinik pratama', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(3, 'Kemampuan Pelayanan penunjang medik', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(4, 'Sarana : Bangunan dan ruang Klinik\r\na. Bangunan klinik bersifat permanen dan tidak bergabung fisik bangunannya dengan tempat tinggal per\r\norangan', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(5, 'b. bangunan klinik memperhatikan fungsi keamanan, kenyamanan, dan kemudahan pelyanan termasuk penyandang disabilitas, anak-anak, dan lanjut usia.\r\n', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(6, 'c. Kawasan di dalam bangunan klinik harus bebas asap rokok', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(7, 'd. Terpasang papan nama dengan ukuran minimal 1 m2 dengan dasar putih huruf hitam yang memuat informasi :\n1) Jenis klinik utama', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(8, '2) Nama Klinik', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(9, '3) Jam buka klinik', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(10, 'e.	Ruang penerimaan :\r\n1)	Ruang administrasi						\r\n', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(11, '2) Ruang tunggu( nama dokter/drg wajib dicantumkan di ruang tunggu klinik )', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(12, 'f.	Ruang pelayanan medik\r\n1)	Ruang pemeriksaan umum						\r\n', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(21, '2) Ruang tindakan ', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(22, '3) Ruang farmasi', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(23, '4) Ruang steril', 'Harus tersedia sendiri', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(24, '5) Ruang rawat inap', '5-10 TT, pintu bukaan keluar, kamar mandi, jarak antar tepi TT 1 m', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(25, 'g. Ruang Penunjang Non Medik :\r\n1) Ruang Asi', 'Wajib ada', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(26, '2) Laboratorium', 'Lantai, dinding berwarna terang, tidak bercelah, tidak bersudut', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(27, '3) Kamar mandi', 'Minimal 1, bukaan pintu mengarah keluar', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(28, 'Prasarana Klinik :\r\na. Sistem penghawaan', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(29, 'b. Sistem pencahayaan', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(30, 'c. Sistem air dan sanitasi', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(31, 'd. Pengolahan limbah cair', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(32, 'e. Sistem proteksi kebakaran', '', '2022-04-03 15:29:38', '2022-04-03 15:29:38'),
+(33, 'f. Tabung oksigen', 'R Tindakan, R RI', '2022-04-03 15:29:38', '2022-04-03 15:29:38');
 
 -- --------------------------------------------------------
 
@@ -712,36 +872,38 @@ INSERT INTO `tbl_rincian_penilaian_pratama` (`id_rincian_penilaian`, `rincian_pe
 CREATE TABLE `tbl_rincian_penilaian_utama` (
   `id_rincian_penilaian` int(10) NOT NULL,
   `rincian_penilaian` varchar(500) NOT NULL,
-  `keterangan_penilaian` varchar(500) NOT NULL
+  `keterangan_penilaian` varchar(500) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_rincian_penilaian_utama`
 --
 
-INSERT INTO `tbl_rincian_penilaian_utama` (`id_rincian_penilaian`, `rincian_penilaian`, `keterangan_penilaian`) VALUES
-(1, 'Profil klinik', ''),
-(5, 'Kemampuan pelayanan klinik\r\n- Pelayanan medik dasar', 'Wajib untuk klinik pratama'),
-(8, 'Kemampuan pelayanan penunjang medik', ''),
-(9, 'Sarana : Bangunan dan ruang Klinik : a. Bangunan klinik bersifat permanen dan tidak bergabung fisik bangunannya dengan tempat tinggal perorangan', ''),
-(10, 'b. Bangunan klinik memperhatikan fungsi keamanan, kenyamananan,dan kemudahan pelayanan termasuk penyandang disabilitas,anak-anak,dan lanjut usia.', ''),
-(11, 'c. Kawasan di dalam bangunan klinik harus bebas asap rokok', ''),
-(12, 'd. Terpasang papan nama dengan ukuran minimal 1 m2 dengan dasar putih huruf hitam yang memuat informasi :\r\n1) Jenis klinik utama', ''),
-(13, '2) Nama klinik', ''),
-(14, '3) Jam buka klinik', ''),
-(15, 'e. Ruang penerimaan :\r\n1) Ruang administrasi', ''),
-(16, '2) Ruang tunggu( nama dokter/drg wajib dicantumkan di ruang tunggu klinik )', ''),
-(17, 'f. Ruang pelayanan medik\r\n1) Ruang pemeriksaan umum', ''),
-(18, '2) Ruang Tindakan', ''),
-(19, '3) Ruang Farmasi', ''),
-(20, '4) Ruang Steril', ''),
-(21, 'g. Ruang Penunjang Non Medik : 1) Ruang Asi', 'Wajib ada'),
-(22, '2) Kamar Mandi', 'Minimal 1'),
-(23, '5. Prasarana Klinik : a. Sistem penghawaan ( ventilasi )', ''),
-(24, 'b. Sistem Pencahayaan', ''),
-(25, 'c. Sistem air dan sanitasi', ''),
-(26, 'd. Pengolahan limbah cair', ''),
-(27, 'e. Sistem Proteksi Kebakaran', '');
+INSERT INTO `tbl_rincian_penilaian_utama` (`id_rincian_penilaian`, `rincian_penilaian`, `keterangan_penilaian`, `created_at`, `update_at`) VALUES
+(1, 'Profil klinik', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(5, 'Kemampuan pelayanan klinik\r\n- Pelayanan medik dasar', 'Wajib untuk klinik pratama', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(8, 'Kemampuan pelayanan penunjang medik', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(9, 'Sarana : Bangunan dan ruang Klinik : a. Bangunan klinik bersifat permanen dan tidak bergabung fisik bangunannya dengan tempat tinggal perorangan', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(10, 'b. Bangunan klinik memperhatikan fungsi keamanan, kenyamananan,dan kemudahan pelayanan termasuk penyandang disabilitas,anak-anak,dan lanjut usia.', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(11, 'c. Kawasan di dalam bangunan klinik harus bebas asap rokok', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(12, 'd. Terpasang papan nama dengan ukuran minimal 1 m2 dengan dasar putih huruf hitam yang memuat informasi :\r\n1) Jenis klinik utama', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(13, '2) Nama klinik', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(14, '3) Jam buka klinik', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(15, 'e. Ruang penerimaan :\r\n1) Ruang administrasi', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(16, '2) Ruang tunggu( nama dokter/drg wajib dicantumkan di ruang tunggu klinik )', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(17, 'f. Ruang pelayanan medik\r\n1) Ruang pemeriksaan umum', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(18, '2) Ruang Tindakan', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(19, '3) Ruang Farmasi', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(20, '4) Ruang Steril', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(21, 'g. Ruang Penunjang Non Medik : 1) Ruang Asi', 'Wajib ada', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(22, '2) Kamar Mandi', 'Minimal 1', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(23, '5. Prasarana Klinik : a. Sistem penghawaan ( ventilasi )', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(24, 'b. Sistem Pencahayaan', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(25, 'c. Sistem air dan sanitasi', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(26, 'd. Pengolahan limbah cair', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26'),
+(27, 'e. Sistem Proteksi Kebakaran', '', '2022-04-03 15:30:26', '2022-04-03 15:30:26');
 
 -- --------------------------------------------------------
 
@@ -836,8 +998,8 @@ ALTER TABLE `tbl_klinik`
 --
 ALTER TABLE `tbl_penilaian`
   ADD PRIMARY KEY (`id_penilaian`),
-  ADD UNIQUE KEY `no_penilaian` (`no_penilaian`),
-  ADD KEY `id_klinik` (`id_klinik`);
+  ADD KEY `id_klinik` (`id_klinik`),
+  ADD KEY `no_penilaian` (`no_penilaian`);
 
 --
 -- Indexes for table `tbl_penilaian_pratama_form_kedua`
@@ -845,14 +1007,16 @@ ALTER TABLE `tbl_penilaian`
 ALTER TABLE `tbl_penilaian_pratama_form_kedua`
   ADD PRIMARY KEY (`id_penilaian`),
   ADD KEY `no_penilaian` (`no_penilaian`,`id_deskripsi`),
-  ADD KEY `id_deskripsi` (`id_deskripsi`);
+  ADD KEY `id_deskripsi` (`id_deskripsi`),
+  ADD KEY `id_klinik` (`id_klinik`);
 
 --
 -- Indexes for table `tbl_penilaian_pratama_form_ketiga`
 --
 ALTER TABLE `tbl_penilaian_pratama_form_ketiga`
   ADD PRIMARY KEY (`id_penilaian`),
-  ADD KEY `no_penilaian` (`no_penilaian`);
+  ADD KEY `no_penilaian` (`no_penilaian`),
+  ADD KEY `id_klinik` (`id_klinik`);
 
 --
 -- Indexes for table `tbl_penilaian_pratama_form_satu`
@@ -869,14 +1033,16 @@ ALTER TABLE `tbl_penilaian_pratama_form_satu`
 ALTER TABLE `tbl_penilaian_utama_form_kedua`
   ADD PRIMARY KEY (`id_penilaian`),
   ADD KEY `no_penilaian` (`no_penilaian`,`id_deskripsi`),
-  ADD KEY `id_deskripsi` (`id_deskripsi`);
+  ADD KEY `id_deskripsi` (`id_deskripsi`),
+  ADD KEY `id_klinik` (`id_klinik`);
 
 --
 -- Indexes for table `tbl_penilaian_utama_form_ketiga`
 --
 ALTER TABLE `tbl_penilaian_utama_form_ketiga`
   ADD PRIMARY KEY (`id_penilaian`),
-  ADD KEY `no_penilaian` (`no_penilaian`);
+  ADD KEY `no_penilaian` (`no_penilaian`),
+  ADD KEY `id_klinik` (`id_klinik`);
 
 --
 -- Indexes for table `tbl_penilaian_utama_form_satu`
@@ -884,7 +1050,8 @@ ALTER TABLE `tbl_penilaian_utama_form_ketiga`
 ALTER TABLE `tbl_penilaian_utama_form_satu`
   ADD PRIMARY KEY (`id_penilaian`),
   ADD KEY `no_penilaian` (`no_penilaian`),
-  ADD KEY `id_rincian_penilaian` (`id_rincian_penilaian`);
+  ADD KEY `id_rincian_penilaian` (`id_rincian_penilaian`),
+  ADD KEY `id_klinik` (`id_klinik`);
 
 --
 -- Indexes for table `tbl_rincian_penilaian_pratama`
@@ -954,43 +1121,43 @@ ALTER TABLE `tbl_kelurahan`
 -- AUTO_INCREMENT for table `tbl_penilaian`
 --
 ALTER TABLE `tbl_penilaian`
-  MODIFY `id_penilaian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_penilaian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `tbl_penilaian_pratama_form_kedua`
 --
 ALTER TABLE `tbl_penilaian_pratama_form_kedua`
-  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=331;
 
 --
 -- AUTO_INCREMENT for table `tbl_penilaian_pratama_form_ketiga`
 --
 ALTER TABLE `tbl_penilaian_pratama_form_ketiga`
-  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_penilaian_pratama_form_satu`
 --
 ALTER TABLE `tbl_penilaian_pratama_form_satu`
-  MODIFY `id_penilaian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
+  MODIFY `id_penilaian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=638;
 
 --
 -- AUTO_INCREMENT for table `tbl_penilaian_utama_form_kedua`
 --
 ALTER TABLE `tbl_penilaian_utama_form_kedua`
-  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=280;
+  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
 
 --
 -- AUTO_INCREMENT for table `tbl_penilaian_utama_form_ketiga`
 --
 ALTER TABLE `tbl_penilaian_utama_form_ketiga`
-  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_penilaian_utama_form_satu`
 --
 ALTER TABLE `tbl_penilaian_utama_form_satu`
-  MODIFY `id_penilaian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_penilaian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `tbl_rincian_penilaian_pratama`
@@ -1040,29 +1207,56 @@ ALTER TABLE `tbl_klinik`
   ADD CONSTRAINT `tbl_klinik_ibfk_2` FOREIGN KEY (`id_kecamatan_klinik`) REFERENCES `tbl_kecamatan` (`id_kecamatan`);
 
 --
+-- Constraints for table `tbl_penilaian`
+--
+ALTER TABLE `tbl_penilaian`
+  ADD CONSTRAINT `tbl_penilaian_ibfk_1` FOREIGN KEY (`id_klinik`) REFERENCES `tbl_klinik` (`id_klinik`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `tbl_penilaian_pratama_form_kedua`
 --
 ALTER TABLE `tbl_penilaian_pratama_form_kedua`
-  ADD CONSTRAINT `tbl_penilaian_pratama_form_kedua_ibfk_2` FOREIGN KEY (`id_deskripsi`) REFERENCES `tbl_deskripsi_penilaian_pratama` (`id_deskripsi`);
+  ADD CONSTRAINT `tbl_penilaian_pratama_form_kedua_ibfk_2` FOREIGN KEY (`id_deskripsi`) REFERENCES `tbl_deskripsi_penilaian_pratama` (`id_deskripsi`),
+  ADD CONSTRAINT `tbl_penilaian_pratama_form_kedua_ibfk_3` FOREIGN KEY (`no_penilaian`) REFERENCES `tbl_penilaian` (`no_penilaian`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_penilaian_pratama_form_kedua_ibfk_4` FOREIGN KEY (`id_klinik`) REFERENCES `tbl_penilaian` (`id_klinik`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_penilaian_pratama_form_ketiga`
+--
+ALTER TABLE `tbl_penilaian_pratama_form_ketiga`
+  ADD CONSTRAINT `tbl_penilaian_pratama_form_ketiga_ibfk_1` FOREIGN KEY (`no_penilaian`) REFERENCES `tbl_penilaian` (`no_penilaian`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_penilaian_pratama_form_ketiga_ibfk_2` FOREIGN KEY (`id_klinik`) REFERENCES `tbl_penilaian` (`id_klinik`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_penilaian_pratama_form_satu`
 --
 ALTER TABLE `tbl_penilaian_pratama_form_satu`
   ADD CONSTRAINT `tbl_penilaian_pratama_form_satu_ibfk_2` FOREIGN KEY (`id_rincian_penilaian`) REFERENCES `tbl_rincian_penilaian_pratama` (`id_rincian_penilaian`),
-  ADD CONSTRAINT `tbl_penilaian_pratama_form_satu_ibfk_3` FOREIGN KEY (`no_penilaian`) REFERENCES `tbl_penilaian` (`no_penilaian`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_penilaian_pratama_form_satu_ibfk_3` FOREIGN KEY (`no_penilaian`) REFERENCES `tbl_penilaian` (`no_penilaian`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_penilaian_pratama_form_satu_ibfk_4` FOREIGN KEY (`id_klinik`) REFERENCES `tbl_penilaian` (`id_klinik`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_penilaian_utama_form_kedua`
 --
 ALTER TABLE `tbl_penilaian_utama_form_kedua`
-  ADD CONSTRAINT `tbl_penilaian_utama_form_kedua_ibfk_2` FOREIGN KEY (`id_deskripsi`) REFERENCES `tbl_deskripsi_penilaian_utama` (`id_deskripsi`);
+  ADD CONSTRAINT `tbl_penilaian_utama_form_kedua_ibfk_2` FOREIGN KEY (`id_deskripsi`) REFERENCES `tbl_deskripsi_penilaian_utama` (`id_deskripsi`),
+  ADD CONSTRAINT `tbl_penilaian_utama_form_kedua_ibfk_3` FOREIGN KEY (`no_penilaian`) REFERENCES `tbl_penilaian` (`no_penilaian`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_penilaian_utama_form_kedua_ibfk_4` FOREIGN KEY (`id_klinik`) REFERENCES `tbl_penilaian` (`id_klinik`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_penilaian_utama_form_ketiga`
+--
+ALTER TABLE `tbl_penilaian_utama_form_ketiga`
+  ADD CONSTRAINT `tbl_penilaian_utama_form_ketiga_ibfk_1` FOREIGN KEY (`no_penilaian`) REFERENCES `tbl_penilaian` (`no_penilaian`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_penilaian_utama_form_ketiga_ibfk_2` FOREIGN KEY (`id_klinik`) REFERENCES `tbl_penilaian` (`id_klinik`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_penilaian_utama_form_satu`
 --
 ALTER TABLE `tbl_penilaian_utama_form_satu`
-  ADD CONSTRAINT `tbl_penilaian_utama_form_satu_ibfk_2` FOREIGN KEY (`id_rincian_penilaian`) REFERENCES `tbl_rincian_penilaian_utama` (`id_rincian_penilaian`);
+  ADD CONSTRAINT `tbl_penilaian_utama_form_satu_ibfk_2` FOREIGN KEY (`id_rincian_penilaian`) REFERENCES `tbl_rincian_penilaian_utama` (`id_rincian_penilaian`),
+  ADD CONSTRAINT `tbl_penilaian_utama_form_satu_ibfk_3` FOREIGN KEY (`no_penilaian`) REFERENCES `tbl_penilaian` (`no_penilaian`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_penilaian_utama_form_satu_ibfk_4` FOREIGN KEY (`id_klinik`) REFERENCES `tbl_penilaian` (`id_klinik`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

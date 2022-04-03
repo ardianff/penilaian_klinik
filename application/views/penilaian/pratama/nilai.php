@@ -79,7 +79,7 @@
 											echo '<td class="text-center"><input type="radio" name="hasil_verifikasi[' . $no . ']"  value="Ya" required> Ya</input></td>';
 											echo '<td class="text-center"><input type="radio" name="hasil_verifikasi[' . $no . ']"  value="Tidak" required> Tidak</input>
 											</td>';
-											echo '<td><textarea name="catatan_penilaian[' . $no . ']" placeholder="Catatan..."></textarea>
+											echo '<td><textarea class="form-control" name="catatan_penilaian[' . $no . ']" placeholder="Catatan..."></textarea>
 											</td>';
 											echo '<tr>';
 										}
@@ -98,7 +98,7 @@
 											echo '<td class="text-center"><input type="radio" name="hasil_verifikasi[' . $no . ']" ' . ($cek_hasil[$i]->jawab_hasil_verif == 'Ya' ? 'checked' : '')  . ' value="Ya" required></input></td>';
 											echo '<td class="text-center"><input type="radio" name="hasil_verifikasi[' . $no . ']"  ' . ($cek_hasil[$i]->jawab_hasil_verif == 'Tidak' ? 'checked' : '')  . ' value="Tidak" required></input>
 											</td>';
-											echo '<td><textarea name="catatan_penilaian[' . $no . ']" placeholder="Catatan...">' . $cek_hasil[$i]->catatan_hasil_penilaian . '</textarea>
+											echo '<td><textarea class="form-control" name="catatan_penilaian[' . $no . ']" placeholder="Catatan...">' . $cek_hasil[$i]->catatan_hasil_penilaian . '</textarea>
 											</td>';
 											echo '<tr>';
 										}

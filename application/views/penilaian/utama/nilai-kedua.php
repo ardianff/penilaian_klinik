@@ -15,7 +15,9 @@
 		'penilaian_utama/nilai_kedua',
 		'class="form-horizontal"'
 	);
-	echo form_hidden('no_penilaian', $penilaian['no_penilaian']);
+	echo form_hidden('no_penilaian', $klinik['no_penilaian']);
+	echo form_hidden('id_klinik', $klinik['id_klinik']);
+	echo form_hidden('nama_klinik', $klinik['nama_klinik']);
 	?>
 	<section class="content">
 		<div class="container-fluid">
@@ -26,11 +28,11 @@
 						<div class="card-header">
 							<h2 class="card-title">
 								<span>
-									<h3><b><?php echo $penilaian['nama_klinik']; ?></h3>
+									<h3><b><?php echo $klinik['nama_klinik']; ?></h3>
 									</b>
-									Alamat : <?php echo $penilaian['alamat_klinik']; ?><br>
-									Kecamatan : <?php echo $penilaian['nama_kecamatan']; ?><br>
-									Kelurahan : <?php echo $penilaian['nama_kelurahan']; ?> (<?php echo $penilaian['kode_pos_kelurahan']; ?>)
+									Alamat : <?php echo $klinik['alamat_klinik']; ?><br>
+									Kecamatan : <?php echo $klinik['nama_kecamatan']; ?><br>
+									Kelurahan : <?php echo $klinik['nama_kelurahan']; ?> (<?php echo $klinik['kode_pos_kelurahan']; ?>)
 								</span>
 							</h2>
 						</div>
@@ -58,23 +60,45 @@
 								</thead>
 								<tbody>
 									<?php
-									$no = 1;
-									foreach ($rincian as $row) : ?>
-
-										<!-- <th colspan="9" class="text-justify"><?php echo $row->group_name; ?></th> -->
-										<tr>
-											<td><?php echo $no ?></td>
-											<td class="text-justify"><input type="hidden" name="kriteria[<?php echo $no ?>]" value="<?php echo $row->id_deskripsi; ?>"> <?php echo $row->kriteria_penilaian_utama; ?></td>
-											<td class=" text-justify"><?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
-											<td class="text-justify"><?php echo $row->satuan_penilaian_utama; ?></td>
-											<td><input type="radio" value="Ya" name="hasil_nilai[<?php echo $no ?>]" required /> Ya</td>
-											<td><input type="radio" value="Tidak" name="hasil_nilai[<?php echo $no ?>]" /> tidak</td>
-											<td><textarea placeholder="Jumlah" class="form-control" name="jumlah_ketersediaan[<?php echo $no ?>]" required></textarea></td>
-											<td class="text-justify"><input class="form-control" type="text" name="satuan_nilai[<?php echo $no ?>]" value="<?php echo $row->satuan_penilaian_utama; ?>" /></td>
-											<td><textarea name="catatan_penilaian[<?php echo $no ?>]" class="form-control" placeholder="Catatan Penilaian..."></textarea></td>
-										</tr>
-									<?php $no++;
-									endforeach;
+									if ($klinik['hasil_penilaian'] == null && $klinik['jumlah_ketersediaan'] == null) {
+										echo '<input type="hidden" name="form" value="add"/>';
+										for ($i = 0; $i < count($rincian); $i++) {
+											$no = $i + 1;
+											echo '<tr>';
+											echo '<td>' . $no . '</td>';
+											echo '<td class="text-justify"><input type="hidden" name="kriteria[' . $no . ']" value="' . $rincian[$i]->id_deskripsi . '"/> ' . $rincian[$i]->kriteria_penilaian_utama . '</td>';
+											echo '<td class= "text-justify">' . $rincian[$i]->jumlah_minimal_penilaian_utama . '</td>';
+											echo '<td class= "text-justify">' . $rincian[$i]->satuan_penilaian_utama . '</td>';
+											echo '<td class="text-center"><input type="radio" name="hasil_nilai[' . $no . ']"  value="Ya" required> Ya</input>
+											</td>';
+											echo '<td class="text-center"><input type="radio" name="hasil_nilai[' . $no . ']"  value="Tidak" required> Tidak</input>
+											</td>';
+											echo '<td><textarea class="form-control" placeholder="Jumlah" name="jumlah_ketersediaan[' . $no . ']"></textarea></td>';
+											echo '<td class="text-justify"><input class="form-control" type="text" name="satuan_nilai[' . $no . ']" value="' . $rincian[$i]->satuan_penilaian_utama . '" /></td>';
+											echo '<td><textarea class="form-control" name="catatan_penilaian[' . $no . ']" placeholder="Catatan..."></textarea>
+											</td>';
+											echo '<tr>';
+										}
+									} else {
+										echo '<input type="hidden" name="form" value="edit"/>';
+										for ($i = 0; $i < count($cek_hasil); $i++) {
+											$no = $i + 1;
+											echo '<tr>';
+											echo '<td>' . $no . '</td>';
+											echo '<td class="text-justify"><input type="hidden" name="kriteria[' . $no . ']" value="' . $cek_hasil[$i]->id_deskripsi_pfs . '"/> ' . $cek_hasil[$i]->kriteria_penilaian_utama . '</td>';
+											echo '<td class= "text-justify">' . $cek_hasil[$i]->jumlah_minimal_penilaian_utama . '</td>';
+											echo '<td class= "text-justify">' . $cek_hasil[$i]->satuan_penilaian_utama . '</td>';
+											echo '<td class="text-center"><input type="radio" name="hasil_nilai[' . $no . ']"  ' . ($cek_hasil[$i]->hasil_penilaian == 'Ya' ? 'checked' : '')  . ' value="Ya" required> Ya</input>
+											</td>';
+											echo '<td class="text-center"><input type="radio" name="hasil_nilai[' . $no . ']" ' . ($cek_hasil[$i]->hasil_penilaian == 'Tidak' ? 'checked' : '')  . ' value="Tidak" required> Tidak</input>
+											</td>';
+											echo '<td><textarea class="form-control" placeholder="Jumlah" name="jumlah_ketersediaan[' . $no . ']">' . $cek_hasil[$i]->jumlah_ketersediaan . '</textarea></td>';
+											echo '<td class="text-justify"><input class="form-control" type="text" name="satuan_nilai[' . $no . ']" value="' . $cek_hasil[$i]->satuan_penilaian . '" /></td>';
+											echo '<td><textarea class="form-control" name="catatan_penilaian[' . $no . ']" placeholder="Catatan...">' . $cek_hasil[$i]->catatan_penilaian . '</textarea>
+											</td>';
+											echo '<tr>';
+										}
+									}
 									?>
 								</tbody>
 							</table>
@@ -91,7 +115,7 @@
 			<div class="card-footer">
 				<button type="submit" name="submit" class="btn btn-success">Next</button>
 				<!-- <?php echo anchor(
-							'penilaian_utama/nilai_ketiga/' . $penilaian['no_penilaian'],
+							'penilaian_utama/nilai_ketiga/' . $klinik['no_penilaian'],
 							'<span>Next</span>',
 							[
 								'class' => 'btn btn-success',
@@ -99,7 +123,7 @@
 								'name' => 'submit'
 							]
 						); ?> -->
-				<button type="submit" href="<?php echo base_url('penilaian_utama/nilai' . $penilaian['no_penilaian']); ?>" name="back" onclick="history.back();" class="btn btn-warning">Kembali</button>
+				<button type="submit" href="<?php echo base_url('penilaian_utama/nilai' . $klinik['no_penilaian']); ?>" name="back" onclick="history.back();" class="btn btn-warning">Kembali</button>
 				<!-- <?php echo anchor('penilaian_pratama', 'Kembali', [
 							'class' => 'btn btn-warning',
 						]); ?> -->

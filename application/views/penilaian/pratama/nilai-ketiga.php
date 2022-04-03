@@ -23,88 +23,122 @@
 							<!-- <h3 class="card-title">Penilaian Klinik Pratama</h3> -->
 							<h2 class="card-title">
 								<span>
-									<h3><b><?php echo $penilaian['nama_klinik']; ?></h3>
+									<h3><b><?php echo $klinik['nama_klinik']; ?></h3>
 									</b>
-									Alamat : <?php echo $penilaian['alamat_klinik']; ?><br>
-									Kecamatan : <?php echo $penilaian['nama_kecamatan']; ?><br>
-									Kelurahan : <?php echo $penilaian['nama_kelurahan']; ?> (<?php echo $penilaian['kode_pos_kelurahan']; ?>)
+									Alamat : <?php echo $klinik['alamat_klinik']; ?><br>
+									Kecamatan : <?php echo $klinik['nama_kecamatan']; ?><br>
+									Kelurahan : <?php echo $klinik['nama_kelurahan']; ?> (<?php echo $klinik['kode_pos_kelurahan']; ?>)
 								</span>
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
 						<?php echo form_open_multipart('penilaian_pratama/nilai_ketiga', 'class="form-horizontal"');
-						echo form_hidden('no_penilaian', $penilaian['no_penilaian']);
+						echo form_hidden('no_penilaian', $klinik['no_penilaian']);
+						echo form_hidden('id_klinik', $klinik['id_klinik']);
 						?>
-						<div class="card-body">
-							<div class="form-group row">
-								<label for="usulan_rekomendasi" class="col-sm-2 col-form-label">Usulan rekomendasi<span style="color:red">*</span></label>
-								<div class="col-sm-8">
-									<input type="radio" name="pilihan_jawaban" value="Telah Memenuhi" required> Telah memenuhi persyaratan minimal sebagai <del>Klinik Utama</del>/Pratama</input>
-									<br>
-									<input type="radio" name="pilihan_jawaban" value="Belum Memenuhi"> Belum memenuhi persyaratan minimal sebagai <del>Klinik Utama</del>/Pratama</input>
-									<br><br>
-									<textarea placeholder="Isian Uraian..." class="form-control" rows="3" name="uraian_penilaian_klinik"></textarea>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="usulan_rekomendasi" class="col-sm-2 col-form-label">Tindak Lanjut Bagi Klinik<span style="color:red">*</span></label>
-								<div class="col-sm-10">
-									<input type="radio" name="pilihan_jawaban_klinik" value="Disetujui" required> Disetujui</input>
-									<br>
-									<input type="radio" name="pilihan_jawaban_klinik" value="Ditolak"> Ditolak</input>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="usulan_rekomendasi" class="col-sm-2 col-form-label">Perwakilan Klinik<span style="color:red">*</span></label>
-								<div class="col-sm-8">
-									<input type="text" name="nama_perwakilan_klinik" placeholder="Nama Perwakilan Pihak Klinik" class="form-control" required>
-									<br>
-									<input type="text" name="jabatan_perwakilan_klinik" placeholder="Jabatan" class="form-control" required>
-								</div>
-							</div>
-							<!-- <div>
-								<div class="col-md-6">
-									<hr>
-									<h4>Tanda Tangan</h4>
-									<div class="text-right">
-										<button type="button" class="btn btn-default btn-sm" id="undo"><i class="fa fa-undo"></i> Undo</button>
-										<button type="button" class="btn btn-danger btn-sm" id="clear"><i class="fa fa-eraser"></i> Clear</button>
+						<?php if ($klinik['usulan_rekomendasi'] == null && $klinik['uraian_penilaian'] == null  && $klinik['tindak_lanjut_klinik'] == null  && $klinik['nama_perwakilan_pihak_klinik'] == null  && $klinik['jabatan_perwakilan_pihak_klinik'] == null) {
+							echo '<input type="hidden" name="form" value="add"/>';
+							echo "<div class='card-body'>
+								<div class='form-group row'>
+									<label for='usulan_rekomendasi' class='col-sm-2 col-form-label'>Usulan rekomendasi<span style='color:red'>*</span></label>
+									<div class='col-sm-8'>
+										<input type='radio' name='pilihan_jawaban' value='Telah Memenuhi' required> Telah memenuhi persyaratan minimal sebagai <del>Klinik Utama</del>/Pratama</input>
+										<br>
+										<input type='radio' name='pilihan_jawaban' value='Belum Memenuhi'> Belum memenuhi persyaratan minimal sebagai <del>Klinik Utama</del>/Pratama</input>
+										<br><br>
+										<textarea placeholder='Isian Uraian...' class='form-control' rows='3' name='uraian_penilaian_klinik'></textarea>
 									</div>
-									<br>
-									<form method="POST" action="<?php echo base_url('upload') ?>">
-										<div class="wrapper">
-											<canvas id="signature-pad" class="signature-pad"></canvas>
+								</div>
+								<div class='form-group row'>
+									<label for='usulan_rekomendasi' class='col-sm-2 col-form-label'>Tindak Lanjut Bagi Klinik<span style='color:red'>*</span></label>
+									<div class='col-sm-10'>
+										<input type='radio' name='pilihan_jawaban_klinik' value='Disetujui' required> Disetujui</input>
+										<br>
+										<input type='radio' name='pilihan_jawaban_klinik' value='Ditolak'> Ditolak</input>
+									</div>
+								</div>
+								<div class='form-group row'>
+									<label for='usulan_rekomendasi' class='col-sm-2 col-form-label'>Perwakilan Klinik<span style='color:red'>*</span></label>
+									<div class='col-sm-8'>
+										<input type='text' name='nama_perwakilan_klinik' placeholder='Nama Perwakilan Pihak Klinik' class='form-control' required>
+										<br>
+										<input type='text' name='jabatan_perwakilan_klinik' placeholder='Jabatan' class='form-control' required>
+									</div>
+								</div>
+							</div>";
+						} else {
+							echo '<input type="hidden" name="form" value="edit"/>';
+							echo '<div class="card-body">
+								<div class="form-group row">
+									<label for="usulan_rekomendasi" class="col-sm-2 col-form-label">Usulan rekomendasi<span style="color:red">*</span></label>
+									<div class="col-sm-8">
+										<input type="radio" name="pilihan_jawaban" ' . ($klinik['usulan_rekomendasi'] == 'Telah Memenuhi' ? 'checked' : '')  . ' value="Telah Memenuhi" required> Telah memenuhi persyaratan minimal sebagai <del>Klinik Utama</del>/Pratama</input>
+										<br>
+										<input type="radio" name="pilihan_jawaban" ' . ($klinik['usulan_rekomendasi'] == 'Belum Memenuhi' ? 'checked' : '')  . ' value="Belum Memenuhi"> Belum memenuhi persyaratan minimal sebagai <del>Klinik Utama</del>/Pratama</input>
+										<br><br>
+										<textarea placeholder="Isian Uraian..." class="form-control" rows="3" name="uraian_penilaian_klinik">' . $klinik['uraian_penilaian'] . '</textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="usulan_rekomendasi" class="col-sm-2 col-form-label">Tindak Lanjut Bagi Klinik<span style="color:red">*</span></label>
+									<div class="col-sm-10">
+										<input type="radio" name="pilihan_jawaban_klinik" ' . ($klinik['tindak_lanjut_klinik'] == 'Disetujui' ? 'checked' : '')  . ' value="Disetujui" required> Disetujui</input>
+										<br>
+										<input type="radio" name="pilihan_jawaban_klinik" ' . ($klinik['tindak_lanjut_klinik'] == 'Ditolak' ? 'checked' : '')  . ' value="Ditolak"> Ditolak</input>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="usulan_rekomendasi" class="col-sm-2 col-form-label">Perwakilan Klinik<span style=""color:red">*</span></label>
+									<div class="col-sm-8">
+										<input type="text" name="nama_perwakilan_klinik" placeholder="Nama Perwakilan Pihak Klinik" class="form-control" value="' . $klinik['nama_perwakilan_pihak_klinik'] . '" required>
+										<br>
+										<input type="text" name="jabatan_perwakilan_klinik" placeholder="Jabatan" class="form-control" value="' . $klinik['jabatan_perwakilan_pihak_klinik'] . '" required>
+									</div>
+								</div>
+							</div>';
+						} ?>
+						<!-- <div>
+									<div class='col-md-6'>
+										<hr>
+										<h4>Tanda Tangan</h4>
+										<div class='text-right'>
+											<button type="button" class="btn btn-default btn-sm" id="undo"><i class="fa fa-undo"></i> Undo</button>
+											<button type="button" class="btn btn-danger btn-sm" id="clear"><i class="fa fa-eraser"></i> Clear</button>
 										</div>
 										<br>
-										<button type="button" class="btn btn-primary btn-sm" id="save-png">Save as PNG</button>
-										<button type="button" class="btn btn-info btn-sm" id="save-jpeg">Save as JPEG</button>
-										<button type="button" class="btn btn-default btn-sm" id="save-svg">Save as SVG</button>
-										
-										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-											<div class="modal-dialog" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-														<h4 class="modal-title" id="myModalLabel">Preview Tanda Tangan</h4>
-													</div>
-													<div class="modal-body">
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-														<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Submit</button>
+										<form method="POST" action="<?php echo base_url('upload') ?>">
+											<div class="wrapper">
+												<canvas id="signature-pad" class="signature-pad"></canvas>
+											</div>
+											<br>
+											<button type="button" class="btn btn-primary btn-sm" id="save-png">Save as PNG</button>
+											<button type="button" class="btn btn-info btn-sm" id="save-jpeg">Save as JPEG</button>
+											<button type="button" class="btn btn-default btn-sm" id="save-svg">Save as SVG</button>
+											
+											<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+															<h4 class="modal-title" id="myModalLabel">Preview Tanda Tangan</h4>
+														</div>
+														<div class="modal-body">
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+															<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Submit</button>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-									</form>
-								</div>
-							</div> -->
-						</div>
+										</form>
+									</div>
+								</div> -->
 						<!-- /.card-body -->
 						<div class="col d-flex justify-content-center"></div>
 						<div class="card-footer">
 							<button type="submit" name="submit" class="btn btn-success">Simpan</button>
-							<button type="submit" href="<?php echo base_url('penilaian_pratama/nilai_kedua' . $penilaian['no_penilaian']); ?>" name="back" onclick="history.back();" class="btn btn-warning">Kembali</button>
+							<button type="submit" href="<?php echo base_url('penilaian_pratama/nilai_kedua' . $klinik['id_klinik']); ?>" name="back" onclick="history.back();" class="btn btn-warning">Kembali</button>
 							<!-- <?php echo anchor('penilaian_pratama', 'Kembali', ['class' => 'btn btn-warning']); ?> -->
 						</div>
 						<!-- /.card-footer -->
