@@ -61,22 +61,22 @@ function id_klinik_pratama()
 	}
 	return "PR" . $kd;
 }
-function id_klinik_pratama_penilaian()
-{
-	$ci = &get_instance();
-	$q = $ci->db->query('SELECT MAX(RIGHT(id_klinik,2)) AS kd_max FROM tbl_penilaian');
-	$kd = '';
-	if ($q->num_rows() > 0) {
-		foreach ($q->result() as $k) {
-			$tmp = 100;
-			$tmp = ((int) $k->kd_max) + 1;
-			$kd = sprintf('%03s', $tmp);
-		}
-	} else {
-		$kd = '001';
-	}
-	return "PR" . $kd;
-}
+// function id_klinik_pratama_penilaian()
+// {
+// 	$ci = &get_instance();
+// 	$q = $ci->db->query('SELECT MAX(RIGHT(id_klinik,2)) AS kd_max FROM tbl_penilaian');
+// 	$kd = '';
+// 	if ($q->num_rows() > 0) {
+// 		foreach ($q->result() as $k) {
+// 			$tmp = 100;
+// 			$tmp = ((int) $k->kd_max) + 1;
+// 			$kd = sprintf('%03s', $tmp);
+// 		}
+// 	} else {
+// 		$kd = '001';
+// 	}
+// 	return "PR" . $kd;
+// }
 function no_penilaian_pratama()
 {
 	$txt = 'TASK-PRTM';
@@ -109,16 +109,20 @@ function greetings()
 
 	//ambil jam dan menit
 	$jam = date('H:i');
-
+	// $salam = "alayekum";
 	//atur salam menggunakan IF
-	if ($jam > '05:30' && $jam < '10:00') {
+	if ($jam >= '00:00' && $jam < '10:00') {
 		$salam = 'Pagi';
-	} elseif ($jam >= '10:00' && $jam < '15:00') {
+	}
+
+	elseif ($jam >= '10:00' && $jam < '15:00') {
 		$salam = 'Siang';
-	} elseif ($jam < '18:00') {
+	} elseif ($jam >= '15:00' && $jam < '18:00') {
 		$salam = 'Sore';
-	} else {
+	} else if ($jam >= '18:00' && $jam < '00:00') {
 		$salam = 'Malam';
+	} else {
+		$salam = 'Datang';
 	}
 	//tampilkan pesan
 	echo 'Selamat ' . $salam;
@@ -160,29 +164,6 @@ function kode_anggota()
 
 	return $kodetampil;
 }
-function greeting()
-{
-	//ubah timezone menjadi jakarta
-	date_default_timezone_set("Asia/Jakarta");
-
-	//ambil jam dan menit
-	$jam = date('H:i');
-
-	//atur salam menggunakan IF
-	if ($jam > '05:30' && $jam < '10:00') {
-		$salam = 'Pagi';
-	} elseif ($jam >= '10:00' && $jam < '15:00') {
-		$salam = 'Siang';
-	} elseif ($jam < '18:00') {
-		$salam = 'Sore';
-	} else {
-		$salam = 'Malam';
-	}
-
-	//tampilkan pesan
-	return 'Selamat ' . $salam;
-}
-
 function hari_ini()
 {
 	$hari = date("D");

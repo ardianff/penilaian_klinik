@@ -21,11 +21,6 @@ class Model_penilaian_pratama extends CI_Model
 			'status_penilaian' => "Belum",
 		];
 		$this->db->insert('tbl_klinik', $data);
-		$data = [
-			'id_klinik' => id_klinik_pratama_penilaian(),
-			'no_penilaian' => no_penilaian_pratama(),
-		];
-		$this->db->insert('tbl_penilaian', $data);
 	}
 	function update()
 	{
@@ -90,10 +85,33 @@ class Model_penilaian_pratama extends CI_Model
 		$query = $this->db->order_by('nama_kecamatan', 'ASC')->get('tbl_kecamatan')->result();
 		return $query;
 	}
+	function get_klinik_by_id($id_klinik)
+	{
+		$query = $this->db->get_where('tbl_klinik', array('id_klinik' =>  $id_klinik));
+		return $query;
+	}
+	// function get_data_kelurahan_all()
+	// {
+	// 	$query = $this->db->order_by('nama_kelurahan', 'ASC')->get('tbl_kelurahan')->result();
+	// 	return $query;
+	// }
 	function get_data_kelurahan($id_kecamatan)
 	{
 		$query = $this->db->query("SELECT * FROM tbl_kelurahan WHERE tbl_kelurahan.id_kecamatan = '$id_kecamatan' ORDER BY tbl_kelurahan.nama_kelurahan ASC");
 		return $query->result();
+	}
+	function get_data_by_id($id_klinik)
+	{
+		$query = $this->db->get_where('tbl_klinik', array('id_klinik' =>  $id_klinik));
+		return $query;
+	}
+	function add_penilaian()
+	{
+		$data = [
+			'id_klinik' => $this->input->post('id_klinik'),
+			'no_penilaian' => no_penilaian_pratama(),
+		];
+		$this->db->insert('tbl_penilaian', $data);
 	}
 	function simpan_penilaian_pratama_pertama()
 	{
