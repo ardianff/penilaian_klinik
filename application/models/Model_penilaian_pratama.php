@@ -69,6 +69,11 @@ class Model_penilaian_pratama extends CI_Model
 		$query = $this->db->get('tbl_group_pratama')->result();
 		return $query;
 	}
+	public function get_no_penilaian()
+	{
+		$query = $this->db->get('tbl_penilaian')->result();
+		return $query;
+	}
 	public function get_question_next()
 	{
 		$query = $this->db->query("SELECT tbl_group_pratama.group_name,tbl_deskripsi_penilaian_pratama.id_deskripsi, tbl_deskripsi_penilaian_pratama.kriteria_penilaian_pratama, tbl_deskripsi_penilaian_pratama.jumlah_minimal_penilaian_pratama, tbl_deskripsi_penilaian_pratama.satuan_penilaian_pratama FROM tbl_deskripsi_penilaian_pratama INNER JOIN tbl_group_pratama ON tbl_group_pratama.id_group = tbl_deskripsi_penilaian_pratama.id_group")->result();
@@ -107,8 +112,9 @@ class Model_penilaian_pratama extends CI_Model
 	}
 	function add_penilaian()
 	{
+		$id_klinik = $this->uri->segment(3);
 		$data = [
-			'id_klinik' => $this->input->post('id_klinik'),
+			'id_klinik' => 'PR002',
 			'no_penilaian' => no_penilaian_pratama(),
 		];
 		$this->db->insert('tbl_penilaian', $data);

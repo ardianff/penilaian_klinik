@@ -5,10 +5,10 @@
 <script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/adminlte.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
-<script src="<?php echo base_url(); ?>assets/admin-lte/plugins/chart.js/Chart.min.js"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/admin-lte/plugins/chart.js/Chart.min.js"></script> -->
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/demo.js"></script>
-<script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/pages/dashboard3.js"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/demo.js"></script> -->
+<!-- <script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/pages/dashboard3.js"></script> -->
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables  & Plugins -->
@@ -57,7 +57,7 @@
 	var base_url = "<?= base_url(); ?>";
 </script>
 <?php
-$url = base_url('penilaian_pratama/edit/' . $id_klinik['id_klinik']);
+$url = base_url('penilaian_pratama/edit/' . $klinik = $this->uri->segment(3));
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 if ($url == $actual_link) {
 	echo '<script>var id_kel = ' . $id_klinik['id_kelurahan_klinik'] . '</script>';
