@@ -110,15 +110,15 @@ class Model_penilaian_pratama extends CI_Model
 		$query = $this->db->get_where('tbl_klinik', array('id_klinik' =>  $id_klinik));
 		return $query;
 	}
-	function add_penilaian()
-	{
-		$id_klinik = $this->uri->segment(3);
-		$data = [
-			'id_klinik' => 'PR002',
-			'no_penilaian' => no_penilaian_pratama(),
-		];
-		$this->db->insert('tbl_penilaian', $data);
-	}
+	// function add_penilaian()
+	// {
+	// 	$id_klinik = $this->uri->segment(3);
+	// 	$data = [
+	// 		'id_klinik' => 'PR002',
+	// 		'no_penilaian' => no_penilaian_pratama(),
+	// 	];
+	// 	$this->db->insert('tbl_penilaian', $data);
+	// }
 	function simpan_penilaian_pratama_pertama()
 	{
 		$rincian = $_POST['rincian'];
@@ -140,11 +140,41 @@ class Model_penilaian_pratama extends CI_Model
 			));
 			$i++;
 		}
+		// print_r($data);
 		$this->db->insert_batch('tbl_penilaian_pratama_form_satu', $data);
+	}
+	function update_penilaian_pratama_pertama()
+	{
+		$id_penilaian = $_POST['id_penilaian'];
+		$rincian = $_POST['rincian'];
+		$no_penilaian = $_POST['no_penilaian'];
+		// var_dump($id_penilaian);
+		// die();
+		$id_klinik = $_POST['id_klinik'];
+		$jawab_hasil = $_POST['hasil'];
+		$jawab_hasil_verif = $_POST['hasil_verifikasi'];
+		$catatan_penilaian = $_POST['catatan_penilaian'];
+		$data = array();
+		$i = 1;
+		foreach ($rincian as $rinci) {
+			array_push($data, array(
+				'id_rincian_penilaian' => $rinci,
+				'id_penilaian' => $id_penilaian,
+				'id_klinik' => $id_klinik,
+				'no_penilaian' => $no_penilaian,
+				'catatan_hasil_penilaian' => $catatan_penilaian[$i],
+				'jawab_hasil' => $jawab_hasil[$i],
+				'jawab_hasil_verif' => $jawab_hasil_verif[$i]
+			));
+			$i++;
+		}
+		$input_db = $this->db->update_batch('tbl_penilaian_pratama_form_satu', $data, 'id_rincian_penilaian');
+		print_r($this->db->last_query($input_db));
 	}
 	function simpan_penilaian_pratama_kedua()
 	{
 		$kriteria = $_POST['kriteria'];
+		$id_klinik = $_POST['id_klinik'];
 		$no_penilaian = $_POST['no_penilaian'];
 		$hasil_penilaian = $_POST['hasil_nilai'];
 		$jumlah_ketersediaan = $_POST['jumlah_ketersediaan'];
@@ -156,6 +186,7 @@ class Model_penilaian_pratama extends CI_Model
 		foreach ($kriteria as $kt) {
 			array_push($data, array(
 				'id_deskripsi' => $kt,
+				'id_klinik' => $id_klinik,
 				'no_penilaian' => $no_penilaian,
 				'hasil_penilaian' => $hasil_penilaian[$i],
 				'jumlah_ketersediaan' => $jumlah_ketersediaan[$i],
