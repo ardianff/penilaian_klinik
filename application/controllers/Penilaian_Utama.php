@@ -262,20 +262,55 @@ class Penilaian_Utama extends CI_Controller
 			->join('tbl_rincian_penilaian_utama', 'tbl_rincian_penilaian_utama.id_rincian_penilaian = tbl_penilaian_utama_form_satu.id_rincian_penilaian')
 			->get_where('tbl_penilaian_utama_form_satu', array('id_klinik' => $id_klinik))
 			->result();
+		$data['peralatanklinik'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+			->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+			->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+			->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '1'))->result();
+		$data['bahanhabis'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+			->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+			->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+			->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '2'))->result();
+		// $data['perlengkapan'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+		// 	->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+		// 	->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+		// 	->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '3'))->result();
+		$data['meubelair'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+			->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+			->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+			->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '3'))->result();
+		$data['pencatatan'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+			->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+			->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+			->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '4'))->result();
+		$data['ruangasi'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+			->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+			->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+			->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '5'))->result();
 		$data['penilaian'] = $this->db
 			->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik')
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=k.id_kecamatan_klinik')
 			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=k.id_kelurahan_klinik')
-			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Utama'])
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'utama'])
 			->row_array();
-		$data['title'] = 'Cetak Penilaian Klinik Utama ' . $data['penilaian']['nama_klinik'] . '';
+		$cek_data = $this->db
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
+			->get_where('tbl_klinik', ['id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'utama'])
+			->row_array();
+		$data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik,
+			pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik')
+			->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
+			->join('tbl_penilaian_utama_form_ketiga as pfk', 'pfk.id_klinik = k.id_klinik', 'left')
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'utama'])
+			->row_array();
+		$data['title'] = 'Cetak Penilaian Klinik utama' . $data['penilaian']['nama_klinik'] . '';
 		$data['anggota'] = $this->Model_penilaian_utama->get_anggota();
 		$data['data'] = $this->Model_penilaian_utama->get_data_utama();
-		if ($data['penilaian']['status_penilaian'] == "Belum") {
+		if ($cek_data['status_penilaian'] == "Belum") {
 			$this->session->set_flashdata(
 				'nilai',
 				'<div class="alert alert-danger alert-dismissible fade show">
-				Tidak dapat mencetak. <b>' . $data['penilaian']['nama_klinik'] . '</b> Belum dinilai!
+				Tidak dapat mencetak. <b>' . $cek_data['nama_klinik'] . '</b> Belum dinilai!
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
@@ -294,20 +329,55 @@ class Penilaian_Utama extends CI_Controller
 			->join('tbl_rincian_penilaian_utama', 'tbl_rincian_penilaian_utama.id_rincian_penilaian = tbl_penilaian_utama_form_satu.id_rincian_penilaian')
 			->get_where('tbl_penilaian_utama_form_satu', array('id_klinik' => $id_klinik))
 			->result();
+		$data['peralatanklinik'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+			->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+			->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+			->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '1'))->result();
+		$data['bahanhabis'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+			->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+			->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+			->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '2'))->result();
+		// $data['perlengkapan'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+		// 	->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+		// 	->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+		// 	->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '3'))->result();
+		$data['meubelair'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+			->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+			->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+			->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '3'))->result();
+		$data['pencatatan'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+			->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+			->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+			->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '4'))->result();
+		$data['ruangasi'] = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_utama,pp.jumlah_minimal_penilaian_utama,pp.satuan_penilaian_utama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+			->join('tbl_group_utama gp', ' gp.id_group = pp.id_group')
+			->join('tbl_penilaian_utama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+			->get_where('tbl_deskripsi_penilaian_utama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '5'))->result();
 		$data['penilaian'] = $this->db
 			->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik')
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=k.id_kecamatan_klinik')
 			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=k.id_kelurahan_klinik')
-			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Utama'])
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'utama'])
+			->row_array();
+		$cek_data = $this->db
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
+			->get_where('tbl_klinik', ['id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'utama'])
+			->row_array();
+		$data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik,
+			pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik')
+			->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
+			->join('tbl_penilaian_utama_form_ketiga as pfk', 'pfk.id_klinik = k.id_klinik', 'left')
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'utama'])
 			->row_array();
 		$data['title'] = 'Export PDF Berita Acara ' . $data['penilaian']['nama_klinik'] . '';
 		$data['data'] = $this->Model_penilaian_utama->get_data_utama();
 		$data['anggota'] = $this->Model_penilaian_utama->get_anggota();
-		if ($data['penilaian']['status_penilaian'] == "Belum") {
+		if ($cek_data['status_penilaian'] == "Belum") {
 			$this->session->set_flashdata(
 				'nilai',
 				'<div class="alert alert-danger alert-dismissible fade show">
-				Tidak dapat Export ke PDF. <b>' . $data['penilaian']['nama_klinik'] . '</b> Belum dinilai!
+				Tidak dapat Export ke PDF. <b>' . $cek_data['nama_klinik'] . '</b> Belum dinilai!
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>

@@ -62,7 +62,7 @@
 											<td class="text-center"><?php echo $row->kemampuan_pelayanan; ?></td>
 											<td class="text-center"><?php echo $row->jenis_pelayanan_klinik; ?></td>
 											<td class="text-left"><?php echo $row->alamat_klinik; ?><br>Kec. <?php echo $row->nama_kecamatan; ?>, Kel. <?php echo $row->nama_kelurahan; ?></td>
-											<td class="text-left"><?php echo $row->nama_anggota1; ?>,
+											<td class="text-justify"><?php echo $row->nama_anggota1; ?>,
 												<br><?php echo $row->nama_anggota2; ?>,
 												<br><?php echo $row->nama_anggota3; ?>,
 												<br><?php echo $row->nama_anggota4; ?>

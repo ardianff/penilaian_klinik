@@ -3,9 +3,9 @@
 	<div class="card card-outline card-primary">
 		<div class="card-header text-center">
 			<h1><b>Sistem Penilaian Klinik</b></h1>
+			<img src="<?php echo base_url(); ?>/assets/img/pemkot.png" height="auto" width="auto" alt="Image" class="login-box-msg center">
 		</div>
 		<div class="card-body">
-			<!-- <img src="https://semarangkota.go.id/assets/img/logo-icon.png" height="auto" width="auto" alt="Image" class="login-box-msg center"> -->
 			<?= $this->session->flashdata('message') ?>
 			<hr class="solid">
 			<?php echo form_open('auth/check_login', 'class="form-signin"'); ?>

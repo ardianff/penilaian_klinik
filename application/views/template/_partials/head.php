@@ -42,11 +42,34 @@
 		height: 260px;
 	}
 
-	.logodisp {
-		float: left;
-		position: relative;
-		width: 80px;
-		height: 80px;
-		margin: .5rem 0 0 .5rem;
+	.main-wrapper {
+		width: 100%;
+		box-sizing: border-box;
+		border: 1px solid #fff;
+		padding: 0 30px;
+	}
+
+	.responsive-table {
+		margin-right: -30px;
+		margin-left: -30px;
+		overflow-x: auto;
+	}
+
+	.responsive-table>table {
+		width: 100%;
+		border-collapse: collapse;
+		display: block;
+		-webkit-overflow-scrolling: touch;
+		margin-left: 30px;
+	}
+
+	.responsive-table>table td,
+	th {
+		border: 1px solid #cccccc;
+		padding: 8px;
+		font-family: Arial;
+		font-size: 16px;
 	}
 </style>
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.signature.css">

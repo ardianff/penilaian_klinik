@@ -67,7 +67,15 @@
 										<input type="text" name="jabatan_perwakilan_klinik" placeholder="Jabatan" class="form-control" required>
 									</div>
 								</div>
-							</div>';
+							</div>
+							<div class="col-md-12">
+							<label class="" for="">Tanda Tangan:</label>
+							<br/>
+							<div id="sig" ></div>
+							<br/>
+							<button id="clear">Hapus Tanda Tangan</button>
+							<textarea id="signature64" name="signed" style="display: none"></textarea>
+						</div>';
 						} else {
 							echo '<input type="hidden" name="form" value="edit"/>';
 							echo '<div class="card-body">
@@ -98,18 +106,17 @@
 										<input type="text" name="jabatan_perwakilan_klinik" placeholder="Jabatan" class="form-control" value="' . $klinik['jabatan_perwakilan_pihak_klinik'] . '" required>
 									</div>
 								</div>
-							</div>';
-						} ?>
-						<!-- <div>
-									<div class='col-md-6'>
+							</div>
+							<div>
+									<div class="col-md-6">
 										<hr>
 										<h4>Tanda Tangan</h4>
-										<div class='text-right'>
+										<div class="text-right">
 											<button type="button" class="btn btn-default btn-sm" id="undo"><i class="fa fa-undo"></i> Undo</button>
 											<button type="button" class="btn btn-danger btn-sm" id="clear"><i class="fa fa-eraser"></i> Clear</button>
 										</div>
 										<br>
-										<form method="POST" action="<?php echo base_url('upload') ?>">
+										<form method="POST" action="">
 											<div class="wrapper">
 												<canvas id="signature-pad" class="signature-pad"></canvas>
 											</div>
@@ -136,7 +143,9 @@
 											</div>
 										</form>
 									</div>
-								</div> -->
+								</div>';
+						} ?>
+
 						<!-- /.card-body -->
 						<div class="text-center">
 							<div class="card-footer">

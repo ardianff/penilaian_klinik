@@ -8,6 +8,7 @@
 	<title>Sistem Penilaian Klinik | <?= $title; ?></title>
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.png" type="image/x-icon" />
 	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+
 	<style>
 		.text-center {
 			text-align: center !important
@@ -304,75 +305,537 @@
 		</li>
 		<li class="text-bap">
 			Berdasarkan hasil pengecekan lapangan ke klinik dilakukan verifikasi sebagai berikut :
-		</li>
-	</ol>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
-				<div class="card">
-					<div class="card-header">
-					</div>
-					<!-- /.card-header -->
-					<div class="card-body">
-						<table border="1" class="table-content" width="100%" height="100%">
-							<thead>
-								<tr class="tr-content">
-									<th class="text-center th-content" rowspan="2">No</th>
-									<th class="text-center th-content" rowspan="2">Rincian Penilaian</th>
-									<th class="text-center th-content" th-content colspan="2">Hasil</th>
-									<th class="text-center th-content" rowspan="2">Keterangan</th>
-									<th class="text-center th-content" colspan="2">Hasil Verifikasi Persyaratan Minimal
-										**</th>
-									<th class="text-center th-content" rowspan="2">Catatan</th>
-								</tr>
-								<tr class="tr-content">
-									<td class="text-center td-content">Ya</td>
-									<td class="text-center td-content">Tidak</td>
-									<td class="text-center td-content">Memenuhi Syarat</td>
-									<td class="text-center td-content">Tidak Memenuhi Syarat</td>
-								</tr>
-							</thead>
-							<tbody>
-								<?php
-								$no = 1;
-								foreach ($penilaiansatu as $row) : ?>
-									<tr class="tr-content">
-										<td class="text-center td-content"><?php echo $no; ?></td>
-										<td class="text-justify td-content"><?php echo $row->rincian_penilaian; ?></td>
-										<?php if ($row->jawab_hasil == "Ya") {
-											echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
-											<td class='text-center td-content'><span></span></td>";
-										} else {
-											echo "<td class='text-center td-content'><span></span></td>
-											<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
-										}
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-header">
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body">
+								<table border="1" class="table-content" width="100%" height="100%">
+									<thead>
+										<tr class="tr-content">
+											<th class="text-center th-content" rowspan="2">No</th>
+											<th class="text-center th-content" rowspan="2">Rincian Penilaian</th>
+											<th class="text-center th-content" th-content colspan="2">Hasil</th>
+											<th class="text-center th-content" rowspan="2">Keterangan</th>
+											<th class="text-center th-content" colspan="2">Hasil Verifikasi Persyaratan Minimal
+												**</th>
+											<th class="text-center th-content" rowspan="2">Catatan</th>
+										</tr>
+										<tr class="tr-content">
+											<td class="text-center td-content">Ya</td>
+											<td class="text-center td-content">Tidak</td>
+											<td class="text-center td-content">Memenuhi Syarat</td>
+											<td class="text-center td-content">Tidak Memenuhi Syarat</td>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$no = 1;
+										foreach ($penilaiansatu as $row) : ?>
+											<tr class="tr-content">
+												<td class="text-center td-content"><?php echo $no; ?></td>
+												<td class="text-justify td-content"><?php echo $row->rincian_penilaian; ?></td>
+												<?php if ($row->jawab_hasil == "Ya") {
+													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+														<td class='text-center td-content'><span></span></td>";
+												} else {
+													echo "<td class='text-center td-content'><span></span></td>
+														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
+												}
+												?>
+												<td class="text-justify td-content"><?php echo $row->keterangan_penilaian; ?></td>
+												<?php if ($row->jawab_hasil_verif == "Ya") {
+													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+														<td class='text-center td-content'><span></span></td>";
+												} else {
+													echo "<td class='text-center td-content'><span></span></td>
+														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
+												}
+												?>
+												<td class="text-justify td-content"><?php echo $row->catatan_hasil_penilaian; ?>
+												</td>
+											</tr>
+										<?php $no++;
+										endforeach;
 										?>
-										<td class="text-justify td-content"><?php echo $row->keterangan_penilaian; ?></td>
-										<?php if ($row->jawab_hasil_verif == "Ya") {
-											echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
-											<td class='text-center td-content'><span></span></td>";
-										} else {
-											echo "<td class='text-center td-content'><span></span></td>
-											<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
-										}
+									</tbody>
+								</table>
+								<br>
+								<table border="1" class="table-content" width="100%" height="100%">
+									<thead>
+										<tr class="tr-content">
+											<th class="text-center th-content" colspan="9	">Peralatan klinik</th>
+										</tr>
+										<tr class="tr-content">
+											<th class="text-center th-content" rowspan="2">No</th>
+											<th class="text-center th-content" rowspan="2">Kriteria</th>
+											<th class="text-center th-content" th-content colspan="2">Standar Minimal</th>
+											<th class="text-center th-content" th-content colspan="2">Hasil</th>
+											<th class="text-center th-content" th-content colspan="3">Keterangan</th>
+										</tr>
+										<tr class="tr-content">
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Ya</td>
+											<td class="text-center td-content">Tidak</td>
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Catatan</td>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$no = 1;
+										foreach ($peralatanklinik as $row) : ?>
+											<tr class="tr-content">
+												<td class="text-center td-content"><?php echo $no; ?></td>
+												<td class="text-justify td-content"><?php echo $row->kriteria_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian_utama; ?></td>
+												<?php if ($row->hasil_penilaian == "Ya") {
+													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+														<td class='text-center td-content'><span></span></td>";
+												} else {
+													echo "<td class='text-center td-content'><span></span></td>
+														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
+												}
+												?>
+												<td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+												<td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+												</td>
+											</tr>
+										<?php $no++;
+										endforeach;
 										?>
-										<td class="text-justify td-content"><?php echo $row->catatan_hasil_penilaian; ?>
-										</td>
-									</tr>
-								<?php $no++;
-								endforeach;
-								?>
-							</tbody>
-						</table>
-					</div>
-					<!-- /.card-body -->
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col-->
-		</div>
-	</div>
 
+									</tbody>
+								</table>
+								<br>
+								<table border="1" class="table-content" width="100%" height="100%">
+									<thead>
+										<tr class="tr-content">
+											<th class="text-center th-content" colspan="9">Bahan Habis Pakai</th>
+										</tr>
+										<tr class="tr-content">
+											<th class="text-center th-content" rowspan="2">No</th>
+											<th class="text-center th-content" rowspan="2">Kriteria</th>
+											<th class="text-center th-content" th-content colspan="2">Standar Minimal</th>
+											<th class="text-center th-content" th-content colspan="2">Hasil</th>
+											<th class="text-center th-content" th-content colspan="3">Keterangan</th>
+										</tr>
+										<tr class="tr-content">
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Ya</td>
+											<td class="text-center td-content">Tidak</td>
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Catatan</td>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$nomber = $no + 1;
+										foreach ($bahanhabis as $row) : ?>
+											<tr class="tr-content">
+												<td class="text-center td-content"><?php echo $nomber; ?></td>
+												<td class="text-justify td-content"><?php echo $row->kriteria_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian_utama; ?></td>
+												<?php if ($row->hasil_penilaian == "Ya") {
+													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+														<td class='text-center td-content'><span></span></td>";
+												} else {
+													echo "<td class='text-center td-content'><span></span></td>
+														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
+												}
+												?>
+												<td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+												<td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+												</td>
+											</tr>
+										<?php $nomber++;
+										endforeach;
+										?>
+									</tbody>
+								</table>
+								<!-- <br>
+								<table border="1" class="table-content" width="100%" height="100%">
+									<thead>
+										<tr class="tr-content">
+											<th class="text-center th-content" colspan="9">Perlengkapan</th>
+										</tr>
+										<tr class="tr-content">
+											<th class="text-center th-content" rowspan="2">No</th>
+											<th class="text-center th-content" rowspan="2">Kriteria</th>
+											<th class="text-center th-content" th-content colspan="2">Standar Minimal</th>
+											<th class="text-center th-content" th-content colspan="2">Hasil</th>
+											<th class="text-center th-content" th-content colspan="3">Keterangan</th>
+										</tr>
+										<tr class="tr-content">
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Ya</td>
+											<td class="text-center td-content">Tidak</td>
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Catatan</td>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$nomer = $nomber + 1;
+										foreach ($perlengkapan as $row) : ?>
+											<tr class="tr-content">
+												<td class="text-center td-content"><?php echo $nomer; ?></td>
+												<td class="text-justify td-content"><?php echo $row->kriteria_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian_utama; ?></td>
+												<?php if ($row->hasil_penilaian == "Ya") {
+													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+														<td class='text-center td-content'><span></span></td>";
+												} else {
+													echo "<td class='text-center td-content'><span></span></td>
+														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
+												}
+												?>
+												<td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+												<td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+												</td>
+											</tr>
+										<?php $nomer++;
+										endforeach;
+										?>
+									</tbody>
+								</table> -->
+								<br>
+								<table border="1" class="table-content" width="100%" height="100%">
+									<thead>
+										<tr class="tr-content">
+											<th class="text-center th-content" colspan="9">Meubelair</th>
+										</tr>
+										<tr class="tr-content">
+											<th class="text-center th-content" rowspan="2">No</th>
+											<th class="text-center th-content" rowspan="2">Kriteria</th>
+											<th class="text-center th-content" th-content colspan="2">Standar Minimal</th>
+											<th class="text-center th-content" th-content colspan="2">Hasil</th>
+											<th class="text-center th-content" th-content colspan="3">Keterangan</th>
+										</tr>
+										<tr class="tr-content">
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Ya</td>
+											<td class="text-center td-content">Tidak</td>
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Catatan</td>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$num = $nomer + 1;
+										foreach ($meubelair as $row) : ?>
+											<tr class="tr-content">
+												<td class="text-center td-content"><?php echo $num; ?></td>
+												<td class="text-justify td-content"><?php echo $row->kriteria_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian_utama; ?></td>
+												<?php if ($row->hasil_penilaian == "Ya") {
+													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+														<td class='text-center td-content'><span></span></td>";
+												} else {
+													echo "<td class='text-center td-content'><span></span></td>
+														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
+												}
+												?>
+												<td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+												<td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+												</td>
+											</tr>
+										<?php $num++;
+										endforeach;
+										?>
+									</tbody>
+								</table>
+								<br>
+								<table border="1" class="table-content" width="100%" height="100%">
+									<thead>
+										<tr class="tr-content">
+											<th class="text-center th-content" colspan="9">Pencatatan dan Pelaporan</th>
+										</tr>
+										<tr class="tr-content">
+											<th class="text-center th-content" rowspan="2">No</th>
+											<th class="text-center th-content" rowspan="2">Kriteria</th>
+											<th class="text-center th-content" th-content colspan="2">Standar Minimal</th>
+											<th class="text-center th-content" th-content colspan="2">Hasil</th>
+											<th class="text-center th-content" th-content colspan="3">Keterangan</th>
+										</tr>
+										<tr class="tr-content">
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Ya</td>
+											<td class="text-center td-content">Tidak</td>
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Catatan</td>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$nums = $num + 1;
+										foreach ($pencatatan as $row) : ?>
+											<tr class="tr-content">
+												<td class="text-center td-content"><?php echo $nums; ?></td>
+												<td class="text-justify td-content"><?php echo $row->kriteria_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian_utama; ?></td>
+												<?php if ($row->hasil_penilaian == "Ya") {
+													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+														<td class='text-center td-content'><span></span></td>";
+												} else {
+													echo "<td class='text-center td-content'><span></span></td>
+														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
+												}
+												?>
+												<td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+												<td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+												</td>
+											</tr>
+										<?php $nums++;
+										endforeach;
+										?>
+									</tbody>
+								</table>
+								<br>
+								<table border="1" class="table-content" width="100%" height="100%">
+									<thead>
+										<tr class="tr-content">
+											<th class="text-center th-content" colspan="9">Peralatan Klinik Yang Memiliki Ruang ASI</th>
+										</tr>
+										<tr class="tr-content">
+											<th class="text-center th-content" rowspan="2">No</th>
+											<th class="text-center th-content" rowspan="2">Kriteria</th>
+											<th class="text-center th-content" th-content colspan="2">Standar Minimal</th>
+											<th class="text-center th-content" th-content colspan="2">Hasil</th>
+											<th class="text-center th-content" th-content colspan="3">Keterangan</th>
+										</tr>
+										<tr class="tr-content">
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Ya</td>
+											<td class="text-center td-content">Tidak</td>
+											<td class="text-center td-content">Jumlah</td>
+											<td class="text-center td-content">Satuan</td>
+											<td class="text-center td-content">Catatan</td>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$nom = $nums + 1;
+										foreach ($ruangasi as $row) : ?>
+											<tr class="tr-content">
+												<td class="text-center td-content"><?php echo $nom; ?></td>
+												<td class="text-justify td-content"><?php echo $row->kriteria_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian_utama; ?></td>
+												<?php if ($row->hasil_penilaian == "Ya") {
+													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+														<td class='text-center td-content'><span></span></td>";
+												} else {
+													echo "<td class='text-center td-content'><span></span></td>
+														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
+												}
+												?>
+												<td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
+												<td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+												<td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+												</td>
+											</tr>
+										<?php $nom++;
+										endforeach;
+										?>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+					</div>
+					<!-- /.col-->
+				</div>
+			</div>
+		</li>
+		<br>
+		<li class="text-bap">
+			Usulan Rekomendasi
+			<br>Pilihan Jawaban :
+			<?php if ($klinik['usulan_rekomendasi'] == 'Telah Memenuhi')
+				echo '<ol>
+				<li>Telah Memenuhi</li>
+				<li><del>Belum Memenuhi</del></li>
+			</ol>';
+			else {
+				echo '<ol>
+				<li><del>Telah Memenuhi</del></li>
+				<li>Belum Memenuhi</li>
+			</ol>';
+			}
+			?>
+			<p style="text-align:justify"><?php echo $klinik['uraian_penilaian'] ?></p>
+		</li>
+		<li class="text-bap">
+			Tindak Lanjut bagi Klinik<br>
+			Pilihan Jawaban : <b><?php echo $klinik['tindak_lanjut_klinik'] ?></b>
+			<ul style="list-style-type:disc">
+				<?php if ($klinik['tindak_lanjut_klinik'] == 'Disetujui') {
+					echo '
+				<li>
+					Bagi Klinik Disetujui
+					<ol>
+						<li>
+							Klinik Wajib melakukan registrasi Klinik paling lambat 3 (tiga) bulan sejak Sertifikat Standar Usaha Klinik diperoleh.
+						</li>
+						<li>
+							Klinik menyelenggarakan pelayanan kesehatan Klinik sesuai standar yang berlaku.
+						</li>
+						<li>
+							Klinik melaporkan hasil kegiatan pelayanan kesehatan Klinik sesuai ketentuan yang berlaku.
+						</li>
+						<li>
+							Klinik melakukan update/pembaharuan data jika terjadi perubahan data Klinik.
+						</li>
+					</ol>
+				</li>
+				<li>
+					<del>Bagi Klinik yang ditolak</del>
+					<ol>
+						<li>
+							<del>Klinik <b>SEGERA</b> memenuhi persyaratan dan mengajukan permohonan Sertifikat Standar Usaha Klinik kembali.</del>
+						</li>
+					</ol>
+				</li>';
+				} else {
+					echo '
+					<li>
+						<del>Bagi Klinik Disetujui</del>
+						<ol>
+							<li>
+								<del>Klinik Wajib melakukan registrasi Klinik paling lambat 3 (tiga) bulan sejak Sertifikat Standar Usaha Klinik diperoleh.</del>
+							</li>
+							<li>
+								<del>Klinik menyelenggarakan pelayanan kesehatan Klinik sesuai standar yang berlaku.</del>
+							</li>
+							<li>
+								<del>Klinik melaporkan hasil kegiatan pelayanan kesehatan Klinik sesuai ketentuan yang berlaku.</del>
+							</li>
+							<li>
+								<del>Klinik melakukan update/pembaharuan data jika terjadi perubahan data Klinik.</del>
+							</li>
+						</ol>
+					</li>
+					<li>
+						Bagi Klinik yang ditolak
+						<ol>
+							<li>
+								Klinik <b>SEGERA</b> memenuhi persyaratan dan mengajukan permohonan Sertifikat Standar Usaha Klinik kembali.
+							</li>
+						</ol>
+					</li>';
+				}
+				?>
+			</ul>
+		</li>
+		<li>
+			Selama proses penilaian kesesuaian Klinik berlangsung, diketahui dan dibenarkan oleh pihak perwaklian Klinik.
+			<table border="0" class="class=" text-bap"">
+				<tbody>
+					<tr>
+						<td>Nama</td>
+						<td>:</td>
+						<td><?php echo $klinik['nama_perwakilan_pihak_klinik'] ?></td>
+					</tr>
+					<tr>
+						<td>Jabatan</td>
+						<td>:</td>
+						<td><?php echo $klinik['jabatan_perwakilan_pihak_klinik'] ?></td>
+					</tr>
+				</tbody>
+			</table>
+		</li>
+		<br>
+		<br>
+		<table border="0">
+			<thead>
+				<td width="10%">Tim Penilaian Kesesuaian Klinik</td>
+				<td width="5%"></td>
+				<td colspan="2"></td>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="2">1. <?php echo $penilaian['nama_anggota1'] ?></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="2">2. <?php echo $penilaian['nama_anggota2'] ?></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>3. <?php echo $penilaian['nama_anggota3'] ?></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>4. <?php echo $penilaian['nama_anggota4'] ?></td>
+					<td></td>
+					<td colspan="2" class="text-center"> Yang membuat Berita Acara</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="text-center"><img src="<?php echo base_url(); ?>/assets/img/dummy-ttd.png" width="70px" height="70px"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td colspan="2" class="text-center">( Suryati, SKM )</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="text-center">NIP. 198111022009032003</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="text-center">Mengetahui,</td>
+				</tr>
+				<tr>
+					<td class="text-center" colspan="4">An. Kepala Dinas Kesehatan</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="text-center">Kepala Bidang SDK</td>
+				</tr>
+				<tr height="100px">
+					<td colspan="4" class="text-center"><img src="<?php echo base_url(); ?>/assets/img/dummy-ttd.png" width="70px" height="70px"></td>
+				</tr>
+				<tr>
+					<td width="20%" class="text-center" colspan="4">dr. Noegroho Edy Rijanto, MKes</td>
+				</tr>
+			</tbody>
+			<tbottom>
+		</table>
+	</ol>
 	<script>
 		window.print();
 	</script>

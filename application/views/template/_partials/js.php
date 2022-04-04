@@ -68,10 +68,23 @@ if ($url_satu == $actual_link || $url_dua == $actual_link) {
 ?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/get-kelurahan.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/function.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.signature.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/signature-pad.js"></script> -->
-<!-- Page specific script -->
+<script type="text/javascript">
+	var sig = $('#sig').signature({
+		syncField: '#signature64',
+		syncFormat: 'PNG'
+	});
+	$('#clear').click(function(e) {
+		e.preventDefault();
+		sig.signature('clear');
+		$("#signature64").val('');
+	});
+</script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#example1").DataTable({
