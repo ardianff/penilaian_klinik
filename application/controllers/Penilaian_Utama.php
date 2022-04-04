@@ -255,4 +255,71 @@ class Penilaian_Utama extends CI_Controller
 			}
 		}
 	}
+	function print()
+	{
+		$id_klinik = $this->uri->segment(3);
+		$data['penilaiansatu'] = $this->db
+			->join('tbl_rincian_penilaian_utama', 'tbl_rincian_penilaian_utama.id_rincian_penilaian = tbl_penilaian_utama_form_satu.id_rincian_penilaian')
+			->get_where('tbl_penilaian_utama_form_satu', array('id_klinik' => $id_klinik))
+			->result();
+		$data['penilaian'] = $this->db
+			->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik')
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=k.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=k.id_kelurahan_klinik')
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Utama'])
+			->row_array();
+		$data['title'] = 'Cetak Penilaian Klinik Utama ' . $data['penilaian']['nama_klinik'] . '';
+		$data['anggota'] = $this->Model_penilaian_utama->get_anggota();
+		$data['data'] = $this->Model_penilaian_utama->get_data_utama();
+		if ($data['penilaian']['status_penilaian'] == "Belum") {
+			$this->session->set_flashdata(
+				'nilai',
+				'<div class="alert alert-danger alert-dismissible fade show">
+				Tidak dapat mencetak. <b>' . $data['penilaian']['nama_klinik'] . '</b> Belum dinilai!
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>'
+			);
+			redirect('penilaian_utama');
+		} else {
+
+			$this->load->view('penilaian/utama/print', $data);
+		}
+	}
+	function export_pdf()
+	{
+		$id_klinik = $this->uri->segment(3);
+		$data['penilaiansatu'] = $this->db
+			->join('tbl_rincian_penilaian_utama', 'tbl_rincian_penilaian_utama.id_rincian_penilaian = tbl_penilaian_utama_form_satu.id_rincian_penilaian')
+			->get_where('tbl_penilaian_utama_form_satu', array('id_klinik' => $id_klinik))
+			->result();
+		$data['penilaian'] = $this->db
+			->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik')
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=k.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=k.id_kelurahan_klinik')
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Utama'])
+			->row_array();
+		$data['title'] = 'Export PDF Berita Acara ' . $data['penilaian']['nama_klinik'] . '';
+		$data['data'] = $this->Model_penilaian_utama->get_data_utama();
+		$data['anggota'] = $this->Model_penilaian_utama->get_anggota();
+		if ($data['penilaian']['status_penilaian'] == "Belum") {
+			$this->session->set_flashdata(
+				'nilai',
+				'<div class="alert alert-danger alert-dismissible fade show">
+				Tidak dapat Export ke PDF. <b>' . $data['penilaian']['nama_klinik'] . '</b> Belum dinilai!
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>'
+			);
+			redirect('penilaian_utama');
+		} else {
+			$mpdf = new \Mpdf\Mpdf(['orientation' => 'P', 'format' => 'Legal', 'allow_charset_conversion' => true]);
+			$mpdf->debug = true;
+			$html = $this->load->view('penilaian/utama/pdf', $data, true);
+			$mpdf->WriteHTML($html);
+			$mpdf->Output('Berita Acara ' . $data['penilaian']['nama_klinik'] . '.pdf', 'I');
+		}
+	}
 }

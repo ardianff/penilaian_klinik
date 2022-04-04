@@ -133,11 +133,8 @@ class Model_penilaian_pratama extends CI_Model
 	}
 	function update_penilaian_pratama_pertama()
 	{
-		$id_penilaian = $_POST['id_penilaian'];
 		$rincian = $_POST['rincian'];
 		$no_penilaian = $_POST['no_penilaian'];
-		// var_dump($id_penilaian);
-		// die();
 		$id_klinik = $_POST['id_klinik'];
 		$jawab_hasil = $_POST['hasil'];
 		$jawab_hasil_verif = $_POST['hasil_verifikasi'];
@@ -145,19 +142,19 @@ class Model_penilaian_pratama extends CI_Model
 		$data = array();
 		$i = 1;
 		foreach ($rincian as $rinci) {
-			array_push($data, array(
+			$data = array(
 				'id_rincian_penilaian' => $rinci,
-				'id_penilaian' => $id_penilaian,
 				'id_klinik' => $id_klinik,
 				'no_penilaian' => $no_penilaian,
 				'catatan_hasil_penilaian' => $catatan_penilaian[$i],
 				'jawab_hasil' => $jawab_hasil[$i],
 				'jawab_hasil_verif' => $jawab_hasil_verif[$i]
-			));
+			);
 			$i++;
+			$array = array('id_klinik =' => $id_klinik, 'no_penilaian =' => $no_penilaian, 'id_rincian_penilaian =' => $rinci);
+			$this->db->where($array);
+			$this->db->update('tbl_penilaian_pratama_form_satu', $data);
 		}
-		$input_db = $this->db->update_batch('tbl_penilaian_pratama_form_satu', $data, 'id_rincian_penilaian');
-		print_r($this->db->last_query($input_db));
 	}
 	function simpan_penilaian_pratama_kedua()
 	{
@@ -198,7 +195,7 @@ class Model_penilaian_pratama extends CI_Model
 
 		$i = 1;
 		foreach ($kriteria as $kt) {
-			array_push($data, array(
+			$data = array(
 				'id_deskripsi' => $kt,
 				'id_klinik' => $id_klinik,
 				'no_penilaian' => $no_penilaian,
@@ -206,10 +203,12 @@ class Model_penilaian_pratama extends CI_Model
 				'jumlah_ketersediaan' => $jumlah_ketersediaan[$i],
 				'satuan_penilaian' => $satuan_penilaian[$i],
 				'catatan_penilaian' => $catatan_penilaian[$i]
-			));
+			);
 			$i++;
+			$array = array('id_klinik =' => $id_klinik, 'no_penilaian =' => $no_penilaian, 'id_deskripsi =' => $kt);
+			$this->db->where($array);
+			$this->db->update('tbl_penilaian_pratama_form_kedua', $data);
 		}
-		$this->db->update_batch('tbl_penilaian_pratama_form_kedua', $data, 'id_deskripsi');
 	}
 	function simpan_penilaian_pratama_ketiga()
 	{

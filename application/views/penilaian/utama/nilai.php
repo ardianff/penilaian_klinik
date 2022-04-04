@@ -39,7 +39,7 @@
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
-							<table id="example1" class="table table-bordered table-striped">
+							<table id="example2" class="table table-bordered table-striped ">
 								<thead>
 									<tr>
 										<th class="text-center" rowspan="2" style="vertical-align: middle;">No</th>
@@ -111,17 +111,8 @@
 			</div>
 			<!-- /.row -->
 		</div>
-		<div class="col d-flex justify-content-center">
+		<div class="text-center">
 			<div class="card-footer">
-				<!-- <?php echo anchor(
-							'penilaian_utama/nilai_kedua/' . $klinik['id_klinik'],
-							'<span>Next</span>',
-							[
-								'class' => 'btn btn-success',
-								'title' => 'Lanjut Ke Halaman Berikutnya',
-								'name' => 'submit'
-							]
-						); ?> -->
 				<button type="submit" name="submit" title="Lanjut Ke Halaman Berikutnya" class="btn btn-success">Next</button>
 				<?php echo anchor('penilaian_utama', 'Kembali', [
 					'class' => 'btn btn-warning',

@@ -116,23 +116,12 @@
 			</div>
 			<!-- /.row -->
 		</div>
-		<div class="col d-flex justify-content-center">
+		<div class="text-center">
 			<div class="card-footer">
-				<button type="submit" name="submit" class="btn btn-success">Next</button>
-				<!-- <?php echo anchor(
-							'penilaian_pratama/nilai_ketiga/' . $klinik['no_penilaian'],
-							'<span>Next</span>',
-							[
-								'class' => 'btn btn-success',
-								'title' => 'Lanjut Ke Halaman Berikutnya',
-								'name' => 'submit'
-							]
-
-						); ?> -->
-				<button type="submit" href="<?php echo base_url('penilaian_pratama/nilai' . $klinik['no_penilaian']); ?>" name="back" onclick="history.back();" class="btn btn-warning">Kembali</button>
-				<!-- <?php echo anchor('penilaian_pratama', 'Kembali', [
-							'class' => 'btn btn-warning',
-						]); ?> -->
+				<button type="submit" name="submit" class="btn btn-success text-center">Next</button>
+				<?php echo anchor('penilaian_pratama/nilai/' . $klinik['id_klinik'], 'Kembali', [
+					'class' => 'btn btn-warning text-center',
+				]); ?>
 			</div>
 		</div>
 

@@ -27,6 +27,7 @@
 							<?= $this->session->flashdata('update') ?>
 							<?= $this->session->flashdata('delete') ?>
 							<?= $this->session->flashdata('simpan') ?>
+							<?= $this->session->flashdata('nilai') ?>
 							<table id="example2" class="table table-bordered table-striped " width="100%" height="100%">
 								<thead>
 									<tr>
@@ -69,9 +70,9 @@
 														<i class="fa-solid fa-ellipsis-stroke-vertical"></i>
 													</button>
 													<div class="dropdown-menu" role="menu">
-														<a class="dropdown-item" href="<?php echo base_url('penilaian_pratama/print/' . $row->id_klinik); ?>">Print</a>
+														<a class="dropdown-item" href="<?php echo base_url('penilaian_utama/print/' . $row->id_klinik); ?>" target="_blank">Print</a>
 														<div class="dropdown-divider"></div>
-														<a class="dropdown-item" href="<?php echo base_url('penilaian_pratama/pdf/' . $row->id_klinik); ?>">Export PDF</a>
+														<a class="dropdown-item" href="<?php echo base_url('penilaian_utama/export_pdf/' . $row->id_klinik); ?>" target="_blank">Export PDF</a>
 													</div>
 												</div>
 											</td>

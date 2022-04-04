@@ -116,7 +116,7 @@
 			</div>
 			<!-- /.row -->
 		</div>
-		<div class="col d-flex justify-content-center">
+		<div class="text-center">
 			<div class="card-footer">
 				<!-- <?php echo anchor(
 							'penilaian_pratama/nilai_kedua/' . $klinik['no_penilaian'],

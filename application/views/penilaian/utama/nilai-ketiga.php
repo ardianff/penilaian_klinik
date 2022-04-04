@@ -39,6 +39,7 @@
 						<?php if ($klinik['usulan_rekomendasi'] == null && $klinik['uraian_penilaian'] == null  && $klinik['tindak_lanjut_klinik'] == null  && $klinik['nama_perwakilan_pihak_klinik'] == null  && $klinik['jabatan_perwakilan_pihak_klinik'] == null) {
 							echo '<input type="hidden" name="form" value="add"/>';
 							echo "<div class='card-body'>
+							" . $this->session->flashdata('simpan') . "
 								<div class='form-group row'>
 									<label for='usulan_rekomendasi' class='col-sm-2 col-form-label'>Usulan rekomendasi<span style='color:red'>*</span></label>
 									<div class='col-sm-8'>
@@ -69,6 +70,7 @@
 						} else {
 							echo '<input type="hidden" name="form" value="edit"/>';
 							echo '<div class="card-body">
+							' . $this->session->flashdata('simpan') . '
 								<div class="form-group row">
 									<label for="usulan_rekomendasi" class="col-sm-2 col-form-label">Usulan rekomendasi<span style="color:red">*</span></label>
 									<div class="col-sm-8">
@@ -98,49 +100,52 @@
 							</div>';
 						} ?>
 						<!-- <div>
-								<div class="col-md-6">
-									<hr>
-									<h4>Tanda Tangan</h4>
-									<div class="text-right">
-										<button type="button" class="btn btn-default btn-sm" id="undo"><i class="fa fa-undo"></i> Undo</button>
-										<button type="button" class="btn btn-danger btn-sm" id="clear"><i class="fa fa-eraser"></i> Clear</button>
+							<div class="col-md-6">
+								<hr>
+								<h4>Tanda Tangan</h4>
+								<div class="text-right">
+									<button type="button" class="btn btn-default btn-sm" id="undo"><i class="fa fa-undo"></i> Undo</button>
+									<button type="button" class="btn btn-danger btn-sm" id="clear"><i class="fa fa-eraser"></i> Clear</button>
+								</div>
+								<br>
+								<form method="POST" action="<?php echo base_url('upload') ?>">
+									<div class="wrapper">
+										<canvas id="signature-pad" class="signature-pad"></canvas>
 									</div>
 									<br>
-									<form method="POST" action="<?php echo base_url('upload') ?>">
-										<div class="wrapper">
-											<canvas id="signature-pad" class="signature-pad"></canvas>
-										</div>
-										<br>
-										<button type="button" class="btn btn-primary btn-sm" id="save-png">Save as PNG</button>
-										<button type="button" class="btn btn-info btn-sm" id="save-jpeg">Save as JPEG</button>
-										<button type="button" class="btn btn-default btn-sm" id="save-svg">Save as SVG</button>
-										
-										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-											<div class="modal-dialog" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-														<h4 class="modal-title" id="myModalLabel">Preview Tanda Tangan</h4>
-													</div>
-													<div class="modal-body">
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-														<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Submit</button>
-													</div>
+									<button type="button" class="btn btn-primary btn-sm" id="save-png">Save as PNG</button>
+									<button type="button" class="btn btn-info btn-sm" id="save-jpeg">Save as JPEG</button>
+									<button type="button" class="btn btn-default btn-sm" id="save-svg">Save as SVG</button>
+
+									<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<h4 class="modal-title" id="myModalLabel">Preview Tanda Tangan</h4>
+												</div>
+												<div class="modal-body">
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+													<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Submit</button>
 												</div>
 											</div>
 										</div>
-									</form>
-								</div>
-							</div> -->
+									</div>
+								</form>
+							</div>
+						</div> -->
 
 						<!-- /.card-body -->
-						<div class="col d-flex justify-content-center"></div>
-						<div class="card-footer">
-							<button type="submit" name="submit" class="btn btn-success">Simpan</button>
-							<button type="submit" href="<?php echo base_url('penilaian_pratama/nilai_kedua' . $klinik['id_klinik']); ?>" name="back" onclick="history.back();" class="btn btn-warning">Kembali</button>
-							<!-- <?php echo anchor('penilaian_pratama', 'Kembali', ['class' => 'btn btn-warning']); ?> -->
+						<div class="text-center">
+
+							<div class="card-footer">
+								<button type="submit" name="submit" class="btn btn-success">Simpan</button>
+								<?php echo anchor('penilaian_utama/nilai_kedua/' . $klinik['id_klinik'], 'Kembali', [
+									'class' => 'btn btn-warning',
+								]); ?>
+							</div>
 						</div>
 						<!-- /.card-footer -->
 						<?php echo form_close(); ?>

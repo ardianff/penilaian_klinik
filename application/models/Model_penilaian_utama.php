@@ -78,6 +78,15 @@ class Model_penilaian_utama extends CI_Model
 		$query = $this->db->query("SELECT tbl_group_utama.group_name,tbl_deskripsi_penilaian_utama.id_deskripsi, tbl_deskripsi_penilaian_utama.kriteria_penilaian_utama, tbl_deskripsi_penilaian_utama.jumlah_minimal_penilaian_utama, tbl_deskripsi_penilaian_utama.satuan_penilaian_utama FROM tbl_deskripsi_penilaian_utama INNER JOIN tbl_group_utama ON tbl_group_utama.id_group = tbl_deskripsi_penilaian_utama.id_group")->result();
 		return $query;
 	}
+	public function get_data_utama()
+	{
+		$query = $this->db->order_by('status_penilaian', 'DESC')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan = tbl_klinik.id_kelurahan_klinik')
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_klinik.id_kecamatan_klinik')
+			->order_by('id_klinik', 'DESC')
+			->get_where('tbl_klinik', array('kemampuan_pelayanan' => "Utama"))->result();
+		return $query;
+	}
 	function simpan_penilaian_utama_pertama()
 	{
 		$rincian = $_POST['rincian'];
@@ -114,17 +123,19 @@ class Model_penilaian_utama extends CI_Model
 
 		$i = 1;
 		foreach ($rincian as $rinci) {
-			array_push($data, array(
+			$data = array(
 				'id_rincian_penilaian' => $rinci,
 				'id_klinik' => $id_klinik,
 				'no_penilaian' => $no_penilaian,
 				'catatan_hasil_penilaian' => $catatan_penilaian[$i],
 				'jawab_hasil' => $jawab_hasil[$i],
 				'jawab_hasil_verif' => $jawab_hasil_verif[$i]
-			));
+			);
 			$i++;
+			$array = array('id_klinik =' => $id_klinik, 'no_penilaian =' => $no_penilaian, 'id_rincian_penilaian =' => $rinci);
+			$this->db->where($array);
+			$this->db->update('tbl_penilaian_utama_form_satu', $data);
 		}
-		$this->db->update_batch('tbl_penilaian_utama_form_satu', $data, 'id_rincian_penilaian');
 	}
 	function simpan_penilaian_utama_kedua()
 	{
@@ -151,6 +162,34 @@ class Model_penilaian_utama extends CI_Model
 			$i++;
 		}
 		$this->db->insert_batch('tbl_penilaian_utama_form_kedua', $data);
+	}
+	function update_penilaian_utama_kedua()
+	{
+		$kriteria = $_POST['kriteria'];
+		$id_klinik = $_POST['id_klinik'];
+		$no_penilaian = $_POST['no_penilaian'];
+		$hasil_penilaian = $_POST['hasil_nilai'];
+		$jumlah_ketersediaan = $_POST['jumlah_ketersediaan'];
+		$satuan_penilaian = $_POST['satuan_nilai'];
+		$catatan_penilaian = $_POST['catatan_penilaian'];
+		$data = array();
+
+		$i = 1;
+		foreach ($kriteria as $kt) {
+			$data = array(
+				'id_deskripsi' => $kt,
+				'no_penilaian' => $no_penilaian,
+				'id_klinik' => $id_klinik,
+				'hasil_penilaian' => $hasil_penilaian[$i],
+				'jumlah_ketersediaan' => $jumlah_ketersediaan[$i],
+				'satuan_penilaian' => $satuan_penilaian[$i],
+				'catatan_penilaian' => $catatan_penilaian[$i]
+			);
+			$i++;
+			$array = array('id_klinik =' => $id_klinik, 'no_penilaian =' => $no_penilaian, 'id_deskripsi =' => $kt);
+			$this->db->where($array);
+			$this->db->update('tbl_penilaian_utama_form_kedua', $data);
+		}
 	}
 	function simpan_penilaian_utama_ketiga()
 	{

@@ -132,15 +132,13 @@ class Penilaian_Pratama extends CI_Controller
 		$this->template->load('template', 'penilaian/pratama/nilai', $data);
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if ($_POST['form'] == 'add') {
-				// $klinik = ($this->input->post('id_klinik'));
-				// echo $klinik;
 				if (isset($_POST['submit'])) {
 
 					$this->Model_penilaian_pratama->simpan_penilaian_pratama_pertama();
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
-						Penilaian Klinik Pratama Form Pertama ' . $this->input->post('nama_klinik') . ' Berhasil Disimpan!
+						Penilaian Klinik Pratama Form Pertama <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -155,7 +153,7 @@ class Penilaian_Pratama extends CI_Controller
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
-						Penilaian Klinik Pratama Form Pertama ' . $this->input->post('nama_klinik') . ' Berhasil Diupdate!
+						Penilaian Klinik Pratama Form Pertama <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Diupdate!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -198,7 +196,7 @@ class Penilaian_Pratama extends CI_Controller
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
-						Penilaian Klinik Pratama Form Kedua ' . $this->input->post('nama_klinik') . ' Berhasil Disimpan!
+						Penilaian Klinik Pratama Form Kedua <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -213,7 +211,7 @@ class Penilaian_Pratama extends CI_Controller
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
-						Penilaian Klinik Pratama Form Kedua ' . $this->input->post('nama_klinik') . ' Berhasil Diupdate!
+						Penilaian Klinik Pratama Form Kedua <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Diupdate!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -248,14 +246,14 @@ class Penilaian_Pratama extends CI_Controller
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
-						Penilaian Klinik Pratama Form Ketiga ' . $this->input->post('nama_klinik') . ' Berhasil Disimpan!
+						Penilaian Klinik Pratama Form Ketiga <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
 						</div>'
 					);
 					$id_klinik = $this->input->post('id_klinik');
-					redirect('penilaian_pratama/nilai_ketiga/' . $id_klinik);
+					redirect('penilaian_pratama');
 				}
 			} else if ($_POST['form'] == 'edit') {
 				if (isset($_POST['submit'])) {
@@ -263,7 +261,7 @@ class Penilaian_Pratama extends CI_Controller
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
-						Penilaian Klinik Pratama Form Ketiga ' . $this->input->post('nama_klinik') . ' Berhasil Diupdate!
+						Penilaian Klinik Pratama Form Ketiga <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Diupdate!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -289,29 +287,26 @@ class Penilaian_Pratama extends CI_Controller
 
 	function print()
 	{
-		$data['title'] = 'Cetak Penilaian Klinik Pratama';
 		$id_klinik = $this->uri->segment(3);
 		$data['penilaiansatu'] = $this->db
 			->join('tbl_rincian_penilaian_pratama', 'tbl_rincian_penilaian_pratama.id_rincian_penilaian = tbl_penilaian_pratama_form_satu.id_rincian_penilaian')
 			->get_where('tbl_penilaian_pratama_form_satu', array('id_klinik' => $id_klinik))
 			->result();
+		// print_r($this->db->last_query());
 		$data['penilaian'] = $this->db
-			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
-			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-			->get_where('tbl_klinik', ['id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Pratama'])
+			->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik')
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=k.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=k.id_kelurahan_klinik')
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Pratama'])
 			->row_array();
-		$cek_data = $this->db
-			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
-			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-			->get_where('tbl_klinik', ['id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Pratama'])
-			->row_array();
+		$data['title'] = 'Cetak Penilaian Klinik Pratama' . $data['penilaian']['nama_klinik'] . '';
 		$data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
 		$data['data'] = $this->Model_penilaian_pratama->get_data_pratama();
-		if ($cek_data['status_penilaian'] == "Belum") {
+		if ($data['penilaian']['status_penilaian'] == "Belum") {
 			$this->session->set_flashdata(
 				'nilai',
 				'<div class="alert alert-danger alert-dismissible fade show">
-				Tidak dapat mencetak. <b>' . $cek_data['nama_klinik'] . '</b> Belum dinilai!
+				Tidak dapat mencetak. <b>' . $data['penilaian']['nama_klinik'] . '</b> Belum dinilai!
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
@@ -325,29 +320,25 @@ class Penilaian_Pratama extends CI_Controller
 	}
 	function export_pdf()
 	{
-		$no_penilaian = $this->uri->segment(3);
+		$id_klinik = $this->uri->segment(3);
 		$data['penilaiansatu'] = $this->db
 			->join('tbl_rincian_penilaian_pratama', 'tbl_rincian_penilaian_pratama.id_rincian_penilaian = tbl_penilaian_pratama_form_satu.id_rincian_penilaian')
-			->get_where('tbl_penilaian_pratama_form_satu', array('no_penilaian' => $no_penilaian))
+			->get_where('tbl_penilaian_pratama_form_satu', array('id_klinik' => $id_klinik))
 			->result();
-		$cek_data = $this->db
-			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
-			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
-			->row_array();
-		$data['title'] = 'Export PDF Berita Acara ' . $cek_data['nama_klinik'] . '';
 		$data['penilaian'] = $this->db
-			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
-			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-			->get_where('tbl_klinik', ['no_penilaian' => $no_penilaian, 'kemampuan_pelayanan' => 'Pratama'])
+			->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik')
+			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=k.id_kecamatan_klinik')
+			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=k.id_kelurahan_klinik')
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Pratama'])
 			->row_array();
+		$data['title'] = 'Export PDF Berita Acara ' . $data['penilaian']['nama_klinik'] . '';
 		$data['data'] = $this->Model_penilaian_pratama->get_data_pratama();
 		$data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
-		if ($cek_data['status_penilaian'] == "Belum") {
+		if ($data['penilaian']['status_penilaian'] == "Belum") {
 			$this->session->set_flashdata(
 				'nilai',
 				'<div class="alert alert-danger alert-dismissible fade show">
-				Tidak dapat Export ke PDF. <b>' . $cek_data['nama_klinik'] . '</b> Belum dinilai!
+				Tidak dapat Export ke PDF. <b>' . $data['penilaian']['nama_klinik'] . '</b> Belum dinilai!
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
@@ -355,28 +346,11 @@ class Penilaian_Pratama extends CI_Controller
 			);
 			redirect('penilaian_pratama');
 		} else {
-			// $this->load->library('pdfgenerator');
-			// $this->pdfgenerator->setPaper('Legal', 'portrait');
-			// $this->pdfgenerator->filename = 'Berita Acara ' . $cek_data['nama_klinik'] . '.pdf';
-			// $this->pdfgenerator->load_view('penilaian/pratama/pdf', $data);
-
-
-			// $this->load->library('pdf');
-			// $file_pdf = 'Berita Acara ' . $cek_data['nama_klinik'] . '.pdf';
-			// $paper = 'A4';
-			// $orientation = "potrait";
-			// $html = $this->load->view('penilaian/pratama/pdf', $data);
-			// $this->pdf->generate($html, $file_pdf,$paper,$orientation);
-
-			// $this->load->library('mypdf');
-			// $html = $this->load->view('penilaian/pratama/pdf', $data);
-			// $this->mypdf->generate($html);
-
 			$mpdf = new \Mpdf\Mpdf(['orientation' => 'P', 'format' => 'Legal', 'allow_charset_conversion' => true]);
 			$mpdf->debug = true;
 			$html = $this->load->view('penilaian/pratama/pdf', $data, true);
 			$mpdf->WriteHTML($html);
-			$mpdf->Output('Berita Acara ' . $cek_data['nama_klinik'] . '.pdf', 'I');
+			$mpdf->Output('Berita Acara ' . $data['penilaian']['nama_klinik'] . '.pdf', 'I');
 		}
 	}
 }
