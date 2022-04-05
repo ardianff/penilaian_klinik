@@ -229,7 +229,7 @@ class Penilaian_Pratama extends CI_Controller
 		$id_klinik = $this->uri->segment(3);
 		$data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik, kec.nama_kecamatan, kel.nama_kelurahan, kel.kode_pos_kelurahan, 
 		pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik,
-		p.no_penilaian')
+		p.no_penilaian,pfk.ttd_penilai')
 			->join('tbl_kecamatan kec', 'kec.id_kecamatan=k.id_kecamatan_klinik')
 			->join('tbl_kelurahan kel', 'kel.id_kelurahan=k.id_kelurahan_klinik')
 			->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
@@ -240,8 +240,14 @@ class Penilaian_Pratama extends CI_Controller
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if ($_POST['form'] == 'add') {
 				if (isset($_POST['submit'])) {
-
-					$this->Model_penilaian_pratama->simpan_penilaian_pratama_ketiga();
+					$img = $this->input->post('signed');
+					$img = str_replace('data:image/png;base64,', '', $img);
+					$img = str_replace(' ', '+', $img);
+					$data = base64_decode($img);
+					$file = './assets/img/ttd/' . uniqid() . '.png';
+					$success = file_put_contents($file, $data);
+					$image = str_replace('./', '', $file);
+					$this->Model_penilaian_pratama->simpan_penilaian_pratama_ketiga($image);
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
@@ -256,7 +262,24 @@ class Penilaian_Pratama extends CI_Controller
 				}
 			} else if ($_POST['form'] == 'edit') {
 				if (isset($_POST['submit'])) {
-					$this->Model_penilaian_pratama->update_penilaian_pratama_ketiga();
+					// $folderPath = "assets/img/ttd/";
+					// $image_parts = explode(";base64,", $this->input->post('signed'));
+					// $image_type_aux = explode("image/", $image_parts[0]);
+					// $image_type = $image_type_aux[1];
+					// $image_base64 = base64_decode($image_parts[1]);
+					// $file = $folderPath . uniqid() . '.' . $image_type;
+
+					// file_put_contents($file, $image_base64);
+					// $file_img = file_put_contents($file, $image_base64);
+					// echo "<h3><i>Upload Tanda Tangan Berhasil...</i></h3>";
+					$img = $this->input->post('signed');
+					$img = str_replace('data:image/png;base64,', '', $img);
+					$img = str_replace(' ', '+', $img);
+					$data = base64_decode($img);
+					$file = './assets/img/ttd/' . uniqid() . '.png';
+					$success = file_put_contents($file, $data);
+					$image = str_replace('./', '', $file);
+					$this->Model_penilaian_pratama->update_penilaian_pratama_ketiga($image);
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
@@ -271,18 +294,21 @@ class Penilaian_Pratama extends CI_Controller
 			}
 		}
 	}
-	// public function upload()
-	// {
-	// 	$folderPath = "assets/tanda-tangan";
-	// 	$image_parts = explode(";base64,", $this->input->post('signed'));
-	// 	$image_type_aux = explode("image/", $image_parts[0]);
-	// 	$image_type = $image_type_aux[1];
-	// 	$image_base64 = base64_decode($image_parts[1]);
-	// 	$file = $folderPath . uniqid() . '.' . $image_type;
-
-	// 	file_put_contents($file, $image_base64);
-	// 	echo "<h3><i>Upload Tanda Tangan Berhasil...</i></h3>";
-	// }
+	public function upload_ttd()
+	{
+		$folderPath = base_url("assets/img/ttd/");
+		if (empty($_POST['signed'])) {
+			echo "Kosong";
+		} else {
+			$image_parts = explode(";base64,", $_POST['signed']);
+			$image_type_aux = explode("image/", $image_parts[0]);
+			$image_type = $image_type_aux[1];
+			$image_base64 = base64_decode($image_parts[1]);
+			$file = $folderPath . uniqid() . '.' . $image_type;
+			file_put_contents($file, $image_base64);
+			echo "Tanda Tangan Sukses Diupload ";
+		}
+	}
 
 	function print()
 	{

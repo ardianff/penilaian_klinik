@@ -191,11 +191,12 @@ class Model_penilaian_utama extends CI_Model
 			$this->db->update('tbl_penilaian_utama_form_kedua', $data);
 		}
 	}
-	function simpan_penilaian_utama_ketiga()
+	function simpan_penilaian_utama_ketiga($image)
 	{
 		$data = [
 			'no_penilaian' => $this->input->post('no_penilaian'),
 			'id_klinik' => $this->input->post('id_klinik'),
+			'ttd_penilai' => $image,
 			'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
 			'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
 			'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
@@ -209,10 +210,11 @@ class Model_penilaian_utama extends CI_Model
 		$this->db->where('id_klinik', $id_klinik);
 		$this->db->update('tbl_klinik', $update);
 	}
-	function update_penilaian_utama_ketiga()
+	function update_penilaian_utama_ketiga($image)
 	{
 		$data = [
 			'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
+			'ttd_penilai' => $image,
 			'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
 			'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
 			'nama_perwakilan_pihak_klinik' => $this->input->post('nama_perwakilan_klinik'),

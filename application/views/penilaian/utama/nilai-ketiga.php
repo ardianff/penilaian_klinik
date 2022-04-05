@@ -66,6 +66,22 @@
 										<input type='text' name='jabatan_perwakilan_klinik' placeholder='Jabatan' class='form-control' required>
 									</div>
 								</div>
+							</div>
+							<div class='container'>
+							<div class='row'>
+								<div class='col-sm'>
+								<label class='' for=''>Tanda Tangan:</label>
+								<br/>
+								<div id='sig' ></div>
+								<br/>
+								<button id='clear'>Clear</button>
+								<textarea id='signature6' name='signed' style='display: none'></textarea>
+								</div>
+								<div class='col-sm'>
+								</div>
+								<div class='col-sm'>
+								</div>
+							</div>
 							</div>";
 						} else {
 							echo '<input type="hidden" name="form" value="edit"/>';
@@ -97,45 +113,25 @@
 										<input type="text" name="jabatan_perwakilan_klinik" placeholder="Jabatan" class="form-control" value="' . $klinik['jabatan_perwakilan_pihak_klinik'] . '" required>
 									</div>
 								</div>
+							</div>
+							<div class="container">
+							<div class="row">
+								<div class="col-sm">
+								<label class="" for="">Tanda Tangan:</label>
+								<br/>
+								<div id="sig" ></div>
+								<br/>
+								<button id="clear">Clear</button>
+								<textarea id="signature64" name="signed" style="display: none"></textarea>
+								</div>
+								<div class="col-sm">
+								<img src="' . base_url($klinik['ttd_penilai']) . '"/>
+								</div>
+								<div class="col-sm">
+								</div>
+							</div>
 							</div>';
 						} ?>
-						<!-- <div>
-							<div class="col-md-6">
-								<hr>
-								<h4>Tanda Tangan</h4>
-								<div class="text-right">
-									<button type="button" class="btn btn-default btn-sm" id="undo"><i class="fa fa-undo"></i> Undo</button>
-									<button type="button" class="btn btn-danger btn-sm" id="clear"><i class="fa fa-eraser"></i> Clear</button>
-								</div>
-								<br>
-								<form method="POST" action="<?php echo base_url('upload') ?>">
-									<div class="wrapper">
-										<canvas id="signature-pad" class="signature-pad"></canvas>
-									</div>
-									<br>
-									<button type="button" class="btn btn-primary btn-sm" id="save-png">Save as PNG</button>
-									<button type="button" class="btn btn-info btn-sm" id="save-jpeg">Save as JPEG</button>
-									<button type="button" class="btn btn-default btn-sm" id="save-svg">Save as SVG</button>
-
-									<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-										<div class="modal-dialog" role="document">
-											<div class="modal-content">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													<h4 class="modal-title" id="myModalLabel">Preview Tanda Tangan</h4>
-												</div>
-												<div class="modal-body">
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-													<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Submit</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div> -->
 
 						<!-- /.card-body -->
 						<div class="text-center">

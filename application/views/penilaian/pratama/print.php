@@ -313,7 +313,7 @@
 							</div>
 							<!-- /.card-header -->
 							<div class="card-body">
-								<table border="1" class="table-content" width="100%" height="100%">
+								<table border="2" class="table-content" width="100%" height="100%">
 									<thead>
 										<tr class="tr-content">
 											<th class="text-center th-content" rowspan="2">No</th>
