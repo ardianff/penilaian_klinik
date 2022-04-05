@@ -10,3 +10,16 @@
 		}, 3500);
 	});
 </script>
+<script type="text/javascript">
+	function change() {
+		var x = document.getElementById('pass').type;
+
+		if (x == 'password') {
+			document.getElementById('pass').type = 'text';
+			document.getElementById('show-pw').innerHTML = '<i class="fas fa-eye-slash"></i>';
+		} else {
+			document.getElementById('pass').type = 'password';
+			document.getElementById('show-pw').innerHTML = '<i class="fas fa-eye"></i>';
+		}
+	}
+</script>

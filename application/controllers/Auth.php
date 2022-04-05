@@ -11,30 +11,13 @@ class Auth extends CI_Controller
 
 	function index()
 	{
-		// if ($this->session->userdata('id')) {
-		//     redirect('dashboard');
-		// }
-		// $this->form_validation->set_rules(
-		//     'username',
-		//     'Username',
-		//     'required|xss_clean|trim'
-		// );
-		// $this->form_validation->set_rules(
-		//     'password',
-		//     'Password',
-		//     'required|xss_clean|trim|'
-		// );
-		// if ($this->form_validation->run() == false) {
-		//     $this->load->view('auth/login');
-		// } else {
-		//     $this->check_login();
-		// }
 		check_sudah_login();
 		$this->load->view('auth/login');
 	}
 
 	function check_login()
 	{
+		check_sudah_login();
 		$this->form_validation->set_rules(
 			'username',
 			'Username',

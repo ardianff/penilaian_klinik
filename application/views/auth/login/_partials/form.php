@@ -20,10 +20,10 @@
 			</div>
 			<?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
 			<div class="input-group mb-3">
-				<input type="password" class="form-control" placeholder="Password" name="password">
+				<input type="password" class="form-control" placeholder="Password" name="password" id="pass">
 				<div class="input-group-append">
 					<div class="input-group-text">
-						<span class="fas fa-lock"></span>
+						<span id="show-pw" onclick="change()"><i class="fas fa-eye"></i></span>
 					</div>
 				</div>
 			</div>
