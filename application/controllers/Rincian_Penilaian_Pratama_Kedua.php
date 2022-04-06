@@ -9,7 +9,7 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 	}
 	function index()
 	{
-		$data['title'] = 'Rincian Penilaian Klinik Pratama Form 2';
+		$data['title'] = 'Rincian Penilaian Form Kedua Klinik Pratama/Utama Umum';
 		$data['data'] = $this->Model_rincian_penilaian_pratama->get_rincian_penilaian_klinik_pratama_kedua();
 		$this->template->load(
 			'template',
@@ -58,7 +58,7 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 			]
 		);
 		if ($this->form_validation->run() == false) {
-			$data['title'] = 'Tambah Rincian Penilaian Klinik Pratama';
+			$data['title'] = 'Input Rincian Penilaian Form Kedua Klinik Pratama/Utama Umum';
 			$data['data'] = $this->Model_rincian_penilaian_pratama->get_group_penilaian_pratama();
 			$this->template->load('template', 'rincian-penilaian-kedua/pratama/add', $data);
 		} else {
@@ -179,7 +179,7 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
 	}
 	function group_name()
 	{
-		$data['title'] = 'Group Name Rincian Penilaian Klinik Pratama';
+		$data['title'] = 'Group Name Rincian Penilaian Klinik Pratama/Utama Umum';
 		$data['data'] = $this->Model_rincian_penilaian_pratama->get_group_penilaian_pratama();
 		$this->template->load('template', 'rincian-penilaian-kedua/pratama/group-name/data', $data);
 	}

@@ -3,7 +3,7 @@
 	<section class="content-header">
 		<div class="container-fluid">
 			<div class="row mb-2">
-				<div class="col-sm-6">
+				<div class="col-sm-12">
 					<h1><strong><?= $title ?></strong></h1>
 				</div>
 				<div class="col-sm-6">
@@ -19,20 +19,26 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							&nbsp;<?php echo anchor(
-										'rincian_penilaian_pratama_kedua/tambah_group',
-										'Tambah Group Name',
-										[
-											'class' => 'btn btn-success btn-sm',
-										]
-									); ?>
-							&nbsp;<?php echo anchor(
-										'rincian_penilaian_pratama_kedua',
-										'Form Rincian Penilaian Klinik Pratama Kedua',
-										[
-											'class' => 'btn btn-secondary btn-sm',
-										]
-									); ?>
+							<div class="container">
+								<div class="row justify-content-left">
+									<div class="col-sm-10">
+										<?php echo anchor(
+											'rincian_penilaian_pratama_kedua/tambah_group',
+											'Tambah Group Name',
+											[
+												'class' => 'btn btn-success btn-sm',
+											]
+										); ?>
+										<?php echo anchor(
+											'rincian_penilaian_pratama_kedua',
+											'Form Kedua Rincian Penilaian Klinik Pratama/Utama Umum',
+											[
+												'class' => 'btn btn-secondary btn-sm',
+											]
+										); ?>
+									</div>
+								</div>
+							</div>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">

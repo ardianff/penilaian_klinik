@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="in">
 
 <head>
 	<?php $this->load->view("template/_partials/head") ?>

@@ -774,33 +774,40 @@
 		<br>
 		<table border="0">
 			<thead>
-				<td width="10%">Tim Penilaian Kesesuaian Klinik</td>
-				<td width="5%"></td>
-				<td colspan="2"></td>
+				<td width="40%" colspan="2">Tim Penilaian Kesesuaian Klinik</td>
+				<td width="2%"></td>
+				<td width="25%"></td>
+				<td></td>
 			</thead>
 			<tbody>
 				<tr>
 					<td colspan="2">1. <?php echo $penilaian['nama_anggota1'] ?></td>
-					<td></td>
+					<td width="10%" class="text-center"><img src=" <?php echo base_url(); ?>/assets/img/dummy-ttd.png" width="40px" height="40px"></td>
+					<td width="10%"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td colspan="2">2. <?php echo $penilaian['nama_anggota2'] ?></td>
+					<td class="text-center"><img src="<?php echo base_url(); ?>/assets/img/dummy-ttd.png" width="40px" height="40px"></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>3. <?php echo $penilaian['nama_anggota3'] ?></td>
-					<td></td>
+					<td colspan="2">3. <?php echo $penilaian['nama_anggota3'] ?></td>
+					<td class="text-center"><img src="<?php echo base_url(); ?>/assets/img/dummy-ttd.png" width="40px" height="40px"></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>4. <?php echo $penilaian['nama_anggota4'] ?></td>
+					<td colspan="2">4. <?php echo $penilaian['nama_anggota4'] ?></td>
+					<td>
+						<!-- <img class="center" src="<?php echo base_url(); ?>/assets/img/dummy-ttd.png" width="40px" height="40px"> -->
+					</td>
 					<td></td>
-					<td colspan="2" class="text-center"> Yang membuat Berita Acara</td>
+					<td class="text-center"> Yang membuat Berita Acara</td>
 				</tr>
 				<tr>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -809,31 +816,34 @@
 				<tr>
 					<td></td>
 					<td></td>
-					<td colspan="2" class="text-center">( Suryati, SKM )</td>
+					<td></td>
+					<td></td>
+					<td class="text-center">( Suryati, SKM )</td>
 				</tr>
 				<tr>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td class="text-center">NIP. 198111022009032003</td>
 				</tr>
 				<tr>
-					<td colspan="4" class="text-center">Mengetahui,</td>
+					<td colspan="5" class="text-center">Mengetahui,</td>
 				</tr>
 				<tr>
-					<td class="text-center" colspan="4">An. Kepala Dinas Kesehatan</td>
+					<td class="text-center" colspan="5">An. Kepala Dinas Kesehatan</td>
 				</tr>
 				<tr>
-					<td colspan="4" class="text-center">Kepala Bidang SDK</td>
-				</tr>
-				<tr height="100px">
-					<td colspan="4" class="text-center"><img src="<?php echo base_url(); ?>/assets/img/dummy-ttd.png" width="70px" height="70px"></td>
+					<td colspan="5" class="text-center">Kepala Bidang SDK</td>
 				</tr>
 				<tr>
-					<td width="20%" class="text-center" colspan="4">dr. Noegroho Edy Rijanto, MKes</td>
+					<td colspan="5" class="text-center"><img src="<?php echo base_url(); ?>/assets/img/dummy-ttd.png" width="70px" height="70px"></td>
 				</tr>
+				<tr>
+					<td class="text-center" colspan="5">dr. Noegroho Edy Rijanto, MKes</td>
+				</tr>
+
 			</tbody>
-			<tbottom>
 		</table>
 	</ol>
 	<script>

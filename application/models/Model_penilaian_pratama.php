@@ -17,7 +17,8 @@ class Model_penilaian_pratama extends CI_Model
 			'alamat_klinik' => $this->input->post('alamat_klinik'),
 			'id_kecamatan_klinik' => $this->input->post('nama_kecamatan'),
 			'id_kelurahan_klinik' => $this->input->post('nama_kelurahan'),
-			'tgl_penilaian' => $this->input->post('tgl_penilaian'),
+			'tgl_visitasi' => $this->input->post('tgl_visitasi'),
+			'no_surat' => $this->input->post('no_surat'),
 			'status_penilaian' => "Belum",
 		];
 		$this->db->insert('tbl_klinik', $data);
@@ -36,7 +37,8 @@ class Model_penilaian_pratama extends CI_Model
 			'alamat_klinik' => $this->input->post('alamat_klinik'),
 			'id_kecamatan_klinik' => $this->input->post('nama_kecamatan'),
 			'id_kelurahan_klinik' => $this->input->post('nama_kelurahan'),
-			'tgl_penilaian' => $this->input->post('tgl_penilaian'),
+			'tgl_visitasi' => $this->input->post('tgl_visitasi'),
+			'no_surat' => $this->input->post('no_surat'),
 		];
 		$id_klinik = $this->input->post('id_klinik');
 		$this->db->where('id_klinik', $id_klinik);
@@ -44,12 +46,14 @@ class Model_penilaian_pratama extends CI_Model
 	}
 	public function get_data_pratama()
 	{
-		$query = $this->db->order_by('status_penilaian', 'DESC')
-			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan = tbl_klinik.id_kelurahan_klinik')
-			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_klinik.id_kecamatan_klinik')
-			->order_by('id_klinik', 'DESC')
-			->get_where('tbl_klinik', array('kemampuan_pelayanan' => "Pratama"))->result();
-		return $query;
+		$this->db->select('*');
+		$this->db->from('tbl_klinik');
+		$this->db->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan = tbl_klinik.id_kelurahan_klinik');
+		$this->db->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_klinik.id_kecamatan_klinik');
+		$this->db->order_by('status_penilaian', 'DESC');
+		$this->db->order_by('id_klinik', 'DESC');
+		$this->db->where_in('kemampuan_pelayanan', array('Pratama Umum', 'Utama Umum'));
+		return $this->db->get();
 	}
 	public function get_anggota()
 	{

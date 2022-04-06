@@ -27,14 +27,32 @@
 					<div class="card">
 						<div class="card-header">
 							<h2 class="card-title">
-								<span>
-									<h3><b><?php echo $klinik['nama_klinik']; ?></h3>
-									</b>
-									Alamat : <?php echo $klinik['alamat_klinik']; ?><br>
-									Kecamatan : <?php echo $klinik['nama_kecamatan']; ?><br>
-									Kelurahan : <?php echo $klinik['nama_kelurahan']; ?>
-									(<?php echo $klinik['kode_pos_kelurahan']; ?>)
-								</span>
+								<div class="container">
+									<div class="row">
+										<div class="col-md-12">
+											<span>
+												<h3><b>Klinik <?php echo $klinik['kemampuan_pelayanan'] ?></b></h3>
+												Nama Klinik : <strong><?php echo $klinik['nama_klinik']; ?></strong><br>
+												Alamat : <?php echo $klinik['alamat_klinik']; ?><br>
+												Kecamatan : <?php echo $klinik['nama_kecamatan']; ?><br>
+												Kelurahan : <?php echo $klinik['nama_kelurahan']; ?>
+												(<?php echo $klinik['kode_pos_kelurahan']; ?>)<br>
+												<!-- Terakhir di update <?php echo $klinik['update_at']; ?> -->
+											</span>
+										</div>
+										<div class="col-md-12">
+											<!-- <span>
+												<h3><b>Klinik <?php echo $klinik['kemampuan_pelayanan'] ?></b></h3>
+												Nama Klinik : <strong><?php echo $klinik['nama_klinik']; ?></strong><br>
+												Alamat : <?php echo $klinik['alamat_klinik']; ?><br>
+												Kecamatan : <?php echo $klinik['nama_kecamatan']; ?><br>
+												Kelurahan : <?php echo $klinik['nama_kelurahan']; ?>
+												(<?php echo $klinik['kode_pos_kelurahan']; ?>)<br>
+												Terakhir di update <?php echo $klinik['update_at']; ?>
+											</span> -->
+										</div>
+									</div>
+								</div>
 							</h2>
 						</div>
 						<!-- /.card-header -->

@@ -15,7 +15,7 @@
 					<div class="card card-info">
 						<!-- <a href="#" class="btn btn-danger">Tambah Group Name</a> -->
 						<div class="card-header">
-							<h3 class="card-title">Input Rincian Penilaian Utama Form Kedua</h3><br>
+							<h3 class="card-title"><?= $title ?></h3><br>
 							<a href="<?php echo base_url('rincian_penilaian_utama_kedua/group_name'); ?>" class="btn btn-danger btn-sm">Group Name</a>
 						</div>
 						<!-- /.card-header -->
@@ -55,7 +55,18 @@
 							<div class="form-group row">
 								<label for="keterangan_penilaian" class="col-sm-2 col-form-label">Satuan</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="satuan_penilaian" placeholder="Satuan"></input>
+									<?php echo form_dropdown(
+										'satuan_penilaian',
+										[
+											'' => '- Pilih -',
+											'Unit' => 'Unit',
+											'Buah' => 'Buah',
+											'Set' => 'Set',
+											'Sesuai Kebutuhan' => 'Sesuai Kebutuhan',
+										],
+										null,
+										"class='form-control' "
+									); ?>
 									<?= form_error('satuan_penilaian', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>

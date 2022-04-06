@@ -9,7 +9,7 @@ class Rincian_Penilaian_Utama extends CI_Controller
 	}
 	public function index()
 	{
-		$data['title'] = 'Rincian Penilaian Klinik Utama';
+		$data['title'] = 'Rincian Penilaian Form Pertama Klinik Pratama/Utama Gigi';
 		$data['data'] = $this->Model_rincian_penilaian_utama->get_rincian_penilaian_klinik_utama();
 		$this->template->load(
 			'template',

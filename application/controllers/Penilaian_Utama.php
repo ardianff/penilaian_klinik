@@ -11,8 +11,8 @@ class Penilaian_Utama extends CI_Controller
 
 	function index()
 	{
-		$data['title'] = 'Penilaian Klinik Utama';
-		$data['data'] = $this->Model_penilaian_utama->get_klinik_utama();
+		$data['title'] = 'Data Klinik Pratama/Utama Gigi';
+		$data['data'] = $this->Model_penilaian_utama->get_data_utama()->result();
 		$this->template->load('template', 'penilaian/utama/list', $data);
 	}
 
@@ -84,7 +84,7 @@ class Penilaian_Utama extends CI_Controller
 	{
 		$data['title'] = 'Form Pertama Penilaian Klinik Utama';
 		$id_klinik = $this->uri->segment(3);
-		$cek_no_penilaian = $this->db->select('p.no_penilaian ,p.id_klinik as id_klinik_tbl_pen , k.id_klinik as id_klinik_tbl_klinik, k.nama_klinik, k.kemampuan_pelayanan,k.jenis_pelayanan_klinik, k.alamat_klinik, k.tgl_penilaian,
+		$cek_no_penilaian = $this->db->select('p.no_penilaian ,p.id_klinik as id_klinik_tbl_pen , k.id_klinik as id_klinik_tbl_klinik, k.nama_klinik, k.kemampuan_pelayanan,k.jenis_pelayanan_klinik, k.alamat_klinik, k.tgl_visitasi,
 		k.status_penilaian, k.created_at,k.update_at')
 			->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik', 'left')
 			->join('tbl_penilaian_utama_form_satu as pfs', 'pfs.no_penilaian = p.no_penilaian', 'left')
@@ -106,7 +106,7 @@ class Penilaian_Utama extends CI_Controller
 			->join('tbl_penilaian_utama_form_satu as pfs', 'pfs.id_rincian_penilaian = pr.id_rincian_penilaian', 'left')
 			->get_where('tbl_rincian_penilaian_utama pr', ['pfs.id_klinik' => $id_klinik])
 			->result();
-		$data['klinik'] = $this->db->select('p.no_penilaian  , k.id_klinik, k.nama_klinik , kel.nama_kelurahan, kel.kode_pos_kelurahan, kec.nama_kecamatan, k.kemampuan_pelayanan,k.jenis_pelayanan_klinik, k.alamat_klinik, k.tgl_penilaian,
+		$data['klinik'] = $this->db->select('p.no_penilaian  , k.id_klinik, k.nama_klinik , kel.nama_kelurahan, kel.kode_pos_kelurahan, kec.nama_kecamatan, k.kemampuan_pelayanan,k.jenis_pelayanan_klinik, k.alamat_klinik, k.tgl_visitasi,
 			k .status_penilaian, k.created_at,k.update_at,pfs.jawab_hasil, pfs.jawab_hasil_verif, pfs.catatan_hasil_penilaian')
 			->join('tbl_kecamatan as kec', 'kec.id_kecamatan = k.id_kecamatan_klinik')
 			->join('tbl_kelurahan as kel', 'kel.id_kelurahan = k.id_kelurahan_klinik')
@@ -155,7 +155,7 @@ class Penilaian_Utama extends CI_Controller
 	{
 		$data['title'] = 'Form Kedua Penilaian Klinik Utama';
 		$id_klinik = $this->uri->segment(3);
-		$data['klinik'] = $this->db->select('p.no_penilaian  , k.id_klinik, k.nama_klinik , kel.nama_kelurahan, kel.kode_pos_kelurahan, kec.nama_kecamatan, k.kemampuan_pelayanan,k.jenis_pelayanan_klinik, k.alamat_klinik, k.tgl_penilaian,
+		$data['klinik'] = $this->db->select('p.no_penilaian  , k.id_klinik, k.nama_klinik , kel.nama_kelurahan, kel.kode_pos_kelurahan, kec.nama_kecamatan, k.kemampuan_pelayanan,k.jenis_pelayanan_klinik, k.alamat_klinik, k.tgl_visitasi,
 		k.status_penilaian, k.created_at,k.update_at,pfs.hasil_penilaian, pfs.jumlah_ketersediaan,pfs.satuan_penilaian, pfs.catatan_penilaian')
 			->join('tbl_kecamatan as kec', 'kec.id_kecamatan = k.id_kecamatan_klinik')
 			->join('tbl_kelurahan as kel', 'kel.id_kelurahan = k.id_kelurahan_klinik')

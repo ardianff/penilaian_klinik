@@ -147,9 +147,9 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="tgl_penilaian" class="col-sm-2 col-form-label">Tanggal Penilaian</label>
+								<label for="tgl_visitasi" class="col-sm-2 col-form-label">Tanggal Visitasi</label>
 								<div class="col-sm-10">
-									<input type="date" class="form-control" name="tgl_penilaian" required autofocus></input>
+									<input type="date" class="form-control" name="tgl_visitasi" required autofocus></input>
 								</div>
 							</div>
 						</div>

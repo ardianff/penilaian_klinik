@@ -17,7 +17,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<!-- left column -->
-				<div class="col-md-6">
+				<div class="col-md-10">
 					<!-- Horizontal Form -->
 					<div class="card card-info">
 						<!-- /.card-header -->
@@ -38,9 +38,9 @@
 						?>
 						<div class="card-body">
 							<div class="form-group row">
-								<label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Penilai 1 <span style="color:red">*</span></label>
-								<div class="col-sm-10">
-									<select class="form-control" name="nama_anggota1">
+								<label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Penilai 1 <span style="color:red">*</span></label>
+								<div class="col-sm-6">
+									<select class="form-control" name="nama_anggota1" required>
 										<option value="">- Pilih Nama -</option>
 										<?php
 										$anggota = $this->Model_penilaian_pratama->get_anggota();
@@ -55,9 +55,9 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Penilai 2 <span style="color:red">*</span></label>
-								<div class="col-sm-10">
-									<select class="form-control" name="nama_anggota2">
+								<label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Penilai 2 <span style="color:red">*</span></label>
+								<div class="col-sm-6">
+									<select class="form-control" name="nama_anggota2" required>
 										<option value="">- Pilih Nama -</option>
 										<?php
 										$anggota = $this->Model_penilaian_pratama->get_anggota();
@@ -72,9 +72,9 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Penilai 3</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="nama_anggota3">
+								<label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Penilai 3 <span style="color:red">*</span></label>
+								<div class="col-sm-6">
+									<select class="form-control" name="nama_anggota3" required>
 										<option value="">- Pilih Nama -</option>
 										<?php
 										$anggota = $this->Model_penilaian_pratama->get_anggota();
@@ -89,8 +89,8 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Penilai 4</label>
-								<div class="col-sm-10">
+								<label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Penilai 4</label>
+								<div class="col-sm-6">
 									<select class="form-control" name="nama_anggota4">
 										<option value="">- Pilih Nama -</option>
 										<?php
@@ -106,22 +106,22 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Klinik</label>
-								<div class="col-sm-10">
+								<label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Klinik <span style="color:red">*</span></label>
+								<div class="col-sm-6">
 									<input type="name" class="form-control" name="nama_klinik" placeholder="Nama Klinik" value="<?php echo $id_klinik['nama_klinik']; ?>" required>
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="Nama_Anggota" class="col-sm-2 col-form-label">Kemampuan Pelayanan</label>
-								<div class="col-sm-10">
+								<label for="Nama_Anggota" class="col-sm-3 col-form-label">Kemampuan Pelayanan <span style="color:red">*</span></label>
+								<div class="col-sm-6">
 									<?php echo form_dropdown(
 										'kemampuan_pelayanan',
 										[
 											'' => '- Pilih -',
-											'Pratama' => 'Pratama',
+											'Pratama Umum' => 'Pratama Umum', 'Utama Umum' => 'Utama Umum',
 										],
 										$id_klinik['kemampuan_pelayanan'],
-										"class='form-control', 'required'"
+										"class='form-control' required"
 									); ?>
 								</div>
 							</div>
@@ -132,7 +132,7 @@
 					<!-- /.card -->
 
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-10">
 					<!-- Horizontal Form -->
 					<div class="card card-info">
 
@@ -140,8 +140,8 @@
 						<!-- form start -->
 						<div class="card-body">
 							<div class="form-group row">
-								<label for="NIP_Anggota" class="col-sm-2 col-form-label">Jenis Pelayanan Klinik</label>
-								<div class="col-sm-10">
+								<label for="NIP_Anggota" class="col-sm-3 col-form-label">Jenis Pelayanan Klinik <span style="color:red">*</span></label>
+								<div class="col-sm-6">
 									<?php echo form_dropdown(
 										'jenis_pelayanan',
 										[
@@ -150,19 +150,19 @@
 											'Rawat Inap' => 'Rawat Inap',
 										],
 										$id_klinik['jenis_pelayanan_klinik'],
-										"class='form-control', 'required'"
+										"class='form-control' required"
 									); ?>
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="NIP_Anggota" class="col-sm-2 col-form-label">Alamat Klinik</label>
-								<div class="col-sm-10">
+								<label for="NIP_Anggota" class="col-sm-3 col-form-label">Alamat Klinik <span style="color:red">*</span></label>
+								<div class="col-sm-6">
 									<textarea type="text" class="form-control" name="alamat_klinik" placeholder="Alamat Klinik" required><?php echo htmlentities($id_klinik['alamat_klinik']); ?></textarea>
 								</div>
 							</div>
 							<div class="form-group row" id="id_isian_kecamatan">
-								<label for="nama_kecamatan" class="col-sm-2 col-form-label">Kecamatan</label>
-								<div class="col-sm-10">
+								<label for="nama_kecamatan" class="col-sm-3 col-form-label">Kecamatan <span style="color:red">*</span></label>
+								<div class="col-sm-6">
 									<select class="form-control kecamatan" id="kecamatan" name="nama_kecamatan">
 										<option value="">- Pilih Kecamatan -</option>
 										<?php foreach ($kecamatan as $kec) : ?>
@@ -172,17 +172,23 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="nama_kelurahan" class="col-sm-2 col-form-label">Kelurahan</label>
-								<div class="col-sm-10">
+								<label for="nama_kelurahan" class="col-sm-3 col-form-label">Kelurahan <span style="color:red">*</span></label>
+								<div class="col-sm-6">
 									<select class="form-control kelurahan" name="nama_kelurahan">
 										<option value="">- Pilih Kelurahan -</option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="tgl_penilaian" class="col-sm-2 col-form-label">Tanggal Penilaian</label>
-								<div class="col-sm-10">
-									<input type="date" class="form-control" name="tgl_penilaian" required autofocus value="<?php echo $id_klinik['tgl_penilaian']; ?>" required></input>
+								<label for="tgl_visitasi" class="col-sm-3 col-form-label">Tanggal Visitasi <span style="color:red">*</span></label>
+								<div class="col-sm-6">
+									<input type="date" class="form-control" name="tgl_visitasi" required autofocus value="<?php echo $id_klinik['tgl_visitasi']; ?>" required></input>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="no_surat" class="col-sm-3 col-form-label">Nomor Surat Tugas <span style="color:red">*</span></label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" placeholder="Nomor Surat" name="no_surat" value="<?php echo $id_klinik['no_surat']; ?>" required></input>
 								</div>
 							</div>
 						</div>

@@ -43,6 +43,15 @@ class Auth extends CI_Controller
 						$hasil->nama_user
 					);
 					$this->session->set_userdata(['status_login' => 'ok']);
+					// $this->session->set_flashdata(
+					// 	'message',
+					// 	'<div class="alert alert-success alert-dismissible fade show">
+					// 	Username & Password yang Anda inputkan benar. Anda akan dialihkan ke halaman berikutnya !
+					// 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					// 		<span aria-hidden="true">&times;</span>
+					// 	</button>
+					// </div>'
+					// );
 					redirect('dashboard');
 				} else {
 					$this->session->set_flashdata(
@@ -60,7 +69,7 @@ class Auth extends CI_Controller
 				$this->session->set_flashdata(
 					'message',
 					'<div class="alert alert-danger alert-dismissible fade show">
-					Username tidak tersedia !
+					Username yang Anda masukkan salah !
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>

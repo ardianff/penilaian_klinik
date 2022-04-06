@@ -3,12 +3,12 @@ class Model_dashboard extends CI_Model
 {
 	public function get_data_pratama()
 	{
-		$query = $this->db->query("SELECT COUNT(kemampuan_pelayanan) as total_klinik FROM `tbl_klinik` WHERE kemampuan_pelayanan='Pratama'")->result();
+		$query = $this->db->query("SELECT COUNT(kemampuan_pelayanan) as total_klinik FROM `tbl_klinik` WHERE kemampuan_pelayanan IN ('Pratama Umum','Utama Umum')")->result();
 		return $query;
 	}
 	public function get_data_utama()
 	{
-		$query = $this->db->query("SELECT COUNT(kemampuan_pelayanan) as total_klinik FROM `tbl_klinik` WHERE kemampuan_pelayanan='Utama'")->result();
+		$query = $this->db->query("SELECT COUNT(kemampuan_pelayanan) as total_klinik FROM `tbl_klinik` WHERE kemampuan_pelayanan IN ('Pratama Gigi', 'Utama Gigi')")->result();
 		return $query;
 	}
 	public function get_data_tim_penilai()

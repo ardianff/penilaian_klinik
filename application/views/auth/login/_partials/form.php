@@ -23,7 +23,7 @@
 				<input type="password" class="form-control" placeholder="Password" name="password" id="pass">
 				<div class="input-group-append">
 					<div class="input-group-text">
-						<span id="show-pw" onclick="change()"><i class="fas fa-eye"></i></span>
+						<span title="Lihat Password" id="show-pw" onclick="change()"><i class="fas fa-eye"></i></span>
 					</div>
 				</div>
 			</div>

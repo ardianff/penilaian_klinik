@@ -55,7 +55,18 @@
 							<div class="form-group row">
 								<label for="keterangan_penilaian" class="col-sm-2 col-form-label">Satuan</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="satuan_penilaian" placeholder="Satuan" value="<?php echo ($id_deskripsi->satuan_penilaian_pratama) ?>"></input>
+									<?php echo form_dropdown(
+										'satuan_penilaian',
+										[
+											'' => '- Pilih -',
+											'Unit' => 'Unit',
+											'Buah' => 'Buah',
+											'Set' => 'Set',
+											'Sesuai Kebutuhan' => 'Sesuai Kebutuhan',
+										],
+										$id_deskripsi->satuan_penilaian_pratama,
+										"class='form-control' "
+									); ?>
 									<?= form_error('satuan_penilaian', '<small class="text-danger pl-3">', '</small>') ?>
 								</div>
 							</div>

@@ -26,7 +26,7 @@
 								echo "<h3>$row->total_klinik</h3>";
 							} ?>
 
-							<p>Klinik Pratama</p>
+							<p>Klinik Pratama/Utama Umum</p>
 						</div>
 						<div class="icon">
 							<i class="fa-solid fa-house-medical-flag"></i>
@@ -45,7 +45,7 @@
 							foreach ($klinik_utama as $row) {
 								echo "<h3>$row->total_klinik</h3>";
 							} ?>
-							<p>Klinik Utama</p>
+							<p>Klinik Pratama/Utama Gigi</p>
 						</div>
 						<div class="icon">
 							<i class="fa-solid fa-house-medical-flag"></i>
@@ -56,83 +56,6 @@
 					</div>
 				</div>
 				<!-- ./col -->
-				<div class="col-lg-3 col-6">
-					<!-- small card -->
-					<div class="small-box bg-danger">
-						<div class="inner">
-							<?php
-							foreach ($rincian_pratama1 as $row) {
-								echo "<h3>$row->total_rincian</h3>";
-							} ?>
-
-							<p>Rincian Penilaian Pratama Form 1</p>
-						</div>
-						<div class="icon">
-							<i class="fa-solid fa-memo-circle-info"></i>
-						</div>
-						<a href="<?php echo base_url('rincian_penilaian_pratama'); ?>" class="small-box-footer">
-							Go to site <i class="fas fa-arrow-circle-right"></i>
-						</a>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-3 col-6">
-					<!-- small card -->
-					<div class="small-box bg-danger">
-						<div class="inner">
-							<?php
-							foreach ($rincian_pratama2 as $row) {
-								echo "<h3>$row->total_rincian</h3>";
-							} ?>
-
-							<p>Rincian Penilaian Pratama Form 2</p>
-						</div>
-						<div class="icon">
-							<i class="fa-solid fa-memo-circle-info"></i>
-						</div>
-						<a href="<?php echo base_url('rincian_penilaian_pratama_kedua'); ?>" class="small-box-footer">
-							Go to site <i class="fas fa-arrow-circle-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-6">
-					<!-- small card -->
-					<div class="small-box bg-info">
-						<div class="inner">
-							<?php
-							foreach ($rincian_utama1 as $row) {
-								echo "<h3>$row->total_rincian</h3>";
-							} ?>
-
-							<p>Rincian Penilaian Utama Form 1</p>
-						</div>
-						<div class="icon">
-							<i class="fa-solid fa-memo-circle-info"></i>
-						</div>
-						<a href="<?php echo base_url('rincian_penilaian_utama'); ?>" class="small-box-footer">
-							Go to site <i class="fas fa-arrow-circle-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-6">
-					<!-- small card -->
-					<div class="small-box bg-info">
-						<div class="inner">
-							<?php
-							foreach ($rincian_utama2 as $row) {
-								echo "<h3>$row->total_rincian</h3>";
-							} ?>
-
-							<p>Rincian Penilaian Utama Form 2</p>
-						</div>
-						<div class="icon">
-							<i class="fa-solid fa-memo-circle-info"></i>
-						</div>
-						<a href="<?php echo base_url('rincian_penilaian_utama_kedua'); ?>" class="small-box-footer">
-							Go to site <i class="fas fa-arrow-circle-right"></i>
-						</a>
-					</div>
-				</div>
 				<div class="col-lg-3 col-6">
 					<!-- small card -->
 					<div class="small-box bg-secondary">
@@ -169,6 +92,83 @@
 							<i class="fa-solid fa-users-gear"></i>
 						</div>
 						<a href="<?php echo base_url('user') ?>" class="small-box-footer">
+							Go to site <i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-6">
+					<!-- small card -->
+					<div class="small-box bg-danger">
+						<div class="inner">
+							<?php
+							foreach ($rincian_pratama1 as $row) {
+								echo "<h3>$row->total_rincian</h3>";
+							} ?>
+
+							<p>Rincian Penilaian Klinik Pratama/Utama Umum Form 1</p>
+						</div>
+						<div class="icon">
+							<i class="fa-solid fa-memo-circle-info"></i>
+						</div>
+						<a href="<?php echo base_url('rincian_penilaian_pratama'); ?>" class="small-box-footer">
+							Go to site <i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small card -->
+					<div class="small-box bg-danger">
+						<div class="inner">
+							<?php
+							foreach ($rincian_pratama2 as $row) {
+								echo "<h3>$row->total_rincian</h3>";
+							} ?>
+
+							<p>Rincian Penilaian Klinik Pratama/Utama Umum Form 2</p>
+						</div>
+						<div class="icon">
+							<i class="fa-solid fa-memo-circle-info"></i>
+						</div>
+						<a href="<?php echo base_url('rincian_penilaian_pratama_kedua'); ?>" class="small-box-footer">
+							Go to site <i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-6">
+					<!-- small card -->
+					<div class="small-box bg-info">
+						<div class="inner">
+							<?php
+							foreach ($rincian_utama1 as $row) {
+								echo "<h3>$row->total_rincian</h3>";
+							} ?>
+
+							<p>Rincian Penilaian Klinik Pratama/Utama Gigi Form 1</p>
+						</div>
+						<div class="icon">
+							<i class="fa-solid fa-memo-circle-info"></i>
+						</div>
+						<a href="<?php echo base_url('rincian_penilaian_utama'); ?>" class="small-box-footer">
+							Go to site <i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-6">
+					<!-- small card -->
+					<div class="small-box bg-info">
+						<div class="inner">
+							<?php
+							foreach ($rincian_utama2 as $row) {
+								echo "<h3>$row->total_rincian</h3>";
+							} ?>
+
+							<p>Rincian Penilaian Klinik Pratama/Utama Gigi Form 2</p>
+						</div>
+						<div class="icon">
+							<i class="fa-solid fa-memo-circle-info"></i>
+						</div>
+						<a href="<?php echo base_url('rincian_penilaian_utama_kedua'); ?>" class="small-box-footer">
 							Go to site <i class="fas fa-arrow-circle-right"></i>
 						</a>
 					</div>

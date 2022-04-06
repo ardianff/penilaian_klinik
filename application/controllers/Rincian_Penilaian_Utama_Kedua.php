@@ -9,7 +9,7 @@ class Rincian_penilaian_utama_kedua extends CI_Controller
 	}
 	function index()
 	{
-		$data['title'] = 'Rincian Penilaian Klinik Utama Form 2';
+		$data['title'] = 'Rincian Penilaian Form Kedua Klinik Pratama/Utama Gigi';
 		$data['data'] = $this->Model_rincian_penilaian_utama->get_rincian_penilaian_klinik_utama_kedua();
 		$this->template->load('template', 'rincian-penilaian-kedua/utama/list', $data);
 	}
@@ -54,7 +54,7 @@ class Rincian_penilaian_utama_kedua extends CI_Controller
 			]
 		);
 		if ($this->form_validation->run() == false) {
-			$data['title'] = 'Tambah Rincian Penilaian Klinik Utama';
+			$data['title'] = 'Input Rincian Penilaian Form Kedua Klinik Pratama/Utama Gigi';
 			$data['data'] = $this->Model_rincian_penilaian_utama->get_group_penilaian_utama();
 			$this->template->load('template', 'rincian-penilaian-kedua/utama/add', $data);
 		} else {
@@ -175,7 +175,7 @@ class Rincian_penilaian_utama_kedua extends CI_Controller
 	}
 	function group_name()
 	{
-		$data['title'] = 'Group Name Rincian Penilaian Klinik Utama';
+		$data['title'] = 'Group Name Rincian Penilaian Klinik Pratama/Utama Gigi';
 		$data['data'] = $this->Model_rincian_penilaian_utama->get_group_penilaian_utama();
 		$this->template->load('template', 'rincian-penilaian-kedua/utama/group-name/data', $data);
 	}

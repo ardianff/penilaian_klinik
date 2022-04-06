@@ -15,10 +15,10 @@ class Model_penilaian_utama extends CI_Model
 			'kemampuan_pelayanan' => $this->input->post('kemampuan_pelayanan'),
 			'jenis_pelayanan_klinik' => $this->input->post('jenis_pelayanan'),
 			'alamat_klinik' => $this->input->post('alamat_klinik'),
-			'tgl_penilaian' => $this->input->post('tgl_penilaian'),
+			'tgl_visitasi' => $this->input->post('tgl_visitasi'),
 			'id_kecamatan_klinik' => $this->input->post('nama_kecamatan'),
 			'id_kelurahan_klinik' => $this->input->post('nama_kelurahan'),
-			'tgl_penilaian' => $this->input->post('tgl_penilaian'),
+			'tgl_visitasi' => $this->input->post('tgl_visitasi'),
 			'status_penilaian' => "Belum",
 		];
 		$this->db->insert('tbl_klinik', $data);
@@ -38,7 +38,7 @@ class Model_penilaian_utama extends CI_Model
 			'alamat_klinik' => $this->input->post('alamat_klinik'),
 			'id_kecamatan_klinik' => $this->input->post('nama_kecamatan'),
 			'id_kelurahan_klinik' => $this->input->post('nama_kelurahan'),
-			'tgl_penilaian' => $this->input->post('tgl_penilaian'),
+			'tgl_visitasi' => $this->input->post('tgl_visitasi'),
 		];
 		$id_klinik = $this->input->post('id_klinik');
 		$this->db->where('id_klinik', $id_klinik);
@@ -49,15 +49,15 @@ class Model_penilaian_utama extends CI_Model
 		$query = $this->db->get('tbl_anggota')->result();
 		return $query;
 	}
-	public function get_klinik_utama()
-	{
-		$query = $this->db->order_by('status_penilaian', 'DESC')
-			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan = tbl_klinik.id_kelurahan_klinik')
-			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_klinik.id_kecamatan_klinik')
-			->order_by('id_klinik', 'DESC')
-			->get_where('tbl_klinik', array('kemampuan_pelayanan' => "Utama"))->result();
-		return $query;
-	}
+	// public function get_klinik_utama()
+	// {
+	// 	$query = $this->db->order_by('status_penilaian', 'DESC')
+	// 		->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan = tbl_klinik.id_kelurahan_klinik')
+	// 		->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_klinik.id_kecamatan_klinik')
+	// 		->order_by('id_klinik', 'DESC')
+	// 		->get_where('tbl_klinik', array('kemampuan_pelayanan' => "Utama"))->result();
+	// 	return $query;
+	// }
 	public function get_setting()
 	{
 		$site = $this->db->get('tbl_klinik')->result();
@@ -80,12 +80,14 @@ class Model_penilaian_utama extends CI_Model
 	}
 	public function get_data_utama()
 	{
-		$query = $this->db->order_by('status_penilaian', 'DESC')
-			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan = tbl_klinik.id_kelurahan_klinik')
-			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_klinik.id_kecamatan_klinik')
-			->order_by('id_klinik', 'DESC')
-			->get_where('tbl_klinik', array('kemampuan_pelayanan' => "Utama"))->result();
-		return $query;
+		$this->db->select('*');
+		$this->db->from('tbl_klinik');
+		$this->db->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan = tbl_klinik.id_kelurahan_klinik');
+		$this->db->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_klinik.id_kecamatan_klinik');
+		$this->db->order_by('status_penilaian', 'DESC');
+		$this->db->order_by('id_klinik', 'DESC');
+		$this->db->where_in('kemampuan_pelayanan', array('Pratama Gigi', 'Utama Gigi'));
+		return $this->db->get();
 	}
 	function simpan_penilaian_utama_pertama()
 	{

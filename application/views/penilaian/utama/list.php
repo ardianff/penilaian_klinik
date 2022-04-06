@@ -4,7 +4,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1><strong>Data <?= $title ?></strong></h1>
+					<h1><strong><?= $title ?></strong></h1>
 				</div>
 			</div>
 		</div><!-- /.container-fluid -->
@@ -17,7 +17,7 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							&nbsp;<?php echo anchor('penilaian_utama/add', 'Input Data Penilaian Baru', [
+							&nbsp;<?php echo anchor('penilaian_utama/add', 'Input Data Klinik Baru', [
 										'class' => 'btn btn-success btn-sm',
 									]); ?>
 						</div>
