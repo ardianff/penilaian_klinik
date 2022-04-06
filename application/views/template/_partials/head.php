@@ -34,6 +34,8 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/dist/css/adminlte.min.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style-add.css">
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.signature.css">
 <style type="text/css">
 	.signature-pad {
 		border: 1px solid #ccc;
@@ -71,5 +73,3 @@
 		font-size: 16px;
 	}
 </style>
-<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.signature.css">

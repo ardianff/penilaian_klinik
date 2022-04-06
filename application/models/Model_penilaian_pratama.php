@@ -214,17 +214,22 @@ class Model_penilaian_pratama extends CI_Model
 			$this->db->update('tbl_penilaian_pratama_form_kedua', $data);
 		}
 	}
-	function simpan_penilaian_pratama_ketiga($image)
+	function simpan_penilaian_pratama_ketiga($image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
 	{
 		$data = [
 			'no_penilaian' => $this->input->post('no_penilaian'),
 			'id_klinik' => $this->input->post('id_klinik'),
 			'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
-			'ttd_penilai' => $image,
+			'ttd_perwakilan_klinik' => $image,
+			'ttd_penilai1' => $imagettd1,
+			'ttd_penilai2' => $imagettd2,
+			'ttd_penilai3' => $imagettd3,
+			'ttd_penilai4' => $imagettd4,
 			'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
 			'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
 			'nama_perwakilan_pihak_klinik' => $this->input->post('nama_perwakilan_klinik'),
 			'jabatan_perwakilan_pihak_klinik' => $this->input->post('jabatan_perwakilan_klinik'),
+
 		];
 		$this->db->insert('tbl_penilaian_pratama_form_ketiga', $data);
 
@@ -233,12 +238,16 @@ class Model_penilaian_pratama extends CI_Model
 		$this->db->where('id_klinik', $id_klinik);
 		$this->db->update('tbl_klinik', $update);
 	}
-	function update_penilaian_pratama_ketiga($image)
+	function update_penilaian_pratama_ketiga($image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
 	{
 		$data = [
 			'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
 			'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
-			'ttd_penilai' => $image,
+			'ttd_perwakilan_klinik' => $image,
+			'ttd_penilai1' => $imagettd1,
+			'ttd_penilai2' => $imagettd2,
+			'ttd_penilai3' => $imagettd3,
+			'ttd_penilai4' => $imagettd4,
 			'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
 			'nama_perwakilan_pihak_klinik' => $this->input->post('nama_perwakilan_klinik'),
 			'jabatan_perwakilan_pihak_klinik' => $this->input->post('jabatan_perwakilan_klinik'),

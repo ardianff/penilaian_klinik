@@ -30,26 +30,31 @@
 								<div class="container">
 									<div class="row">
 										<div class="col-md-12">
-											<span>
-												<h3><b>Klinik <?php echo $klinik['kemampuan_pelayanan'] ?></b></h3>
-												Nama Klinik : <strong><?php echo $klinik['nama_klinik']; ?></strong><br>
-												Alamat : <?php echo $klinik['alamat_klinik']; ?><br>
-												Kecamatan : <?php echo $klinik['nama_kecamatan']; ?><br>
-												Kelurahan : <?php echo $klinik['nama_kelurahan']; ?>
-												(<?php echo $klinik['kode_pos_kelurahan']; ?>)<br>
-												<!-- Terakhir di update <?php echo $klinik['update_at']; ?> -->
-											</span>
-										</div>
-										<div class="col-md-12">
-											<!-- <span>
-												<h3><b>Klinik <?php echo $klinik['kemampuan_pelayanan'] ?></b></h3>
-												Nama Klinik : <strong><?php echo $klinik['nama_klinik']; ?></strong><br>
-												Alamat : <?php echo $klinik['alamat_klinik']; ?><br>
-												Kecamatan : <?php echo $klinik['nama_kecamatan']; ?><br>
-												Kelurahan : <?php echo $klinik['nama_kelurahan']; ?>
-												(<?php echo $klinik['kode_pos_kelurahan']; ?>)<br>
-												Terakhir di update <?php echo $klinik['update_at']; ?>
-											</span> -->
+											<h3><b><?php echo $klinik['nama_klinik'] ?></b></h3>
+											<table border="0" class="class=" text-bap"">
+												<tbody>
+													<tr>
+														<td>Kemampuan Pelayanan</td>
+														<td>:</td>
+														<td>Klinik <?php echo $klinik['kemampuan_pelayanan'] ?></td>
+													</tr>
+													<tr>
+														<td>Jenis Pelayanan Klinik</td>
+														<td>:</td>
+														<td><?php echo $klinik['jenis_pelayanan_klinik'] ?></td>
+													</tr>
+													<tr>
+														<td>Alamat Lengkap Klinik</td>
+														<td>:</td>
+														<td><?php echo $klinik['alamat_klinik'] ?>, Kec. <?php echo $klinik['nama_kecamatan'] ?>, Kel. <?php echo $klinik['nama_kelurahan'] ?> (<?php echo $klinik['kode_pos_kelurahan'] ?>)</td>
+													</tr>
+													<!-- <tr>
+														<td>Update Terakhir</td>
+														<td>:</td>
+														<td><?php echo $klinik['update_at'] ?></td>
+													</tr> -->
+												</tbody>
+											</table>
 										</div>
 									</div>
 								</div>

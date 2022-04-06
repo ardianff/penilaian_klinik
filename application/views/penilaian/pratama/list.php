@@ -32,7 +32,7 @@
 								<thead>
 									<tr>
 										<th class="text-center" rowspan="2">No</th>
-										<th class="text-center" rowspan="2">Nama Klinik</th>
+										<th class="text-center" rowspan="2" width="100px">Nama Klinik</th>
 										<th class="text-center" rowspan="2">Kemampuan Pelayanan</th>
 										<th class="text-center" rowspan="2">Jenis Klinik</th>
 										<th class="text-center" rowspan="2">Alamat</th>
@@ -52,7 +52,7 @@
 									foreach ($data as $row) : ?>
 										<tr>
 											<td class="text-center"><?php echo $no; ?></td>
-											<td class="text-center"><?php echo $row->nama_klinik; ?><br>
+											<td class="text-center"><?php echo $row->nama_klinik; ?><br><br>
 												<?php if ($row->status_penilaian == "Sudah") {
 													echo '<button type="button" class="btn btn-block bg-gradient-success" title="' . $row->nama_klinik . ' Sudah dilakukan Penilaian">Sudah Dinilai</button>';
 												} else {

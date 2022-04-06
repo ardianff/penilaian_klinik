@@ -37,8 +37,9 @@ class Rincian_penilaian_pratama extends CI_Controller
 				'Keterangan Penilaian berisi minimal 5 karakter',
 			]
 		);
+		$data['title'] = 'Input Rincian Penilaian Klinik Pratama/Utama Umum';
 		if ($this->form_validation->run() == false) {
-			$this->template->load('template', 'rincian-penilaian/pratama/add');
+			$this->template->load('template', 'rincian-penilaian/pratama/add', $data);
 		} else {
 			if (isset($_POST['submit'])) {
 				$this->Model_rincian_penilaian_pratama->add();
@@ -55,7 +56,8 @@ class Rincian_penilaian_pratama extends CI_Controller
 			} else {
 				$this->template->load(
 					'template',
-					'rincian-penilaian/pratama/add'
+					'rincian-penilaian/pratama/add',
+					$data
 				);
 			}
 		}
@@ -81,6 +83,7 @@ class Rincian_penilaian_pratama extends CI_Controller
 	// }
 	function edit($id)
 	{
+		$data['title'] = 'Edit Rincian Penilaian Klinik Pratama/Utama Umum';
 		$data['rincian'] = $this->Model_rincian_penilaian_pratama->getById($id);
 		$this->template->load(
 			'template',
@@ -108,6 +111,7 @@ class Rincian_penilaian_pratama extends CI_Controller
 				'Keterangan Penilaian berisi minimal 5 karakter',
 			]
 		);
+		$data['title'] = 'Edit Rincian Penilaian Klinik Pratama/Utama Umum';
 		if ($this->form_validation->run() == true) {
 			$id = $this->input->post('id_rincian_penilaian');
 			$data['rincian_penilaian'] = $this->input->post(

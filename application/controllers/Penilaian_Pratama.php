@@ -139,7 +139,7 @@ class Penilaian_Pratama extends CI_Controller
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
-						Penilaian Klinik Pratama Form Pertama <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
+						Penilaian Klinik Pratama/Utama Umum Form Pertama <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -197,7 +197,7 @@ class Penilaian_Pratama extends CI_Controller
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
-						Penilaian Klinik Pratama Form Kedua <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
+						Penilaian Klinik Pratama/Utama Umum Form Kedua <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -212,7 +212,7 @@ class Penilaian_Pratama extends CI_Controller
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
-						Penilaian Klinik Pratama Form Kedua <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Diupdate!
+						Penilaian Klinik Pratama/Utama Umum Form Kedua <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Diupdate!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -231,7 +231,7 @@ class Penilaian_Pratama extends CI_Controller
 		$id_klinik = $this->uri->segment(3);
 		$data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik, kec.nama_kecamatan, kel.nama_kelurahan, kel.kode_pos_kelurahan, 
 		pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik,
-		p.no_penilaian,pfk.ttd_penilai')
+		p.no_penilaian,pfk.ttd_perwakilan_klinik,pfk.ttd_penilai1,pfk.ttd_penilai2,pfk.ttd_penilai3,pfk.ttd_penilai4,')
 			->join('tbl_kecamatan kec', 'kec.id_kecamatan=k.id_kecamatan_klinik')
 			->join('tbl_kelurahan kel', 'kel.id_kelurahan=k.id_kelurahan_klinik')
 			->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
@@ -248,12 +248,46 @@ class Penilaian_Pratama extends CI_Controller
 					$data = base64_decode($img);
 					$file = './assets/img/ttd/' . uniqid() . '.png';
 					$success = file_put_contents($file, $data);
-					$image = str_replace('./', '', $file);
-					$this->Model_penilaian_pratama->simpan_penilaian_pratama_ketiga($image);
+					$image = str_replace('./assets/img/ttd/', '', $file);
+
+
+					$imgttd1 = $this->input->post('ttd-1');
+					$imgttd1 = str_replace('data:image/png;base64,', '', $imgttd1);
+					$imgttd1 = str_replace(' ', '+', $imgttd1);
+					$datattd1 = base64_decode($imgttd1);
+					$filettd1 = './assets/img/ttd/' . uniqid() . '.png';
+					$success = file_put_contents($filettd1, $datattd1);
+					$imagettd1 = str_replace('./assets/img/ttd/', '', $filettd1);
+
+					$imgttd2 = $this->input->post('ttd-2');
+					$imgttd2 = str_replace('data:image/png;base64,', '', $imgttd2);
+					$imgttd2 = str_replace(' ', '+', $imgttd2);
+					$datattd2 = base64_decode($imgttd2);
+					$filettd2 = './assets/img/ttd/' . uniqid() . '.png';
+					$success = file_put_contents($filettd2, $datattd2);
+					$imagettd2 = str_replace('./assets/img/ttd/', '', $filettd2);
+
+					$imgttd3 = $this->input->post('ttd-3');
+					$imgttd3 = str_replace('data:image/png;base64,', '', $imgttd3);
+					$imgttd3 = str_replace(' ', '+', $imgttd3);
+					$datattd3 = base64_decode($imgttd3);
+					$filettd3 = './assets/img/ttd/' . uniqid() . '.png';
+					$success = file_put_contents($filettd3, $datattd3);
+					$imagettd3 = str_replace('./assets/img/ttd/', '', $filettd3);
+
+					$imgttd4 = $this->input->post('ttd-4');
+					$imgttd4 = str_replace('data:image/png;base64,', '', $imgttd4);
+					$imgttd4 = str_replace(' ', '+', $imgttd4);
+					$datattd4 = base64_decode($imgttd4);
+					$filettd4 = './assets/img/ttd/' . uniqid() . '.png';
+					$success = file_put_contents($filettd4, $datattd4);
+					$imagettd4 = str_replace('./assets/img/ttd/', '', $filettd4);
+
+					$this->Model_penilaian_pratama->simpan_penilaian_pratama_ketiga($image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
-						Penilaian Klinik Pratama Form Ketiga <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
+						Penilaian Klinik Pratama/Utama Umum Form Ketiga <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -270,12 +304,45 @@ class Penilaian_Pratama extends CI_Controller
 					$data = base64_decode($img);
 					$file = './assets/img/ttd/' . uniqid() . '.png';
 					$success = file_put_contents($file, $data);
-					$image = str_replace('./', '', $file);
-					$this->Model_penilaian_pratama->update_penilaian_pratama_ketiga($image);
+					$image = str_replace('./assets/img/ttd/', '', $file);
+
+					$imgttd1 = $this->input->post('ttd-1');
+					$imgttd1 = str_replace('data:image/png;base64,', '', $imgttd1);
+					$imgttd1 = str_replace(' ', '+', $imgttd1);
+					$datattd1 = base64_decode($imgttd1);
+					$filettd1 = './assets/img/ttd/' . uniqid() . '.png';
+					$success = file_put_contents($filettd1, $datattd1);
+					$imagettd1 = str_replace('./assets/img/ttd/', '', $filettd1);
+
+					$imgttd2 = $this->input->post('ttd-2');
+					$imgttd2 = str_replace('data:image/png;base64,', '', $imgttd2);
+					$imgttd2 = str_replace(' ', '+', $imgttd2);
+					$datattd2 = base64_decode($imgttd2);
+					$filettd2 = './assets/img/ttd/' . uniqid() . '.png';
+					$success = file_put_contents($filettd2, $datattd2);
+					$imagettd2 = str_replace('./assets/img/ttd/', '', $filettd2);
+
+					$imgttd3 = $this->input->post('ttd-3');
+					$imgttd3 = str_replace('data:image/png;base64,', '', $imgttd3);
+					$imgttd3 = str_replace(' ', '+', $imgttd3);
+					$datattd3 = base64_decode($imgttd3);
+					$filettd3 = './assets/img/ttd/' . uniqid() . '.png';
+					$success = file_put_contents($filettd3, $datattd3);
+					$imagettd3 = str_replace('./assets/img/ttd/', '', $filettd3);
+
+					$imgttd4 = $this->input->post('ttd-4');
+					$imgttd4 = str_replace('data:image/png;base64,', '', $imgttd4);
+					$imgttd4 = str_replace(' ', '+', $imgttd4);
+					$datattd4 = base64_decode($imgttd4);
+					$filettd4 = './assets/img/ttd/' . uniqid() . '.png';
+					$success = file_put_contents($filettd4, $datattd4);
+					$imagettd4 = str_replace('./assets/img/ttd/', '', $filettd4);
+
+					$this->Model_penilaian_pratama->update_penilaian_pratama_ketiga($image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
-						Penilaian Klinik Pratama Form Ketiga <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Diupdate!
+						Penilaian Klinik Pratama/Utama Umum Form Ketiga <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Diupdate!
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -286,21 +353,21 @@ class Penilaian_Pratama extends CI_Controller
 			}
 		}
 	}
-	public function upload_ttd()
-	{
-		$folderPath = base_url("assets/img/ttd/");
-		if (empty($_POST['signed'])) {
-			echo "Kosong";
-		} else {
-			$image_parts = explode(";base64,", $_POST['signed']);
-			$image_type_aux = explode("image/", $image_parts[0]);
-			$image_type = $image_type_aux[1];
-			$image_base64 = base64_decode($image_parts[1]);
-			$file = $folderPath . uniqid() . '.' . $image_type;
-			file_put_contents($file, $image_base64);
-			echo "Tanda Tangan Sukses Diupload ";
-		}
-	}
+	// public function upload_ttd()
+	// {
+	// 	$folderPath = base_url("assets/img/ttd/");
+	// 	if (empty($_POST['signed'])) {
+	// 		echo "Kosong";
+	// 	} else {
+	// 		$image_parts = explode(";base64,", $_POST['signed']);
+	// 		$image_type_aux = explode("image/", $image_parts[0]);
+	// 		$image_type = $image_type_aux[1];
+	// 		$image_base64 = base64_decode($image_parts[1]);
+	// 		$file = $folderPath . uniqid() . '.' . $image_type;
+	// 		file_put_contents($file, $image_base64);
+	// 		echo "Tanda Tangan Sukses Diupload ";
+	// 	}
+	// }
 
 	function print()
 	{
@@ -337,18 +404,18 @@ class Penilaian_Pratama extends CI_Controller
 			->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik')
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=k.id_kecamatan_klinik')
 			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=k.id_kelurahan_klinik')
-			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Pratama'])
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
 			->row_array();
 		$cek_data = $this->db
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
 			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-			->get_where('tbl_klinik', ['id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Pratama'])
+			->get_where('tbl_klinik', ['id_klinik' => $id_klinik])
 			->row_array();
 		$data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik,
 			pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik')
 			->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
 			->join('tbl_penilaian_pratama_form_ketiga as pfk', 'pfk.id_klinik = k.id_klinik', 'left')
-			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Pratama'])
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
 			->row_array();
 		$data['title'] = 'Cetak Penilaian Klinik Pratama' . $data['penilaian']['nama_klinik'] . '';
 		$data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
@@ -404,18 +471,18 @@ class Penilaian_Pratama extends CI_Controller
 			->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik')
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=k.id_kecamatan_klinik')
 			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=k.id_kelurahan_klinik')
-			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Pratama'])
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
 			->row_array();
 		$cek_data = $this->db
 			->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
 			->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
-			->get_where('tbl_klinik', ['id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Pratama'])
+			->get_where('tbl_klinik', ['id_klinik' => $id_klinik])
 			->row_array();
 		$data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik,
 			pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik')
 			->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
 			->join('tbl_penilaian_pratama_form_ketiga as pfk', 'pfk.id_klinik = k.id_klinik', 'left')
-			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'kemampuan_pelayanan' => 'Pratama'])
+			->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
 			->row_array();
 		$data['title'] = 'Export PDF Berita Acara ' . $data['penilaian']['nama_klinik'] . '';
 		$data['data'] = $this->Model_penilaian_pratama->get_data_pratama();

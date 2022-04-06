@@ -84,6 +84,42 @@ if ($url_satu == $actual_link || $url_dua == $actual_link) {
 		sig.signature('clear');
 		$("#signature64").val('');
 	});
+	var ttd1 = $('#ttd1').signature({
+		syncField: '#signature64-ttd1',
+		syncFormat: 'PNG'
+	});
+	$('#cls-ttd1').click(function(e) {
+		e.preventDefault();
+		ttd1.signature('clear');
+		$("#signature64-ttd1").val('');
+	});
+	var ttd2 = $('#ttd2').signature({
+		syncField: '#signature64-ttd2',
+		syncFormat: 'PNG'
+	});
+	$('#cls-ttd2').click(function(e) {
+		e.preventDefault();
+		ttd2.signature('clear');
+		$("#signature64-ttd2").val('');
+	});
+	var ttd3 = $('#ttd3').signature({
+		syncField: '#signature64-ttd3',
+		syncFormat: 'PNG'
+	});
+	$('#cls-ttd3').click(function(e) {
+		e.preventDefault();
+		ttd3.signature('clear');
+		$("#signature64-ttd3").val('');
+	});
+	var ttd4 = $('#ttd4').signature({
+		syncField: '#signature64-ttd4',
+		syncFormat: 'PNG'
+	});
+	$('#cls-ttd4').click(function(e) {
+		e.preventDefault();
+		ttd4.signature('clear');
+		$("#signature64-ttd4").val('');
+	});
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {

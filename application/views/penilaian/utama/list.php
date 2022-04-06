@@ -32,7 +32,7 @@
 								<thead>
 									<tr>
 										<th class="text-center" rowspan="2">No</th>
-										<th class="text-center" rowspan="2">Nama Klinik</th>
+										<th class="text-center" rowspan="2" width="100px">Nama Klinik</th>
 										<th class="text-center" rowspan="2">Kemampuan Pelayanan</th>
 										<th class="text-center" rowspan="2">Jenis Klinik</th>
 										<th class="text-center" rowspan="2">Alamat</th>
@@ -52,11 +52,11 @@
 									foreach ($data as $row) : ?>
 										<tr>
 											<td class="text-center"><?php echo $no; ?></td>
-											<td class="text-center"><?php echo $row->nama_klinik; ?><br>
+											<td class="text-center"><?php echo $row->nama_klinik; ?><br><br>
 												<?php if ($row->status_penilaian == "Sudah") {
-													echo '<button type="button" class="btn btn-block bg-gradient-success" title="' . $row->nama_klinik . ' Sudah Dinilai">Sudah Dinilai</button>';
+													echo '<button type="button" class="btn btn-block bg-gradient-success" title="' . $row->nama_klinik . ' Sudah Dilakukan Penilaian">Sudah Dinilai</button>';
 												} else {
-													echo '<button type="button" class="btn btn-block bg-gradient-danger" title="' . $row->nama_klinik . ' Belum Dinilai">Belum Dinilai</button>';
+													echo '<button type="button" class="btn btn-block bg-gradient-danger" title="' . $row->nama_klinik . ' Belum Dilakukan Penilaian">Belum Dinilai</button>';
 												} ?></td>
 											<td class="text-center"><?php echo $row->kemampuan_pelayanan; ?></td>
 											<td class="text-center"><?php echo $row->jenis_pelayanan_klinik; ?></td>
@@ -65,7 +65,7 @@
 											<td class="text-center">
 												<div class="btn-group">
 													<!-- <button type="button" class="btn btn-danger"><i class="fa-solid fa-ellipsis-stroke-vertical"></i></button> -->
-													<button type="button" class="btn btn-success btn-sm dropdown-toggle dropdown-hover" data-toggle="dropdown" title="Pilih Opsi <?php echo $row->nama_klinik ?>">
+													<button type="button" class="btn btn-success btn-sm dropdown-toggle dropdown-hover" data-toggle="dropdown" title="Menu Pilihan Untuk <?php echo $row->nama_klinik ?>">
 														<span class="sr-only">Toggle Dropdown</span>
 														<i class="fa-solid fa-ellipsis-stroke-vertical"></i>
 													</button>
