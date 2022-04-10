@@ -132,8 +132,13 @@ class Model_penilaian_pratama extends CI_Model
             ));
             $i++;
         }
-        // print_r($data);
         $this->db->insert_batch('tbl_penilaian_pratama_form_satu', $data);
+
+
+        $update = ['status_penilaian' => "Sedang"];
+        $id_klinik = $this->input->post('id_klinik');
+        $this->db->where('id_klinik', $id_klinik);
+        $this->db->update('tbl_klinik', $update);
     }
     public function update_penilaian_pratama_pertama()
     {
@@ -263,20 +268,19 @@ class Model_penilaian_pratama extends CI_Model
         $this->db->where('id_klinik', $id_klinik);
         $this->db->update('tbl_klinik', $update);
     }
-    public function update_penilaian_pratama_ketiga($uploadData)
+    public function update_penilaian_pratama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
     {
         $foto_klinik = json_encode($uploadData);
-        // var_dump($foto_klinik);
-        // die();
+        $result_foto = preg_replace("/[^a-zA-Z0-9-_.,]/", "", $foto_klinik);
         $input = [
             'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
             'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
-            'foto_klinik' => $foto_klinik,
-            // 'ttd_perwakilan_klinik' => $image,
-            // 'ttd_penilai1' => $imagettd1,
-            // 'ttd_penilai2' => $imagettd2,
-            // 'ttd_penilai3' => $imagettd3,
-            // 'ttd_penilai4' => $imagettd4,
+            'foto_klinik' => $result_foto,
+            'ttd_perwakilan_klinik' => $image,
+            'ttd_penilai1' => $imagettd1,
+            'ttd_penilai2' => $imagettd2,
+            'ttd_penilai3' => $imagettd3,
+            'ttd_penilai4' => $imagettd4,
             'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
             'nama_perwakilan_pihak_klinik' => $this->input->post('nama_perwakilan_klinik'),
             'jabatan_perwakilan_pihak_klinik' => $this->input->post('jabatan_perwakilan_klinik'),

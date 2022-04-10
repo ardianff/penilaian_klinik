@@ -5,7 +5,6 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1><strong><?= $title ?></strong></h1>
-                    <div style="color: red;"><?php echo (isset($message)) ? $message : ""; ?></div>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -63,10 +62,10 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <?php echo form_open_multipart('penilaian_pratama/nilai_ketiga', 'class="form-horizontal"');
-						echo form_hidden('no_penilaian', $klinik['no_penilaian']);
-						echo form_hidden('id_klinik', $klinik['id_klinik']);
-						echo form_hidden('nama_klinik', $klinik['nama_klinik']);
-						?>
+                        echo form_hidden('no_penilaian', $klinik['no_penilaian']);
+                        echo form_hidden('id_klinik', $klinik['id_klinik']);
+                        echo form_hidden('nama_klinik', $klinik['nama_klinik']);
+                        ?>
                         <?php if ($klinik['usulan_rekomendasi'] == null && $klinik['uraian_penilaian'] == null && $klinik['tindak_lanjut_klinik'] == null && $klinik['nama_perwakilan_pihak_klinik'] == null && $klinik['jabatan_perwakilan_pihak_klinik'] == null) : ?>
                         <input type="hidden" name="form" value="add" />
                         <div class="card-body">
@@ -203,13 +202,15 @@
                                 <div class="col-sm-8">
                                     <input type="radio" name="pilihan_jawaban"
                                         <?php if ($klinik['usulan_rekomendasi'] == 'Telah Memenuhi') { ?> checked
-                                        <?php	} ?> value="Telah Memenuhi" required> Telah memenuhi persyaratan minimal
+                                        <?php    } ?> value="Telah Memenuhi" required> Telah memenuhi persyaratan
+                                    minimal
                                     sebagai
                                     Klinik Utama/Pratama</input>
                                     <br>
                                     <input type="radio" name="pilihan_jawaban"
                                         <?php if ($klinik['usulan_rekomendasi'] == 'Belum Memenuhi') { ?> checked
-                                        <?php	} ?> value="Belum Memenuhi" required> Belum memenuhi persyaratan minimal
+                                        <?php    } ?> value="Belum Memenuhi" required> Belum memenuhi persyaratan
+                                    minimal
                                     sebagai
                                     Klinik Utama/Pratama</input>
                                     <br><br>
@@ -223,15 +224,15 @@
                                 <div class="col-sm-10">
                                     <input type="radio" name="pilihan_jawaban_klinik"
                                         <?php if ($klinik['tindak_lanjut_klinik'] == 'Disetujui') { ?> checked
-                                        <?php	} ?> value="Disetujui" required> Disetujui</input>
+                                        <?php    } ?> value="Disetujui" required> Disetujui</input>
                                     <br>
                                     <input type="radio" name="pilihan_jawaban_klinik"
-                                        <?php if ($klinik['tindak_lanjut_klinik'] == 'Ditolak') { ?> checked <?php	} ?>
-                                        value="Ditolak" required> Ditolak</input>
+                                        <?php if ($klinik['tindak_lanjut_klinik'] == 'Ditolak') { ?> checked
+                                        <?php    } ?> value="Ditolak" required> Ditolak</input>
                                     <br>
                                     <input type="radio" name="pilihan_jawaban_klinik"
                                         <?php if ($klinik['tindak_lanjut_klinik'] == 'Diperbaiki') { ?> checked
-                                        <?php	} ?> value="Diperbaiki" required> Diperbaiki</input>
+                                        <?php    } ?> value="Diperbaiki" required> Diperbaiki</input>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -252,19 +253,24 @@
                                         style="color:red">*</span></label>
                                 <div class="col-sm-8">
                                     <input type="file" name="upload_Files[]" accept="image/*" multiple
-                                        <?php if ($klinik['foto_klinik'] == null) { ?> required <?php
-																																								} ?> />
+                                        <?php if ($klinik['foto_klinik'] == null) { ?> required
+                                        <?php
+                                                                                                                                                                } ?> />
                                     <br>
-                                    <p class="text-danger">Ekstensi Foto yang di perbolehkan yaitu .JPG| .JPEG| .PNG</p>
+                                    <p class="text-danger">Ekstensi Foto yang di perbolehkan yaitu .JPG| .JPEG| .PNG
+                                        dengan ukuran maksimal 5 mb</p>
+                                    <input type="hidden" name="old_photo"
+                                        value="<?php echo $klinik['foto_klinik'] ?>" />
                                 </div>
+                                <?php if (isset($error)) : ?>
+                                <div class="invalid-feedback"><?= $error ?></div>
+                                <?php endif; ?>
                                 <div class="container mt-4">
                                     <div class="row">
                                         <?php $foto = $klinik['foto_klinik'];
-											$foto_klinik = json_encode($foto);
-											$result = preg_replace("/[^a-zA-Z0-9-.,]/", "", $foto_klinik);
-											$foto_jadi = explode(",", $result);
-											foreach ($foto_jadi as $r) : ?>
-                                        <div class="col-auto">
+                                            $foto_jadi = explode(",", $foto);
+                                            foreach ($foto_jadi as $r) : ?>
+                                        <div class=" col-auto">
                                             <div class="card" style="width: 20rem;">
                                                 <img class="card-img-top"
                                                     src="<?php echo base_url("assets/img/uploads/foto_klinik/" . $r) ?>"
@@ -272,7 +278,7 @@
                                             </div>
                                         </div>
                                         <?php endforeach;
-											?>
+                                            ?>
 
                                     </div>
                                 </div>
@@ -288,7 +294,10 @@
                                             <div id="sig"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="clear">Clear</button>
-                                            <textarea id="signature64" name="signed" style="display: none"></textarea>
+                                            <textarea id="signature64" name="signed" style="display: none"
+                                                <?php if ($klinik['ttd_perwakilan_klinik'] == null) { ?>required
+                                                <?php
+                                                                                                                                                                            } ?>></textarea>
                                         </div>
                                         <div class="col-auto">
                                             <img class="text-center"
@@ -309,7 +318,10 @@
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd1">Clear</button>
                                             <textarea class="text-center" id="signature64-ttd1" name="ttd-1"
-                                                style="display: none"></textarea>
+                                                style="display: none"
+                                                <?php if ($klinik['ttd_penilai1'] == null) { ?>required
+                                                <?php
+                                                                                                                                                                                            } ?>></textarea>
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
@@ -322,8 +334,10 @@
                                             <div id="ttd2"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd2">Clear</button>
-                                            <textarea id="signature64-ttd2" name="ttd-2"
-                                                style="display: none"></textarea>
+                                            <textarea id="signature64-ttd2" name="ttd-2" style="display: none"
+                                                <?php if ($klinik['ttd_penilai2'] == null) { ?>required
+                                                <?php
+                                                                                                                                                                        } ?>></textarea>s
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
@@ -338,8 +352,10 @@
                                             <div id="ttd3"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd3">Clear</button>
-                                            <textarea id="signature64-ttd3" name="ttd-3"
-                                                style="display: none"></textarea>
+                                            <textarea id="signature64-ttd3" name="ttd-3" style="display: none"
+                                                <?php if ($klinik['ttd_penilai3'] == null) { ?>required
+                                                <?php
+                                                                                                                                                                        } ?>></textarea>
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
@@ -351,8 +367,10 @@
                                             <div id="ttd4"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd4">Clear</button>
-                                            <textarea id="signature64-ttd4" name="ttd-4"
-                                                style="display: none"></textarea>
+                                            <textarea id="signature64-ttd4" name="ttd-4" style="display: none"
+                                                <?php if ($klinik['ttd_penilai4'] == null) { ?>required
+                                                <?php
+                                                                                                                                                                        } ?>></textarea>
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
@@ -370,8 +388,8 @@
                             <div class="card-footer">
                                 <button type="submit" name="submit" class="btn btn-success">Simpan</button>
                                 <?php echo anchor('penilaian_pratama/nilai_kedua/' . $klinik['id_klinik'], 'Kembali', [
-									'class' => 'btn btn-warning',
-								]); ?>
+                                    'class' => 'btn btn-warning',
+                                ]); ?>
                             </div>
                         </div>
                         <!-- /.card-footer -->
