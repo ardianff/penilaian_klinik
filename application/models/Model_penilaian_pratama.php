@@ -243,14 +243,17 @@ class Model_penilaian_pratama extends CI_Model
             return $return;
         }
     }
-    public function simpan_penilaian_pratama_ketiga($foto_klinik, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
+    public function simpan_penilaian_pratama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
     {
+        $foto_klinik = json_encode($uploadData);
+        $result_foto = preg_replace("/[^a-zA-Z0-9-_.,]/", "", $foto_klinik);
         $data = [
             'no_penilaian' => $this->input->post('no_penilaian'),
             'id_klinik' => $this->input->post('id_klinik'),
             'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
             'ttd_perwakilan_klinik' => $image,
-            'foto_klinik' => $foto_klinik['file']['file_name'],
+            'foto_klinik' => $result_foto,
+            'ttd_perwakilan_klinik' => $image,
             'ttd_penilai1' => $imagettd1,
             'ttd_penilai2' => $imagettd2,
             'ttd_penilai3' => $imagettd3,
@@ -274,13 +277,14 @@ class Model_penilaian_pratama extends CI_Model
         $result_foto = preg_replace("/[^a-zA-Z0-9-_.,]/", "", $foto_klinik);
         $input = [
             'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
-            'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
+            'ttd_perwakilan_klinik' => $image,
             'foto_klinik' => $result_foto,
             'ttd_perwakilan_klinik' => $image,
             'ttd_penilai1' => $imagettd1,
             'ttd_penilai2' => $imagettd2,
             'ttd_penilai3' => $imagettd3,
             'ttd_penilai4' => $imagettd4,
+            'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
             'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
             'nama_perwakilan_pihak_klinik' => $this->input->post('nama_perwakilan_klinik'),
             'jabatan_perwakilan_pihak_klinik' => $this->input->post('jabatan_perwakilan_klinik'),
@@ -290,6 +294,5 @@ class Model_penilaian_pratama extends CI_Model
         $this->db->where('id_klinik', $id_klinik);
         $this->db->where('no_penilaian', $no_penilaian);
         $this->db->update('tbl_penilaian_pratama_form_ketiga', $input);
-        // print_r($this->db->last_query($cek_data));
     }
 }

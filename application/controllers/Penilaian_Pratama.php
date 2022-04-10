@@ -13,7 +13,6 @@ class Penilaian_Pratama extends CI_Controller
     {
         $data['title'] = 'Data Klinik Pratama/Utama Umum';
         $data['data'] = $this->Model_penilaian_pratama->get_data_pratama()->result();
-        // print_r($this->db->last_query());
         $this->template->load('template', 'penilaian/pratama/list', $data);
     }
 
@@ -27,7 +26,7 @@ class Penilaian_Pratama extends CI_Controller
             $this->session->set_flashdata(
                 'add',
                 '<div class="alert alert-success alert-dismissible fade show">
-				Data Klinik <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
+				Data Klinik Pratama/Utama Umum <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
@@ -239,6 +238,7 @@ class Penilaian_Pratama extends CI_Controller
             ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
             ->row_array();
         $this->template->load('template', 'penilaian/pratama/nilai-ketiga', $data);
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['form'] == 'add') {
                 if (isset($_POST['submit']) && !empty($_FILES['upload_Files']['name'])) {
@@ -252,7 +252,7 @@ class Penilaian_Pratama extends CI_Controller
                         $_FILES['upload_File']['tmp_name'] = $_FILES['upload_Files']['tmp_name'][$i];
                         $_FILES['upload_File']['error'] = $_FILES['upload_Files']['error'][$i];
                         $_FILES['upload_File']['size'] = $_FILES['upload_Files']['size'][$i];
-                        $uploadPath = './assets/img/uploads/foto_klinik/';
+                        $uploadPath = './assets/img/uploads/foto_klinik/pratama_utama_umum/';
                         $config['upload_path'] = $uploadPath;
                         $config['allowed_types'] = 'jpg|jpeg|png';
                         $config['overwrite'] = true;
@@ -268,50 +268,47 @@ class Penilaian_Pratama extends CI_Controller
                         }
                         $no++;
                     }
-                    if (empty($uploadData)) {
-                        $uploadData = $this->input->post('old_photo');
-                    }
                     $img = $this->input->post('signed');
                     $img = str_replace('data:image/png;base64,', '', $img);
                     $img = str_replace(' ', '+', $img);
                     $data = base64_decode($img);
                     $file = './assets/img/uploads/ttd/' . uniqid() . '.png';
                     $success = file_put_contents($file, $data);
-                    $image = str_replace('./assets/img/uploads/ttd/', '', $file);
+                    $image = str_replace('./assets/img/uploads/ttd/pratama_utama_umum/', '', $file);
 
                     $imgttd1 = $this->input->post('ttd-1');
                     $imgttd1 = str_replace('data:image/png;base64,', '', $imgttd1);
                     $imgttd1 = str_replace(' ', '+', $imgttd1);
                     $datattd1 = base64_decode($imgttd1);
-                    $filettd1 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $filettd1 = './assets/img/uploads/ttd/pratama_utama_umum/' . uniqid() . '.png';
                     $success = file_put_contents($filettd1, $datattd1);
-                    $imagettd1 = str_replace('./assets/img/uploads/ttd/', '', $filettd1);
+                    $imagettd1 = str_replace('./assets/img/uploads/ttd/pratama_utama_umum/', '', $filettd1);
 
                     $imgttd2 = $this->input->post('ttd-2');
                     $imgttd2 = str_replace('data:image/png;base64,', '', $imgttd2);
                     $imgttd2 = str_replace(' ', '+', $imgttd2);
                     $datattd2 = base64_decode($imgttd2);
-                    $filettd2 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $filettd2 = './assets/img/uploads/ttd/pratama_utama_umum/' . uniqid() . '.png';
                     $success = file_put_contents($filettd2, $datattd2);
-                    $imagettd2 = str_replace('./assets/img/uploads/ttd/', '', $filettd2);
+                    $imagettd2 = str_replace('./assets/img/uploads/ttd/pratama_utama_umum/', '', $filettd2);
 
                     $imgttd3 = $this->input->post('ttd-3');
                     $imgttd3 = str_replace('data:image/png;base64,', '', $imgttd3);
                     $imgttd3 = str_replace(' ', '+', $imgttd3);
                     $datattd3 = base64_decode($imgttd3);
-                    $filettd3 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $filettd3 = './assets/img/uploads/ttd/pratama_utama_umum/' . uniqid() . '.png';
                     $success = file_put_contents($filettd3, $datattd3);
-                    $imagettd3 = str_replace('./assets/img/uploads/ttd/', '', $filettd3);
+                    $imagettd3 = str_replace('./assets/img/uploads/ttd/pratama_utama_umum/', '', $filettd3);
 
                     $imgttd4 = $this->input->post('ttd-4');
                     $imgttd4 = str_replace('data:image/png;base64,', '', $imgttd4);
                     $imgttd4 = str_replace(' ', '+', $imgttd4);
                     $datattd4 = base64_decode($imgttd4);
-                    $filettd4 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $filettd4 = './assets/img/uploads/ttd/pratama_utama_umum/' . uniqid() . '.png';
                     $success = file_put_contents($filettd4, $datattd4);
-                    $imagettd4 = str_replace('./assets/img/uploads/ttd/', '', $filettd4);
+                    $imagettd4 = str_replace('./assets/img/uploads/ttd/pratama_utama_umum/', '', $filettd4);
 
-                    $this->Model_penilaian_pratama->update_penilaian_pratama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
+                    $this->Model_penilaian_pratama->simpan_penilaian_pratama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
                     $this->session->set_flashdata(
                         'simpan',
                         '<div class="alert alert-secondary alert-dismissible fade show">
@@ -335,7 +332,7 @@ class Penilaian_Pratama extends CI_Controller
                         $_FILES['upload_File']['tmp_name'] = $_FILES['upload_Files']['tmp_name'][$i];
                         $_FILES['upload_File']['error'] = $_FILES['upload_Files']['error'][$i];
                         $_FILES['upload_File']['size'] = $_FILES['upload_Files']['size'][$i];
-                        $uploadPath = './assets/img/uploads/foto_klinik/';
+                        $uploadPath = './assets/img/uploads/foto_klinik/pratama_utama_umum/';
                         $config['upload_path'] = $uploadPath;
                         $config['allowed_types'] = 'jpg|jpeg|png';
                         $config['overwrite'] = true;
@@ -358,46 +355,46 @@ class Penilaian_Pratama extends CI_Controller
                     $img = str_replace('data:image/png;base64,', '', $img);
                     $img = str_replace(' ', '+', $img);
                     $data = base64_decode($img);
-                    $file = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $file = './assets/img/uploads/ttd/pratama_utama_umum/' . uniqid() . '.png';
                     $success = file_put_contents($file, $data);
-                    $image = str_replace('./assets/img/uploads/ttd/', '', $file);
+                    $image = str_replace('./assets/img/uploads/ttd/pratama_utama_umum/', '', $file);
 
                     $imgttd1 = $this->input->post('ttd-1');
                     $imgttd1 = str_replace('data:image/png;base64,', '', $imgttd1);
                     $imgttd1 = str_replace(' ', '+', $imgttd1);
                     $datattd1 = base64_decode($imgttd1);
-                    $filettd1 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $filettd1 = './assets/img/uploads/ttd/pratama_utama_umum/' . uniqid() . '.png';
                     $success = file_put_contents($filettd1, $datattd1);
-                    $imagettd1 = str_replace('./assets/img/uploads/ttd/', '', $filettd1);
+                    $imagettd1 = str_replace('./assets/img/uploads/ttd/pratama_utama_umum/', '', $filettd1);
 
                     $imgttd2 = $this->input->post('ttd-2');
                     $imgttd2 = str_replace('data:image/png;base64,', '', $imgttd2);
                     $imgttd2 = str_replace(' ', '+', $imgttd2);
                     $datattd2 = base64_decode($imgttd2);
-                    $filettd2 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $filettd2 = './assets/img/uploads/ttd/pratama_utama_umum/' . uniqid() . '.png';
                     $success = file_put_contents($filettd2, $datattd2);
-                    $imagettd2 = str_replace('./assets/img/uploads/ttd/', '', $filettd2);
+                    $imagettd2 = str_replace('./assets/img/uploads/ttd/pratama_utama_umum/', '', $filettd2);
 
                     $imgttd3 = $this->input->post('ttd-3');
                     $imgttd3 = str_replace('data:image/png;base64,', '', $imgttd3);
                     $imgttd3 = str_replace(' ', '+', $imgttd3);
                     $datattd3 = base64_decode($imgttd3);
-                    $filettd3 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $filettd3 = './assets/img/uploads/ttd/pratama_utama_umum/' . uniqid() . '.png';
                     $success = file_put_contents($filettd3, $datattd3);
-                    $imagettd3 = str_replace('./assets/img/uploads/ttd/', '', $filettd3);
+                    $imagettd3 = str_replace('./assets/img/uploads/ttd/pratama_utama_umum/', '', $filettd3);
 
                     $imgttd4 = $this->input->post('ttd-4');
                     $imgttd4 = str_replace('data:image/png;base64,', '', $imgttd4);
                     $imgttd4 = str_replace(' ', '+', $imgttd4);
                     $datattd4 = base64_decode($imgttd4);
-                    $filettd4 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $filettd4 = './assets/img/uploads/ttd/pratama_utama_umum/' . uniqid() . '.png';
                     $success = file_put_contents($filettd4, $datattd4);
-                    $imagettd4 = str_replace('./assets/img/uploads/ttd/', '', $filettd4);
+                    $imagettd4 = str_replace('./assets/img/uploads/ttd/pratama_utama_umum/', '', $filettd4);
 
                     $this->Model_penilaian_pratama->update_penilaian_pratama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
                     $this->session->set_flashdata(
                         'simpan',
-                        '<div class="alert alert-secondary alert-dismissible fade show">
+                        '<div class="alert alert-warning alert-dismissible fade show">
                     Penilaian Klinik Pratama/Utama Umum Form Ketiga. Data <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Diupdate!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>

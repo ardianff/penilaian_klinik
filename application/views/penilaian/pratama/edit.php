@@ -23,19 +23,19 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <?php
-						echo form_open(
-							'penilaian_pratama/edit',
-							'class="form-horizontal"'
-						);
-						echo form_hidden(
-							'id_klinik',
-							$id_klinik['id_klinik']
-						);
-						echo form_hidden(
-							'nama_klinik',
-							$id_klinik['nama_klinik']
-						);
-						?>
+                        echo form_open(
+                            'penilaian_pratama/edit',
+                            'class="form-horizontal"'
+                        );
+                        echo form_hidden(
+                            'id_klinik',
+                            $id_klinik['id_klinik']
+                        );
+                        echo form_hidden(
+                            'nama_klinik',
+                            $id_klinik['nama_klinik']
+                        );
+                        ?>
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Penilai 1 <span
@@ -44,14 +44,14 @@
                                     <select class="form-control" name="nama_anggota1" required>
                                         <option value="">- Pilih Nama -</option>
                                         <?php
-										$anggota = $this->Model_penilaian_pratama->get_anggota();
-										foreach ($anggota as $p) { ?>
+                                        $anggota = $this->Model_penilaian_pratama->get_anggota();
+                                        foreach ($anggota as $p) { ?>
                                         <option value="<?php echo $p->nama_anggota; ?>" <?php if (
-																								$p->nama_anggota == $id_klinik['nama_anggota1']
-																							) { ?> selected <?php } ?>>
+                                                                                                $p->nama_anggota == $id_klinik['nama_anggota1']
+                                                                                            ) { ?> selected <?php } ?>>
                                             <?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
                                         <?php }
-										?>
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -62,14 +62,13 @@
                                     <select class="form-control" name="nama_anggota2" required>
                                         <option value="">- Pilih Nama -</option>
                                         <?php
-										$anggota = $this->Model_penilaian_pratama->get_anggota();
-										foreach ($anggota as $p) { ?>
+                                        foreach ($anggota as $p) { ?>
                                         <option value="<?php echo $p->nama_anggota; ?>" <?php if (
-																								$p->nama_anggota == $id_klinik['nama_anggota2']
-																							) { ?> selected <?php } ?>>
+                                                                                                $p->nama_anggota == $id_klinik['nama_anggota2']
+                                                                                            ) { ?> selected <?php } ?>>
                                             <?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
                                         <?php }
-										?>
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -80,14 +79,13 @@
                                     <select class="form-control" name="nama_anggota3" required>
                                         <option value="">- Pilih Nama -</option>
                                         <?php
-										$anggota = $this->Model_penilaian_pratama->get_anggota();
-										foreach ($anggota as $p) { ?>
+                                        foreach ($anggota as $p) { ?>
                                         <option value="<?php echo $p->nama_anggota; ?>"
                                             <?php if ($p->nama_anggota == $id_klinik['nama_anggota3']) { ?> selected
                                             <?php } ?>>
                                             <?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
                                         <?php }
-										?>
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -97,14 +95,13 @@
                                     <select class="form-control" name="nama_anggota4">
                                         <option value="">- Pilih Nama -</option>
                                         <?php
-										$anggota = $this->Model_penilaian_pratama->get_anggota();
-										foreach ($anggota as $p) { ?>
+                                        foreach ($anggota as $p) { ?>
                                         <option value="<?php echo $p->nama_anggota; ?>" <?php if (
-																								$p->nama_anggota == $id_klinik['nama_anggota4']
-																							) { ?> selected <?php } ?>>
+                                                                                                $p->nama_anggota == $id_klinik['nama_anggota4']
+                                                                                            ) { ?> selected <?php } ?>>
                                             <?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
                                         <?php }
-										?>
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -121,14 +118,14 @@
                                         style="color:red">*</span></label>
                                 <div class="col-sm-6">
                                     <?php echo form_dropdown(
-										'kemampuan_pelayanan',
-										[
-											'' => '- Pilih -',
-											'Pratama Umum' => 'Pratama Umum', 'Utama Umum' => 'Utama Umum',
-										],
-										$id_klinik['kemampuan_pelayanan'],
-										"class='form-control' required"
-									); ?>
+                                        'kemampuan_pelayanan',
+                                        [
+                                            '' => '- Pilih -',
+                                            'Pratama Umum' => 'Pratama Umum', 'Utama Umum' => 'Utama Umum',
+                                        ],
+                                        $id_klinik['kemampuan_pelayanan'],
+                                        "class='form-control' required"
+                                    ); ?>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +133,6 @@
                         <!-- /.card-footer -->
                     </div>
                     <!-- /.card -->
-
                 </div>
                 <div class="col-md-10">
                     <!-- Horizontal Form -->
@@ -150,15 +146,15 @@
                                         style="color:red">*</span></label>
                                 <div class="col-sm-6">
                                     <?php echo form_dropdown(
-										'jenis_pelayanan',
-										[
-											'' => '- Pilih -',
-											'Rawat Jalan' => 'Rawat Jalan',
-											'Rawat Inap' => 'Rawat Inap',
-										],
-										$id_klinik['jenis_pelayanan_klinik'],
-										"class='form-control' required"
-									); ?>
+                                        'jenis_pelayanan',
+                                        [
+                                            '' => '- Pilih -',
+                                            'Rawat Jalan' => 'Rawat Jalan',
+                                            'Rawat Inap' => 'Rawat Inap',
+                                        ],
+                                        $id_klinik['jenis_pelayanan_klinik'],
+                                        "class='form-control' required"
+                                    ); ?>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -214,8 +210,8 @@
                         <div class="card-footer">
                             <button type="submit" name="submit" class="btn btn-success">Simpan</button>
                             <?php echo anchor('penilaian_pratama', 'Kembali', [
-								'class' => 'btn btn-warning',
-							]); ?>
+                                'class' => 'btn btn-warning',
+                            ]); ?>
                         </div>
                         <!-- /.card-footer -->
                         <?php echo form_close(); ?>

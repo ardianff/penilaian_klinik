@@ -81,7 +81,7 @@
                                     persyaratan minimal sebagai <del>Klinik Utama</del>/Pratama</input>
                                     <br><br>
                                     <textarea placeholder="Isian Uraian..." class="form-control" rows="3"
-                                        name="uraian_penilaian_klinik"></textarea>
+                                        name="uraian_penilaian_klinik" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -112,7 +112,8 @@
                                 <label for="foto_klinik" class="col-sm-2 col-form-label">Foto Klinik<span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-8">
-                                    <input type="file" id="img" name="foto_klinik" accept="image/*">
+                                    <input type="file" id="img" name="upload_Files[]" accept="image/*" multiple
+                                        required>
                                     <br>
                                     <p class="text-danger">Ekstensi Foto yang di perbolehkan yaitu .JPG| .JPEG| .PNG</p>
                                 </div>
@@ -128,7 +129,8 @@
                                             <div id="sig"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="clear">Clear</button>
-                                            <textarea id="signature64" name="signed" style="display: none"></textarea>
+                                            <textarea id="signature64" name="signed" style="display: none"
+                                                required></textarea>
                                         </div>
                                         <div class="col-auto">
 
@@ -147,7 +149,7 @@
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd1">Clear</button>
                                             <textarea class="text-center" id="signature64-ttd1" name="ttd-1"
-                                                style="display: none"></textarea>
+                                                style="display: none" required></textarea>
                                         </div>
                                         <div class="col">
 
@@ -158,8 +160,8 @@
                                             <div id="ttd2"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd2">Clear</button>
-                                            <textarea id="signature64-ttd2" name="ttd-2"
-                                                style="display: none"></textarea>
+                                            <textarea id="signature64-ttd2" name="ttd-2" style="display: none"
+                                                required></textarea>
                                         </div>
                                         <div class="col">
 
@@ -172,8 +174,8 @@
                                             <div id="ttd3"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd3">Clear</button>
-                                            <textarea id="signature64-ttd3" name="ttd-3"
-                                                style="display: none"></textarea>
+                                            <textarea id="signature64-ttd3" name="ttd-3" style="display: none"
+                                                required></textarea>
                                         </div>
                                         <div class="col">
 
@@ -183,8 +185,8 @@
                                             <div id="ttd4"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd4">Clear</button>
-                                            <textarea id="signature64-ttd4" name="ttd-4"
-                                                style="display: none"></textarea>
+                                            <textarea id="signature64-ttd4" name="ttd-4" style="display: none"
+                                                required></textarea>
                                         </div>
                                         <div class="col">
                                         </div>
@@ -205,14 +207,14 @@
                                         <?php    } ?> value="Telah Memenuhi" required> Telah memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    Klinik Utama/Pratama</input>
+                                    Klinik Utama/Pratama Umum</input>
                                     <br>
                                     <input type="radio" name="pilihan_jawaban"
                                         <?php if ($klinik['usulan_rekomendasi'] == 'Belum Memenuhi') { ?> checked
                                         <?php    } ?> value="Belum Memenuhi" required> Belum memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    Klinik Utama/Pratama</input>
+                                    Klinik Utama/Pratama Umum</input>
                                     <br><br>
                                     <textarea placeholder="Isian Uraian..." class="form-control" rows="3"
                                         name="uraian_penilaian_klinik"><?php echo htmlentities($klinik['uraian_penilaian']); ?></textarea>
@@ -273,7 +275,7 @@
                                         <div class=" col-auto">
                                             <div class="card" style="width: 20rem;">
                                                 <img class="card-img-top"
-                                                    src="<?php echo base_url("assets/img/uploads/foto_klinik/" . $r) ?>"
+                                                    src="<?php echo base_url("assets/img/uploads/foto_klinik/pratama_utama_umum/" . $r) ?>"
                                                     width="50%" height="50%" alt="Foto Klinik">
                                             </div>
                                         </div>
@@ -301,7 +303,7 @@
                                         </div>
                                         <div class="col-auto">
                                             <img class="text-center"
-                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_perwakilan_klinik']) ?>"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/pratama_utama_umum/" . $klinik['ttd_perwakilan_klinik']) ?>"
                                                 width="250" height="250" />
                                         </div>
                                     </div>
@@ -325,7 +327,7 @@
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
-                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai1']) ?>"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/pratama_utama_umum/" . $klinik['ttd_penilai1']) ?>"
                                                 width="250" height="250" />
                                         </div>
                                         <div class="col">
@@ -341,7 +343,7 @@
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
-                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai2']) ?>"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/pratama_utama_umum/" . $klinik['ttd_penilai2']) ?>"
                                                 width="250" height="250" />
                                         </div>
                                         <div class="w-100"></div>
@@ -359,7 +361,7 @@
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
-                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai3']) ?>"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/pratama_utama_umum/" . $klinik['ttd_penilai3']) ?>"
                                                 width="250" height="250" />
                                         </div>
                                         <div class="col"><label>Tanda Tangan Penilai 4 :</label>
@@ -374,7 +376,7 @@
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
-                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai4']) ?>"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/pratama_utama_umum/" . $klinik['ttd_penilai4']) ?>"
                                                 width="250" height="250" />
                                         </div>
                                     </div>

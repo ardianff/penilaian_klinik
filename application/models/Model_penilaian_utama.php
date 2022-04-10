@@ -15,10 +15,10 @@ class Model_penilaian_utama extends CI_Model
             'kemampuan_pelayanan' => $this->input->post('kemampuan_pelayanan'),
             'jenis_pelayanan_klinik' => $this->input->post('jenis_pelayanan'),
             'alamat_klinik' => $this->input->post('alamat_klinik'),
-            'tgl_visitasi' => $this->input->post('tgl_visitasi'),
             'id_kecamatan_klinik' => $this->input->post('nama_kecamatan'),
             'id_kelurahan_klinik' => $this->input->post('nama_kelurahan'),
             'tgl_visitasi' => $this->input->post('tgl_visitasi'),
+            'no_surat' => $this->input->post('no_surat'),
             'status_penilaian' => "Belum",
         ];
         $this->db->insert('tbl_klinik', $data);
@@ -49,15 +49,6 @@ class Model_penilaian_utama extends CI_Model
         $query = $this->db->get('tbl_anggota')->result();
         return $query;
     }
-    // public function get_klinik_utama()
-    // {
-    //     $query = $this->db->order_by('status_penilaian', 'DESC')
-    //         ->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan = tbl_klinik.id_kelurahan_klinik')
-    //         ->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_klinik.id_kecamatan_klinik')
-    //         ->order_by('id_klinik', 'DESC')
-    //         ->get_where('tbl_klinik', array('kemampuan_pelayanan' => "Utama"))->result();
-    //     return $query;
-    // }
     public function get_setting()
     {
         $site = $this->db->get('tbl_klinik')->result();
@@ -112,6 +103,11 @@ class Model_penilaian_utama extends CI_Model
             $i++;
         }
         $this->db->insert_batch('tbl_penilaian_utama_form_satu', $data);
+
+        $update = ['status_penilaian' => "Sedang"];
+        $id_klinik = $this->input->post('id_klinik');
+        $this->db->where('id_klinik', $id_klinik);
+        $this->db->update('tbl_klinik', $update);
     }
     public function update_penilaian_utama_pertama()
     {
@@ -193,21 +189,26 @@ class Model_penilaian_utama extends CI_Model
             $this->db->update('tbl_penilaian_utama_form_kedua', $data);
         }
     }
-    public function simpan_penilaian_utama_ketiga($image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
+    public function simpan_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
     {
+        $foto_klinik = json_encode($uploadData);
+        $result_foto = preg_replace("/[^a-zA-Z0-9-_.,]/", "", $foto_klinik);
         $data = [
             'no_penilaian' => $this->input->post('no_penilaian'),
             'id_klinik' => $this->input->post('id_klinik'),
+            'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
+            'ttd_perwakilan_klinik' => $image,
+            'foto_klinik' => $result_foto,
             'ttd_perwakilan_klinik' => $image,
             'ttd_penilai1' => $imagettd1,
             'ttd_penilai2' => $imagettd2,
             'ttd_penilai3' => $imagettd3,
             'ttd_penilai4' => $imagettd4,
-            'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
             'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
             'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
             'nama_perwakilan_pihak_klinik' => $this->input->post('nama_perwakilan_klinik'),
             'jabatan_perwakilan_pihak_klinik' => $this->input->post('jabatan_perwakilan_klinik'),
+
         ];
         $this->db->insert('tbl_penilaian_utama_form_ketiga', $data);
 
@@ -216,10 +217,14 @@ class Model_penilaian_utama extends CI_Model
         $this->db->where('id_klinik', $id_klinik);
         $this->db->update('tbl_klinik', $update);
     }
-    public function update_penilaian_utama_ketiga($image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
+    public function update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
     {
+        $foto_klinik = json_encode($uploadData);
+        $result_foto = preg_replace("/[^a-zA-Z0-9-_.,]/", "", $foto_klinik);
         $data = [
             'usulan_rekomendasi' => $this->input->post('pilihan_jawaban'),
+            'ttd_perwakilan_klinik' => $image,
+            'foto_klinik' => $result_foto,
             'ttd_perwakilan_klinik' => $image,
             'ttd_penilai1' => $imagettd1,
             'ttd_penilai2' => $imagettd2,
