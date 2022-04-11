@@ -58,7 +58,6 @@ class Penilaian_Pratama extends CI_Controller
                 ->join('tbl_kelurahan as kel', 'kel.id_kelurahan = k.id_kelurahan_klinik')
                 ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
                 ->row_array();
-            // print_r($this->db->last_query());
             $data['title'] = 'Edit Data Klinik Pratama/Utama Umum';
             $data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
             $data['kecamatan'] = $this->Model_penilaian_pratama->get_data_kecamatan();
@@ -129,6 +128,7 @@ class Penilaian_Pratama extends CI_Controller
             ->join('tbl_penilaian_pratama_form_satu as pfs', 'pfs.id_klinik = p.id_klinik', 'left')
             ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
             ->row_array();
+        // print_r($this->db->last_query());
         $this->template->load('template', 'penilaian/pratama/nilai', $data);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['form'] == 'add') {
