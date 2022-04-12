@@ -9,24 +9,32 @@
 <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
 <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/fontawesome-free/css/all.min.css"> -->
 <!-- DataTables -->
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<link rel="stylesheet"
+    href="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet"
+    href="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet"
+    href="<?php echo base_url(); ?>assets/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 <!-- IonIcons -->
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- daterange picker -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/daterangepicker/daterangepicker.css">
 <!-- iCheck for checkboxes and radio inputs -->
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<link rel="stylesheet"
+    href="<?php echo base_url(); ?>assets/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 <!-- Bootstrap Color Picker -->
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+<link rel="stylesheet"
+    href="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
 <!-- Tempusdominus Bootstrap 4 -->
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<link rel="stylesheet"
+    href="<?php echo base_url(); ?>assets/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 <!-- Select2 -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/select2/css/select2.min.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<link rel="stylesheet"
+    href="<?php echo base_url(); ?>assets/admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 <!-- Bootstrap4 Duallistbox -->
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<link rel="stylesheet"
+    href="<?php echo base_url(); ?>assets/admin-lte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 <!-- BS Stepper -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/plugins/bs-stepper/css/bs-stepper.min.css">
 <!-- dropzonejs -->
@@ -34,42 +42,53 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin-lte/dist/css/adminlte.min.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style-add.css">
-<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet">
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css"
+    rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.signature.css">
 <style type="text/css">
-	.signature-pad {
-		border: 1px solid #ccc;
-		border-radius: 5px;
-		width: 100%;
-		height: 260px;
-	}
+.signature-pad {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    height: 260px;
+}
 
-	.main-wrapper {
-		width: 100%;
-		box-sizing: border-box;
-		border: 1px solid #fff;
-		padding: 0 30px;
-	}
+.main-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    padding: 0 30px;
+}
 
-	.responsive-table {
-		margin-right: -30px;
-		margin-left: -30px;
-		overflow-x: auto;
-	}
+.responsive-table {
+    margin-right: -30px;
+    margin-left: -30px;
+    overflow-x: auto;
+}
 
-	.responsive-table>table {
-		width: 100%;
-		border-collapse: collapse;
-		display: block;
-		-webkit-overflow-scrolling: touch;
-		margin-left: 30px;
-	}
+.responsive-table>table {
+    width: 100%;
+    border-collapse: collapse;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+    margin-left: 30px;
+}
 
-	.responsive-table>table td,
-	th {
-		border: 1px solid #cccccc;
-		padding: 8px;
-		font-family: Arial;
-		font-size: 16px;
-	}
+.responsive-table>table td,
+th {
+    border: 1px solid #cccccc;
+    padding: 8px;
+    font-family: Arial;
+    font-size: 16px;
+}
+
+.kbw-signature {
+    width: 250px;
+    height: 250px;
+}
+
+#sig canvas {
+    width: 100% !important;
+    height: auto;
+}
 </style>

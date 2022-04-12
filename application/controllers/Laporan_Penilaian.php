@@ -70,8 +70,6 @@ class Laporan_Penilaian extends CI_Controller
             $nama_bulan = "Desember";
         }
         $data['title'] = 'Laporan Data Klinik Pratama/Utama Umum & Gigi Bulan ' . $nama_bulan . ' Tahun ' . $tahun . '';
-        $data['bulan_pilih'] = $bulan;
-        $data['tahun_pilih'] = $tahun;
         $this->template->load(
             'template',
             'laporan-penilaian/data',

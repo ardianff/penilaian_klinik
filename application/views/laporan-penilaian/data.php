@@ -23,8 +23,7 @@
                             'laporan_penilaian/data',
                             'class="form-horizontal"'
                         );
-                        echo form_hidden('bulan_pilih', $bulan_pilih);
-                        echo form_hidden('tahun_pilih', $tahun_pilih); ?>
+                        ?>
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="bulan" class="col-sm-2 col-form-label">Bulan <span

@@ -43,6 +43,7 @@ class Auth extends CI_Controller
                         $hasil->nama_user
                     );
                     $this->session->set_userdata(['status_login' => 'ok']);
+                    session_start();
                     // $this->session->set_flashdata(
                     //     'message',
                     //     '<div class="alert alert-success alert-dismissible fade show">
@@ -104,6 +105,7 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('username');
         $this->session->unset_userdata('password');
         $this->session->set_userdata(['status_login' => 'logout']);
+        session_destroy();
         redirect('auth');
     }
 }

@@ -79,25 +79,25 @@
                                     memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    <del>Klinik Utama</del>/Klinik Pratama Gigi</input>
+                                    <del>Klinik Utama Gigi</del>/Klinik Pratama Gigi</input>
                                     <br>
                                     <input type="radio" name="pilihan_jawaban" value="Belum Memenuhi" required> Belum
                                     memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    <del>Klinik Utama</del>/Klinik Pratama Gigi</input>
+                                    <del>Klinik Utama Gigi</del>/Klinik Pratama Gigi</input>
                                     <?php elseif ($klinik['kemampuan_pelayanan'] == 'Utama Gigi') : ?>
                                     <input type="radio" name="pilihan_jawaban" value="Telah Memenuhi" required> Telah
                                     memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    Klinik Utama/<del>Klinik Pratama</del> Gigi</input>
+                                    Klinik Utama Gigi/<del>Klinik Pratama Gigi</del></input>
                                     <br>
                                     <input type="radio" name="pilihan_jawaban" value="Belum Memenuhi" required> Belum
                                     memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    Klinik Utama/<del>Klinik Pratama</del> Gigi</input>
+                                    Klinik Utama Gigi/<del>Klinik Pratama Gigi</del></input>
                                     <?php endif; ?>
                                     <br><br>
                                     <textarea placeholder="Isian Uraian..." class="form-control" rows="3"
@@ -312,7 +312,7 @@
                                         <div class=" col-auto">
                                             <div class="card" style="width: 20rem;">
                                                 <img class="card-img-top"
-                                                    src="<?php echo base_url("assets/img/uploads/foto_klinik/pratama_utama_gigi/" . $r) ?>"
+                                                    src="<?php echo base_url("assets/img/uploads/foto_klinik/" . $r) ?>"
                                                     width="50%" height="50%" alt="Foto Klinik">
                                             </div>
                                         </div>
@@ -340,7 +340,7 @@
                                         </div>
                                         <div class="col-auto">
                                             <img class="text-center"
-                                                src="<?php echo base_url("assets/img/uploads/ttd/pratama_utama_gigi/" . $klinik['ttd_perwakilan_klinik']) ?>"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_perwakilan_klinik']) ?>"
                                                 width="250" height="250" />
                                         </div>
                                     </div>
@@ -364,7 +364,7 @@
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
-                                                src="<?php echo base_url("assets/img/uploads/ttd/pratama_utama_gigi/" . $klinik['ttd_penilai1']) ?>"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai1']) ?>"
                                                 width="250" height="250" />
                                         </div>
                                         <div class="col">
@@ -380,7 +380,7 @@
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
-                                                src="<?php echo base_url("assets/img/uploads/ttd/pratama_utama_gigi/" . $klinik['ttd_penilai2']) ?>"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai2']) ?>"
                                                 width="250" height="250" />
                                         </div>
                                         <div class="w-100"></div>
@@ -398,7 +398,7 @@
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
-                                                src="<?php echo base_url("assets/img/uploads/ttd/pratama_utama_gigi/" . $klinik['ttd_penilai3']) ?>"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai3']) ?>"
                                                 width="250" height="250" />
                                         </div>
                                         <div class="col"><label>Tanda Tangan Penilai 4 :</label>
@@ -413,7 +413,7 @@
                                         </div>
                                         <div class="col">
                                             <img class="text-center"
-                                                src="<?php echo base_url("assets/img/uploads/ttd/pratama_utama_gigi/" . $klinik['ttd_penilai4']) ?>"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai4']) ?>"
                                                 width="250" height="250" />
                                         </div>
                                     </div>
