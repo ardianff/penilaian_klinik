@@ -311,15 +311,31 @@
                                             foreach ($foto_jadi as $r) : ?>
                                         <div class=" col-auto">
                                             <div class="card" style="width: 20rem;">
-                                                <img class="card-img-top"
-                                                    src="<?php echo base_url("assets/img/uploads/foto_klinik/" . $r) ?>"
-                                                    width="50%" height="50%" alt="Foto Klinik">
+                                                <div class="gallery">
+
+                                                    <img class="card-img-top"
+                                                        src="<?php echo base_url("assets/img/uploads/foto_klinik/" . $r) ?>"
+                                                        width="50%" height="50%" alt="Foto Klinik">
+                                                </div>
                                             </div>
                                         </div>
                                         <?php endforeach;
                                             ?>
 
                                     </div>
+                                </div>
+                                <div class="container-foto">
+
+                                    <div class="popup">
+
+                                        <i class="fas fa-times-circle" id="close"></i>
+
+                                        <div class="imageShow">
+
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -342,6 +358,8 @@
                                             <img class="text-center"
                                                 src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_perwakilan_klinik']) ?>"
                                                 width="250" height="250" />
+                                            <input type="hidden" name="old_ttd_perwakilan"
+                                                value="<?php echo $klinik['ttd_perwakilan_klinik'] ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -366,6 +384,8 @@
                                             <img class="text-center"
                                                 src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai1']) ?>"
                                                 width="250" height="250" />
+                                            <input type="hidden" name="old_ttd_penilai1"
+                                                value="<?php echo $klinik['ttd_penilai1'] ?>" />
                                         </div>
                                         <div class="col">
                                             <label>Tanda Tangan Penilai 2 :</label>
@@ -382,6 +402,9 @@
                                             <img class="text-center"
                                                 src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai2']) ?>"
                                                 width="250" height="250" />
+                                            <input type="hidden" name="old_ttd_penilai2"
+                                                value="<?php echo $klinik['ttd_penilai2'] ?>" />
+
                                         </div>
                                         <div class="w-100"></div>
                                         <br>
@@ -400,6 +423,8 @@
                                             <img class="text-center"
                                                 src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai3']) ?>"
                                                 width="250" height="250" />
+                                            <input type="hidden" name="old_ttd_penilai3"
+                                                value="<?php echo $klinik['ttd_penilai3'] ?>" />
                                         </div>
                                         <div class="col"><label>Tanda Tangan Penilai 4 :</label>
                                             <br />
@@ -415,6 +440,8 @@
                                             <img class="text-center"
                                                 src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai4']) ?>"
                                                 width="250" height="250" />
+                                            <input type="hidden" name="old_ttd_penilai4"
+                                                value="<?php echo $klinik['ttd_penilai4'] ?>" />
                                         </div>
                                     </div>
                                 </div>

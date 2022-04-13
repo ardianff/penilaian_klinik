@@ -153,8 +153,55 @@ $(document).ready(function() {
     }, 3500);
 });
 </script>
-<!-- <script>
-if (window.history.replaceState) {
-    window.history.replaceState(null, null, window.location.href);
-}
-</script> -->
+<script>
+$(".container-foto").css({
+    'position': 'absolute',
+    'top': '0px',
+    'display': 'none',
+    'width': '100%',
+    'height': 'auto',
+    // 'background': 'rgba(0,0,0,0.1)',
+});
+
+$(".popup").css({
+    'position': 'relative',
+    'top': '80px',
+    'width': '700px',
+    'margin': 'auto',
+    'border': '10px solid grey',
+    'z-index': '10000',
+    'background': 'white'
+});
+
+$("#close").css({
+    'position': 'absolute',
+    'top': '-15px',
+    'right': '-15px',
+    'font-size': '20px'
+});
+// Show
+
+$(".gallery img").click(function() {
+
+    $(".container-foto").fadeIn("slow");
+
+    var url = $(this).attr('src');
+
+    $(".imageShow").html('<img src="' + url + '">');
+
+    $(".imageShow img").css({
+        'width': '100%'
+    });
+
+})
+
+
+
+// Close
+
+$("#close").click(function() {
+
+    $(".container-foto").fadeOut("slow");
+
+})
+</script>
