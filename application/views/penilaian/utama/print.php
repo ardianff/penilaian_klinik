@@ -21,7 +21,6 @@
         width: 80px;
         height: 80px;
         margin: .5rem 0 5 .5rem;
-        ;
     }
 
     .header {
@@ -111,14 +110,23 @@
 </head>
 
 <body>
-    <img class="logodisp" src="<?php echo base_url() ?>assets/img/pemkot.png" type="image/png" />
-    <p class="header">
-        <b class="pemkot">PEMERINTAH KOTA SEMARANG
-        </b><br>
-        <b class="dinas">DINAS KESEHATAN</b><br>
-        <b class="alamat">Jl. Pandanaran No. 79 Telp.(024)8415269 - 8318070 Fax.(024) 8318771 Kode Pos : 50241
-            SEMARANG</b>
-    </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-auto">
+                <img class="logodisp" src="<?php echo base_url() ?>assets/img/pemkot.png" type="image/png" />
+            </div>
+            <div class="col-md-8 ml-5">
+                <p class="header">
+                    <b class="pemkot">PEMERINTAH KOTA SEMARANG
+                    </b><br>
+                    <b class="dinas">DINAS KESEHATAN</b><br>
+                    <b class="alamat">Jl. Pandanaran No. 79 Telp.(024)8415269 - 8318070 Fax.(024) 8318771 Kode Pos :
+                        50241
+                        SEMARANG</b>
+                </p>
+            </div>
+        </div>
+    </div>
     <hr class="hr-satu">
     <hr class="hr-dua">
     <p class="title"><u><b>BERITA ACARA PENILAIAN KESESUAIAN
@@ -127,8 +135,15 @@
         <?php echo $penilaian['no_penilaian'], $penilaian['id_klinik'] ?></p>
     <p class="text-bap">Pada hari ini <?php echo hari_ini() ?> tanggal <?php echo tanggal_sekarang() ?> (
         <?php echo terbilang(tanggal_sekarang()) ?> )
-        bulan <?php echo bulan_sekarang() ?> tahun <?php echo tahun_sekarang() ?>, berdasarkan surat tugas Nomor …………………
-        tanggal 7 Maret 2022 kami
+        bulan <?php echo bulan_sekarang() ?> tahun <?php echo tahun_sekarang() ?>, berdasarkan surat tugas Nomor
+        <?php echo $penilaian['no_surat'] ?>
+        tanggal <?php echo date('d', strtotime($penilaian['tgl_visitasi'])) ?>
+        <?php
+        $nama_bulan = date('F', strtotime($penilaian['tgl_visitasi']));
+        $bulan = nama_bulan($nama_bulan);
+        echo $bulan;
+        ?>
+        <?php echo date('Y', strtotime($penilaian['tgl_visitasi'])) ?> kami
         yang bertanda tangan
         di
         bawah ini :</p>
@@ -140,11 +155,7 @@
                         <td>1.</td>
                         <td>Nama</td>
                         <td>:</td>
-                        <td><?php if ($penilaian['nama_anggota1'] == null) {
-								echo "....................................";
-							} else {
-								echo $penilaian['nama_anggota1'];
-							} ?>
+                        <td><?php echo $penilaian['nama_anggota1']  ?>
                         </td>
                     </tr>
                     <tr>
@@ -152,15 +163,12 @@
                         <td>NIP</td>
                         <td>:</td>
                         <td><?php
-							foreach ($anggota as $p) : ?>
+                            foreach ($anggota as $p) : ?>
                             <?php if ($p->nama_anggota == $penilaian['nama_anggota1']) {
-									echo $p->nip_anggota;
-								} else {
-									break;
-									echo "....................................";
-								}
-							endforeach;
-							?>
+                                    echo $p->nip_anggota;
+                                }
+                            endforeach;
+                            ?>
                         </td>
                     </tr>
                 </tbody>
@@ -173,11 +181,7 @@
                         <td>2.</td>
                         <td>Nama</td>
                         <td>:</td>
-                        <td><?php if ($penilaian['nama_anggota2'] == null) {
-								echo "....................................";
-							} else {
-								echo $penilaian['nama_anggota2'];
-							} ?>
+                        <td><?php echo $penilaian['nama_anggota2'] ?>
                         </td>
                     </tr>
                     <tr>
@@ -185,14 +189,14 @@
                         <td>NIP</td>
                         <td>:</td>
                         <td><?php
-							foreach ($anggota as $p) { ?>
+                            foreach ($anggota as $p) { ?>
                             <?php if ($p->nama_anggota == $penilaian['nama_anggota2']) {
-									echo $p->nip_anggota;
-								}
-								?>
+                                    echo $p->nip_anggota;
+                                }
+                                ?>
                             <?php
-							}
-							?>
+                            }
+                            ?>
                         </td>
                     </tr>
                 </tbody>
@@ -205,11 +209,7 @@
                         <td>3.</td>
                         <td>Nama</td>
                         <td>:</td>
-                        <td><?php if ($penilaian['nama_anggota3'] == null) {
-								echo "....................................";
-							} else {
-								echo $penilaian['nama_anggota3'];
-							} ?>
+                        <td><?php echo $penilaian['nama_anggota3'] ?>
                         </td>
                     </tr>
                     <tr>
@@ -217,14 +217,14 @@
                         <td>NIP</td>
                         <td>:</td>
                         <td><?php
-							foreach ($anggota as $p) { ?>
+                            foreach ($anggota as $p) { ?>
                             <?php if ($p->nama_anggota == $penilaian['nama_anggota3']) {
-									echo $p->nip_anggota;
-								}
-								?>
+                                    echo $p->nip_anggota;
+                                }
+                                ?>
                             <?php
-							}
-							?>
+                            }
+                            ?>
                         </td>
                     </tr>
                 </tbody>
@@ -237,11 +237,7 @@
                         <td>4.</td>
                         <td>Nama</td>
                         <td>:</td>
-                        <td><?php if ($penilaian['nama_anggota4'] == null) {
-								echo "....................................";
-							} else {
-								echo $penilaian['nama_anggota4'];
-							} ?>
+                        <td><?php echo $penilaian['nama_anggota4'] ?>
                         </td>
                     </tr>
                     <tr>
@@ -249,17 +245,14 @@
                         <td>NIP</td>
                         <td>:</td>
                         <td><?php
-							foreach ($anggota as $p) { ?>
+                            foreach ($anggota as $p) { ?>
                             <?php if ($p->nama_anggota == $penilaian['nama_anggota4']) {
-									echo $p->nip_anggota;
-								} else {
-									echo "....................................";
-									break;
-								}
-								?>
+                                    echo $p->nip_anggota;
+                                }
+                                ?>
                             <?php
-							}
-							?>
+                            }
+                            ?>
                         </td>
                     </tr>
                 </tbody>
@@ -336,37 +329,37 @@
                                     </thead>
                                     <tbody>
                                         <?php
-										$no = 1;
-										foreach ($penilaiansatu as $row) : ?>
+                                        $no = 1;
+                                        foreach ($penilaiansatu as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $no; ?></td>
                                             <td class="text-justify td-content"><?php echo $row->rincian_penilaian; ?>
                                             </td>
                                             <?php if ($row->jawab_hasil == "Ya") {
-													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+                                                    echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
 														<td class='text-center td-content'><span></span></td>";
-												} else {
-													echo "<td class='text-center td-content'><span></span></td>
+                                                } else {
+                                                    echo "<td class='text-center td-content'><span></span></td>
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
-												}
-												?>
+                                                }
+                                                ?>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->keterangan_penilaian; ?></td>
                                             <?php if ($row->jawab_hasil_verif == "Ya") {
-													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+                                                    echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
 														<td class='text-center td-content'><span></span></td>";
-												} else {
-													echo "<td class='text-center td-content'><span></span></td>
+                                                } else {
+                                                    echo "<td class='text-center td-content'><span></span></td>
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
-												}
-												?>
+                                                }
+                                                ?>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->catatan_hasil_penilaian; ?>
                                             </td>
                                         </tr>
                                         <?php $no++;
-										endforeach;
-										?>
+                                        endforeach;
+                                        ?>
                                     </tbody>
                                 </table>
                                 <br>
@@ -395,32 +388,32 @@
                                     </thead>
                                     <tbody>
                                         <?php
-										$no = 1;
-										foreach ($peralatanklinik as $row) : ?>
+                                        $no = 1;
+                                        foreach ($peralatanklinik as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $no; ?></td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->kriteria_penilaian_utama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->satuan_penilaian_utama; ?></td>
                                             <?php if ($row->hasil_penilaian == "Ya") {
-													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+                                                    echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
 														<td class='text-center td-content'><span></span></td>";
-												} else {
-													echo "<td class='text-center td-content'><span></span></td>
+                                                } else {
+                                                    echo "<td class='text-center td-content'><span></span></td>
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
-												}
-												?>
-                                            <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
-                                            <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+                                                }
+                                                ?>
+                                            <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
+                                            <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
                                             <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
                                             </td>
                                         </tr>
                                         <?php $no++;
-										endforeach;
-										?>
+                                        endforeach;
+                                        ?>
 
                                     </tbody>
                                 </table>
@@ -450,32 +443,32 @@
                                     </thead>
                                     <tbody>
                                         <?php
-										$nomber = $no + 1;
-										foreach ($bahanhabis as $row) : ?>
+                                        $nomber = $no + 1;
+                                        foreach ($bahanhabis as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $nomber; ?></td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->kriteria_penilaian_utama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->satuan_penilaian_utama; ?></td>
                                             <?php if ($row->hasil_penilaian == "Ya") {
-													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+                                                    echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
 														<td class='text-center td-content'><span></span></td>";
-												} else {
-													echo "<td class='text-center td-content'><span></span></td>
+                                                } else {
+                                                    echo "<td class='text-center td-content'><span></span></td>
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
-												}
-												?>
-                                            <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
-                                            <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+                                                }
+                                                ?>
+                                            <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
+                                            <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
                                             <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
                                             </td>
                                         </tr>
                                         <?php $nomber++;
-										endforeach;
-										?>
+                                        endforeach;
+                                        ?>
                                     </tbody>
                                 </table>
                                 <!-- <br>
@@ -503,29 +496,29 @@
 									</thead>
 									<tbody>
 										<?php
-										$nomer = $nomber + 1;
-										foreach ($perlengkapan as $row) : ?>
+                                        $nomer = $nomber + 1;
+                                        foreach ($perlengkapan as $row) : ?>
 											<tr class="tr-content">
 												<td class="text-center td-content"><?php echo $nomer; ?></td>
 												<td class="text-justify td-content"><?php echo $row->kriteria_penilaian_utama; ?></td>
 												<td class="text-justify td-content"><?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
 												<td class="text-justify td-content"><?php echo $row->satuan_penilaian_utama; ?></td>
 												<?php if ($row->hasil_penilaian == "Ya") {
-													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+                                                    echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
 														<td class='text-center td-content'><span></span></td>";
-												} else {
-													echo "<td class='text-center td-content'><span></span></td>
+                                                } else {
+                                                    echo "<td class='text-center td-content'><span></span></td>
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
-												}
-												?>
+                                                }
+                                                ?>
 												<td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
 												<td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
 												<td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
 												</td>
 											</tr>
 										<?php $nomer++;
-										endforeach;
-										?>
+                                        endforeach;
+                                        ?>
 									</tbody>
 								</table> -->
                                 <br>
@@ -554,32 +547,32 @@
                                     </thead>
                                     <tbody>
                                         <?php
-										$num = $nomer + 1;
-										foreach ($meubelair as $row) : ?>
+                                        $num = $nomer + 1;
+                                        foreach ($meubelair as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $num; ?></td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->kriteria_penilaian_utama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->satuan_penilaian_utama; ?></td>
                                             <?php if ($row->hasil_penilaian == "Ya") {
-													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+                                                    echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
 														<td class='text-center td-content'><span></span></td>";
-												} else {
-													echo "<td class='text-center td-content'><span></span></td>
+                                                } else {
+                                                    echo "<td class='text-center td-content'><span></span></td>
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
-												}
-												?>
-                                            <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
-                                            <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+                                                }
+                                                ?>
+                                            <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
+                                            <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
                                             <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
                                             </td>
                                         </tr>
                                         <?php $num++;
-										endforeach;
-										?>
+                                        endforeach;
+                                        ?>
                                     </tbody>
                                 </table>
                                 <br>
@@ -608,32 +601,32 @@
                                     </thead>
                                     <tbody>
                                         <?php
-										$nums = $num + 1;
-										foreach ($pencatatan as $row) : ?>
+                                        $nums = $num + 1;
+                                        foreach ($pencatatan as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $nums; ?></td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->kriteria_penilaian_utama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->satuan_penilaian_utama; ?></td>
                                             <?php if ($row->hasil_penilaian == "Ya") {
-													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+                                                    echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
 														<td class='text-center td-content'><span></span></td>";
-												} else {
-													echo "<td class='text-center td-content'><span></span></td>
+                                                } else {
+                                                    echo "<td class='text-center td-content'><span></span></td>
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
-												}
-												?>
+                                                }
+                                                ?>
                                             <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
                                             <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
                                             <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
                                             </td>
                                         </tr>
                                         <?php $nums++;
-										endforeach;
-										?>
+                                        endforeach;
+                                        ?>
                                     </tbody>
                                 </table>
                                 <br>
@@ -663,32 +656,32 @@
                                     </thead>
                                     <tbody>
                                         <?php
-										$nom = $nums + 1;
-										foreach ($ruangasi as $row) : ?>
+                                        $nom = $nums + 1;
+                                        foreach ($ruangasi as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $nom; ?></td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->kriteria_penilaian_utama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->satuan_penilaian_utama; ?></td>
                                             <?php if ($row->hasil_penilaian == "Ya") {
-													echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
+                                                    echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
 														<td class='text-center td-content'><span></span></td>";
-												} else {
-													echo "<td class='text-center td-content'><span></span></td>
+                                                } else {
+                                                    echo "<td class='text-center td-content'><span></span></td>
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
-												}
-												?>
+                                                }
+                                                ?>
                                             <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
                                             <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
                                             <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
                                             </td>
                                         </tr>
                                         <?php $nom++;
-										endforeach;
-										?>
+                                        endforeach;
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -705,17 +698,17 @@
             Usulan Rekomendasi
             <br>Pilihan Jawaban :
             <?php if ($klinik['usulan_rekomendasi'] == 'Telah Memenuhi')
-				echo '<ol>
+                echo '<ol>
 				<li>Telah Memenuhi</li>
 				<li><del>Belum Memenuhi</del></li>
 			</ol>';
-			else {
-				echo '<ol>
+            else {
+                echo '<ol>
 				<li><del>Telah Memenuhi</del></li>
 				<li>Belum Memenuhi</li>
 			</ol>';
-			}
-			?>
+            }
+            ?>
             <p style="text-align:justify"><?php echo $klinik['uraian_penilaian'] ?></p>
         </li>
         <li class="text-bap">
@@ -811,7 +804,7 @@
                 <?php endif; ?>
             </ul>
         </li>
-        <li>
+        <li class="text-bap">
             Selama proses penilaian kesesuaian Klinik berlangsung, diketahui dan dibenarkan oleh pihak perwaklian
             Klinik.
             <table border="0" class="class=" text-bap"">

@@ -22,7 +22,7 @@
         width: 80px;
         height: 80px;
         margin: .5rem 0 5 .5rem;
-        ;
+        /* margin-left: 300px; */
     }
 
     .header {
@@ -114,14 +114,23 @@
 </head>
 
 <body>
-    <img class="logodisp" src="<?php echo base_url() ?>assets/img/pemkot.png" type="image/png" />
-    <p class="header">
-        <b class="pemkot">PEMERINTAH KOTA SEMARANG
-        </b><br>
-        <b class="dinas">DINAS KESEHATAN</b><br>
-        <b class="alamat">Jl. Pandanaran No. 79 Telp.(024)8415269 - 8318070 Fax.(024) 8318771 Kode Pos : 50241
-            SEMARANG</b>
-    </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-auto">
+                <img class="logodisp" src="<?php echo base_url() ?>assets/img/pemkot.png" type="image/png" />
+            </div>
+            <div class="col-md-8 ml-5">
+                <p class="header">
+                    <b class="pemkot">PEMERINTAH KOTA SEMARANG
+                    </b><br>
+                    <b class="dinas">DINAS KESEHATAN</b><br>
+                    <b class="alamat">Jl. Pandanaran No. 79 Telp.(024)8415269 - 8318070 Fax.(024) 8318771 Kode Pos :
+                        50241
+                        SEMARANG</b>
+                </p>
+            </div>
+        </div>
+    </div>
     <hr class="hr-satu">
     <hr class="hr-dua">
     <p class="title"><u><b>BERITA ACARA PENILAIAN KESESUAIAN
@@ -130,8 +139,15 @@
         <?php echo $penilaian['no_penilaian'], $penilaian['id_klinik'] ?></p>
     <p class="text-bap">Pada hari ini <?php echo hari_ini() ?> tanggal <?php echo tanggal_sekarang() ?> (
         <?php echo terbilang(tanggal_sekarang()) ?> )
-        bulan <?php echo bulan_sekarang() ?> tahun <?php echo tahun_sekarang() ?>, berdasarkan surat tugas Nomor …………………
-        tanggal 7 Maret 2022 kami
+        bulan <?php echo bulan_sekarang() ?> tahun <?php echo tahun_sekarang() ?>, berdasarkan surat tugas Nomor
+        <?php echo $penilaian['no_surat'] ?>
+        tanggal <?php echo date('d', strtotime($penilaian['tgl_visitasi'])) ?>
+        <?php
+        $nama_bulan = date('F', strtotime($penilaian['tgl_visitasi']));
+        $bulan = nama_bulan($nama_bulan);
+        echo $bulan;
+        ?>
+        <?php echo date('Y', strtotime($penilaian['tgl_visitasi'])) ?> kami
         yang bertanda tangan
         di
         bawah ini :</p>
@@ -143,11 +159,7 @@
                         <td>1.</td>
                         <td>Nama</td>
                         <td>:</td>
-                        <td><?php if ($penilaian['nama_anggota1'] == null) {
-                                echo "....................................";
-                            } else {
-                                echo $penilaian['nama_anggota1'];
-                            } ?>
+                        <td><?php echo $penilaian['nama_anggota1']  ?>
                         </td>
                     </tr>
                     <tr>
@@ -158,9 +170,6 @@
                             foreach ($anggota as $p) : ?>
                             <?php if ($p->nama_anggota == $penilaian['nama_anggota1']) {
                                     echo $p->nip_anggota;
-                                } else {
-                                    break;
-                                    echo "....................................";
                                 }
                             endforeach;
                             ?>
@@ -176,11 +185,7 @@
                         <td>2.</td>
                         <td>Nama</td>
                         <td>:</td>
-                        <td><?php if ($penilaian['nama_anggota2'] == null) {
-                                echo "....................................";
-                            } else {
-                                echo $penilaian['nama_anggota2'];
-                            } ?>
+                        <td><?php echo $penilaian['nama_anggota2'] ?>
                         </td>
                     </tr>
                     <tr>
@@ -208,11 +213,7 @@
                         <td>3.</td>
                         <td>Nama</td>
                         <td>:</td>
-                        <td><?php if ($penilaian['nama_anggota3'] == null) {
-                                echo "....................................";
-                            } else {
-                                echo $penilaian['nama_anggota3'];
-                            } ?>
+                        <td><?php echo $penilaian['nama_anggota3'] ?>
                         </td>
                     </tr>
                     <tr>
@@ -240,11 +241,7 @@
                         <td>4.</td>
                         <td>Nama</td>
                         <td>:</td>
-                        <td><?php if ($penilaian['nama_anggota4'] == null) {
-                                echo "....................................";
-                            } else {
-                                echo $penilaian['nama_anggota4'];
-                            } ?>
+                        <td><?php echo $penilaian['nama_anggota4'] ?>
                         </td>
                     </tr>
                     <tr>
@@ -255,9 +252,6 @@
                             foreach ($anggota as $p) { ?>
                             <?php if ($p->nama_anggota == $penilaian['nama_anggota4']) {
                                     echo $p->nip_anggota;
-                                } else {
-                                    echo "....................................";
-                                    break;
                                 }
                                 ?>
                             <?php
@@ -404,9 +398,9 @@
                                             <td class="text-center td-content"><?php echo $no; ?></td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->kriteria_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->satuan_penilaian_pratama; ?></td>
                                             <?php if ($row->hasil_penilaian == "Ya") {
                                                     echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
@@ -416,8 +410,8 @@
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
                                                 }
                                                 ?>
-                                            <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
-                                            <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+                                            <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
+                                            <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
                                             <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
                                             </td>
                                         </tr>
@@ -459,9 +453,9 @@
                                             <td class="text-center td-content"><?php echo $nomber; ?></td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->kriteria_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->satuan_penilaian_pratama; ?></td>
                                             <?php if ($row->hasil_penilaian == "Ya") {
                                                     echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
@@ -471,8 +465,8 @@
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
                                                 }
                                                 ?>
-                                            <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
-                                            <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+                                            <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
+                                            <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
                                             <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
                                             </td>
                                         </tr>
@@ -513,9 +507,9 @@
                                             <td class="text-center td-content"><?php echo $nomer; ?></td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->kriteria_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->satuan_penilaian_pratama; ?></td>
                                             <?php if ($row->hasil_penilaian == "Ya") {
                                                     echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
@@ -525,8 +519,8 @@
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
                                                 }
                                                 ?>
-                                            <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
-                                            <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+                                            <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
+                                            <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
                                             <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
                                             </td>
                                         </tr>
@@ -567,9 +561,9 @@
                                             <td class="text-center td-content"><?php echo $num; ?></td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->kriteria_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->satuan_penilaian_pratama; ?></td>
                                             <?php if ($row->hasil_penilaian == "Ya") {
                                                     echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
@@ -579,8 +573,8 @@
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
                                                 }
                                                 ?>
-                                            <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
-                                            <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+                                            <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
+                                            <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
                                             <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
                                             </td>
                                         </tr>
@@ -621,9 +615,9 @@
                                             <td class="text-center td-content"><?php echo $nums; ?></td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->kriteria_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->satuan_penilaian_pratama; ?></td>
                                             <?php if ($row->hasil_penilaian == "Ya") {
                                                     echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
@@ -633,8 +627,8 @@
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
                                                 }
                                                 ?>
-                                            <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
-                                            <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
+                                            <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
+                                            <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
                                             <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
                                             </td>
                                         </tr>
@@ -676,9 +670,9 @@
                                             <td class="text-center td-content"><?php echo $nom; ?></td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->kriteria_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
-                                            <td class="text-justify td-content">
+                                            <td class="text-center td-content">
                                                 <?php echo $row->satuan_penilaian_pratama; ?></td>
                                             <?php if ($row->hasil_penilaian == "Ya") {
                                                     echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
@@ -688,9 +682,9 @@
 														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
                                                 }
                                                 ?>
-                                            <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
-                                            <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
-                                            <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+                                            <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
+                                            <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
+                                            <td class="text-center td-content"><?php echo $row->catatan_penilaian; ?>
                                             </td>
                                         </tr>
                                         <?php $nom++;
