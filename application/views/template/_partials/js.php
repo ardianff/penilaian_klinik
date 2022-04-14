@@ -153,6 +153,17 @@ $(document).ready(function() {
     }, 3500);
 });
 </script>
+<!-- <script>
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.visibility === 'hidden') {
+        x.style.visibility = 'visible';
+    } else {
+        x.style.visibility = 'hidden';
+    }
+}
+</script> -->
+
 <script>
 $(".container-foto").css({
     'position': 'absolute',
