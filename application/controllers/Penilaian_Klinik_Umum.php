@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class Penilaian_Pratama extends CI_Controller
+class Penilaian_Klinik_Umum extends CI_Controller
 {
     public function __construct()
     {
@@ -13,7 +13,7 @@ class Penilaian_Pratama extends CI_Controller
     {
         $data['title'] = 'Data Klinik Pratama/Utama Umum';
         $data['data'] = $this->Model_penilaian_pratama->get_data_pratama()->result();
-        $this->template->load('template', 'penilaian/pratama/list', $data);
+        $this->template->load('template', 'penilaian/klinik_umum/list', $data);
     }
 
     public function add()
@@ -32,9 +32,9 @@ class Penilaian_Pratama extends CI_Controller
 				</button>
 				</div>'
             );
-            redirect('penilaian_pratama');
+            redirect('penilaian_klinik_umum');
         } else {
-            $this->template->load('template', 'penilaian/pratama/add', $data);
+            $this->template->load('template', 'penilaian/klinik_umum/add', $data);
         }
     }
     public function edit()
@@ -50,7 +50,7 @@ class Penilaian_Pratama extends CI_Controller
 				</button>
 				</div>'
             );
-            redirect('penilaian_pratama');
+            redirect('penilaian_klinik_umum');
         } else {
             $id_klinik = $this->uri->segment(3);
             $data['id_klinik'] = $this->db
@@ -61,7 +61,7 @@ class Penilaian_Pratama extends CI_Controller
             $data['title'] = 'Edit Data Klinik Pratama/Utama Umum';
             $data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
             $data['kecamatan'] = $this->Model_penilaian_pratama->get_data_kecamatan();
-            $this->template->load('template', 'penilaian/pratama/edit', $data);
+            $this->template->load('template', 'penilaian/klinik_umum/edit', $data);
         }
     }
 
@@ -79,7 +79,7 @@ class Penilaian_Pratama extends CI_Controller
 			</button>
 			</div>'
         );
-        redirect('penilaian_pratama');
+        redirect('penilaian_klinik_umum');
     }
     public function get_data_kelurahan()
     {
@@ -129,7 +129,7 @@ class Penilaian_Pratama extends CI_Controller
             ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
             ->row_array();
         // print_r($this->db->last_query());
-        $this->template->load('template', 'penilaian/pratama/nilai', $data);
+        $this->template->load('template', 'penilaian/klinik_umum/nilai', $data);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['form'] == 'add') {
                 if (isset($_POST['submit'])) {
@@ -145,7 +145,7 @@ class Penilaian_Pratama extends CI_Controller
 						</div>'
                     );
                     $id_klinik = $this->input->post('id_klinik');
-                    redirect('penilaian_pratama/nilai_kedua/' . $id_klinik);
+                    redirect('penilaian_klinik_umum/nilai_kedua/' . $id_klinik);
                 }
             } else if ($_POST['form'] == 'edit') {
                 if (isset($_POST['submit'])) {
@@ -160,7 +160,7 @@ class Penilaian_Pratama extends CI_Controller
 						</div>'
                     );
                     $id_klinik = $this->input->post('id_klinik');
-                    redirect('penilaian_pratama/nilai_kedua/' . $id_klinik);
+                    redirect('penilaian_klinik_umum/nilai_kedua/' . $id_klinik);
                 }
             }
         }
@@ -186,7 +186,7 @@ class Penilaian_Pratama extends CI_Controller
             ->get_where('tbl_deskripsi_penilaian_pratama as pr', ['pfs.id_klinik' => $id_klinik])
             ->result();
         $data['rincian'] = $this->Model_penilaian_pratama->get_question_next();
-        $this->template->load('template', 'penilaian/pratama/nilai-kedua', $data);
+        $this->template->load('template', 'penilaian/klinik_umum/nilai-kedua', $data);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['form'] == 'add') {
@@ -203,7 +203,7 @@ class Penilaian_Pratama extends CI_Controller
 						</div>'
                     );
                     $id_klinik = $this->input->post('id_klinik');
-                    redirect('penilaian_pratama/nilai_ketiga/' . $id_klinik);
+                    redirect('penilaian_klinik_umum/nilai_ketiga/' . $id_klinik);
                 }
             } else if ($_POST['form'] == 'edit') {
                 if (isset($_POST['submit'])) {
@@ -218,7 +218,7 @@ class Penilaian_Pratama extends CI_Controller
 						</div>'
                     );
                     $id_klinik = $this->input->post('id_klinik');
-                    redirect('penilaian_pratama/nilai_ketiga/' . $id_klinik);
+                    redirect('penilaian_klinik_umum/nilai_ketiga/' . $id_klinik);
                 }
             }
         }
@@ -237,7 +237,7 @@ class Penilaian_Pratama extends CI_Controller
             ->join('tbl_penilaian_pratama_form_ketiga as pfk', 'pfk.id_klinik = k.id_klinik', 'left')
             ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
             ->row_array();
-        $this->template->load('template', 'penilaian/pratama/nilai-ketiga', $data);
+        $this->template->load('template', 'penilaian/klinik_umum/nilai-ketiga', $data);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['form'] == 'add') {
@@ -318,7 +318,7 @@ class Penilaian_Pratama extends CI_Controller
                     </button>
                     </div>'
                     );
-                    redirect('penilaian_pratama');
+                    redirect('penilaian_klinik_umum');
                 }
             } else if ($_POST['form'] == 'edit') {
                 if (isset($_POST['submit']) && !empty($_FILES['upload_Files']['name'])) {
@@ -357,6 +357,7 @@ class Penilaian_Pratama extends CI_Controller
                     $imgttd3 = $this->input->post('ttd-3');
                     $imgttd4 = $this->input->post('ttd-4');
 
+
                     if ($img == "" || $imgttd1 == "" || $imgttd2 == "" || $imgttd3 == "" || $imgttd4 == "") {
                         $image = $this->input->post('old_ttd_perwakilan');
                         $imagettd1 = $this->input->post('old_ttd_penilai1');
@@ -373,7 +374,7 @@ class Penilaian_Pratama extends CI_Controller
                             </button>
                             </div>'
                         );
-                        redirect('penilaian_pratama');
+                        redirect('penilaian_klinik_umum');
                     } else {
 
                         $img = str_replace('data:image/png;base64,', '', $img);
@@ -421,7 +422,7 @@ class Penilaian_Pratama extends CI_Controller
                                 </button>
                                 </div>'
                         );
-                        redirect('penilaian_pratama');
+                        redirect('penilaian_klinik_umum');
                     }
                 }
             }
@@ -489,7 +490,7 @@ class Penilaian_Pratama extends CI_Controller
 				</button>
 				</div>'
             );
-            redirect('penilaian_pratama');
+            redirect('penilaian_klinik_umum');
         } else if ($cek_data['status_penilaian'] == "Sedang") {
             $this->session->set_flashdata(
                 'nilai',
@@ -500,10 +501,10 @@ class Penilaian_Pratama extends CI_Controller
 				</button>
 				</div>'
             );
-            redirect('penilaian_pratama');
+            redirect('penilaian_klinik_umum');
         } else {
 
-            $this->load->view('penilaian/pratama/print', $data);
+            $this->load->view('penilaian/klinik_umum/print', $data);
         }
     }
     public function export_pdf()
@@ -567,7 +568,7 @@ class Penilaian_Pratama extends CI_Controller
 				</button>
 				</div>'
             );
-            redirect('penilaian_pratama');
+            redirect('penilaian_klinik_umum');
         } else if ($cek_data['status_penilaian'] == "Sedang") {
             $this->session->set_flashdata(
                 'nilai',
@@ -578,11 +579,12 @@ class Penilaian_Pratama extends CI_Controller
 				</button>
 				</div>'
             );
-            redirect('penilaian_pratama');
+            redirect('penilaian_klinik_umum');
         } else {
-            $mpdf = new \Mpdf\Mpdf(['orientation' => 'P', 'format' => 'Legal', 'allow_charset_conversion' => true]);
+            $mpdf = new \Mpdf\Mpdf(['orientation' => 'P', 'format' => 'Legal']);
+            $mpdf->shrink_tables_to_fit = 0;
             $mpdf->debug = true;
-            $html = $this->load->view('penilaian/pratama/pdf', $data, true);
+            $html = $this->load->view('penilaian/klinik_umum/pdf', $data, true);
             $mpdf->WriteHTML($html);
             $mpdf->Output('Berita Acara ' . $data['penilaian']['nama_klinik'] . '.pdf', 'I');
         }

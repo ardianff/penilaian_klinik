@@ -153,6 +153,25 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="nama_perwakilan" class="col-sm-3 col-form-label">Nama Perwakilan
+                                    Klinik</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Nama Perwakilan Klinik"
+                                        name="nama_perwakilan" value="<?php echo $id_klinik['nama_perwakilan']; ?>"
+                                        disabled readonly></input>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="nama_perwakilan" class="col-sm-3 col-form-label">Jabatan Perwakilan
+                                    Klinik</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Jabatan Perwakilan Klinik"
+                                        name="jabatan_perwakilan"
+                                        value="<?php echo $id_klinik['jabatan_perwakilan']; ?>" disabled
+                                        readonly></input>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="NIP_Anggota" class="col-sm-3 col-form-label">Alamat Klinik </label>
                                 <div class="col-sm-6">
                                     <textarea type="text" class="form-control" name="alamat_klinik"
@@ -194,6 +213,14 @@
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="Nomor Surat" name="no_surat"
                                         value="<?php echo $id_klinik['no_surat']; ?>" readonly disabled></input>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="no_siop" class="col-sm-3 col-form-label">Nomor Siop <span
+                                        style="color:red">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Nomor Siop" name="nomor_siop"
+                                        value="<?php echo $id_klinik['nomor_siop']; ?>" required></input>
                                 </div>
                             </div>
                             <div class="form-group row">

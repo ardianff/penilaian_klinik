@@ -61,7 +61,7 @@
 
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <?php echo form_open_multipart('penilaian_pratama/nilai_ketiga', 'class="form-horizontal"');
+                        <?php echo form_open_multipart('penilaian_klinik_umum/nilai_ketiga', 'class="form-horizontal"');
                         echo form_hidden('no_penilaian', $klinik['no_penilaian']);
                         echo form_hidden('id_klinik', $klinik['id_klinik']);
                         echo form_hidden('nama_klinik', $klinik['nama_klinik']);
@@ -435,7 +435,7 @@
                         <div class=" text-center">
                             <div class="card-footer">
                                 <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-                                <?php echo anchor('penilaian_pratama/nilai_kedua/' . $klinik['id_klinik'], 'Kembali', [
+                                <?php echo anchor('penilaian_klinik_umum/nilai_kedua/' . $klinik['id_klinik'], 'Kembali', [
                                     'class' => 'btn btn-warning',
                                 ]); ?>
                             </div>

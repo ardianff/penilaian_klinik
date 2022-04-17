@@ -22,6 +22,7 @@ class Model_auth extends CI_Model
 			'kode_user' => kode_user(),
 			'nama_user' => $this->input->post('nama_user'),
 			'nip_user' => $this->input->post('nip_user'),
+			'level_user' => $this->input->post('level_user'),
 			'username' => $this->input->post('username'),
 			'password' => password_hash(
 				$this->input->post('password'),

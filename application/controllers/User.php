@@ -8,6 +8,7 @@ class User extends CI_Controller
         parent::__construct();
         $this->load->Model('Model_auth');
         check_session();
+        check_level();
     }
 
     public function index()
@@ -41,6 +42,14 @@ class User extends CI_Controller
                 'min_length' => 'NIP wajib berisi minimal 18 karakter',
                 'max_length' => 'NIP wajib berisi maksimal 20 karakter',
                 'is_unique' => 'NIP yang diinputkan sudah ada',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'level_user',
+            'Level',
+            'required',
+            [
+                'required' => 'Level User Wajib dipilih',
             ]
         );
         $this->form_validation->set_rules(
@@ -113,6 +122,14 @@ class User extends CI_Controller
             ]
         );
         $this->form_validation->set_rules(
+            'level_user',
+            'Level',
+            'required',
+            [
+                'required' => 'Level User Wajib dipilih',
+            ]
+        );
+        $this->form_validation->set_rules(
             'username',
             'Username',
             'required|trim|min_length[5]|xss_clean|max_length[20]',
@@ -136,6 +153,7 @@ class User extends CI_Controller
                 $id = $this->input->post('kode_user');
                 $data['nama_user'] = $this->input->post('nama_user');
                 $data['nip_user'] = $this->input->post('nip_user');
+                $data['level_user'] = $this->input->post('level_user');
                 $data['username'] = $this->input->post('username');
                 $data['password'] = password_hash(
                     $this->input->post('password'),
@@ -156,6 +174,7 @@ class User extends CI_Controller
                 $id = $this->input->post('kode_user');
                 $data['nama_user'] = $this->input->post('nama_user');
                 $data['nip_user'] = $this->input->post('nip_user');
+                $data['level_user'] = $this->input->post('level_user');
                 $data['username'] = $this->input->post('username');
                 $this->Model_auth->update($data, $id);
                 $this->session->set_flashdata(

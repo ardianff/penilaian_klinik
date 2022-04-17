@@ -212,7 +212,11 @@ class Model_penilaian_utama extends CI_Model
         ];
         $this->db->insert('tbl_penilaian_utama_form_ketiga', $data);
 
-        $update = ['status_penilaian' => "Sudah"];
+        $update = [
+            'status_penilaian' => "Sudah",
+            'nama_perwakilan' => $this->input->post('nama_perwakilan_klinik'),
+            'jabatan_perwakilan' =>  $this->input->post('jabatan_perwakilan_klinik')
+        ];
         $id_klinik = $this->input->post('id_klinik');
         $this->db->where('id_klinik', $id_klinik);
         $this->db->update('tbl_klinik', $update);
@@ -240,5 +244,13 @@ class Model_penilaian_utama extends CI_Model
         $this->db->where('id_klinik', $id_klinik);
         $this->db->where('no_penilaian', $no_penilaian);
         $this->db->update('tbl_penilaian_utama_form_ketiga', $data);
+
+        $update = [
+            'nama_perwakilan' => $this->input->post('nama_perwakilan_klinik'),
+            'jabatan_perwakilan' =>  $this->input->post('jabatan_perwakilan_klinik')
+        ];
+        $id_klinik = $this->input->post('id_klinik');
+        $this->db->where('id_klinik', $id_klinik);
+        $this->db->update('tbl_klinik', $update);
     }
 }

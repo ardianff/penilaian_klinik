@@ -42,18 +42,20 @@ class Auth extends CI_Controller
                         'nama_user',
                         $hasil->nama_user
                     );
+                    $this->session->set_userdata(
+                        'level_user',
+                        $hasil->level_user
+                    );
                     $this->session->set_userdata(['status_login' => 'ok']);
-                    session_start();
-                    // $this->session->set_flashdata(
-                    //     'message',
-                    //     '<div class="alert alert-success alert-dismissible fade show">
-                    //     Username & Password yang Anda inputkan benar. Anda akan dialihkan ke halaman berikutnya !
-                    //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    //         <span aria-hidden="true">&times;</span>
-                    //     </button>
-                    // </div>'
-                    // );
-                    redirect('dashboard');
+
+                    if ($this->session->userdata('level_user') == 'Admin') {
+                        // echo "Admin";
+                        redirect('dashboard');
+                    } elseif ($this->session->userdata('level_user') == 'Penilai') {
+                        // echo "Penilai";
+                        // redirect('member/c_member');
+                        redirect('dashboard');
+                    }
                 } else {
                     $this->session->set_flashdata(
                         'message',

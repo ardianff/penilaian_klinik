@@ -37,6 +37,25 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="level_user" class="col-sm-2 col-form-label">Level User <span
+                                        style="color:red">*</span></label>
+                                <div class="col-sm-10">
+                                    <?php
+                                    $options = array(
+                                        '' => '- Pilih -',
+                                        'Admin' => 'Admin',
+                                        'Penilai' => 'Penilai'
+                                    );
+                                    echo form_dropdown(
+                                        'level_user',
+                                        $options,
+                                        null,
+                                        "class='form-control' "
+                                    ); ?>
+                                    <?= form_error('level_user', '<small class="text-danger pl-3">', '</small>') ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="username" class="col-sm-2 col-form-label">Username <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">

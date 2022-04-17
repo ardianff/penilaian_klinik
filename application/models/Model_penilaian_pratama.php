@@ -219,30 +219,30 @@ class Model_penilaian_pratama extends CI_Model
             $this->db->update('tbl_penilaian_pratama_form_kedua', $data);
         }
     }
-    public function upload()
-    {
-        $nama_klinik = $this->input->post('id_klinik');
-        $naming = $nama_klinik . '_' . uniqid();
-        $config = array(
-            'upload_path' => "./assets/img/uploads/foto_klinik/",
-            'allowed_types' => "gif|jpg|png|jpeg|JPEG|JPG|PNG|GIF",
-            'overwrite' => true,
-            'max_size' => "5120",
-            'remove_space' => true,
-            'file_name' => $naming,
-        );
-        // die();
-        $this->load->library('upload', $config); // Load konfigurasi uploadnya
-        if ($this->upload->do_upload('foto_klinik')) { // Lakukan upload dan Cek jika proses upload berhasil
-            // Jika berhasil :
-            $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
-            return $return;
-        } else {
-            // Jika gagal :
-            $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
-            return $return;
-        }
-    }
+    // public function upload()
+    // {
+    //     $nama_klinik = $this->input->post('id_klinik');
+    //     $naming = $nama_klinik . '_' . uniqid();
+    //     $config = array(
+    //         'upload_path' => "./assets/img/uploads/foto_klinik/",
+    //         'allowed_types' => "gif|jpg|png|jpeg|JPEG|JPG|PNG|GIF",
+    //         'overwrite' => true,
+    //         'max_size' => "5120",
+    //         'remove_space' => true,
+    //         'file_name' => $naming,
+    //     );
+    //     // die();
+    //     $this->load->library('upload', $config); // Load konfigurasi uploadnya
+    //     if ($this->upload->do_upload('foto_klinik')) { // Lakukan upload dan Cek jika proses upload berhasil
+    //         // Jika berhasil :
+    //         $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+    //         return $return;
+    //     } else {
+    //         // Jika gagal :
+    //         $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
+    //         return $return;
+    //     }
+    // }
     public function simpan_penilaian_pratama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
     {
         $foto_klinik = json_encode($uploadData);
@@ -266,7 +266,11 @@ class Model_penilaian_pratama extends CI_Model
         ];
         $this->db->insert('tbl_penilaian_pratama_form_ketiga', $data);
 
-        $update = ['status_penilaian' => "Sudah"];
+        $update = [
+            'status_penilaian' => "Sudah",
+            'nama_perwakilan' => $this->input->post('nama_perwakilan_klinik'),
+            'jabatan_perwakilan' =>  $this->input->post('jabatan_perwakilan_klinik')
+        ];
         $id_klinik = $this->input->post('id_klinik');
         $this->db->where('id_klinik', $id_klinik);
         $this->db->update('tbl_klinik', $update);
@@ -294,5 +298,12 @@ class Model_penilaian_pratama extends CI_Model
         $this->db->where('id_klinik', $id_klinik);
         $this->db->where('no_penilaian', $no_penilaian);
         $this->db->update('tbl_penilaian_pratama_form_ketiga', $input);
+
+        $update = [
+            'nama_perwakilan' => $this->input->post('nama_perwakilan_klinik'),
+            'jabatan_perwakilan' =>  $this->input->post('jabatan_perwakilan_klinik')
+        ];
+        $this->db->where('id_klinik', $id_klinik);
+        $this->db->update('tbl_klinik', $update);
     }
 }

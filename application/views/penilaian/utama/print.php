@@ -696,7 +696,7 @@
         <br>
         <li class="text-bap">
             Usulan Rekomendasi
-            <br>Pilihan Jawaban :
+            <br>Pilihan Jawaban : <b><?php echo $klinik['usulan_rekomendasi'] ?></b>
             <?php if ($klinik['usulan_rekomendasi'] == 'Telah Memenuhi')
                 echo '<ol>
 				<li>Telah Memenuhi</li>
@@ -807,7 +807,7 @@
         <li class="text-bap">
             Selama proses penilaian kesesuaian Klinik berlangsung, diketahui dan dibenarkan oleh pihak perwaklian
             Klinik.
-            <table border="0" class="class=" text-bap"">
+            <!-- <table border="0" class="class=" text-bap"">
                 <tbody>
                     <tr>
                         <td>Nama</td>
@@ -853,7 +853,7 @@
                         <td></td>
                         <td class="text-center"> Yang membuat Berita Acara</td>
                     </tr>
-                    <!-- <tr>
+                    <tr>
 							<td colspan="2">1. <?php echo $penilaian['nama_anggota1'] ?></td>
 							<td width="10%" class="text-center"><img
 									src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
@@ -894,7 +894,7 @@
 									width="80px" height="80px"></td>
 							<td></td>
 							<td class="text-center"> Yang membuat Berita Acara</td>
-						</tr> -->
+						</tr>
                     <tr>
                         <td></td>
                         <td></td>
@@ -930,6 +930,114 @@
                     <tr>
                         <td colspan="5" class="text-center"><img
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
+                                width="120px" height="120px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="5">dr. Noegroho Edy Rijanto, MKes</td>
+                    </tr>
+
+                </tbody>
+            </table> -->
+            <br>
+            <br>
+            <table border="1" width="auto" height="auto">
+                <thead>
+                    <td colspan="4" class="text-center">Perwakilan Pihak Klinikk</td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img class="rounded mx-auto d-block"
+                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_perwakilan_klinik'] ?>"
+                                width="120px" height="120px"></td>
+                    </tr>
+                    <tr>
+                        <td width="auto" class="text-center">
+                            <?php echo $klinik['nama_perwakilan_pihak_klinik'], '<br>' . $klinik['jabatan_perwakilan_pihak_klinik'] ?>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table border="1" width="100%" height="auto">
+                <thead>
+                    <td colspan="4" class="text-center">Tim Penilaian Kesesuaian Klinik</td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img class="rounded mx-auto d-block"
+                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
+                                width="120px" height="120px"></td>
+                        <td><img class="rounded mx-auto d-block"
+                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai2'] ?>"
+                                width="120px" height="120px"></td>
+                        <td><img class="rounded mx-auto d-block"
+                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
+                                width="120px" height="120px"></td>
+                        <td><img class="rounded mx-auto d-block"
+                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai4'] ?>"
+                                width="120px" height="120px"></td>
+                    </tr>
+                    <tr>
+                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota1'] ?></td>
+                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota2'] ?></td>
+                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota3'] ?></td>
+                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota4'] ?></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table border="0" width="100%">
+                <thead>
+                    <td width="500px"></td>
+                    <td width="50px"></td>
+                    <td width="50px"></td>
+                    <td width="50px"></td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-center">Yang membuat Berita Acara</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-center"><img
+                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
+                                width="120px" height="120px"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-center">( Suryati, SKM )</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-center">NIP. 198111021209031203</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="text-center">Mengetahui,</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="5">An. Kepala Dinas Kesehatan</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="text-center">Kepala Bidang SDK</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="text-center"><img
+                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
                                 width="120px" height="120px">
                         </td>
                     </tr>

@@ -342,13 +342,16 @@ class Penilaian_Utama extends CI_Controller
                     $imgttd3 = $this->input->post('ttd-3');
                     $imgttd4 = $this->input->post('ttd-4');
 
-                    if ($img == "" || $imgttd1 == "" || $imgttd2 == "" || $imgttd3 == "" || $imgttd4 == "") {
+                    // var_dump($img, $imgttd1, $imgttd2, $imgttd3, $imgttd4);
+                    // die();
+
+                    if ($img == "" or $imgttd1 == "" or $imgttd2 == "" or $imgttd3 == "" or $imgttd4 == "") {
                         $image = $this->input->post('old_ttd_perwakilan');
                         $imagettd1 = $this->input->post('old_ttd_penilai1');
                         $imagettd2 = $this->input->post('old_ttd_penilai2');
                         $imagettd3 = $this->input->post('old_ttd_penilai3');
                         $imagettd4 = $this->input->post('old_ttd_penilai4');
-                        $this->Model_penilaian_pratama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
+                        $this->Model_penilaian_utama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
                         $this->session->set_flashdata(
                             'simpan',
                             '<div class="alert alert-warning alert-dismissible fade show">
@@ -396,7 +399,7 @@ class Penilaian_Utama extends CI_Controller
                         $success = file_put_contents($filettd4, $datattd4);
                         $imagettd4 = str_replace('./assets/img/uploads/ttd/', '', $filettd4);
 
-                        $this->Model_penilaian_pratama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
+                        $this->Model_penilaian_utama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
                         $this->session->set_flashdata(
                             'simpan',
                             '<div class="alert alert-warning alert-dismissible fade show">
