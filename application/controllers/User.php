@@ -74,7 +74,8 @@ class User extends CI_Controller
             ]
         );
         if ($this->form_validation->run() == false) {
-            $this->template->load('template', 'user/add');
+            $data['title'] = 'Input User Baru';
+            $this->template->load('template', 'user/add', $data);
         } else {
             if (isset($_POST['submit'])) {
                 $this->Model_auth->add();
@@ -89,13 +90,15 @@ class User extends CI_Controller
                 );
                 redirect('user');
             } else {
-                $this->template->load('template', 'user/add');
+                $data['title'] = 'Input User Baru';
+                $this->template->load('template', 'user/add', $data);
             }
         }
     }
     public function edit($id)
     {
         $data['user'] = $this->Model_auth->getById($id);
+        $data['title'] = 'Edit User';
         $this->template->load('template', 'user/edit', $data);
     }
     public function update()
@@ -190,6 +193,7 @@ class User extends CI_Controller
             }
         } else {
             $id = $this->input->post('kode_user');
+            $data['title'] = "Edit Data User";
             $data['user'] = $this->Model_auth->getById($id);
             $this->template->load('template', 'user/edit', $data);
         }

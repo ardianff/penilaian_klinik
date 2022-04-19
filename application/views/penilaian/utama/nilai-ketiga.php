@@ -164,7 +164,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 1 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota1'] ?> :</label>
                                             <br />
                                             <div id="ttd1"></div>
                                             <br />
@@ -176,7 +176,7 @@
 
                                         </div>
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 2 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota2'] ?> :</label>
                                             <br />
                                             <div id="ttd2"></div>
                                             <br />
@@ -190,7 +190,7 @@
                                         <div class="w-100"></div>
                                         <br>
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 3 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota3'] ?> :</label>
                                             <br />
                                             <div id="ttd3"></div>
                                             <br />
@@ -201,7 +201,8 @@
                                         <div class="col">
 
                                         </div>
-                                        <div class="col"><label>Tanda Tangan Penilai 4 :</label>
+                                        <div class="col"><label>Tanda Tangan <?php echo $klinik['nama_anggota4'] ?>
+                                                :</label>
                                             <br />
                                             <div id="ttd4"></div>
                                             <br />
@@ -229,28 +230,28 @@
                                         <?php    } ?> value="Telah Memenuhi" required> Telah memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    <del>Klinik Utama</del>/Klinik Pratama Gigi</input>
+                                    <del>Klinik Utama Gigi</del>/Klinik Pratama Gigi</input>
                                     <br>
                                     <input type="radio" name="pilihan_jawaban"
                                         <?php if ($klinik['usulan_rekomendasi'] == 'Belum Memenuhi') { ?> checked
                                         <?php    } ?> value="Belum Memenuhi" required> Belum memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    <del>Klinik Utama</del>/Klinik Pratama Gigi</input>
+                                    <del>Klinik Utama Gigi</del>/Klinik Pratama Gigi</input>
                                     <?php elseif ($klinik['kemampuan_pelayanan'] == 'Utama Gigi') : ?>
                                     <input type="radio" name="pilihan_jawaban"
                                         <?php if ($klinik['usulan_rekomendasi'] == 'Telah Memenuhi') { ?> checked
                                         <?php    } ?> value="Telah Memenuhi" required> Telah memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    Klinik Utama/<del>Klinik Pratama</del> Gigi</input>
+                                    Klinik Utama Gigi/<del>Klinik Pratama</del> Gigi</input>
                                     <br>
                                     <input type="radio" name="pilihan_jawaban"
                                         <?php if ($klinik['usulan_rekomendasi'] == 'Belum Memenuhi') { ?> checked
                                         <?php    } ?> value="Belum Memenuhi" required> Belum memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    Klinik Utama/<del>Klinik Pratama</del> Gigi</input>
+                                    Klinik Utama Gigi/<del>Klinik Pratama</del> Gigi</input>
                                     <?php endif; ?>
                                     <br><br>
                                     <textarea placeholder="Isian Uraian..." class="form-control" rows="3"
@@ -369,7 +370,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 1 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota1'] ?> :</label>
                                             <br />
                                             <div id="ttd1"></div>
                                             <br />
@@ -388,7 +389,7 @@
                                                 value="<?php echo $klinik['ttd_penilai1'] ?>" />
                                         </div>
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 2 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota2'] ?> :</label>
                                             <br />
                                             <div id="ttd2"></div>
                                             <br />
@@ -409,7 +410,7 @@
                                         <div class="w-100"></div>
                                         <br>
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 3 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota3'] ?> :</label>
                                             <br />
                                             <div id="ttd3"></div>
                                             <br />
@@ -426,7 +427,8 @@
                                             <input type="hidden" name="old_ttd_penilai3"
                                                 value="<?php echo $klinik['ttd_penilai3'] ?>" />
                                         </div>
-                                        <div class="col"><label>Tanda Tangan Penilai 4 :</label>
+                                        <div class="col"><label>Tanda Tangan <?php echo $klinik['nama_anggota4'] ?>
+                                                :</label>
                                             <br />
                                             <div id="ttd4"></div>
                                             <br />

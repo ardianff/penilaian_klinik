@@ -24,7 +24,9 @@
                                 <label for="nama_user" class="col-sm-2 col-form-label">Nama User <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="name" class="form-control" name="nama_user" placeholder="Nama">
+
+                                    <input type="name" class="form-control is-invalid" name="nama_user"
+                                        placeholder="Nama" value="<?= set_value('nama_user') ?>">
                                     <?= form_error('nama_user', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
@@ -32,7 +34,8 @@
                                 <label for="NIP_Anggota" class="col-sm-2 col-form-label">NIP User <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="nip_user" placeholder="NIP">
+                                    <input type="number" class="form-control" name="nip_user" placeholder="NIP"
+                                        value="<?= set_value('nip_user') ?>">
                                     <?= form_error('nip_user', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
@@ -49,7 +52,7 @@
                                     echo form_dropdown(
                                         'level_user',
                                         $options,
-                                        null,
+                                        set_value('level_user'),
                                         "class='form-control' "
                                     ); ?>
                                     <?= form_error('level_user', '<small class="text-danger pl-3">', '</small>') ?>
@@ -59,7 +62,8 @@
                                 <label for="username" class="col-sm-2 col-form-label">Username <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="username" placeholder="Username">
+                                    <input type="text" class="form-control" name="username" placeholder="Username"
+                                        value="<?= set_value('username') ?>">
                                     <?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>

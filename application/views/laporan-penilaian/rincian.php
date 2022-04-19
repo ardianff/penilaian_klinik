@@ -50,7 +50,7 @@
                                             echo form_dropdown(
                                                 'bulan_pilihan',
                                                 $options,
-                                                null,
+                                                set_value('bulan_pilihan'),
                                                 "class='form-control' required"
                                             ); ?>
                                         </div>

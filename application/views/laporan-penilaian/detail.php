@@ -32,24 +32,26 @@
                                         <label for="bulan" class="col-sm-2 col-form-label">Bulan <span
                                                 style="color:red">*</span></label>
                                         <div class="col-sm-2">
-                                            <?php echo form_dropdown(
+                                            <?php
+                                            $options = array(
+                                                '' => '- Pilih -',
+                                                '1' => 'Januari',
+                                                '2' => 'Februari',
+                                                '3' => 'Maret',
+                                                '4' => 'April',
+                                                '5' => 'Mei',
+                                                '6' => 'Juni',
+                                                '7' => 'Juli',
+                                                '8' => 'Agustus',
+                                                '9' => 'September',
+                                                '10' => 'Oktober',
+                                                '11' => 'November',
+                                                '12' => 'Desember',
+                                            );
+                                            echo form_dropdown(
                                                 'bulan_pilihan',
-                                                [
-                                                    '' => '- Pilih Bulan -',
-                                                    '1' => 'Januari',
-                                                    '2' => 'Februari',
-                                                    '3' => 'Maret',
-                                                    '4' => 'April',
-                                                    '5' => 'Mei',
-                                                    '6' => 'Juni',
-                                                    '7' => 'Juli',
-                                                    '8' => 'Agustus',
-                                                    '9' => 'September',
-                                                    '10' => 'Oktober',
-                                                    '11' => 'November',
-                                                    '12' => 'Desember',
-                                                ],
-                                                null,
+                                                $options,
+                                                set_value('bulan_pilihan'),
                                                 "class='form-control' required"
                                             ); ?>
                                         </div>
@@ -87,7 +89,7 @@
                                                     'Pratama Gigi' => 'Pratama Gigi',
                                                     'Utama Gigi' => 'Utama Gigi',
                                                 ],
-                                                null,
+                                                set_value('kemampuan_pelayanan'),
                                                 "class='form-control' required"
                                             ); ?>
                                         </div>

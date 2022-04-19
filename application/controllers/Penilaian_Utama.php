@@ -212,7 +212,7 @@ class Penilaian_Utama extends CI_Controller
     {
         $data['title'] = 'Form Ketiga Penilaian Klinik Pratama/Utama Gigi';
         $id_klinik = $this->uri->segment(3);
-        $data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik, kec.nama_kecamatan, kel.nama_kelurahan, kel.kode_pos_kelurahan,
+        $data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.nama_anggota1,k.nama_anggota2,k.nama_anggota3,k.nama_anggota4,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik, kec.nama_kecamatan, kel.nama_kelurahan, kel.kode_pos_kelurahan,
 		pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik,
 		p.no_penilaian,pfk.ttd_perwakilan_klinik,pfk.ttd_penilai1,pfk.ttd_penilai2,pfk.ttd_penilai3,pfk.ttd_penilai4,pfk.update_at,pfk.foto_klinik  ')
             ->join('tbl_kecamatan kec', 'kec.id_kecamatan=k.id_kecamatan_klinik')

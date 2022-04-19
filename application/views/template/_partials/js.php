@@ -59,7 +59,7 @@
 var base_url = "<?= base_url(); ?>";
 </script>
 <?php
-$url_satu = base_url('penilaian_pratama/edit/' . $klinik = $this->uri->segment(3));
+$url_satu = base_url('penilaian_klinik_umum/edit/' . $klinik = $this->uri->segment(3));
 $url_dua = base_url('penilaian_utama/edit/' . $klinik = $this->uri->segment(3));
 $url_tiga = base_url('laporan_penilaian/cek/' . $klinik = $this->uri->segment(3));
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";

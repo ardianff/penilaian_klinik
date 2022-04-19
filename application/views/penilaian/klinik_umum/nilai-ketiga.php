@@ -163,25 +163,25 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 1 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota1'] ?> :</label>
                                             <br />
                                             <div id="ttd1"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd1">Clear</button>
                                             <textarea class="text-center" id="signature64-ttd1" name="ttd-1"
-                                                style="display: none" required></textarea>
+                                                style="display: none"></textarea>
                                         </div>
                                         <div class="col">
 
                                         </div>
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 2 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota2'] ?> :</label>
                                             <br />
                                             <div id="ttd2"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd2">Clear</button>
-                                            <textarea id="signature64-ttd2" name="ttd-2" style="display: none"
-                                                required></textarea>
+                                            <textarea id="signature64-ttd2" name="ttd-2"
+                                                style="display: none"></textarea>
                                         </div>
                                         <div class="col">
 
@@ -189,24 +189,25 @@
                                         <div class="w-100"></div>
                                         <br>
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 3 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota3'] ?> :</label>
                                             <br />
                                             <div id="ttd3"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd3">Clear</button>
-                                            <textarea id="signature64-ttd3" name="ttd-3" style="display: none"
-                                                required></textarea>
+                                            <textarea id="signature64-ttd3" name="ttd-3"
+                                                style="display: none"></textarea>
                                         </div>
                                         <div class="col">
 
                                         </div>
-                                        <div class="col"><label>Tanda Tangan Penilai 4 :</label>
+                                        <div class="col"><label>Tanda Tangan <?php echo $klinik['nama_anggota4'] ?>
+                                                :</label>
                                             <br />
                                             <div id="ttd4"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd4">Clear</button>
-                                            <textarea id="signature64-ttd4" name="ttd-4" style="display: none"
-                                                required></textarea>
+                                            <textarea id="signature64-ttd4" name="ttd-4"
+                                                style="display: none"></textarea>
                                         </div>
                                         <div class="col">
                                         </div>
@@ -222,19 +223,39 @@
                                 <label for="usulan_rekomendasi" class="col-sm-2 col-form-label">Usulan rekomendasi<span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-8">
-                                    <input type="radio" name="pilihan_jawaban"
+                                    <?php if ($klinik['kemampuan_pelayanan'] == 'Pratama Umum') : ?>
+                                    <input type="radio" name="pilihan_jawaban" value="Telah Memenuhi"
                                         <?php if ($klinik['usulan_rekomendasi'] == 'Telah Memenuhi') { ?> checked
-                                        <?php    } ?> value="Telah Memenuhi" required> Telah memenuhi persyaratan
+                                        <?php    } ?> value="Telah Memenuhi" required> Telah
+                                    memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    Klinik Utama/Pratama Umum</input>
+                                    <del>Klinik Utama Umum</del>/Klinik Pratama Umum</input>
                                     <br>
-                                    <input type="radio" name="pilihan_jawaban"
+                                    <input type="radio" name="pilihan_jawaban" value="Belum Memenuhi"
                                         <?php if ($klinik['usulan_rekomendasi'] == 'Belum Memenuhi') { ?> checked
-                                        <?php    } ?> value="Belum Memenuhi" required> Belum memenuhi persyaratan
+                                        <?php    } ?> value="Telah Memenuhi" required> Belum
+                                    memenuhi persyaratan
                                     minimal
                                     sebagai
-                                    Klinik Utama/Pratama Umum</input>
+                                    <del>Klinik Utama Umum</del>/Klinik Pratama Umum</input>
+                                    <?php elseif ($klinik['kemampuan_pelayanan'] == 'Utama Umum') : ?>
+                                    <input type="radio" name="pilihan_jawaban" value="Telah Memenuhi"
+                                        <?php if ($klinik['usulan_rekomendasi'] == 'Telah Memenuhi') { ?> checked
+                                        <?php    } ?> value="Telah Memenuhi" required> Telah
+                                    memenuhi persyaratan
+                                    minimal
+                                    sebagai
+                                    Klinik Utama Umum/<del>Klinik Pratama Umum</del></input>
+                                    <br>
+                                    <input type="radio" name="pilihan_jawaban" value="Belum Memenuhi"
+                                        <?php if ($klinik['usulan_rekomendasi'] == 'Telah Memenuhi') { ?> checked
+                                        <?php    } ?> value="Telah Memenuhi" required> Belum
+                                    memenuhi persyaratan
+                                    minimal
+                                    sebagai
+                                    Klinik Utama Umum/<del>Klinik Pratama Umum</del></input>
+                                    <?php endif; ?>
                                     <br><br>
                                     <textarea placeholder="Isian Uraian..." class="form-control" rows="3"
                                         name="uraian_penilaian_klinik"><?php echo htmlentities($klinik['uraian_penilaian']); ?></textarea>
@@ -352,7 +373,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 1 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota1'] ?> :</label>
                                             <br />
                                             <div id="ttd1"></div>
                                             <br />
@@ -371,7 +392,7 @@
                                                 value="<?php echo $klinik['ttd_penilai1'] ?>" />
                                         </div>
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 2 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota2'] ?>:</label>
                                             <br />
                                             <div id="ttd2"></div>
                                             <br />
@@ -391,7 +412,7 @@
                                         <div class="w-100"></div>
                                         <br>
                                         <div class="col">
-                                            <label>Tanda Tangan Penilai 3 :</label>
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota3'] ?> :</label>
                                             <br />
                                             <div id="ttd3"></div>
                                             <br />
@@ -408,7 +429,8 @@
                                             <input type="hidden" name="old_ttd_penilai3"
                                                 value="<?php echo $klinik['ttd_penilai3'] ?>" />
                                         </div>
-                                        <div class="col"><label>Tanda Tangan Penilai 4 :</label>
+                                        <div class="col"><label>Tanda Tangan <?php echo $klinik['nama_anggota4'] ?>
+                                                :</label>
                                             <br />
                                             <div id="ttd4"></div>
                                             <br />

@@ -43,7 +43,8 @@ class Tim extends CI_Controller
             ]
         );
         if ($this->form_validation->run() == false) {
-            $this->template->load('template', 'tim/add');
+            $data['title'] = 'Input Anggota Penilai';
+            $this->template->load('template', 'tim/add', $data);
         } else {
             if (isset($_POST['submit'])) {
                 $this->Model_tim->add();
@@ -58,12 +59,14 @@ class Tim extends CI_Controller
                 );
                 redirect('tim');
             } else {
-                $this->template->load('template', 'tim/add');
+                $data['title'] = 'Input Anggota Penilai';
+                $this->template->load('template', 'tim/add', $data);
             }
         }
     }
     public function edit($id)
     {
+        $data['title'] = 'Edit Anggota Penilai';
         $data['anggota'] = $this->Model_tim->getById($id);
         $this->template->load('template', 'tim/edit', $data);
     }
@@ -106,6 +109,7 @@ class Tim extends CI_Controller
             );
             redirect('tim');
         } else {
+            $data['title'] = 'Input Anggota Penilai';
             $id = $this->input->post('kode_anggota');
             $data['anggota'] = $this->Model_tim->getById($id);
             $this->template->load('template', 'tim/edit', $data);

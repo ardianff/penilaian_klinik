@@ -996,7 +996,7 @@
             <br>
             <table border="1" width="auto" height="auto">
                 <thead>
-                    <td colspan="4" class="text-center">Perwakilan Pihak Klinikk</td>
+                    <td colspan="4" class="text-center">Perwakilan Pihak Klinik</td>
                 </thead>
                 <tbody>
                     <tr>

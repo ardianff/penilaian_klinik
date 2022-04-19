@@ -23,7 +23,7 @@
                   <div class="form-group row">
                     <label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Penilai</label>
                     <div class="col-sm-10">
-                      <input type="name" class="form-control" name="nama_anggota" placeholder="Nama">
+                      <input type="name" class="form-control" name="nama_anggota" placeholder="Nama" value="<?=set_value('nama_anggota')?>">
 											<?= form_error(
                'nama_anggota',
                '<small class="text-danger pl-3">',
@@ -34,7 +34,7 @@
                   <div class="form-group row">
                     <label for="NIP_Anggota" class="col-sm-2 col-form-label">NIP Anggota</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control" name="nip_anggota" placeholder="NIP">
+                      <input type="number" class="form-control" name="nip_anggota" placeholder="NIP" value="<?=set_value('nip_anggota')?>">
 											<?= form_error('nip_anggota', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                   </div>

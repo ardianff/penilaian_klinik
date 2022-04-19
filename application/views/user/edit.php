@@ -28,9 +28,7 @@
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="name" class="form-control" name="nama_user" placeholder="Nama"
-                                        value="<?= htmlentities(
-                                                                                                                            $user->nama_user
-                                                                                                                        ) ?>">
+                                        value="<?= set_value('nama_user', $user->nama_user) ?>">
                                     <?= form_error('nama_user', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
@@ -39,9 +37,7 @@
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" name="nip_user" placeholder="NIP"
-                                        value="<?= htmlentities(
-                                                                                                                            $user->nip_user
-                                                                                                                        ) ?>">
+                                        value="<?= set_value('nip_user', $user->nip_user) ?>">
                                     <?= form_error('nip_user', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
@@ -58,7 +54,7 @@
                                     echo form_dropdown(
                                         'level_user',
                                         $options,
-                                        $user->level_user,
+                                        set_value('level_user', $user->level_user),
                                         "class='form-control' "
                                     ); ?>
                                     <?= form_error('level_user', '<small class="text-danger pl-3">', '</small>') ?>
@@ -69,9 +65,7 @@
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="username" placeholder="Username"
-                                        value="<?= htmlentities(
-                                                                                                                                $user->username
-                                                                                                                            ) ?>">
+                                        value="<?= set_value('username', $user->username) ?>">
                                     <?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>

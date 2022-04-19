@@ -1,7 +1,7 @@
 $("#id_kecamatan").change(function () {
 	var getkecamatan = $("#id_kecamatan").val();
 	$.ajax({
-		url: base_url + "/penilaian_pratama/get_data_kelurahan",
+		url: base_url + "/penilaian_klinik_umum/get_data_kelurahan",
 		method: "POST",
 		data: {
 			kecamatan: getkecamatan,
@@ -31,7 +31,7 @@ $(".kecamatan").change(function () {
 	var getkecamatan = $(".kecamatan").val();
 	var id_kelurahan = id_kel;
 	$.ajax({
-		url: base_url + "penilaian_pratama/get_data_kelurahan",
+		url: base_url + "penilaian_klinik_umum/get_data_kelurahan",
 		method: "POST",
 		data: {
 			kecamatan: getkecamatan,
@@ -69,7 +69,7 @@ $(".kecamatan").change(function () {
 function get_data_edit() {
 	var id_klinik = $('[name="id_klinik"]').val();
 	$.ajax({
-		url: base_url + "/penilaian_pratama/get_data_edit",
+		url: base_url + "penilaian_klinik_umum/get_data_edit",
 		method: "POST",
 		data: {
 			id_klinik: id_klinik,

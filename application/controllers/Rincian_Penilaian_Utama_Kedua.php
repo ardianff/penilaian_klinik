@@ -47,11 +47,9 @@ class Rincian_penilaian_utama_kedua extends CI_Controller
         $this->form_validation->set_rules(
             'satuan_penilaian',
             'Satuan Penilaian',
-            'xss_clean|trim|min_length[3]|required',
+            'xss_clean|trim|required',
             [
-                'min_length' =>
-                'Satuan berisi minimal 3 karakter',
-                'required' => 'Satuan Wajib di isi',
+                'required' => 'Satuan Wajib di pilih',
             ]
         );
         if ($this->form_validation->run() == false) {
@@ -122,11 +120,9 @@ class Rincian_penilaian_utama_kedua extends CI_Controller
         $this->form_validation->set_rules(
             'satuan_penilaian',
             'Satuan Penilaian',
-            'xss_clean|trim|min_length[3]|required',
+            'xss_clean|trim|required',
             [
-                'min_length' =>
-                'Satuan berisi minimal 3 karakter',
-                'required' => 'Satuan Wajib di isi',
+                'required' => 'Satuan Wajib di pilih',
             ]
         );
         if ($this->form_validation->run() == true) {
