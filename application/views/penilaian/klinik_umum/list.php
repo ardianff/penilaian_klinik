@@ -23,7 +23,6 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="main-wrapper">
-
                             <div class="responsive-table">
                                 <div class="card-body">
                                     <?= $this->session->flashdata('add') ?>
