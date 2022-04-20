@@ -25,17 +25,19 @@
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
 
-                                    <input type="name" class="form-control is-invalid" name="nama_user"
-                                        placeholder="Nama" value="<?= set_value('nama_user') ?>">
+                                    <input type="name"
+                                        class="form-control <?php if (form_error('nama_user') == true) : ?>is-invalid <?php endif ?>"
+                                        name="nama_user" placeholder="Nama" value="<?= set_value('nama_user') ?>">
                                     <?= form_error('nama_user', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="NIP_Anggota" class="col-sm-2 col-form-label">NIP User <span
+                                <label for="NIP_Anggota" class="col-sm-2 col-form-label ">NIP User <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="nip_user" placeholder="NIP"
-                                        value="<?= set_value('nip_user') ?>">
+                                    <input type="number"
+                                        class="form-control <?php if (form_error('nip_user') == true) : ?>is-invalid <?php endif ?>"
+                                        name="nip_user" placeholder="NIP" value="<?= set_value('nip_user') ?>">
                                     <?= form_error('nip_user', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
@@ -53,7 +55,7 @@
                                         'level_user',
                                         $options,
                                         set_value('level_user'),
-                                        "class='form-control' "
+                                        form_error('level_user') == true ? "class='form-control is-invalid'" : "class='form-control'"
                                     ); ?>
                                     <?= form_error('level_user', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
@@ -62,8 +64,9 @@
                                 <label for="username" class="col-sm-2 col-form-label">Username <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="username" placeholder="Username"
-                                        value="<?= set_value('username') ?>">
+                                    <input type="text"
+                                        class="form-control <?php if (form_error('username') == true) : ?>is-invalid <?php endif ?>"
+                                        name="username" placeholder="Username" value="<?= set_value('username') ?>">
                                     <?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
@@ -71,7 +74,9 @@
                                 <label for="username" class="col-sm-2 col-form-label">Password <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                    <input type="password"
+                                        class="form-control <?php if (form_error('password') == true) : ?>is-invalid <?php endif ?>"
+                                        name="password" placeholder="Password">
                                     <?= form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>

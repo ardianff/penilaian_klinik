@@ -29,7 +29,9 @@
                             <div class="form-group row">
                                 <label for="group_name" class="col-sm-2 col-form-label">Group Name</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="group_name">
+                                    <select
+                                        class="form-control <?php if (form_error('group_name') == true) : ?>is-invalid <?php endif ?>"
+                                        name="group_name">
                                         <option value="">- Pilih Group -</option>
                                         <?php foreach ($data as $dt) : ?>
                                         <?php if (set_value('group_name') == $dt->id_group) : ?>
@@ -47,7 +49,9 @@
                             <div class="form-group row">
                                 <label for="rincian_penilaian" class="col-sm-2 col-form-label">Rincian Penilaian</label>
                                 <div class="col-sm-10">
-                                    <textarea type="text" class="form-control" name="rincian_penilaian"
+                                    <textarea type="text"
+                                        class="form-control <?php if (form_error('rincian_penilaian') == true) : ?>is-invalid <?php endif ?>"
+                                        name="rincian_penilaian"
                                         placeholder="Rincian Penilaian"><?= set_value('rincian_penilaian') ?></textarea>
                                     <?= form_error('rincian_penilaian', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
@@ -55,7 +59,9 @@
                             <div class="form-group row">
                                 <label for="jumlah_penilaian" class="col-sm-2 col-form-label">Jumlah</label>
                                 <div class="col-sm-10">
-                                    <textarea type="text" class="form-control" name="jumlah_penilaian"
+                                    <textarea type="text"
+                                        class="form-control <?php if (form_error('jumlah_penilaian') == true) : ?>is-invalid <?php endif ?>"
+                                        name="jumlah_penilaian"
                                         placeholder="Jumlah"><?= set_value('jumlah_penilaian') ?></textarea>
                                     <?= form_error('jumlah_penilaian', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
@@ -75,7 +81,7 @@
                                         'satuan_penilaian',
                                         $options,
                                         set_value('satuan_penilaian'),
-                                        "class='form-control' "
+                                        form_error('satuan_penilaian') == true ? "class='form-control is-invalid'" : "class='form-control'"
                                     ); ?>
                                     <?= form_error('satuan_penilaian', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>

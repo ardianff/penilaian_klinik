@@ -18,23 +18,120 @@ class Penilaian_Klinik_Umum extends CI_Controller
 
     public function add()
     {
+        $this->form_validation->set_rules(
+            'nama_anggota1',
+            'Nama Anggota 1',
+            'required',
+            [
+                'required' => 'Nama Anggota 1 Wajib di pilih',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'nama_anggota2',
+            'Nama Anggota 2',
+            'required',
+            [
+                'required' => 'Nama Anggota 2 Wajib di pilih',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'nama_anggota3',
+            'Nama Anggota 3',
+            'required',
+            [
+                'required' => 'Nama Anggota 3 Wajib di pilih',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'kemampuan_pelayanan',
+            'Kemampuan Pelayanan',
+            'required',
+            [
+                'required' => 'Kemampuan Pelayanan Wajib di pilih',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'jenis_pelayanan',
+            'Jenis Pelayanan',
+            'required',
+            [
+                'required' => 'Jenis Pelayanan Wajib di pilih',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'nama_kecamatan',
+            'Nama Kecamatan',
+            'required',
+            [
+                'required' => 'Kecamatan Wajib di pilih',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'nama_kelurahan',
+            'Nama Kelurahan',
+            'required',
+            [
+                'required' => 'Kelurahan Wajib di pilih',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'alamat_klinik',
+            'Alamat Klinik',
+            'required|trim|min_length[5]|max_length[200]',
+            [
+                'required' => 'Alamat Klinik Wajib di isi',
+                'min_length' => 'Alamat Klinik yang diinputkan minimal 5 karakter',
+                'max_length' =>
+                'Alamat Klinik yang diinputkan maksimal 200 karakter',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'nama_klinik',
+            'Nama',
+            'required|trim|min_length[5]|max_length[100]',
+            [
+                'required' => 'Nama Klinik Wajib di isi',
+                'min_length' => 'Nama Klinik yang diinputkan minimal 5 karakter',
+                'max_length' =>
+                'Nama Klinik yang diinputkan maksimal 100 karakter',
+            ]
+        );
+        $this->form_validation->set_rules('tgl_visitasi', 'Tanggal Visitasi', 'trim|required|valid_date', [
+            'required' => 'Tanggal Visitasi Wajib di isi',
+        ]);
+        $this->form_validation->set_rules(
+            'no_surat',
+            'Nomor Surat',
+            'required|trim|min_length[3]|max_length[20]',
+            [
+                'required' => 'Nomor Surat Wajib di isi',
+                'min_length' => 'Nomor Surat wajib berisi minimal 3 karakter',
+                'max_length' => 'Nomor Surat wajib berisi maksimal 50 karakter',
+                'is_unique' => 'Nomor Surat yang diinputkan sudah ada',
+            ]
+        );
+
         $data['title'] = 'Input Data Klinik Pratama/Utama Umum';
         $data['kecamatan'] = $this->Model_penilaian_pratama->get_data_kecamatan();
         $data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
-        if (isset($_POST['submit'])) {
-            $this->Model_penilaian_pratama->add();
-            $this->session->set_flashdata(
-                'add',
-                '<div class="alert alert-success alert-dismissible fade show">
-				Data Klinik Pratama/Utama Umum <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-				</div>'
-            );
-            redirect('penilaian_klinik_umum');
-        } else {
+        if ($this->form_validation->run() == false) {
             $this->template->load('template', 'penilaian/klinik_umum/add', $data);
+        } else {
+            if (isset($_POST['submit'])) {
+                $this->Model_penilaian_pratama->add();
+                $this->session->set_flashdata(
+                    'add',
+                    '<div class="alert alert-success alert-dismissible fade show">
+                    Data Klinik Pratama/Utama Umum <b>' . $this->input->post('nama_klinik') . '</b> Berhasil Disimpan!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>'
+                );
+                redirect('penilaian_klinik_umum');
+            } else {
+                $this->template->load('template', 'penilaian/klinik_umum/add', $data);
+            }
         }
     }
     public function edit()

@@ -27,7 +27,9 @@
                                 <label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama User <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="name" class="form-control" name="nama_user" placeholder="Nama"
+                                    <input type="name"
+                                        class="form-control  <?php if (form_error('nama_user') == true) : ?>is-invalid <?php endif ?>"
+                                        name="nama_user" placeholder="Nama"
                                         value="<?= set_value('nama_user', $user->nama_user) ?>">
                                     <?= form_error('nama_user', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
@@ -36,7 +38,9 @@
                                 <label for="NIP_Anggota" class="col-sm-2 col-form-label">NIP User <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="nip_user" placeholder="NIP"
+                                    <input type="number"
+                                        class="form-control  <?php if (form_error('nip_user') == true) : ?>is-invalid <?php endif ?>"
+                                        name="nip_user" placeholder="NIP"
                                         value="<?= set_value('nip_user', $user->nip_user) ?>">
                                     <?= form_error('nip_user', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
@@ -55,7 +59,7 @@
                                         'level_user',
                                         $options,
                                         set_value('level_user', $user->level_user),
-                                        "class='form-control' "
+                                        form_error('level_user') == true ? "class='form-control is-invalid'" : "class='form-control'"
                                     ); ?>
                                     <?= form_error('level_user', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
@@ -64,7 +68,9 @@
                                 <label for="username" class="col-sm-2 col-form-label">Username <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="username" placeholder="Username"
+                                    <input type="text"
+                                        class="form-control  <?php if (form_error('username') == true) : ?>is-invalid <?php endif ?>"
+                                        name="username" placeholder="Username"
                                         value="<?= set_value('username', $user->username) ?>">
                                     <?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
@@ -72,7 +78,9 @@
                             <div class="form-group row">
                                 <label for="username" class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                    <input type="password"
+                                        class="form-control  <?php if (form_error('password') == true) : ?>is-invalid <?php endif ?>"
+                                        name="password" placeholder="Password">
                                     <?= form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>

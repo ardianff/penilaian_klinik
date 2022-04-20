@@ -40,12 +40,11 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
         );
         $this->form_validation->set_rules(
             'jumlah_penilaian',
-            'Jumlah Penilaian',
-            'xss_clean|trim|min_length[1]|required',
+            'Jumlah',
+            'xss_clean|min_length[3]|trim',
             [
                 'min_length' =>
-                'Jumlah berisi minimal 1 karakter',
-                'required' => 'Jumlah Wajib di isi',
+                'Jumlah berisi minimal 3 karakter',
             ]
         );
         $this->form_validation->set_rules(
@@ -113,12 +112,11 @@ class Rincian_penilaian_pratama_kedua extends CI_Controller
         );
         $this->form_validation->set_rules(
             'jumlah_penilaian',
-            'Jumlah Penilaian',
-            'xss_clean|trim|min_length[3]|required',
+            'Jumlah',
+            'min_length[3]|xss_clean|trim',
             [
                 'min_length' =>
                 'Jumlah berisi minimal 3 karakter',
-                'required' => 'Jumlah Wajib di isi',
             ]
         );
         $this->form_validation->set_rules(
