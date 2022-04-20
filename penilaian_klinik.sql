@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2022 at 08:15 AM
+-- Generation Time: Apr 20, 2022 at 06:47 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -41,8 +41,7 @@ CREATE TABLE `tbl_anggota` (
 INSERT INTO `tbl_anggota` (`id_anggota`, `kode_anggota`, `nama_anggota`, `nip_anggota`) VALUES
 (22, 'DKK00001', 'dr. Noegroho Edy Rijanto, M.Kes', '197110202002121006'),
 (23, 'DKK00002', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', '198402192005011003'),
-(26, 'DKK00003', 'Suryati, S.KM', '198111022009032003'),
-(29, 'DKK00004', 'Ardian Ferdy Firmansyah', '123456789012345678');
+(26, 'DKK00003', 'Suryati, S.KM', '198111022009032003');
 
 -- --------------------------------------------------------
 
@@ -542,7 +541,10 @@ CREATE TABLE `tbl_klinik` (
   `id_kelurahan_klinik` int(100) NOT NULL,
   `tgl_visitasi` date NOT NULL,
   `masa_berlaku_ijin` date NOT NULL,
+  `nomor_siop` varchar(100) NOT NULL,
   `no_surat` varchar(200) NOT NULL,
+  `nama_perwakilan` varchar(200) NOT NULL,
+  `jabatan_perwakilan` varchar(200) NOT NULL,
   `status_penilaian` enum('Sudah','Belum','Sedang') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -552,14 +554,14 @@ CREATE TABLE `tbl_klinik` (
 -- Dumping data for table `tbl_klinik`
 --
 
-INSERT INTO `tbl_klinik` (`id_klinik`, `nama_user`, `nama_anggota1`, `nama_anggota2`, `nama_anggota3`, `nama_anggota4`, `nama_klinik`, `kemampuan_pelayanan`, `jenis_pelayanan_klinik`, `alamat_klinik`, `id_kecamatan_klinik`, `id_kelurahan_klinik`, `tgl_visitasi`, `masa_berlaku_ijin`, `no_surat`, `status_penilaian`, `created_at`, `update_at`) VALUES
-('PR004', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Amalia Sehat', 'Pratama Umum', 'Rawat Jalan', 'Jl. Simpang 5', 3, 24, '2022-04-04', '2022-04-11', 'AXI//-02-0201929//2021', 'Sudah', '2022-04-04 01:43:31', '2022-04-11 05:35:11'),
-('PR005', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Rahmatan Lil Alamin', 'Pratama Umum', 'Rawat Jalan', 'Jl. Semarang Raya', 15, 156, '2022-04-10', '0000-00-00', 'AX909012092109', 'Sudah', '2022-04-10 08:09:34', '2022-04-10 12:27:27'),
-('PR006', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Sehat Sentosa', 'Pratama Umum', 'Rawat Jalan', 'Jl. Sendang Guwo', 15, 160, '2022-04-10', '0000-00-00', 'AX909012092109', 'Sedang', '2022-04-10 08:28:49', '2022-04-10 08:31:41'),
-('PR008', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Gigi Sehat Sentosa', 'Pratama Gigi', 'Rawat Jalan', 'Jl. Bridgjen Sudiarto No. 21', 15, 163, '2022-04-10', '0000-00-00', 'KOKOi-e-w923-20-2', 'Sedang', '2022-04-10 15:08:54', '2022-04-10 15:11:09'),
-('PR009', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Cito', 'Pratama Umum', 'Rawat Jalan', 'Jl. Dr. Cipto', 13, 137, '2022-04-11', '0000-00-00', 'XUISJIJA8989/0-90', 'Belum', '2022-04-11 07:24:01', '2022-04-11 07:31:25'),
-('UT003', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Amanda', 'Pratama Gigi', 'Rawat Jalan', 'Jl. Kedungmundu Raya', 15, 159, '2022-04-03', '2022-04-05', 'AXI//-02-0201929//2021', 'Sudah', '2022-04-11 14:51:46', '2022-04-11 05:09:44'),
-('UT007', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Gigi Nadira Pedurungan', 'Pratama Gigi', 'Rawat Jalan', 'Jl. Pedurungan Raya', 9, 87, '2022-04-10', '2022-04-15', 'AxX(09w0201', 'Sudah', '2022-04-10 12:39:15', '2022-04-11 05:26:34');
+INSERT INTO `tbl_klinik` (`id_klinik`, `nama_user`, `nama_anggota1`, `nama_anggota2`, `nama_anggota3`, `nama_anggota4`, `nama_klinik`, `kemampuan_pelayanan`, `jenis_pelayanan_klinik`, `alamat_klinik`, `id_kecamatan_klinik`, `id_kelurahan_klinik`, `tgl_visitasi`, `masa_berlaku_ijin`, `nomor_siop`, `no_surat`, `nama_perwakilan`, `jabatan_perwakilan`, `status_penilaian`, `created_at`, `update_at`) VALUES
+('PR004', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Amalia Sehat', 'Pratama Umum', 'Rawat Jalan', 'Jl. Simpang 5', 3, 24, '2022-04-04', '2022-04-11', '', 'AXI//-02-0201929//2021', 'dr. Ahmad Jaelani', 'Pelaksana', 'Sudah', '2022-04-04 01:43:31', '2022-04-17 13:59:37'),
+('PR005', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Rahmatan Lil Alamin', 'Pratama Umum', 'Rawat Jalan', 'Jl. Semarang Raya', 15, 156, '2022-06-04', '2022-04-01', 'XXII/209102/2109012', 'AX909012092109', 'dr. Agung Santoso ', 'Pelaksana', 'Sudah', '2022-04-10 08:09:34', '2022-04-18 01:50:10'),
+('PR006', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Sehat Sentosa', 'Utama Umum', 'Rawat Jalan', 'Jl. Sendang Guwo', 15, 160, '2022-04-10', '2022-04-17', 'XII0030290/0-102-1', 'AX909012092109', 'Ahmad Sanjaya', 'Dokter Umum', 'Sudah', '2022-04-10 08:28:49', '2022-04-18 01:44:34'),
+('PR008', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Gigi Sehat Sentosa', 'Utama Gigi', 'Rawat Jalan', 'Jl. Bridgjen Sudiarto No. 21', 15, 163, '2022-04-10', '0000-00-00', '', 'KOKOi-e-w923-20-2', '', '', 'Sedang', '2022-04-10 15:08:54', '2022-04-13 00:52:55'),
+('PR009', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Cito Raya', 'Utama Umum', 'Rawat Jalan', 'Jl. Dr. Cipto', 13, 142, '2022-04-11', '0000-00-00', '', 'XUISJIJA8989/0-90', '', '', 'Belum', '2022-04-11 07:24:01', '2022-04-20 03:53:40'),
+('UT007', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Gigi Nadira Pedurungan', 'Pratama Gigi', 'Rawat Jalan', 'Jl. Pedurungan Raya', 9, 87, '2022-04-10', '2022-04-17', 'AUSK))#()(#308038203', 'AxX(09w0201', 'dr. Rahmad Syukron', 'Pelaksana', 'Sudah', '2022-04-10 12:39:15', '2022-04-17 14:07:56'),
+('UT011', 'Ardian', 'dr. Noegroho Edy Rijanto, M.Kes', 'Hanif Pandu Suhito, S.KM,. M. Kom., M.Si', 'Suryati, S.KM', '', 'Klinik Gigi Amanah', 'Pratama Gigi', 'Rawat Jalan', 'Jl. Semarang Raya', 1, 10, '2022-04-20', '0000-00-00', '', 'asasa', '', '', 'Belum', '2022-04-20 01:24:09', '2022-04-20 01:24:09');
 
 -- --------------------------------------------------------
 
@@ -581,7 +583,6 @@ CREATE TABLE `tbl_penilaian` (
 --
 
 INSERT INTO `tbl_penilaian` (`id_penilaian`, `no_penilaian`, `id_klinik`, `status_penilaian`, `created_at`, `update_at`) VALUES
-(58, 'TASK-UTM04042022', 'UT003', 'Sudah', '2022-04-04 01:01:57', '2022-04-04 01:01:57'),
 (61, 'TASK-PRTM04042022', 'PR004', 'Sudah', '2022-04-04 01:43:41', '2022-04-04 01:43:41'),
 (68, 'TASK-PRTM10042022', 'PR005', 'Sudah', '2022-04-10 08:14:49', '2022-04-10 08:14:49'),
 (69, 'TASK-PRTM10042022', 'PR006', 'Sudah', '2022-04-10 08:30:27', '2022-04-10 08:30:27'),
@@ -842,8 +843,9 @@ CREATE TABLE `tbl_penilaian_pratama_form_ketiga` (
 --
 
 INSERT INTO `tbl_penilaian_pratama_form_ketiga` (`id_penilaian`, `no_penilaian`, `id_klinik`, `usulan_rekomendasi`, `uraian_penilaian`, `tindak_lanjut_klinik`, `nama_perwakilan_pihak_klinik`, `jabatan_perwakilan_pihak_klinik`, `ttd_perwakilan_klinik`, `foto_klinik`, `ttd_penilai1`, `ttd_penilai2`, `ttd_penilai3`, `ttd_penilai4`, `created_at`, `update_at`) VALUES
-(12, 'TASK-PRTM04042022', 'PR004', 'Belum Memenuhi', 'oke', 'Ditolak', 'dr. Agung Santoso', 'Pelaksana', '625290569aff3.png', 'Klinik_Amalia_Sehat_foto_klinik_1.png,Klinik_Amalia_Sehat_foto_klinik_2.png', '625290569b1e6.png', '625290569b3a5.png', '625290569b590.png', '625290569b76c.png', '2022-04-07 05:31:23', '2022-04-10 08:07:50'),
-(13, 'TASK-PRTM10042022', 'PR005', 'Telah Memenuhi', 'Oke Jos', 'Diperbaiki', 'dr. Agung Santoso ', 'Pelaksana', '6254ec4d4d42d.png', 'Klinik_Rahmatan_Lil_Alamin_foto_klinik_1.png,Klinik_Rahmatan_Lil_Alamin_foto_klinik_2.jpg', '6254ec4d4d6d8.png', '6254ec4d4d915.png', '6254ec4d4dc74.png', '6254ec4d4df68.png', '2022-04-10 12:27:27', '2022-04-12 03:25:23');
+(12, 'TASK-PRTM04042022', 'PR004', 'Belum Memenuhi', 'oke', 'Ditolak', 'dr. Ahmad Jaelani', 'Pelaksana', '625c1d49a6351.png', 'Klinik_Amalia_Sehat_foto_klinik_1.png,Klinik_Amalia_Sehat_foto_klinik_2.png,Klinik_Amalia_Sehat_foto_klinik_3.png', '625c1d49a6981.png', '625c1d49a6ee0.png', '625c1d49a71f6.png', '625c1d49a7527.png', '2022-04-07 05:31:23', '2022-04-17 13:59:37'),
+(13, 'TASK-PRTM10042022', 'PR005', 'Telah Memenuhi', 'Oke Jos', 'Diperbaiki', 'dr. Agung Santoso ', 'Pelaksana', '62565f1bd369d.png', 'Klinik_Rahmatan_Lil_Alamin_foto_klinik_1.jpg,Klinik_Rahmatan_Lil_Alamin_foto_klinik_2.jpg,Klinik_Rahmatan_Lil_Alamin_foto_klinik_3.jpg,Klinik_Rahmatan_Lil_Alamin_foto_klinik_4.jpg,Klinik_Rahmatan_Lil_Alamin_foto_klinik_5.jpg', '62565f1bd38b4.png', '62565f1bd3ac9.png', '62565f1bd3cac.png', '62565f1bd3ec3.png', '2022-04-10 12:27:27', '2022-04-13 05:26:51'),
+(14, 'TASK-PRTM10042022', 'PR006', 'Telah Memenuhi', 'Oke Sudah Memenuhi', 'Disetujui', 'Ahmad Sanjaya', 'Dokter Umum', '625c2190a26f9.png', 'Klinik_Sehat_Sentosa_foto_klinik_1.png,Klinik_Sehat_Sentosa_foto_klinik_2.png', '625c2190a2d38.png', '625c2190a302c.png', '625c2190a3355.png', '625c2190a385e.png', '2022-04-17 14:17:52', '2022-04-18 01:44:22');
 
 -- --------------------------------------------------------
 
@@ -1060,7 +1062,100 @@ INSERT INTO `tbl_penilaian_utama_form_kedua` (`id_penilaian`, `no_penilaian`, `i
 (648, 'TASK-UTM10042022', 'UT007', 90, 'Ya', '', 'Buah', '', '2022-04-10 13:52:55', '2022-04-10 13:52:55'),
 (649, 'TASK-UTM10042022', 'UT007', 91, 'Ya', '', 'Buah', '', '2022-04-10 13:52:55', '2022-04-10 13:52:55'),
 (650, 'TASK-UTM10042022', 'UT007', 92, 'Ya', '', 'Buah', '', '2022-04-10 13:52:55', '2022-04-10 13:52:55'),
-(651, 'TASK-UTM10042022', 'UT007', 93, 'Ya', '', 'Buah', '', '2022-04-10 13:52:55', '2022-04-10 13:52:55');
+(651, 'TASK-UTM10042022', 'UT007', 93, 'Ya', '', 'Buah', '', '2022-04-10 13:52:55', '2022-04-10 13:52:55'),
+(652, 'TASK-UTM10042022', 'PR008', 1, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(653, 'TASK-UTM10042022', 'PR008', 2, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(654, 'TASK-UTM10042022', 'PR008', 3, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(655, 'TASK-UTM10042022', 'PR008', 4, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(656, 'TASK-UTM10042022', 'PR008', 5, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(657, 'TASK-UTM10042022', 'PR008', 6, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(658, 'TASK-UTM10042022', 'PR008', 7, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(659, 'TASK-UTM10042022', 'PR008', 8, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(660, 'TASK-UTM10042022', 'PR008', 9, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(661, 'TASK-UTM10042022', 'PR008', 10, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(662, 'TASK-UTM10042022', 'PR008', 11, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(663, 'TASK-UTM10042022', 'PR008', 12, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(664, 'TASK-UTM10042022', 'PR008', 13, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(665, 'TASK-UTM10042022', 'PR008', 14, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(666, 'TASK-UTM10042022', 'PR008', 15, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(667, 'TASK-UTM10042022', 'PR008', 16, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(668, 'TASK-UTM10042022', 'PR008', 17, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(669, 'TASK-UTM10042022', 'PR008', 18, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(670, 'TASK-UTM10042022', 'PR008', 19, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(671, 'TASK-UTM10042022', 'PR008', 20, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(672, 'TASK-UTM10042022', 'PR008', 21, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(673, 'TASK-UTM10042022', 'PR008', 22, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(674, 'TASK-UTM10042022', 'PR008', 23, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(675, 'TASK-UTM10042022', 'PR008', 24, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(676, 'TASK-UTM10042022', 'PR008', 25, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(677, 'TASK-UTM10042022', 'PR008', 26, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(678, 'TASK-UTM10042022', 'PR008', 27, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(679, 'TASK-UTM10042022', 'PR008', 28, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(680, 'TASK-UTM10042022', 'PR008', 29, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(681, 'TASK-UTM10042022', 'PR008', 30, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(682, 'TASK-UTM10042022', 'PR008', 31, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(683, 'TASK-UTM10042022', 'PR008', 32, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(684, 'TASK-UTM10042022', 'PR008', 33, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(685, 'TASK-UTM10042022', 'PR008', 34, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(686, 'TASK-UTM10042022', 'PR008', 35, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(687, 'TASK-UTM10042022', 'PR008', 36, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(688, 'TASK-UTM10042022', 'PR008', 37, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(689, 'TASK-UTM10042022', 'PR008', 38, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(690, 'TASK-UTM10042022', 'PR008', 39, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(691, 'TASK-UTM10042022', 'PR008', 40, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(692, 'TASK-UTM10042022', 'PR008', 41, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(693, 'TASK-UTM10042022', 'PR008', 42, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(694, 'TASK-UTM10042022', 'PR008', 43, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(695, 'TASK-UTM10042022', 'PR008', 44, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(696, 'TASK-UTM10042022', 'PR008', 45, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(697, 'TASK-UTM10042022', 'PR008', 46, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(698, 'TASK-UTM10042022', 'PR008', 47, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(699, 'TASK-UTM10042022', 'PR008', 48, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(700, 'TASK-UTM10042022', 'PR008', 49, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(701, 'TASK-UTM10042022', 'PR008', 50, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(702, 'TASK-UTM10042022', 'PR008', 51, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(703, 'TASK-UTM10042022', 'PR008', 52, 'Ya', '', 'Set', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(704, 'TASK-UTM10042022', 'PR008', 53, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(705, 'TASK-UTM10042022', 'PR008', 54, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(706, 'TASK-UTM10042022', 'PR008', 55, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(707, 'TASK-UTM10042022', 'PR008', 56, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(708, 'TASK-UTM10042022', 'PR008', 57, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(709, 'TASK-UTM10042022', 'PR008', 58, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(710, 'TASK-UTM10042022', 'PR008', 59, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(711, 'TASK-UTM10042022', 'PR008', 60, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(712, 'TASK-UTM10042022', 'PR008', 61, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(713, 'TASK-UTM10042022', 'PR008', 62, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(714, 'TASK-UTM10042022', 'PR008', 63, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(715, 'TASK-UTM10042022', 'PR008', 64, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(716, 'TASK-UTM10042022', 'PR008', 65, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(717, 'TASK-UTM10042022', 'PR008', 66, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(718, 'TASK-UTM10042022', 'PR008', 67, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(719, 'TASK-UTM10042022', 'PR008', 68, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(720, 'TASK-UTM10042022', 'PR008', 69, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(721, 'TASK-UTM10042022', 'PR008', 70, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(722, 'TASK-UTM10042022', 'PR008', 71, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(723, 'TASK-UTM10042022', 'PR008', 72, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(724, 'TASK-UTM10042022', 'PR008', 73, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(725, 'TASK-UTM10042022', 'PR008', 74, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(726, 'TASK-UTM10042022', 'PR008', 75, 'Ya', '', 'Unit', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(727, 'TASK-UTM10042022', 'PR008', 76, 'Ya', '', 'Unit', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(728, 'TASK-UTM10042022', 'PR008', 77, 'Ya', '', 'Unit', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(729, 'TASK-UTM10042022', 'PR008', 78, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(730, 'TASK-UTM10042022', 'PR008', 79, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(731, 'TASK-UTM10042022', 'PR008', 80, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(732, 'TASK-UTM10042022', 'PR008', 81, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(733, 'TASK-UTM10042022', 'PR008', 82, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(734, 'TASK-UTM10042022', 'PR008', 83, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(735, 'TASK-UTM10042022', 'PR008', 84, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(736, 'TASK-UTM10042022', 'PR008', 85, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(737, 'TASK-UTM10042022', 'PR008', 86, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(738, 'TASK-UTM10042022', 'PR008', 87, 'Ya', '', 'Sesuai Kebutuhan', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(739, 'TASK-UTM10042022', 'PR008', 88, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(740, 'TASK-UTM10042022', 'PR008', 89, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(741, 'TASK-UTM10042022', 'PR008', 90, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(742, 'TASK-UTM10042022', 'PR008', 91, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(743, 'TASK-UTM10042022', 'PR008', 92, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35'),
+(744, 'TASK-UTM10042022', 'PR008', 93, 'Ya', '', 'Buah', '', '2022-04-14 07:02:35', '2022-04-14 07:02:35');
 
 -- --------------------------------------------------------
 
@@ -1082,7 +1177,7 @@ CREATE TABLE `tbl_penilaian_utama_form_ketiga` (
   `ttd_penilai2` varchar(50) NOT NULL,
   `ttd_penilai3` varchar(50) NOT NULL,
   `ttd_penilai4` varchar(50) NOT NULL,
-  `foto_klinik` varchar(200) NOT NULL,
+  `foto_klinik` mediumtext NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1092,7 +1187,7 @@ CREATE TABLE `tbl_penilaian_utama_form_ketiga` (
 --
 
 INSERT INTO `tbl_penilaian_utama_form_ketiga` (`id_penilaian`, `no_penilaian`, `id_klinik`, `usulan_rekomendasi`, `uraian_penilaian`, `tindak_lanjut_klinik`, `nama_perwakilan_pihak_klinik`, `jabatan_perwakilan_pihak_klinik`, `ttd_perwakilan_klinik`, `ttd_penilai1`, `ttd_penilai2`, `ttd_penilai3`, `ttd_penilai4`, `foto_klinik`, `created_at`, `update_at`) VALUES
-(5, 'TASK-UTM10042022', 'UT007', 'Telah Memenuhi', 'Oke', 'Diperbaiki', 'dr. Agung Santoso ', 'Pelaksana', '6253c3c03d6ab.png', '6253c3c03d88c.png', '6253c3c03d9e5.png', '6253c3c03db4a.png', '6253c3c03dcb1.png', 'Klinik_Gigi_Nadira_Pedurungan_foto_klinik_1.png,Klinik_Gigi_Nadira_Pedurungan_foto_klinik_2.png,Klinik_Gigi_Nadira_Pedurungan_foto_klinik_3.png', '2022-04-10 14:16:42', '2022-04-11 05:59:28');
+(5, 'TASK-UTM10042022', 'UT007', 'Telah Memenuhi', 'Oke', 'Diperbaiki', 'dr. Rahmad Syukron', 'Pelaksana', '6257b384a7a5f.png', '6257b384a7c9e.png', '6257b384a7da6.png', '6257b384b13e6.png', '6257b384b175e.png', 'Klinik_Gigi_Nadira_Pedurungan_foto_klinik_1.jpg,Klinik_Gigi_Nadira_Pedurungan_foto_klinik_2.jpg,Klinik_Gigi_Nadira_Pedurungan_foto_klinik_3.jpg,Klinik_Gigi_Nadira_Pedurungan_foto_klinik_4.jpg,Klinik_Gigi_Nadira_Pedurungan_foto_klinik_5.jpg', '2022-04-10 14:16:42', '2022-04-17 14:00:33');
 
 -- --------------------------------------------------------
 
@@ -1273,7 +1368,7 @@ CREATE TABLE `tbl_user` (
 
 INSERT INTO `tbl_user` (`id_user`, `kode_user`, `username`, `password`, `nama_user`, `nip_user`, `level_user`, `created_at`, `update_at`) VALUES
 (8, 'USR13032200001', 'admin', '$2y$10$VMAd5ckqFqgqrT4wDJb0cubNKnfbimIBwexly4DkpBYvzE6Goi2WG', 'Admin', '197110202002121006', 'Admin', '2022-04-05 01:48:50', '2022-04-05 01:48:50'),
-(20, 'USR18032200004', 'dinkes1', '$2y$10$57ATtYb3B/vh/U8xkKlIfeRygOI6PgSbOuoJWWgNFzbG3vmRMqAmm', 'Dinkes', '123456789012345698', 'Admin', '2022-04-05 01:48:50', '2022-04-05 01:48:50'),
+(20, 'USR18032200004', 'dinkes1', '$2y$10$57ATtYb3B/vh/U8xkKlIfeRygOI6PgSbOuoJWWgNFzbG3vmRMqAmm', 'Dinkes', '123456789012345698', 'Penilai', '2022-04-05 01:48:50', '2022-04-14 05:44:42'),
 (21, 'USR23032200005', 'ardian1', '$2y$10$8C3LwlyxRaaG/UrxcgLfzutX/12KwjxmjMnLA6tlrnic7Grak7YVK', 'Ardian', '123456789012345676', 'Admin', '2022-04-05 01:48:50', '2022-04-05 01:48:50');
 
 --
@@ -1479,7 +1574,7 @@ ALTER TABLE `tbl_penilaian_pratama_form_kedua`
 -- AUTO_INCREMENT for table `tbl_penilaian_pratama_form_ketiga`
 --
 ALTER TABLE `tbl_penilaian_pratama_form_ketiga`
-  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_penilaian_pratama_form_satu`
@@ -1491,7 +1586,7 @@ ALTER TABLE `tbl_penilaian_pratama_form_satu`
 -- AUTO_INCREMENT for table `tbl_penilaian_utama_form_kedua`
 --
 ALTER TABLE `tbl_penilaian_utama_form_kedua`
-  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=652;
+  MODIFY `id_penilaian` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=745;
 
 --
 -- AUTO_INCREMENT for table `tbl_penilaian_utama_form_ketiga`
@@ -1521,7 +1616,7 @@ ALTER TABLE `tbl_rincian_penilaian_utama`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
