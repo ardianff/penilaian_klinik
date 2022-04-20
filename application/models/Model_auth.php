@@ -9,13 +9,6 @@ class Model_auth extends CI_Model
 		$user = $this->db->get('tbl_user')->row_array();
 		return $user;
 	}
-	// public function cek_login()
-	// {
-	//     return $this->db->get_where('tbl_user', [
-	//         'username' => $this->input->post('username'),
-	//     ]);
-	// }
-
 	function add()
 	{
 		$data = [
@@ -66,7 +59,7 @@ class Model_auth extends CI_Model
 				PASSWORD_BCRYPT
 			),
 		];
-		echo $data;
+		// echo $data;
 		$nip_user = $this->input->post('nip_user');
 		$this->db->where('nip_user', $nip_user);
 		$this->db->update('tbl_user', $data);

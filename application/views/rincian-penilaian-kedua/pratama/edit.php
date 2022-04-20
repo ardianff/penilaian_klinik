@@ -37,13 +37,13 @@
                                         <?php if (set_value('group_name') == $dt->id_group) : ?>
                                         <option value="<?php echo $dt->id_group; ?>" selected>
                                             <?php echo $dt->group_name; ?>
-                                            <?php else : ?>
+                                        </option>
+                                        <?php else : ?>
                                         <option value="<?php echo $dt->id_group; ?>"
                                             <?php if ($dt->id_group == $id_deskripsi->id_group) { ?> selected
                                             <?php } ?>><?php echo $dt->group_name; ?>
                                         </option>
                                         <?php endif ?>
-                                        </option>
                                         <?php endforeach; ?>
                                     </select>
                                     <?= form_error('group_name', '<small class="text-danger pl-3">', '</small>') ?>
