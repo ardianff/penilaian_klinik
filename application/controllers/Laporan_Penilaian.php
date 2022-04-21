@@ -18,7 +18,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *
  */
 
-class Laporan_Penilaian extends CI_Controller
+class Laporan_penilaian extends CI_Controller
 {
 
     public function __construct()

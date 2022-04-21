@@ -29,7 +29,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link <?= $this->uri->segment(1) == 'penilaian_klinik_umum' || $this->uri->segment(1) == 'penilaian_utama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                        class="nav-link <?= $this->uri->segment(1) == 'penilaian_klinik_umum' || $this->uri->segment(1) == 'penilaian_klinik_gigi' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Penilaian Klinik
@@ -48,9 +48,9 @@
                         </li>
                         <li class="nav-item">
                             <a href="<?php echo site_url(
-                                                'penilaian_utama'
+                                                'penilaian_klinik_gigi'
                                             ); ?>"
-                                class="nav-link <?= $this->uri->segment(1) == 'penilaian_utama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                class="nav-link <?= $this->uri->segment(1) == 'penilaian_klinik_gigi' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                 <i class="fa-solid fa-list-check nav-icon"></i>
                                 <p>Pratama/Utama Gigi</p>
                             </a>
@@ -59,7 +59,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama' || $this->uri->segment(1) == 'rincian_penilaian_utama' || $this->uri->segment(1) == 'rincian_penilaian_utama_kedua' || $this->uri->segment(1) == 'rincian_penilaian_pratama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-book-open"></i>
                         <p>
                             Rincian Penilaian
@@ -69,7 +69,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="#"
-                                class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama' || $this->uri->segment(1) == 'rincian_penilaian_pratama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                 <!--    <i class="far fa-circle nav-icon"></i> -->
                                 <p>
                                     Klinik Pratama/Utama Umum
@@ -78,15 +78,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('rincian_penilaian_pratama') ?>"
-                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                    <a href="<?php echo site_url('rincian_penilaian_klinik_umum') ?>"
+                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                         <i class="fa-solid fa-list-dropdown nav-icon"></i>
                                         <p>Rincian Penilaian Form 1</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('rincian_penilaian_pratama_kedua') ?>"
-                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                    <a href="<?php echo site_url('rincian_penilaian_klinik_umum_kedua') ?>"
+                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                         <i class="fa-solid fa-list-dropdown nav-icon"></i>
                                         <p>Rincian Penilaian Form 2</p>
                                     </a>
@@ -97,7 +97,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="#"
-                                class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_utama' || $this->uri->segment(1) == 'rincian_penilaian_utama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                 <!-- <i class="far fa-circle nav-icon"></i> -->
                                 <p>
                                     Klinik Pratama/Utama Gigi
@@ -106,15 +106,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('rincian_penilaian_utama') ?>"
-                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_utama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                    <a href="<?php echo site_url('rincian_penilaian_klinik_gigi') ?>"
+                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                         <i class="fa-solid fa-list-dropdown nav-icon"></i>
                                         <p>Rincian Penilaian Form 1</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('rincian_penilaian_utama_kedua') ?>"
-                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_utama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                    <a href="<?php echo site_url('rincian_penilaian_klinik_gigi_kedua') ?>"
+                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                         <i class="fa-solid fa-list-dropdown nav-icon"></i>
                                         <p>Rincian Penilaian Form 2</p>
                                     </a>
@@ -226,7 +226,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link <?= $this->uri->segment(1) == 'penilaian_klinik_umum' || $this->uri->segment(1) == 'penilaian_utama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                        class="nav-link <?= $this->uri->segment(1) == 'penilaian_klinik_umum' || $this->uri->segment(1) == 'penilaian_klinik_gigi' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Penilaian Klinik
@@ -245,9 +245,9 @@
                         </li>
                         <li class="nav-item">
                             <a href="<?php echo site_url(
-                                                'penilaian_utama'
+                                                'penilaian_klinik_gigi'
                                             ); ?>"
-                                class="nav-link <?= $this->uri->segment(1) == 'penilaian_utama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                class="nav-link <?= $this->uri->segment(1) == 'penilaian_klinik_gigi' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                 <i class="fa-solid fa-list-check nav-icon"></i>
                                 <p>Pratama/Utama Gigi</p>
                             </a>
@@ -256,7 +256,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama' || $this->uri->segment(1) == 'rincian_penilaian_utama' || $this->uri->segment(1) == 'rincian_penilaian_utama_kedua' || $this->uri->segment(1) == 'rincian_penilaian_pratama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-book-open"></i>
                         <p>
                             Rincian Penilaian
@@ -266,7 +266,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="#"
-                                class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama' || $this->uri->segment(1) == 'rincian_penilaian_pratama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                 <!--    <i class="far fa-circle nav-icon"></i> -->
                                 <p>
                                     Klinik Pratama/Utama Umum
@@ -275,15 +275,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('rincian_penilaian_pratama') ?>"
-                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                    <a href="<?php echo site_url('rincian_penilaian_klinik_umum') ?>"
+                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                         <i class="fa-solid fa-list-dropdown nav-icon"></i>
                                         <p>Rincian Penilaian Form 1</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('rincian_penilaian_pratama_kedua') ?>"
-                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_pratama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                    <a href="<?php echo site_url('rincian_penilaian_klinik_umum_kedua') ?>"
+                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                         <i class="fa-solid fa-list-dropdown nav-icon"></i>
                                         <p>Rincian Penilaian Form 2</p>
                                     </a>
@@ -294,7 +294,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="#"
-                                class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_utama' || $this->uri->segment(1) == 'rincian_penilaian_utama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                 <!-- <i class="far fa-circle nav-icon"></i> -->
                                 <p>
                                     Klinik Pratama/Utama Gigi
@@ -303,15 +303,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('rincian_penilaian_utama') ?>"
-                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_utama' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                    <a href="<?php echo site_url('rincian_penilaian_klinik_gigi') ?>"
+                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                         <i class="fa-solid fa-list-dropdown nav-icon"></i>
                                         <p>Rincian Penilaian Form 1</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('rincian_penilaian_utama_kedua') ?>"
-                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_utama_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                    <a href="<?php echo site_url('rincian_penilaian_klinik_gigi_kedua') ?>"
+                                        class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                         <i class="fa-solid fa-list-dropdown nav-icon"></i>
                                         <p>Rincian Penilaian Form 2</p>
                                     </a>

@@ -50,7 +50,7 @@
                         <div class="icon">
                             <i class="fa-solid fa-house-medical-flag"></i>
                         </div>
-                        <a href="<?php echo base_url('penilaian_utama'); ?>" class="small-box-footer">
+                        <a href="<?php echo base_url('penilaian_klinik_gigi'); ?>" class="small-box-footer">
                             Go to site <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
@@ -110,7 +110,7 @@
                         <div class="icon">
                             <i class="fa-solid fa-memo-circle-info"></i>
                         </div>
-                        <a href="<?php echo base_url('rincian_penilaian_pratama'); ?>" class="small-box-footer">
+                        <a href="<?php echo base_url('rincian_penilaian_klinik_umum'); ?>" class="small-box-footer">
                             Go to site <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
@@ -130,7 +130,8 @@
                         <div class="icon">
                             <i class="fa-solid fa-memo-circle-info"></i>
                         </div>
-                        <a href="<?php echo base_url('rincian_penilaian_pratama_kedua'); ?>" class="small-box-footer">
+                        <a href="<?php echo base_url('rincian_penilaian_klinik_umum_kedua'); ?>"
+                            class="small-box-footer">
                             Go to site <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
@@ -168,7 +169,8 @@
                         <div class="icon">
                             <i class="fa-solid fa-memo-circle-info"></i>
                         </div>
-                        <a href="<?php echo base_url('rincian_penilaian_utama_kedua'); ?>" class="small-box-footer">
+                        <a href="<?php echo base_url('rincian_penilaian_klinik_gigi_kedua'); ?>"
+                            class="small-box-footer">
                             Go to site <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>

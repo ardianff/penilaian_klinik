@@ -10,9 +10,9 @@ class Model_rincian_penilaian_pratama extends CI_Model
 		];
 		$this->db->insert($this->table, $data);
 	}
-	public function update($data, $id)
+	public function update($save, $id)
 	{
-		return $this->db->update($this->table, $data, [
+		return $this->db->update($this->table, $save, [
 			'id_rincian_penilaian' => $id,
 		]);
 	}
