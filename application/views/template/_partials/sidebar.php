@@ -16,7 +16,8 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item">
+                <li
+                    class="nav-item <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'menu-is-opening menu-open' : '' ?>">
                     <a href="<?php echo site_url(
                                         'dashboard'
                                     ); ?>"
@@ -27,7 +28,8 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li
+                    class="nav-item <?= $this->uri->segment(1) == 'penilaian_klinik_umum' || $this->uri->segment(1) == 'penilaian_klinik_gigi' || $this->uri->segment(1) == '' ? 'menu-is-opening menu-open' : '' ?>">
                     <a href="#"
                         class="nav-link <?= $this->uri->segment(1) == 'penilaian_klinik_umum' || $this->uri->segment(1) == 'penilaian_klinik_gigi' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-th"></i>
@@ -57,7 +59,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <li
+                    class="nav-item <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'menu-is-opening menu-open' : '' ?>">
                     <a href="#"
                         class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-book-open"></i>
@@ -67,7 +70,8 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li
+                            class="nav-item <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'menu-is-opening menu-open' : '' ?>">
                             <a href="#"
                                 class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                 <!--    <i class="far fa-circle nav-icon"></i> -->
@@ -95,7 +99,8 @@
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li
+                            class="nav-item <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == '' ? 'menu-is-opening menu-open' : '' ?>">
                             <a href="#"
                                 class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                 <!-- <i class="far fa-circle nav-icon"></i> -->
@@ -123,7 +128,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <li
+                    class="nav-item <?= $this->uri->segment(2) == 'rincian' || $this->uri->segment(2) == 'detail' ? 'menu-is-opening menu-open' : '' ?>">
                     <a href="#"
                         class="nav-link <?= $this->uri->segment(2) == 'rincian' || $this->uri->segment(2) == 'detail' ? 'active' : '' ?>">
                         <i class="nav-icon fa-solid fa-calendar-lines-pen"></i>
@@ -164,7 +170,8 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li
+                    class="nav-item <?= $this->uri->segment(1) == 'user' || $this->uri->segment(1) == 'profile' || $this->uri->segment(1) == '' ? 'menu-is-opening menu-open' : '' ?>">
                     <a href="#"
                         class="nav-link <?= $this->uri->segment(1) == 'user' || $this->uri->segment(1) == 'profile' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-user-cog"></i>
@@ -224,7 +231,8 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li
+                    class="nav-item <?= $this->uri->segment(1) == 'penilaian_klinik_umum' || $this->uri->segment(1) == 'penilaian_klinik_gigi' || $this->uri->segment(1) == '' ? 'menu-is-opening menu-open' : '' ?>">
                     <a href="#"
                         class="nav-link <?= $this->uri->segment(1) == 'penilaian_klinik_umum' || $this->uri->segment(1) == 'penilaian_klinik_gigi' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-th"></i>
@@ -254,7 +262,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <li
+                    class="nav-item <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'menu-is-opening menu-open' : '' ?>">
                     <a href="#"
                         class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-book-open"></i>
@@ -264,7 +273,8 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li
+                            class="nav-item <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'menu-is-opening menu-open' : '' ?>">
                             <a href="#"
                                 class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_umum' || $this->uri->segment(1) == 'rincian_penilaian_klinik_umum_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                 <!--    <i class="far fa-circle nav-icon"></i> -->
@@ -292,7 +302,8 @@
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li
+                            class="nav-item <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == '' ? 'menu-is-opening menu-open' : '' ?>">
                             <a href="#"
                                 class="nav-link <?= $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi' || $this->uri->segment(1) == 'rincian_penilaian_klinik_gigi_kedua' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                 <!-- <i class="far fa-circle nav-icon"></i> -->
@@ -320,7 +331,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <li
+                    class="nav-item <?= $this->uri->segment(2) == 'rincian' || $this->uri->segment(2) == 'detail' ? 'menu-is-opening menu-open' : '' ?>">
                     <a href="#"
                         class="nav-link <?= $this->uri->segment(2) == 'rincian' || $this->uri->segment(2) == 'detail' ? 'active' : '' ?>">
                         <i class="nav-icon fa-solid fa-calendar-lines-pen"></i>

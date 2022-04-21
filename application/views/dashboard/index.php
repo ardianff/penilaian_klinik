@@ -150,7 +150,7 @@
                         <div class="icon">
                             <i class="fa-solid fa-memo-circle-info"></i>
                         </div>
-                        <a href="<?php echo base_url('rincian_penilaian_utama'); ?>" class="small-box-footer">
+                        <a href="<?php echo base_url('rincian_penilaian_klinik_gigi'); ?>" class="small-box-footer">
                             Go to site <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
