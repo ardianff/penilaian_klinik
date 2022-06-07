@@ -133,9 +133,10 @@
                                         style="color:red">*</span></label>
                                 <div class="col-sm-8">
                                     <input type="file" id="img" name="upload_Files[]" accept="image/*" multiple
-                                        required>
+                                        required />
                                     <br>
-                                    <p class="text-danger">Ekstensi Foto yang di perbolehkan yaitu .JPG| .JPEG| .PNG</p>
+                                    <p class="text-danger">Ekstensi Foto yang di perbolehkan yaitu .JPG| .JPEG| .PNG
+                                        dengan ukuran maksimal 5mb</p>
                                 </div>
                             </div>
                         </div>
@@ -435,10 +436,8 @@
                                             <div id="ttd4"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd4">Clear</button>
-                                            <textarea id="signature64-ttd4" name="ttd-4" style="display: none"
-                                                <?php if ($klinik['ttd_penilai4'] == null) { ?>required
-                                                <?php
-                                                                                                                                                                        } ?>></textarea>
+                                            <textarea id="signature64-ttd4" name="ttd-4"
+                                                style="display: none"></textarea>
                                         </div>
                                         <div class="col">
                                             <img class="text-center"

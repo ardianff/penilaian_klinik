@@ -13,7 +13,7 @@
     <!-- Main content -->
     <?php
     echo form_open(
-        'penilaian_klinik_umum/nilai',
+        'penilaian_klinik_umum/nilai?id=' . $klinik['id_klinik'],
         'class="form-horizontal"'
     );
     echo form_hidden('no_penilaian', $klinik['no_penilaian']);
@@ -104,12 +104,12 @@
                                                     $no = $i + 1;
                                                     echo '<tr>';
                                                     echo '<td>' . $no . '</td>';
-                                                    echo '<td class="text-justify"><input type="hidden" name="rincian[' . $no . ']" value="' . $rincian[$i]->id_rincian_penilaian . '"/> ' . $rincian[$i]->rincian_penilaian . '</td>';
+                                                    echo '<td class="text-justify"><input type="hidden" name="rincian[' . $no . ']" value="' . $rincian[$i]->id_rincian_penilaian . '"/> ' . nl2br(htmlspecialchars($rincian[$i]->rincian_penilaian)) . '</td>';
                                                     echo '<td class="text-center"><input type="radio" name="hasil[' . $no . ']"  value="Ya" required> Ya</input>
 											</td>';
                                                     echo '<td class="text-center"><input type="radio" name="hasil[' . $no . ']"  value="Tidak" required> Tidak</input>
 											</td>';
-                                                    echo '<td class="text-justify">' . $rincian[$i]->keterangan_penilaian . '</td>';
+                                                    echo '<td class="text-justify">' . nl2br(htmlspecialchars($rincian[$i]->keterangan_penilaian)) . '</td>';
                                                     echo '<td class="text-center"><input type="radio" name="hasil_verifikasi[' . $no . ']"  value="Ya" required> Ya</input></td>';
                                                     echo '<td class="text-center"><input type="radio" name="hasil_verifikasi[' . $no . ']"  value="Tidak" required> Tidak</input>
 											</td>';
@@ -123,16 +123,16 @@
                                                     $no = $i + 1;
                                                     echo '<tr>';
                                                     echo '<td>' . $no . '<input type="hidden" name="id_penilaian[' . $no . ']" value="' . $cek_hasil[$i]->id_penilaian . '"/></td>';
-                                                    echo '<td class="text-justify"><input type="hidden" name="rincian[' . $no . ']" value="' . $cek_hasil[$i]->id_rincian_penilaian . '"/> ' . $cek_hasil[$i]->rincian_penilaian . '</td>';
+                                                    echo '<td class="text-justify"><input type="hidden" name="rincian[' . $no . ']" value="' . $cek_hasil[$i]->id_rincian_penilaian . '"/> ' . nl2br(htmlspecialchars($cek_hasil[$i]->rincian_penilaian)) . '</td>';
                                                     echo '<td class="text-center"><input type="radio" name="hasil[' . $no . ']" ' . ($cek_hasil[$i]->jawab_hasil == 'Ya' ? 'checked' : '')  . ' value="Ya" required></input>
 											</td>';
                                                     echo '<td class="text-center"><input type="radio" name="hasil[' . $no . ']" ' . ($cek_hasil[$i]->jawab_hasil == 'Tidak' ? 'checked' : '')  . ' value="Tidak" required></input>
 											</td>';
-                                                    echo '<td class="text-justify">' . $cek_hasil[$i]->keterangan_penilaian . '</td>';
+                                                    echo '<td class="text-justify">' . nl2br(htmlspecialchars($cek_hasil[$i]->keterangan_penilaian)) . '</td>';
                                                     echo '<td class="text-center"><input type="radio" name="hasil_verifikasi[' . $no . ']" ' . ($cek_hasil[$i]->jawab_hasil_verif == 'Ya' ? 'checked' : '')  . ' value="Ya" required></input></td>';
                                                     echo '<td class="text-center"><input type="radio" name="hasil_verifikasi[' . $no . ']"  ' . ($cek_hasil[$i]->jawab_hasil_verif == 'Tidak' ? 'checked' : '')  . ' value="Tidak" required></input>
 											</td>';
-                                                    echo '<td><textarea class="form-control" name="catatan_penilaian[' . $no . ']" placeholder="Catatan...">' . $cek_hasil[$i]->catatan_hasil_penilaian . '</textarea>
+                                                    echo '<td><textarea class="form-control" name="catatan_penilaian[' . $no . ']" placeholder="Catatan...">' . nl2br(htmlspecialchars($cek_hasil[$i]->catatan_hasil_penilaian)) . '</textarea>
 											</td>';
                                                     echo '<tr>';
                                                 }

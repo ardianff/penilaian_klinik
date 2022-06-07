@@ -127,8 +127,10 @@
     <hr class="hr-dua">
     <p class="title"><u><b>BERITA ACARA PENILAIAN KESESUAIAN
                 KLINIK</b></u></p>
+    <!-- <p class="title">NOMOR :
+        <?php echo $penilaian['no_penilaian'], $penilaian['id_klinik'] ?></p> -->
     <p class="title">NOMOR :
-        <?php echo $penilaian['no_penilaian'], $penilaian['id_klinik'] ?></p>
+        <?php echo $penilaian['no_surat'] ?></p>
     <p class="text-bap">Pada hari ini <?php echo hari_ini() ?> tanggal <?php echo tanggal_sekarang() ?> (
         <?php echo terbilang(tanggal_sekarang()) ?> )
         bulan <?php echo bulan_sekarang() ?> tahun <?php echo tahun_sekarang() ?>, berdasarkan surat tugas Nomor
@@ -329,7 +331,8 @@
                                         foreach ($penilaiansatu as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $no; ?></td>
-                                            <td class="text-justify td-content"><?php echo $row->rincian_penilaian; ?>
+                                            <td class="text-justify td-content">
+                                                <?php echo nl2br(htmlspecialchars($row->rincian_penilaian)); ?>
                                             </td>
                                             <?php if ($row->jawab_hasil == "Ya") {
                                                     echo "<td class='text-center td-content'><span style='font-family: fontawesome;'>&#xf00c;</span></td>
@@ -340,7 +343,7 @@
                                                 }
                                                 ?>
                                             <td class="text-justify td-content">
-                                                <?php echo $row->keterangan_penilaian; ?></td>
+                                                <?php echo nl2br(htmlspecialchars($row->keterangan_penilaian)); ?></td>
                                             <?php if ($row->jawab_hasil_verif == "Ya") {
                                                     echo "<td class='text-center td-content'><span style='font-family: fontawesome;'>&#xf00c;</span></td>
 														<td class='text-center td-content'><span></span></td>";
@@ -350,7 +353,7 @@
                                                 }
                                                 ?>
                                             <td class="text-justify td-content">
-                                                <?php echo $row->catatan_hasil_penilaian; ?>
+                                                <?php echo nl2br(htmlspecialchars($row->catatan_hasil_penilaian)); ?>
                                             </td>
                                         </tr>
                                         <?php $no++;
@@ -389,7 +392,8 @@
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $no; ?></td>
                                             <td class="text-justify td-content">
-                                                <?php echo $row->kriteria_penilaian_pratama; ?></td>
+                                                <?php echo nl2br(htmlspecialchars($row->kriteria_penilaian_pratama)); ?>
+                                            </td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
                                             <td class="text-justify td-content">
@@ -404,7 +408,8 @@
                                                 ?>
                                             <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
                                             <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
-                                            <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+                                            <td class="text-justify td-content">
+                                                <?php echo nl2br(htmlspecialchars($row->catatan_penilaian)); ?>
                                             </td>
                                         </tr>
                                         <?php $no++;
@@ -444,7 +449,8 @@
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $nomber; ?></td>
                                             <td class="text-justify td-content">
-                                                <?php echo $row->kriteria_penilaian_pratama; ?></td>
+                                                <?php echo nl2br(htmlspecialchars($row->kriteria_penilaian_pratama)); ?>
+                                            </td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
                                             <td class="text-justify td-content">
@@ -459,7 +465,8 @@
                                                 ?>
                                             <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
                                             <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
-                                            <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+                                            <td class="text-justify td-content">
+                                                <?php echo nl2br(htmlspecialchars($row->catatan_penilaian)); ?>
                                             </td>
                                         </tr>
                                         <?php $nomber++;
@@ -498,7 +505,8 @@
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $nomer; ?></td>
                                             <td class="text-justify td-content">
-                                                <?php echo $row->kriteria_penilaian_pratama; ?></td>
+                                                <?php echo nl2br(htmlspecialchars($row->kriteria_penilaian_pratama)); ?>
+                                            </td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
                                             <td class="text-justify td-content">
@@ -513,7 +521,8 @@
                                                 ?>
                                             <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
                                             <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
-                                            <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+                                            <td class="text-justify td-content">
+                                                <?php echo nl2br(htmlspecialchars($row->catatan_penilaian)); ?>
                                             </td>
                                         </tr>
                                         <?php $nomer++;
@@ -552,7 +561,8 @@
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $num; ?></td>
                                             <td class="text-justify td-content">
-                                                <?php echo $row->kriteria_penilaian_pratama; ?></td>
+                                                <?php echo nl2br(htmlspecialchars($row->kriteria_penilaian_pratama)); ?>
+                                            </td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
                                             <td class="text-justify td-content">
@@ -567,7 +577,8 @@
                                                 ?>
                                             <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
                                             <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
-                                            <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+                                            <td class="text-justify td-content">
+                                                <?php echo nl2br(htmlspecialchars($row->catatan_penilaian)); ?>
                                             </td>
                                         </tr>
                                         <?php $num++;
@@ -606,7 +617,8 @@
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $nums; ?></td>
                                             <td class="text-justify td-content">
-                                                <?php echo $row->kriteria_penilaian_pratama; ?></td>
+                                                <?php echo nl2br(htmlspecialchars($row->kriteria_penilaian_pratama)); ?>
+                                            </td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
                                             <td class="text-justify td-content">
@@ -621,7 +633,8 @@
                                                 ?>
                                             <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
                                             <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
-                                            <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+                                            <td class="text-justify td-content">
+                                                <?php echo nl2br(htmlspecialchars($row->catatan_penilaian)); ?>
                                             </td>
                                         </tr>
                                         <?php $nums++;
@@ -661,7 +674,8 @@
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $nom; ?></td>
                                             <td class="text-justify td-content">
-                                                <?php echo $row->kriteria_penilaian_pratama; ?></td>
+                                                <?php echo nl2br(htmlspecialchars($row->kriteria_penilaian_pratama)); ?>
+                                            </td>
                                             <td class="text-justify td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_pratama; ?></td>
                                             <td class="text-justify td-content">
@@ -676,7 +690,8 @@
                                                 ?>
                                             <td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
                                             <td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
-                                            <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+                                            <td class="text-justify td-content">
+                                                <?php echo nl2br(htmlspecialchars($row->catatan_penilaian)); ?>
                                             </td>
                                         </tr>
                                         <?php $nom++;
@@ -709,7 +724,12 @@
 			</ol>';
             }
             ?>
-            <p style="text-align:justify"><?php echo $klinik['uraian_penilaian'] ?></p>
+
+            <p style="text-align:justify">
+                Catatan :
+                <br>
+                <?php echo nl2br(htmlspecialchars($klinik['uraian_penilaian'])) ?>
+            </p>
         </li>
         <li class="text-bap">
             Tindak Lanjut bagi Klinik<br>
@@ -807,201 +827,8 @@
         <li>
             Selama proses penilaian kesesuaian Klinik berlangsung, diketahui dan dibenarkan oleh pihak perwaklian
             Klinik.
-            <!-- <table border="0" class="class=" text-bap"">
-                <tbody>
-                    <tr>
-                        <td style="vertical-align: bottom;">Nama</td>
-                        <td style="vertical-align: bottom;">:</td>
-                        <td style="vertical-align: bottom;"><?php echo $klinik['nama_perwakilan_pihak_klinik'] ?></td>
-                        <td style="vertical-align: top;" height="150px" width="120px" class="text-center" rowspan="2">
-                            <img src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_perwakilan_klinik'] ?>"
-                                width="150px" height="150px">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: top;">Jabatan</td>
-                        <td style="vertical-align: top;">:</td>
-                        <td style="vertical-align: top;"><?php echo $klinik['jabatan_perwakilan_pihak_klinik'] ?></td>
-                    </tr>
-                </tbody>
-            </table> -->
-            <!-- <div style="float:left" class="container">
-                <p class="text-center">Tim Penilaian Kesesuaian Klinik</p>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card text-center" style="width: 18rem;">
-                            <img class="rounded mx-auto d-block"
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
-                                width="100px" height="auto">
-                            <div class="card-body">
-                                <p class="text-center"
-                                    style="font-size: 10pt;font-family:'Times New Roman', Times, serif">
-                                    <?php echo $penilaian['nama_anggota1'] ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center" style="width: 18rem;">
-                            <img class="rounded mx-auto d-block"
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai2'] ?>"
-                                width="100px" height="auto">
-                            <div class="card-body">
-                                <p class="text-center"
-                                    style="font-size: 10pt;font-family:'Times New Roman', Times, serif">
-                                    <?php echo $penilaian['nama_anggota2'] ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center" style="width: 18rem;">
-                            <img class="rounded mx-auto d-block"
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
-                                width="100px" height="auto">
-                            <div class="card-body">
-                                <p class="text-center"
-                                    style="font-size: 10pt;font-family:'Times New Roman', Times, serif">
-                                    <?php echo $penilaian['nama_anggota3'] ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center" style="width: 18rem;">
-                            <img class="rounded mx-auto d-block"
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai4'] ?>"
-                                width="100px" height="auto">
-                            <div class="card-body">
-                                <p class="text-center"
-                                    style="font-size: 10pt;font-family:'Times New Roman', Times, serif">
-                                    <?php echo $penilaian['nama_anggota4'] ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <table border="0">
-                <thead>
-                    <td width="30%" colspan="2">Tim Penilaian Kesesuaian Klinik</td>
-                    <td width="5%"></td>
-                    <td width="20%"></td>
-                    <td></td>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="2" width="50%">1. <?php echo $penilaian['nama_anggota1'] ?></td>
-                        <td></td>
-                        <td width="10%"></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">2. <?php echo $penilaian['nama_anggota2'] ?></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">3. <?php echo $penilaian['nama_anggota3'] ?></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">4. <?php echo $penilaian['nama_anggota4'] ?></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center"> Yang membuat Berita Acara</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">1. <?php echo $penilaian['nama_anggota1'] ?></td>
-                        <td width="10%" class="text-center"><img
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
-                                width="80px" height="80px">
-                        </td>
-                        <td width="10%"></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">1. <?php echo $penilaian['nama_anggota1'] ?></td>
-                        <td width="10%" class="text-center"><img
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
-                                width="80px" height="80px">
-                        </td>
-                        <td width="10%"></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">2. <?php echo $penilaian['nama_anggota2'] ?></td>
-                        <td class="text-center"><img
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai2'] ?>"
-                                width="80px" height="80px"></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">3. <?php echo $penilaian['nama_anggota3'] ?></td>
-                        <td class="text-center"><img
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
-                                width="80px" height="80px"></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">4. <?php echo $penilaian['nama_anggota4'] ?></td>
-                        <td class="text-center"><img
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai4'] ?>"
-                                width="80px" height="80px"></td>
-                        <td></td>
-                        <td class="text-center"> Yang membuat Berita Acara</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center"><img
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
-                                width="110px" height="110px"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center">( Suryati, SKM )</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center">NIP. 198111021209031203</td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" class="text-center">Mengetahui,</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center" colspan="5">An. Kepala Dinas Kesehatan</td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" class="text-center">Kepala Bidang SDK</td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" class="text-center"><img
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
-                                width="120px" height="120px">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center" colspan="5">dr. Noegroho Edy Rijanto, MKes</td>
-                    </tr>
-
-                </tbody>
-            </table> -->
-
             <p>Perwakilan Pihak Klinik</p>
             <table border="1" width="30%" height="auto" class="text-bap">
-                <!-- <thead>
-                    <td colspan="4" class="text-center">Perwakilan Pihak Klinik</td>
-                </thead> -->
                 <tbody>
                     <tr>
                         <td class="text-center"><img class="rounded mx-auto d-block"
@@ -1033,9 +860,12 @@
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
                                 width="120px" height="120px"></td>
-                        <td><img class="rounded mx-auto d-block"
+                        <td>
+                            <!-- <img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai4'] ?>"
-                                width="120px" height="120px"></td>
+                                width="120px" height="120px"  onerror="this.onerror=null; this.src='Default.jpg'"> -->
+
+                        </td>
                     </tr>
                     <tr>
                         <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota1'] ?></td>
@@ -1102,7 +932,6 @@
                     <tr>
                         <td class="text-center" colspan="5">dr. Noegroho Edy Rijanto, MKes</td>
                     </tr>
-
                 </tbody>
             </table>
         </li>

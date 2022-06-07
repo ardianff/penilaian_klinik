@@ -132,7 +132,7 @@
     <p class="title"><u><b>BERITA ACARA PENILAIAN KESESUAIAN
                 KLINIK</b></u></p>
     <p class="title">NOMOR :
-        <?php echo $penilaian['no_penilaian'], $penilaian['id_klinik'] ?></p>
+        <?php echo $penilaian['no_surat'] ?></p>
     <p class="text-bap">Pada hari ini <?php echo hari_ini() ?> tanggal <?php echo tanggal_sekarang() ?> (
         <?php echo terbilang(tanggal_sekarang()) ?> )
         bulan <?php echo bulan_sekarang() ?> tahun <?php echo tahun_sekarang() ?>, berdasarkan surat tugas Nomor
@@ -269,7 +269,7 @@
             Telah melakukan penilaian kesesuian dalam rangka verifikasi pemenuhan persyaratan klinik
             dengan cara
             pengecekan administrasi dan pengecekan lapangan terhadap :<br>
-            <table border="0" class="class=" text-bap"">
+            <table border="0" class="text-bap">
                 <tbody>
                     <tr>
                         <td>Nama Klinik</td>
@@ -312,10 +312,13 @@
                                     <thead>
                                         <tr class="tr-content">
                                             <th class="text-center th-content" rowspan="2">No</th>
-                                            <th class="text-center th-content" rowspan="2">Rincian Penilaian</th>
-                                            <th class="text-center th-content" th-content colspan="2">Hasil</th>
-                                            <th class="text-center th-content" rowspan="2">Keterangan</th>
-                                            <th class="text-center th-content" colspan="2">Hasil Verifikasi Persyaratan
+                                            <th class="text-center th-content" rowspan="2" width="45%">Rincian Penilaian
+                                            </th>
+                                            <th class="text-center th-content" th-content colspan="2" width="5%">Hasil
+                                            </th>
+                                            <th class="text-center th-content" rowspan="2" width="10%">Keterangan</th>
+                                            <th class="text-center th-content" colspan="2" width="20%">Hasil Verifikasi
+                                                Persyaratan
                                                 Minimal
                                                 **</th>
                                             <th class="text-center th-content" rowspan="2">Catatan</th>
@@ -333,7 +336,8 @@
                                         foreach ($penilaiansatu as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $no; ?></td>
-                                            <td class="text-justify td-content"><?php echo $row->rincian_penilaian; ?>
+                                            <td class=" text-justify td-content">
+                                                <?php echo nl2br($row->rincian_penilaian); ?>
                                             </td>
                                             <?php if ($row->jawab_hasil == "Ya") {
                                                     echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
@@ -354,7 +358,7 @@
                                                 }
                                                 ?>
                                             <td class="text-justify td-content">
-                                                <?php echo $row->catatan_hasil_penilaian; ?>
+                                                <?php echo nl2br(htmlspecialchars($row->catatan_hasil_penilaian)); ?>
                                             </td>
                                         </tr>
                                         <?php $no++;
@@ -366,24 +370,25 @@
                                 <table border="1" class="table-content" width="100%" height="100%">
                                     <thead>
                                         <tr class="tr-content">
-                                            <th class="text-center th-content" colspan="9	">Peralatan klinik</th>
+                                            <th class="text-center th-content" colspan="9">Peralatan klinik</th>
                                         </tr>
                                         <tr class="tr-content">
-                                            <th class="text-center " rowspan="2">No</th>
-                                            <th class="text-center th-content" rowspan="2">Kriteria</th>
-                                            <th class="text-center th-content" th-content colspan="2">Standar Minimal
+                                            <th class="text-center " rowspan="2" width="1%">No</th>
+                                            <th class="text-center th-content" rowspan="2" width="30%">Kriteria</th>
+                                            <th class="text-center th-content" th-content colspan="2" width="30%">
+                                                Standar Minimal
                                             </th>
                                             <th class="text-center th-content" th-content colspan="2">Hasil</th>
                                             <th class="text-center th-content" th-content colspan="3">Keterangan</th>
                                         </tr>
                                         <tr class="tr-content">
-                                            <td class="text-center td-content">Jumlah</td>
-                                            <td class="text-center td-content">Satuan</td>
-                                            <td class="text-center td-content">Ya</td>
-                                            <td class="text-center td-content">Tidak</td>
-                                            <td class="text-center td-content">Jumlah</td>
-                                            <td class="text-center td-content">Satuan</td>
-                                            <td class="text-center td-content">Catatan</td>
+                                            <td class="text-center td-content" width="auto">Jumlah</td>
+                                            <td class="text-center td-content" width="auto">Satuan</td>
+                                            <td class="text-center td-content" width="2%">Ya</td>
+                                            <td class="text-center td-content" width="2%">Tidak</td>
+                                            <td class="text-center td-content" width="5%">Jumlah</td>
+                                            <td class="text-center td-content" width="5%">Satuan</td>
+                                            <td class="text-center td-content" width="10%">Catatan</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -391,9 +396,10 @@
                                         $no = 1;
                                         foreach ($peralatanklinik as $row) : ?>
                                         <tr class="tr-content">
-                                            <td class="text-center td-content"><?php echo $no; ?></td>
+                                            <td class="text-center td-content" width='1%'><?php echo $no; ?></td>
                                             <td class="text-justify td-content">
-                                                <?php echo $row->kriteria_penilaian_utama; ?></td>
+                                                <?php echo nl2br($row->kriteria_penilaian_utama); ?>
+                                            </td>
                                             <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
                                             <td class="text-center td-content">
@@ -408,7 +414,8 @@
                                                 ?>
                                             <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
                                             <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
-                                            <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+                                            <td class="text-justify td-content">
+                                                <?php echo nl2br(htmlspecialchars($row->catatan_penilaian)); ?>
                                             </td>
                                         </tr>
                                         <?php $no++;
@@ -424,31 +431,33 @@
                                             <th class="text-center th-content" colspan="9">Bahan Habis Pakai</th>
                                         </tr>
                                         <tr class="tr-content">
-                                            <th class="text-center th-content" rowspan="2">No</th>
-                                            <th class="text-center th-content" rowspan="2">Kriteria</th>
-                                            <th class="text-center th-content" th-content colspan="2">Standar Minimal
+                                            <th class="text-center " rowspan="2" width="1%">No</th>
+                                            <th class="text-center th-content" rowspan="2" width="30%">Kriteria</th>
+                                            <th class="text-center th-content" th-content colspan="2" width="30%">
+                                                Standar Minimal
                                             </th>
                                             <th class="text-center th-content" th-content colspan="2">Hasil</th>
                                             <th class="text-center th-content" th-content colspan="3">Keterangan</th>
                                         </tr>
                                         <tr class="tr-content">
-                                            <td class="text-center td-content">Jumlah</td>
-                                            <td class="text-center td-content">Satuan</td>
-                                            <td class="text-center td-content">Ya</td>
-                                            <td class="text-center td-content">Tidak</td>
-                                            <td class="text-center td-content">Jumlah</td>
-                                            <td class="text-center td-content">Satuan</td>
-                                            <td class="text-center td-content">Catatan</td>
+                                            <td class="text-center td-content" width="15%">Jumlah</td>
+                                            <td class="text-center td-content" width="15%">Satuan</td>
+                                            <td class="text-center td-content" width="2%">Ya</td>
+                                            <td class="text-center td-content" width="2%">Tidak</td>
+                                            <td class="text-center td-content" width="5%">Jumlah</td>
+                                            <td class="text-center td-content" width="15%">Satuan</td>
+                                            <td class="text-center td-content" width="15%">Catatan</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $nomber = $no + 1;
+                                        $nomber = $no;
                                         foreach ($bahanhabis as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $nomber; ?></td>
                                             <td class="text-justify td-content">
-                                                <?php echo $row->kriteria_penilaian_utama; ?></td>
+                                                <?php echo nl2br(htmlentities($row->kriteria_penilaian_utama)); ?>
+                                            </td>
                                             <td class="text-center td-content">
                                                 <?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
                                             <td class="text-center td-content">
@@ -463,7 +472,8 @@
                                                 ?>
                                             <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
                                             <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
-                                            <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+                                            <td class="text-justify td-content">
+                                                <?php echo nl2br(htmlentities($row->catatan_penilaian)); ?>
                                             </td>
                                         </tr>
                                         <?php $nomber++;
@@ -471,56 +481,6 @@
                                         ?>
                                     </tbody>
                                 </table>
-                                <!-- <br>
-								<table border="1" class="table-content" width="100%" height="100%">
-									<thead>
-										<tr class="tr-content">
-											<th class="text-center th-content" colspan="9">Perlengkapan</th>
-										</tr>
-										<tr class="tr-content">
-											<th class="text-center th-content" rowspan="2">No</th>
-											<th class="text-center th-content" rowspan="2">Kriteria</th>
-											<th class="text-center th-content" th-content colspan="2">Standar Minimal</th>
-											<th class="text-center th-content" th-content colspan="2">Hasil</th>
-											<th class="text-center th-content" th-content colspan="3">Keterangan</th>
-										</tr>
-										<tr class="tr-content">
-											<td class="text-center td-content">Jumlah</td>
-											<td class="text-center td-content">Satuan</td>
-											<td class="text-center td-content">Ya</td>
-											<td class="text-center td-content">Tidak</td>
-											<td class="text-center td-content">Jumlah</td>
-											<td class="text-center td-content">Satuan</td>
-											<td class="text-center td-content">Catatan</td>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-                                        $nomer = $nomber + 1;
-                                        foreach ($perlengkapan as $row) : ?>
-											<tr class="tr-content">
-												<td class="text-center td-content"><?php echo $nomer; ?></td>
-												<td class="text-justify td-content"><?php echo $row->kriteria_penilaian_utama; ?></td>
-												<td class="text-justify td-content"><?php echo $row->jumlah_minimal_penilaian_utama; ?></td>
-												<td class="text-justify td-content"><?php echo $row->satuan_penilaian_utama; ?></td>
-												<?php if ($row->hasil_penilaian == "Ya") {
-                                                    echo "<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>
-														<td class='text-center td-content'><span></span></td>";
-                                                } else {
-                                                    echo "<td class='text-center td-content'><span></span></td>
-														<td class='text-center td-content'><i class='fa-solid fa-check'></i></td>";
-                                                }
-                                                ?>
-												<td class="text-justify td-content"><?php echo $row->jumlah_ketersediaan; ?>
-												<td class="text-justify td-content"><?php echo $row->satuan_penilaian; ?>
-												<td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
-												</td>
-											</tr>
-										<?php $nomer++;
-                                        endforeach;
-                                        ?>
-									</tbody>
-								</table> -->
                                 <br>
                                 <table border="1" class="table-content" width="100%" height="100%">
                                     <thead>
@@ -528,26 +488,27 @@
                                             <th class="text-center th-content" colspan="9">Meubelair</th>
                                         </tr>
                                         <tr class="tr-content">
-                                            <th class="text-center th-content" rowspan="2">No</th>
-                                            <th class="text-center th-content" rowspan="2">Kriteria</th>
-                                            <th class="text-center th-content" th-content colspan="2">Standar Minimal
+                                            <th class="text-center " rowspan="2" width="1%">No</th>
+                                            <th class="text-center th-content" rowspan="2" width="30%">Kriteria</th>
+                                            <th class="text-center th-content" th-content colspan="2" width="30%">
+                                                Standar Minimal
                                             </th>
                                             <th class="text-center th-content" th-content colspan="2">Hasil</th>
                                             <th class="text-center th-content" th-content colspan="3">Keterangan</th>
                                         </tr>
                                         <tr class="tr-content">
-                                            <td class="text-center td-content">Jumlah</td>
-                                            <td class="text-center td-content">Satuan</td>
-                                            <td class="text-center td-content">Ya</td>
-                                            <td class="text-center td-content">Tidak</td>
-                                            <td class="text-center td-content">Jumlah</td>
-                                            <td class="text-center td-content">Satuan</td>
-                                            <td class="text-center td-content">Catatan</td>
+                                            <td class="text-center td-content" width="25%">Jumlah</td>
+                                            <td class="text-center td-content" width="5%">Satuan</td>
+                                            <td class="text-center td-content" width="2%">Ya</td>
+                                            <td class="text-center td-content" width="2%">Tidak</td>
+                                            <td class="text-center td-content" width="5%">Jumlah</td>
+                                            <td class="text-center td-content" width="5%">Satuan</td>
+                                            <td class="text-center td-content" width="10%">Catatan</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $num = $nomer + 1;
+                                        $num = $nomber;
                                         foreach ($meubelair as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $num; ?></td>
@@ -582,26 +543,27 @@
                                             <th class="text-center th-content" colspan="9">Pencatatan dan Pelaporan</th>
                                         </tr>
                                         <tr class="tr-content">
-                                            <th class="text-center th-content" rowspan="2">No</th>
-                                            <th class="text-center th-content" rowspan="2">Kriteria</th>
-                                            <th class="text-center th-content" th-content colspan="2">Standar Minimal
+                                            <th class="text-center " rowspan="2" width="1%">No</th>
+                                            <th class="text-center th-content" rowspan="2" width="30%">Kriteria</th>
+                                            <th class="text-center th-content" th-content colspan="2" width="30%">
+                                                Standar Minimal
                                             </th>
                                             <th class="text-center th-content" th-content colspan="2">Hasil</th>
                                             <th class="text-center th-content" th-content colspan="3">Keterangan</th>
                                         </tr>
                                         <tr class="tr-content">
-                                            <td class="text-center td-content">Jumlah</td>
-                                            <td class="text-center td-content">Satuan</td>
-                                            <td class="text-center td-content">Ya</td>
-                                            <td class="text-center td-content">Tidak</td>
-                                            <td class="text-center td-content">Jumlah</td>
-                                            <td class="text-center td-content">Satuan</td>
-                                            <td class="text-center td-content">Catatan</td>
+                                            <td class="text-center td-content" width="15%">Jumlah</td>
+                                            <td class="text-center td-content" width="15%">Satuan</td>
+                                            <td class="text-center td-content" width="2%">Ya</td>
+                                            <td class="text-center td-content" width="2%">Tidak</td>
+                                            <td class="text-center td-content" width="5%">Jumlah</td>
+                                            <td class="text-center td-content" width="15%">Satuan</td>
+                                            <td class="text-center td-content" width="15%">Catatan</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $nums = $num + 1;
+                                        $nums = $num;
                                         foreach ($pencatatan as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $nums; ?></td>
@@ -633,30 +595,31 @@
                                 <table border="1" class="table-content" width="100%" height="100%">
                                     <thead>
                                         <tr class="tr-content">
-                                            <th class="text-center th-content" colspan="9">Peralatan Klinik Yang
-                                                Memiliki Ruang ASI</th>
+                                            <th class="text-center th-content" colspan="9">Pelatana Klinik Yang Memiliki
+                                                Ruang ASI</th>
                                         </tr>
                                         <tr class="tr-content">
-                                            <th class="text-center th-content" rowspan="2">No</th>
-                                            <th class="text-center th-content" rowspan="2">Kriteria</th>
-                                            <th class="text-center th-content" th-content colspan="2">Standar Minimal
+                                            <th class="text-center " rowspan="2" width="1%">No</th>
+                                            <th class="text-center th-content" rowspan="2" width="30%">Kriteria</th>
+                                            <th class="text-center th-content" th-content colspan="2" width="30%">
+                                                Standar Minimal
                                             </th>
                                             <th class="text-center th-content" th-content colspan="2">Hasil</th>
                                             <th class="text-center th-content" th-content colspan="3">Keterangan</th>
                                         </tr>
                                         <tr class="tr-content">
-                                            <td class="text-center td-content">Jumlah</td>
-                                            <td class="text-center td-content">Satuan</td>
-                                            <td class="text-center td-content">Ya</td>
-                                            <td class="text-center td-content">Tidak</td>
-                                            <td class="text-center td-content">Jumlah</td>
-                                            <td class="text-center td-content">Satuan</td>
-                                            <td class="text-center td-content">Catatan</td>
+                                            <td class="text-center td-content" width="15%">Jumlah</td>
+                                            <td class="text-center td-content" width="15%">Satuan</td>
+                                            <td class="text-center td-content" width="2%">Ya</td>
+                                            <td class="text-center td-content" width="2%">Tidak</td>
+                                            <td class="text-center td-content" width="5%">Jumlah</td>
+                                            <td class="text-center td-content" width="15%">Satuan</td>
+                                            <td class="text-center td-content" width="15%">Catatan</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $nom = $nums + 1;
+                                        $nom = $nums;
                                         foreach ($ruangasi as $row) : ?>
                                         <tr class="tr-content">
                                             <td class="text-center td-content"><?php echo $nom; ?></td>
@@ -676,7 +639,8 @@
                                                 ?>
                                             <td class="text-center td-content"><?php echo $row->jumlah_ketersediaan; ?>
                                             <td class="text-center td-content"><?php echo $row->satuan_penilaian; ?>
-                                            <td class="text-justify td-content"><?php echo $row->catatan_penilaian; ?>
+                                            <td class="text-justify td-content">
+                                                <?php echo nl2br(htmlspecialchars($row->catatan_penilaian)); ?>
                                             </td>
                                         </tr>
                                         <?php $nom++;
@@ -709,7 +673,9 @@
 			</ol>';
             }
             ?>
-            <p style="text-align:justify"><?php echo $klinik['uraian_penilaian'] ?></p>
+            <p style="text-align:justify">
+                Catatan :<br>
+                <?php echo nl2br(htmlspecialchars($klinik['uraian_penilaian'])) ?></p>
         </li>
         <li class="text-bap">
             Tindak Lanjut bagi Klinik<br>
@@ -807,138 +773,6 @@
         <li class="text-bap">
             Selama proses penilaian kesesuaian Klinik berlangsung, diketahui dan dibenarkan oleh pihak perwaklian
             Klinik.
-            <!-- <table border="0" class="class=" text-bap"">
-                <tbody>
-                    <tr>
-                        <td>Nama</td>
-                        <td>:</td>
-                        <td><?php echo $klinik['nama_perwakilan_pihak_klinik'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Jabatan</td>
-                        <td>:</td>
-                        <td><?php echo $klinik['jabatan_perwakilan_pihak_klinik'] ?></td>
-                    </tr>
-                </tbody>
-            </table>
-            <table border="0">
-                <thead>
-                    <td width="30%" colspan="2">Tim Penilaian Kesesuaian Klinik</td>
-                    <td width="5%"></td>
-                    <td width="20%"></td>
-                    <td></td>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="2" width="50%">1. <?php echo $penilaian['nama_anggota1'] ?></td>
-                        <td></td>
-                        <td width="10%"></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">2. <?php echo $penilaian['nama_anggota2'] ?></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">3. <?php echo $penilaian['nama_anggota3'] ?></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">4. <?php echo $penilaian['nama_anggota4'] ?></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center"> Yang membuat Berita Acara</td>
-                    </tr>
-                    <tr>
-							<td colspan="2">1. <?php echo $penilaian['nama_anggota1'] ?></td>
-							<td width="10%" class="text-center"><img
-									src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
-									width="80px" height="80px">
-							</td>
-							<td width="10%"></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td colspan="2">1. <?php echo $penilaian['nama_anggota1'] ?></td>
-							<td width="10%" class="text-center"><img
-									src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
-									width="80px" height="80px">
-							</td>
-							<td width="10%"></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td colspan="2">2. <?php echo $penilaian['nama_anggota2'] ?></td>
-							<td class="text-center"><img
-									src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai2'] ?>"
-									width="80px" height="80px"></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td colspan="2">3. <?php echo $penilaian['nama_anggota3'] ?></td>
-							<td class="text-center"><img
-									src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
-									width="80px" height="80px"></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td colspan="2">4. <?php echo $penilaian['nama_anggota4'] ?></td>
-							<td class="text-center"><img
-									src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai4'] ?>"
-									width="80px" height="80px"></td>
-							<td></td>
-							<td class="text-center"> Yang membuat Berita Acara</td>
-						</tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center"><img
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
-                                width="110px" height="110px"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center">( Suryati, SKM )</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center">NIP. 198111022009032003</td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" class="text-center">Mengetahui,</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center" colspan="5">An. Kepala Dinas Kesehatan</td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" class="text-center">Kepala Bidang SDK</td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" class="text-center"><img
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
-                                width="120px" height="120px">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center" colspan="5">dr. Noegroho Edy Rijanto, MKes</td>
-                    </tr>
-
-                </tbody>
-            </table> -->
             <br>
             <br>
             <table border="1" width="auto" height="auto">

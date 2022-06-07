@@ -131,6 +131,7 @@ $('#cls-ttd4').click(function(e) {
 $(document).ready(function() {
     $("#example1").DataTable({
         "responsive": true,
+        stateSave: true,
         "lengthChange": false,
         "autoWidth": true,
         "paging": false,
@@ -138,6 +139,7 @@ $(document).ready(function() {
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
         "paging": true,
+        stateSave: true,
         "pageLength": 25,
         "lengthMenu": [10, 25, 50, 100, 200, 300],
         "lengthChange": true,

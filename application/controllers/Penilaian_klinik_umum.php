@@ -96,7 +96,7 @@ class Penilaian_klinik_umum extends CI_Controller
                 'Nama Klinik yang diinputkan maksimal 100 karakter',
             ]
         );
-        $this->form_validation->set_rules('tgl_visitasi', 'Tanggal Visitasi', 'trim|required|valid_date', [
+        $this->form_validation->set_rules('tgl_visitasi', 'Tanggal Visitasi', 'required', [
             'required' => 'Tanggal Visitasi Wajib di isi',
         ]);
         $this->form_validation->set_rules(
@@ -136,15 +136,20 @@ class Penilaian_klinik_umum extends CI_Controller
     public function edit()
     {
         $id_klinik = $this->uri->segment(3);
-        $data['id_klinik'] = $this->db
-            ->join('tbl_kecamatan as kec', 'kec.id_kecamatan = k.id_kecamatan_klinik')
-            ->join('tbl_kelurahan as kel', 'kel.id_kelurahan = k.id_kelurahan_klinik')
-            ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
-            ->row_array();
-        $data['title'] = 'Edit Data Klinik Pratama/Utama Umum';
-        $data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
-        $data['kecamatan'] = $this->Model_penilaian_pratama->get_data_kecamatan();
-        $this->template->load('template', 'penilaian/klinik_umum/edit', $data);
+        $cek_klinik = $this->Model_penilaian_pratama->cek_id_klinik_umum($id_klinik);
+        if ($cek_klinik != '') {
+            $data['id_klinik'] = $this->db
+                ->join('tbl_kecamatan as kec', 'kec.id_kecamatan = k.id_kecamatan_klinik')
+                ->join('tbl_kelurahan as kel', 'kel.id_kelurahan = k.id_kelurahan_klinik')
+                ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
+                ->row_array();
+            $data['title'] = 'Edit Data Klinik Pratama/Utama Umum';
+            $data['anggota'] = $this->Model_penilaian_pratama->get_anggota();
+            $data['kecamatan'] = $this->Model_penilaian_pratama->get_data_kecamatan();
+            $this->template->load('template', 'penilaian/klinik_umum/edit', $data);
+        } else {
+            show_404();
+        }
     }
     public function update()
     {
@@ -298,8 +303,10 @@ class Penilaian_klinik_umum extends CI_Controller
     }
     public function nilai()
     {
-        $data['title'] = 'Form Pertama Penilaian Klinik Pratama/Utama Umum';
         $id_klinik = $this->uri->segment(3);
+        // $cek_klinik = $this->Model_penilaian_pratama->cek_id_klinik_umum($id_klinik);
+        // if ($cek_klinik != '') {
+        $data['title'] = 'Form Pertama Penilaian Klinik Pratama/Utama Umum';
         $cek_no_penilaian = $this->db->select('p.no_penilaian ,p.id_klinik as id_klinik_tbl_pen , k.id_klinik as id_klinik_tbl_klinik, k.nama_klinik, k.kemampuan_pelayanan,k.jenis_pelayanan_klinik, k.alamat_klinik, k.tgl_visitasi,
 		k.status_penilaian, k.created_at,k.update_at')
             ->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik', 'left')
@@ -330,12 +337,10 @@ class Penilaian_klinik_umum extends CI_Controller
             ->join('tbl_penilaian_pratama_form_satu as pfs', 'pfs.id_klinik = p.id_klinik', 'left')
             ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
             ->row_array();
-        // print_r($this->db->last_query());
         $this->template->load('template', 'penilaian/klinik_umum/nilai', $data);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['form'] == 'add') {
                 if (isset($_POST['submit'])) {
-
                     $this->Model_penilaian_pratama->simpan_penilaian_pratama_pertama();
                     $this->session->set_flashdata(
                         'simpan',
@@ -366,6 +371,9 @@ class Penilaian_klinik_umum extends CI_Controller
                 }
             }
         }
+        // } else {
+        //     show_404();
+        // }
     }
     public function nilai_kedua()
     {

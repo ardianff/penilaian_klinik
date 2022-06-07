@@ -211,7 +211,6 @@ class Model_penilaian_utama extends CI_Model
 
         ];
         $this->db->insert('tbl_penilaian_utama_form_ketiga', $data);
-
         $update = [
             'status_penilaian' => "Sudah",
             'nama_perwakilan' => $this->input->post('nama_perwakilan_klinik'),

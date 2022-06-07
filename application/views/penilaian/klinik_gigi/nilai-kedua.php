@@ -101,7 +101,7 @@
                                                     $no = $i + 1;
                                                     echo '<tr>';
                                                     echo '<td>' . $no . '</td>';
-                                                    echo '<td class="text-justify"><input type="hidden" name="kriteria[' . $no . ']" value="' . $rincian[$i]->id_deskripsi . '"/> ' . $rincian[$i]->kriteria_penilaian_utama . '</td>';
+                                                    echo '<td class="text-justify"><input type="hidden" name="kriteria[' . $no . ']" value="' . $rincian[$i]->id_deskripsi . '"/> ' . nl2br(htmlspecialchars($rincian[$i]->kriteria_penilaian_utama)) . '</td>';
                                                     echo '<td class= "text-justify">' . $rincian[$i]->jumlah_minimal_penilaian_utama . '</td>';
                                                     echo '<td class= "text-justify">' . $rincian[$i]->satuan_penilaian_utama . '</td>';
                                                     echo '<td class="text-center"><input type="radio" name="hasil_nilai[' . $no . ']"  value="Ya" required> Ya</input>
@@ -120,7 +120,7 @@
                                                     $no = $i + 1;
                                                     echo '<tr>';
                                                     echo '<td>' . $no . '</td>';
-                                                    echo '<td class="text-justify"><input type="hidden" name="kriteria[' . $no . ']" value="' . $cek_hasil[$i]->id_deskripsi_pfs . '"/> ' . $cek_hasil[$i]->kriteria_penilaian_utama . '</td>';
+                                                    echo '<td class="text-justify"><input type="hidden" name="kriteria[' . $no . ']" value="' . $cek_hasil[$i]->id_deskripsi_pfs . '"/> ' . nl2br(htmlspecialchars($cek_hasil[$i]->kriteria_penilaian_utama)) . '</td>';
                                                     echo '<td class= "text-justify">' . $cek_hasil[$i]->jumlah_minimal_penilaian_utama . '</td>';
                                                     echo '<td class= "text-justify">' . $cek_hasil[$i]->satuan_penilaian_utama . '</td>';
                                                     echo '<td class="text-center"><input type="radio" name="hasil_nilai[' . $no . ']"  ' . ($cek_hasil[$i]->hasil_penilaian == 'Ya' ? 'checked' : '') . ' value="Ya" required> Ya</input>
@@ -129,7 +129,7 @@
 											</td>';
                                                     echo '<td><textarea class="form-control" placeholder="Jumlah" name="jumlah_ketersediaan[' . $no . ']">' . $cek_hasil[$i]->jumlah_ketersediaan . '</textarea></td>';
                                                     echo '<td class="text-justify"><input class="form-control" type="text" name="satuan_nilai[' . $no . ']" value="' . $cek_hasil[$i]->satuan_penilaian . '" /></td>';
-                                                    echo '<td><textarea class="form-control" name="catatan_penilaian[' . $no . ']" placeholder="Catatan...">' . $cek_hasil[$i]->catatan_penilaian . '</textarea>
+                                                    echo '<td><textarea class="form-control" name="catatan_penilaian[' . $no . ']" placeholder="Catatan...">' . nl2br(htmlspecialchars($cek_hasil[$i]->catatan_penilaian)) . '</textarea>
 											</td>';
                                                     echo '<tr>';
                                                 }

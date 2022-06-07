@@ -170,7 +170,7 @@
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd1">Clear</button>
                                             <textarea class="text-center" id="signature64-ttd1" name="ttd-1"
-                                                style="display: none" required></textarea>
+                                                style="display: none"></textarea>
                                         </div>
                                         <div class="col">
 
@@ -181,8 +181,8 @@
                                             <div id="ttd2"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd2">Clear</button>
-                                            <textarea id="signature64-ttd2" name="ttd-2" style="display: none"
-                                                required></textarea>
+                                            <textarea id="signature64-ttd2" name="ttd-2"
+                                                style="display: none"></textarea>
                                         </div>
                                         <div class="col">
 
@@ -195,8 +195,8 @@
                                             <div id="ttd3"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd3">Clear</button>
-                                            <textarea id="signature64-ttd3" name="ttd-3" style="display: none"
-                                                required></textarea>
+                                            <textarea id="signature64-ttd3" name="ttd-3"
+                                                style="display: none"></textarea>
                                         </div>
                                         <div class="col">
 
@@ -207,8 +207,8 @@
                                             <div id="ttd4"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd4">Clear</button>
-                                            <textarea id="signature64-ttd4" name="ttd-4" style="display: none"
-                                                required></textarea>
+                                            <textarea id="signature64-ttd4" name="ttd-4"
+                                                style="display: none"></textarea>
                                         </div>
                                         <div class="col">
                                         </div>
@@ -433,10 +433,8 @@
                                             <div id="ttd4"></div>
                                             <br />
                                             <button class="btn-sm btn-danger" id="cls-ttd4">Clear</button>
-                                            <textarea id="signature64-ttd4" name="ttd-4" style="display: none"
-                                                <?php if ($klinik['ttd_penilai4'] == null) { ?>required
-                                                <?php
-                                                                                                                                                                        } ?>></textarea>
+                                            <textarea id="signature64-ttd4" name="ttd-4"
+                                                style="display: none"></textarea></textarea>
                                         </div>
                                         <div class="col">
                                             <img class="text-center"

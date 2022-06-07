@@ -251,7 +251,7 @@
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-                            <?php echo anchor('penilaian_klinik_umum', 'Kembali', [
+                            <?php echo anchor('penilaian_klinik_gigi', 'Kembali', [
                                 'class' => 'btn btn-warning',
                             ]); ?>
                         </div>

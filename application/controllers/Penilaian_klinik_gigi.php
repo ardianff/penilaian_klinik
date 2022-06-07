@@ -428,8 +428,6 @@ class Penilaian_klinik_gigi extends CI_Controller
             ->join('tbl_penilaian_utama_form_ketiga as pfk', 'pfk.id_klinik = k.id_klinik', 'left')
             ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
             ->row_array();
-        // print_r($this->db->last_query());
-        // die();
         $this->template->load('template', 'penilaian/klinik_gigi/nilai-ketiga', $data);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['form'] == 'add') {
@@ -458,14 +456,18 @@ class Penilaian_klinik_gigi extends CI_Controller
                             $fileData = $this->upload->data();
                             $uploadData[$i] = $fileData['file_name'];
                         }
+                        // $this->upload->do_upload('upload_File');
+                        // $fileData = $this->upload->data();
+                        // $uploadData[$i] = $fileData['file_name']; 
+                        // print_r($uploadData[$i]);
                         $no++;
                     }
+                    // die();
                     $img = $this->input->post('signed');
                     $imgttd1 = $this->input->post('ttd-1');
                     $imgttd2 = $this->input->post('ttd-2');
                     $imgttd3 = $this->input->post('ttd-3');
                     $imgttd4 = $this->input->post('ttd-4');
-
 
                     $img = str_replace('data:image/png;base64,', '', $img);
                     $img = str_replace(' ', '+', $img);
@@ -551,8 +553,6 @@ class Penilaian_klinik_gigi extends CI_Controller
                     $imgttd3 = $this->input->post('ttd-3');
                     $imgttd4 = $this->input->post('ttd-4');
 
-                    // var_dump($img, $imgttd1, $imgttd2, $imgttd3, $imgttd4);
-                    // die();
 
                     if ($img == "" or $imgttd1 == "" or $imgttd2 == "" or $imgttd3 == "" or $imgttd4 == "") {
                         $image = $this->input->post('old_ttd_perwakilan');
@@ -572,6 +572,33 @@ class Penilaian_klinik_gigi extends CI_Controller
                         );
                         redirect('penilaian_klinik_gigi');
                     } else {
+
+                        $nama_klinik = $this->input->post('nama_klinik');
+                        $data = array();
+                        $filesCount = count($_FILES['upload_Files']['name']);
+                        $no = 1;
+                        for ($i = 0; $i < $filesCount; $i++) {
+                            $_FILES['upload_File']['name'] = $_FILES['upload_Files']['name'][$i];
+                            $_FILES['upload_File']['type'] = $_FILES['upload_Files']['type'][$i];
+                            $_FILES['upload_File']['tmp_name'] = $_FILES['upload_Files']['tmp_name'][$i];
+                            $_FILES['upload_File']['error'] = $_FILES['upload_Files']['error'][$i];
+                            $_FILES['upload_File']['size'] = $_FILES['upload_Files']['size'][$i];
+                            $uploadPath = './assets/img/uploads/foto_klinik/';
+                            $config['upload_path'] = $uploadPath;
+                            $config['allowed_types'] = 'jpg|jpeg|png';
+                            $config['overwrite'] = true;
+                            $config['max_size'] = 5120;
+                            $config['file_name'] = $nama_klinik . '_foto_klinik_' . $no;
+                            $this->load->library('upload', $config);
+                            $this->upload->initialize($config);
+                            if (!$this->upload->do_upload('upload_File')) {
+                                $data['error'] = $this->upload->display_errors();
+                            } else {
+                                $fileData = $this->upload->data();
+                                $uploadData[$i] = $fileData['file_name'];
+                            }
+                            $no++;
+                        }
 
                         $img = str_replace('data:image/png;base64,', '', $img);
                         $img = str_replace(' ', '+', $img);
