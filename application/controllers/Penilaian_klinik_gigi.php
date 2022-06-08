@@ -103,7 +103,7 @@ class Penilaian_klinik_gigi extends CI_Controller
         $this->form_validation->set_rules(
             'no_surat',
             'Nomor Surat',
-            'required|trim|min_length[3]|max_length[20]',
+            'trim|min_length[3]|max_length[20]',
             [
                 'required' => 'Nomor Surat Wajib di isi',
                 'min_length' => 'Nomor Surat wajib berisi minimal 3 karakter',
@@ -111,8 +111,17 @@ class Penilaian_klinik_gigi extends CI_Controller
                 'is_unique' => 'Nomor Surat yang diinputkan sudah ada',
             ]
         );
-
-
+        $this->form_validation->set_rules(
+            'no_bap',
+            'Nomor BSP',
+            'trim|min_length[3]|max_length[20]',
+            [
+                'required' => 'Nomor BAP Wajib di isi',
+                'min_length' => 'Nomor BAP wajib berisi minimal 3 karakter',
+                'max_length' => 'Nomor BAP wajib berisi maksimal 50 karakter',
+                'is_unique' => 'Nomor BAP yang diinputkan sudah ada',
+            ]
+        );
         $data['title'] = 'Input Data Klinik Pratma/Utama Gigi';
         $data['kecamatan'] = $this->Model_penilaian_utama->get_data_kecamatan();
         $data['anggota'] = $this->Model_penilaian_utama->get_anggota();
@@ -237,11 +246,21 @@ class Penilaian_klinik_gigi extends CI_Controller
         $this->form_validation->set_rules(
             'no_surat',
             'Nomor Surat',
-            'required|trim|min_length[3]|max_length[20]',
+            'trim|min_length[3]|max_length[20]',
             [
                 'required' => 'Nomor Surat Wajib di isi',
                 'min_length' => 'Nomor Surat wajib berisi minimal 3 karakter',
                 'max_length' => 'Nomor Surat wajib berisi maksimal 50 karakter',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'no_bap',
+            'Nomor Surat',
+            'trim|min_length[3]|max_length[20]',
+            [
+                'required' => 'Nomor BAP Wajib di isi',
+                'min_length' => 'Nomor BAP wajib berisi minimal 3 karakter',
+                'max_length' => 'Nomor BAP wajib berisi maksimal 50 karakter',
             ]
         );
         $id_klinik = $this->input->post('id_klinik');

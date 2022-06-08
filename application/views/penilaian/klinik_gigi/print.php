@@ -132,11 +132,15 @@
     <p class="title"><u><b>BERITA ACARA PENILAIAN KESESUAIAN
                 KLINIK</b></u></p>
     <p class="title">NOMOR :
-        <?php echo $penilaian['no_surat'] ?></p>
+        <?php echo $penilaian['no_bap'] ?></p>
     <p class="text-bap">Pada hari ini <?php echo hari_ini() ?> tanggal <?php echo tanggal_sekarang() ?> (
         <?php echo terbilang(tanggal_sekarang()) ?> )
         bulan <?php echo bulan_sekarang() ?> tahun <?php echo tahun_sekarang() ?>, berdasarkan surat tugas Nomor
-        <?php echo $penilaian['no_surat'] ?>
+        <?php if ($penilaian['no_surat'] == '') {
+            echo '........';
+        } else {
+            echo $penilaian['no_surat'];
+        } ?>
         tanggal <?php echo date('d', strtotime($penilaian['tgl_visitasi'])) ?>
         <?php
         $nama_bulan = date('F', strtotime($penilaian['tgl_visitasi']));

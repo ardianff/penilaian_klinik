@@ -19,6 +19,7 @@ class Model_penilaian_pratama extends CI_Model
             'id_kelurahan_klinik' => $this->input->post('nama_kelurahan'),
             'tgl_visitasi' => $this->input->post('tgl_visitasi'),
             'no_surat' => $this->input->post('no_surat'),
+            'no_bap' => $this->input->post('no_bap'),
             'status_penilaian' => "Belum",
         ];
         $this->db->insert('tbl_klinik', $data);
@@ -39,6 +40,7 @@ class Model_penilaian_pratama extends CI_Model
             'id_kelurahan_klinik' => $this->input->post('nama_kelurahan'),
             'tgl_visitasi' => $this->input->post('tgl_visitasi'),
             'no_surat' => $this->input->post('no_surat'),
+            'no_bap' => $this->input->post('no_bap'),
         ];
         $id_klinik = $this->input->post('id_klinik');
         $this->db->where('id_klinik', $id_klinik);

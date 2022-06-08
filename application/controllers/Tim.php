@@ -34,10 +34,10 @@ class Tim extends CI_Controller
         $this->form_validation->set_rules(
             'nip_anggota',
             'NIP',
-            'required|trim|min_length[18]|max_length[20]|is_unique[tbl_user.nip_user]',
+            'required|trim|min_length[1]|max_length[20]|is_unique[tbl_user.nip_user]',
             [
                 'required' => 'NIP Penilai Wajib di isi',
-                'min_length' => 'NIP Penilai wajib berisi minimal 18 karakter',
+                'min_length' => 'NIP Penilai wajib berisi minimal 1 karakter',
                 'max_length' => 'NIP Penilai wajib berisi maksimal 20 karakter',
                 'is_unique' => 'NIP Penilai yang diinputkan sudah ada',
             ]
@@ -86,10 +86,10 @@ class Tim extends CI_Controller
         $this->form_validation->set_rules(
             'nip_anggota',
             'NIP',
-            'required|trim|xss_clean|min_length[18]|max_length[20]',
+            'required|trim|xss_clean|min_length[1]|max_length[20]',
             [
                 'required' => 'NIP User Wajib di isi',
-                'min_length' => 'NIP berisi minimal 18 karakter',
+                'min_length' => 'NIP berisi minimal 1 karakter',
                 'max_length' => 'NIP berisi maksimal 20 karakter',
             ]
         );

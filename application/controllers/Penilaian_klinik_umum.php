@@ -102,11 +102,19 @@ class Penilaian_klinik_umum extends CI_Controller
         $this->form_validation->set_rules(
             'no_surat',
             'Nomor Surat',
-            'required|trim|min_length[3]|max_length[20]',
+            'trim|min_length[3]|max_length[20]',
             [
-                'required' => 'Nomor Surat Wajib di isi',
                 'min_length' => 'Nomor Surat wajib berisi minimal 3 karakter',
                 'max_length' => 'Nomor Surat wajib berisi maksimal 50 karakter',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'no_bap',
+            'Nomor Bap',
+            'trim|min_length[3]|max_length[20]',
+            [
+                'min_length' => 'Nomor BAP wajib berisi minimal 3 karakter',
+                'max_length' => 'Nomor BAP wajib berisi maksimal 50 karakter',
             ]
         );
 
@@ -237,11 +245,19 @@ class Penilaian_klinik_umum extends CI_Controller
         $this->form_validation->set_rules(
             'no_surat',
             'Nomor Surat',
-            'required|trim|min_length[3]|max_length[20]',
+            'trim|min_length[3]|max_length[20]',
             [
-                'required' => 'Nomor Surat Wajib di isi',
                 'min_length' => 'Nomor Surat wajib berisi minimal 3 karakter',
                 'max_length' => 'Nomor Surat wajib berisi maksimal 50 karakter',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'no_bap',
+            'Nomor BAP',
+            'trim|min_length[3]|max_length[20]',
+            [
+                'min_length' => 'Nomor BAP wajib berisi minimal 3 karakter',
+                'max_length' => 'Nomor BAP wajib berisi maksimal 50 karakter',
             ]
         );
         $id_klinik = $this->input->post('id_klinik');

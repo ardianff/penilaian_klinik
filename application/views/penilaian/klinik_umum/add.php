@@ -243,6 +243,17 @@
                                     <?= form_error('no_surat', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="no_berita" class="col-sm-3 col-form-label">Nomor Berita Acara <span
+                                        style="color:red">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text"
+                                        class="form-control <?php if (form_error('no_bap') == true) : ?>is-invalid <?php endif ?>"
+                                        placeholder="Nomor BAP" name="no_bap"
+                                        value="<?= set_value('no_bap') ?>"></input>
+                                    <?= form_error('no_bap', '<small class="text-danger pl-3">', '</small>') ?>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">

@@ -19,9 +19,9 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <?php
-            echo form_open('tim/update', 'class="form-horizontal"');
-            echo form_hidden('kode_anggota', $anggota->kode_anggota);
-            ?>
+                        echo form_open('tim/update', 'class="form-horizontal"');
+                        echo form_hidden('kode_anggota', $anggota->kode_anggota);
+                        ?>
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="Nama_Anggota" class="col-sm-2 col-form-label">Nama Anggota</label>
@@ -32,16 +32,16 @@
                                         value="<?= set_value('nama_anggota', $anggota->nama_anggota) ?>"
                                         placeholder="Nama">
                                     <?= form_error(
-                    'nama_anggota',
-                    '<small class="text-danger pl-3">',
-                    '</small>'
-                  ) ?>
+                                        'nama_anggota',
+                                        '<small class="text-danger pl-3">',
+                                        '</small>'
+                                    ) ?>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="NIP_Anggota" class="col-sm-2 col-form-label">NIP Anggota</label>
                                 <div class="col-sm-10">
-                                    <input type="number"
+                                    <input type="text"
                                         class="form-control <?php if (form_error('nip_anggota') == true) : ?>is-invalid <?php endif ?>"
                                         name="nip_anggota"
                                         value="<?= set_value('nip_anggota', $anggota->nip_anggota) ?>"
