@@ -232,7 +232,7 @@
                                     <input type="date"
                                         class="form-control <?php if (form_error('tgl_visitasi') == true) : ?>is-invalid <?php endif ?>"
                                         name="tgl_visitasi" required autofocus
-                                        value="<?= set_value('tgl_visitasi', $id_klinik['tgl_visitasi']); ?>"></input>
+                                        value="<?= set_value('tgl_visitasi', $id_klinik['tgl_visitasi']); ?>">
                                     <?= form_error('tgl_visitasi', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
@@ -243,7 +243,7 @@
                                     <input type="text"
                                         class="form-control <?php if (form_error('no_surat') == true) : ?>is-invalid <?php endif ?>"
                                         placeholder="Nomor Surat" name="no_surat"
-                                        value="<?= set_value('no_surat', $id_klinik['no_surat']); ?>"></input>
+                                        value="<?= set_value('no_surat', $id_klinik['no_surat']); ?>">
                                     <?= form_error('no_surat', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
@@ -254,7 +254,7 @@
                                     <input type="text"
                                         class="form-control <?php if (form_error('no_bap') == true) : ?>is-invalid <?php endif ?>"
                                         placeholder="Nomor BAP" name="no_bap"
-                                        value="<?= set_value('no_bap', $id_klinik['no_bap']); ?>"></input>
+                                        value="<?= set_value('no_bap', $id_klinik['no_bap']); ?>">
                                     <?= form_error('no_bap', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
@@ -270,13 +270,6 @@
                         <?php echo form_close(); ?>
                     </div>
                     <!-- /.card -->
-
-
-
-
-
-
-
                 </div>
                 <!--/.col (right) -->
             </div>
