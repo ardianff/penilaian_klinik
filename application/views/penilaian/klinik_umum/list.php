@@ -41,7 +41,7 @@
                                                 <th class="text-center">Tgl Visitasi</th>
                                                 <th class="text-center">Alamat</th>
                                                 <th class="text-center" width="25%">Anggota Penilai</th>
-                                                <th class="text-center">Aksi</th>
+                                                <th class="text-center" width="10%">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -73,7 +73,7 @@
                                                     <br><?php echo $row->nama_anggota5; ?>
                                                     <br><?php echo $row->nama_anggota6; ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="btn-group">
                                                         <!-- <button type="button" class="btn btn-danger"><i class="fa-solid fa-ellipsis-stroke-vertical"></i></button> -->
                                                         <button type="button"
