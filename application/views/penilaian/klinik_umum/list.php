@@ -34,19 +34,14 @@
                                         height="100%">
                                         <thead>
                                             <tr>
-                                                <th class="text-center" rowspan="2">No</th>
-                                                <th class="text-center" rowspan="2" width="100px">Nama Klinik</th>
-                                                <th class="text-center" rowspan="2">Kemampuan Pelayanan</th>
-                                                <th class="text-center" rowspan="2">Jenis Klinik</th>
-                                                <th class="text-center" rowspan="2">Alamat</th>
-                                                <th class="text-center" rowspan="2">Anggota Penilai</th>
-                                                <th class="text-center" colspan="4">Aksi</th>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <th class="text-center">No</th>
+                                                <th class="text-center" width="auto">Nama Klinik</th>
+                                                <th class="text-center">Kemampuan Pelayanan</th>
+                                                <th class="text-center">Jenis Klinik</th>
+                                                <th class="text-center">Tgl Visitasi</th>
+                                                <th class="text-center">Alamat</th>
+                                                <th class="text-center" width="25%">Anggota Penilai</th>
+                                                <th class="text-center">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -66,19 +61,23 @@
                                                 </td>
                                                 <td class="text-center"><?php echo $row->kemampuan_pelayanan; ?></td>
                                                 <td class="text-center"><?php echo $row->jenis_pelayanan_klinik; ?></td>
+                                                <td class="text-center">
+                                                    <?php echo date('d-m-Y', strtotime($row->tgl_visitasi)); ?></td>
                                                 <td class="text-center"><?php echo $row->alamat_klinik; ?><br>Kec.
                                                     <?php echo $row->nama_kecamatan; ?>, Kel.
                                                     <?php echo $row->nama_kelurahan; ?></td>
-                                                <td class="text-center"><?php echo $row->nama_anggota1; ?>,
-                                                    <br><?php echo $row->nama_anggota2; ?>,
-                                                    <br><?php echo $row->nama_anggota3; ?>,
+                                                <td class="text-left"><?php echo $row->nama_anggota1; ?>
+                                                    <br><?php echo $row->nama_anggota2; ?>
+                                                    <br><?php echo $row->nama_anggota3; ?>
                                                     <br><?php echo $row->nama_anggota4; ?>
+                                                    <br><?php echo $row->nama_anggota5; ?>
+                                                    <br><?php echo $row->nama_anggota6; ?>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <!-- <button type="button" class="btn btn-danger"><i class="fa-solid fa-ellipsis-stroke-vertical"></i></button> -->
                                                         <button type="button"
-                                                            class="btn btn-success btn-sm dropdown-toggle dropdown-hover"
+                                                            class="btn btn-success btn-sm dropdown-toggle dropdown-hover jedatombol"
                                                             data-toggle="dropdown"
                                                             title="Pilihan Menu <?php echo $row->nama_klinik; ?>">
                                                             <span class="sr-only">Toggle Dropdown</span>
@@ -94,23 +93,19 @@
                                                                 target="_blank">Export PDF</a>
                                                         </div>
                                                     </div>
-                                                </td>
-                                                <td class="text-center"><a
-                                                        onclick="penilaianConfirm('<?php echo site_url('penilaian_klinik_umum/nilai/' . $row->id_klinik) ?>')"
+                                                    <a onclick="penilaianConfirm('<?php echo site_url('penilaian_klinik_umum/nilai/' . $row->id_klinik) ?>')"
                                                         href="#" title="Penilaian <?php echo $row->nama_klinik ?>"
-                                                        class="btn btn-primary btn-sm"><i
-                                                            class="fa-solid fa-book"></i></a></td>
-                                                <td class="text-center"><a
-                                                        onclick="editConfirm('<?php echo site_url('penilaian_klinik_umum/edit/' . $row->id_klinik); ?>')"
-                                                        href="#" class="btn btn-warning btn-sm"
+                                                        class="btn btn-primary btn-sm jedatombol"><i
+                                                            class="fa-solid fa-book"></i></a>
+                                                    <a onclick="editConfirm('<?php echo site_url('penilaian_klinik_umum/edit/' . $row->id_klinik); ?>')"
+                                                        href="#" class="btn btn-warning btn-sm jedatombol"
                                                         title="Edit Data <?php echo $row->nama_klinik ?>"><i
-                                                            class=" fas fa-pencil-alt"></i></a></td>
-                                                <td class="text-center"><a
-                                                        onclick="deleteConfirm('<?php echo site_url('penilaian_klinik_umum/hapus/' . $row->id_klinik) ?>')"
-                                                        href="#" class="btn btn-danger btn-sm"
+                                                            class=" fas fa-pencil-alt"></i></a>
+                                                    <a onclick="deleteConfirm('<?php echo site_url('penilaian_klinik_umum/hapus/' . $row->id_klinik) ?>')"
+                                                        href="#" class="btn btn-danger btn-sm jedatombol"
                                                         title="Hapus Data <?php echo $row->nama_klinik ?>"><i
-                                                            class=" fa-regular fa-trash-can"></i></a></td>
-
+                                                            class=" fa-regular fa-trash-can"></i></a>
+                                                </td>
                                             </tr>
                                             <?php $no++;
                                             endforeach;

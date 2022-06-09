@@ -36,14 +36,6 @@ class Penilaian_klinik_gigi extends CI_Controller
             ]
         );
         $this->form_validation->set_rules(
-            'nama_anggota3',
-            'Nama Anggota 3',
-            'required',
-            [
-                'required' => 'Nama Anggota 3 Wajib di pilih',
-            ]
-        );
-        $this->form_validation->set_rules(
             'kemampuan_pelayanan',
             'Kemampuan Pelayanan',
             'required',
@@ -176,14 +168,6 @@ class Penilaian_klinik_gigi extends CI_Controller
             'required',
             [
                 'required' => 'Nama Anggota 2 Wajib di pilih',
-            ]
-        );
-        $this->form_validation->set_rules(
-            'nama_anggota3',
-            'Nama Anggota 3',
-            'required',
-            [
-                'required' => 'Nama Anggota 3 Wajib di pilih',
             ]
         );
         $this->form_validation->set_rules(
@@ -340,7 +324,6 @@ class Penilaian_klinik_gigi extends CI_Controller
             ->join('tbl_penilaian_utama_form_satu as pfs', 'pfs.id_klinik = p.id_klinik', 'left')
             ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
             ->row_array();
-        // print_r($this->db->last_query());
         $this->template->load('template', 'penilaian/klinik_gigi/nilai', $data);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -438,9 +421,9 @@ class Penilaian_klinik_gigi extends CI_Controller
     {
         $data['title'] = 'Form Ketiga Penilaian Klinik Pratama/Utama Gigi';
         $id_klinik = $this->uri->segment(3);
-        $data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.nama_anggota1,k.nama_anggota2,k.nama_anggota3,k.nama_anggota4,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik, kec.nama_kecamatan, kel.nama_kelurahan, kel.kode_pos_kelurahan,
+        $data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.nama_anggota1,k.nama_anggota2,k.nama_anggota3,k.nama_anggota4,k.nama_anggota5,k.nama_anggota6,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik, kec.nama_kecamatan, kel.nama_kelurahan, kel.kode_pos_kelurahan,
 		pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik,
-		p.no_penilaian,pfk.ttd_perwakilan_klinik,pfk.ttd_penilai1,pfk.ttd_penilai2,pfk.ttd_penilai3,pfk.ttd_penilai4,pfk.update_at,pfk.foto_klinik  ')
+		p.no_penilaian,pfk.ttd_perwakilan_klinik,pfk.ttd_penilai1,pfk.ttd_penilai2,pfk.ttd_penilai3,pfk.ttd_penilai4,pfk.ttd_penilai5,pfk.ttd_penilai6,pfk.update_at,pfk.foto_klinik  ')
             ->join('tbl_kecamatan kec', 'kec.id_kecamatan=k.id_kecamatan_klinik')
             ->join('tbl_kelurahan kel', 'kel.id_kelurahan=k.id_kelurahan_klinik')
             ->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
@@ -475,18 +458,15 @@ class Penilaian_klinik_gigi extends CI_Controller
                             $fileData = $this->upload->data();
                             $uploadData[$i] = $fileData['file_name'];
                         }
-                        // $this->upload->do_upload('upload_File');
-                        // $fileData = $this->upload->data();
-                        // $uploadData[$i] = $fileData['file_name']; 
-                        // print_r($uploadData[$i]);
                         $no++;
                     }
-                    // die();
                     $img = $this->input->post('signed');
                     $imgttd1 = $this->input->post('ttd-1');
                     $imgttd2 = $this->input->post('ttd-2');
                     $imgttd3 = $this->input->post('ttd-3');
                     $imgttd4 = $this->input->post('ttd-4');
+                    $imgttd5 = $this->input->post('ttd-5');
+                    $imgttd6 = $this->input->post('ttd-6');
 
                     $img = str_replace('data:image/png;base64,', '', $img);
                     $img = str_replace(' ', '+', $img);
@@ -523,7 +503,21 @@ class Penilaian_klinik_gigi extends CI_Controller
                     $success = file_put_contents($filettd4, $datattd4);
                     $imagettd4 = str_replace('./assets/img/uploads/ttd/', '', $filettd4);
 
-                    $this->Model_penilaian_utama->simpan_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
+                    $imgttd5 = str_replace('data:image/png;base64,', '', $imgttd5);
+                    $imgttd5 = str_replace(' ', '+', $imgttd5);
+                    $datattd5 = base64_decode($imgttd5);
+                    $filettd5 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $success = file_put_contents($filettd5, $datattd5);
+                    $imagettd5 = str_replace('./assets/img/uploads/ttd/', '', $filettd5);
+
+                    $imgttd6 = str_replace('data:image/png;base64,', '', $imgttd6);
+                    $imgttd6 = str_replace(' ', '+', $imgttd6);
+                    $datattd6 = base64_decode($imgttd6);
+                    $filettd6 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $success = file_put_contents($filettd6, $datattd6);
+                    $imagettd6 = str_replace('./assets/img/uploads/ttd/', '', $filettd6);
+
+                    $this->Model_penilaian_utama->simpan_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4, $imagettd5, $imagettd6);
                     $this->session->set_flashdata(
                         'simpan',
                         '<div class="alert alert-secondary alert-dismissible fade show">
@@ -571,15 +565,19 @@ class Penilaian_klinik_gigi extends CI_Controller
                     $imgttd2 = $this->input->post('ttd-2');
                     $imgttd3 = $this->input->post('ttd-3');
                     $imgttd4 = $this->input->post('ttd-4');
+                    $imgttd5 = $this->input->post('ttd-5');
+                    $imgttd6 = $this->input->post('ttd-6');
 
 
-                    if ($img == "" or $imgttd1 == "" or $imgttd2 == "" or $imgttd3 == "" or $imgttd4 == "") {
+                    if ($img == "" or $imgttd1 == "" or $imgttd2 == "" or $imgttd3 == "" or $imgttd4 == "" or $imgttd5 == "" or $imgttd6 == "") {
                         $image = $this->input->post('old_ttd_perwakilan');
                         $imagettd1 = $this->input->post('old_ttd_penilai1');
                         $imagettd2 = $this->input->post('old_ttd_penilai2');
                         $imagettd3 = $this->input->post('old_ttd_penilai3');
                         $imagettd4 = $this->input->post('old_ttd_penilai4');
-                        $this->Model_penilaian_utama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
+                        $imagettd5 = $this->input->post('old_ttd_penilai5');
+                        $imagettd6 = $this->input->post('old_ttd_penilai6');
+                        $this->Model_penilaian_utama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4, $imagettd5, $imagettd6);
                         $this->session->set_flashdata(
                             'simpan',
                             '<div class="alert alert-warning alert-dismissible fade show">
@@ -654,7 +652,21 @@ class Penilaian_klinik_gigi extends CI_Controller
                         $success = file_put_contents($filettd4, $datattd4);
                         $imagettd4 = str_replace('./assets/img/uploads/ttd/', '', $filettd4);
 
-                        $this->Model_penilaian_utama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4);
+                        $imgttd5 = str_replace('data:image/png;base64,', '', $imgttd5);
+                        $imgttd5 = str_replace(' ', '+', $imgttd5);
+                        $datattd5 = base64_decode($imgttd5);
+                        $filettd5 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                        $success = file_put_contents($filettd5, $datattd5);
+                        $imagettd5 = str_replace('./assets/img/uploads/ttd/', '', $filettd5);
+
+                        $imgttd6 = str_replace('data:image/png;base64,', '', $imgttd6);
+                        $imgttd6 = str_replace(' ', '+', $imgttd6);
+                        $datattd6 = base64_decode($imgttd6);
+                        $filettd6 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                        $success = file_put_contents($filettd6, $datattd6);
+                        $imagettd6 = str_replace('./assets/img/uploads/ttd/', '', $filettd6);
+
+                        $this->Model_penilaian_utama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4, $imagettd5, $imagettd6);
                         $this->session->set_flashdata(
                             'simpan',
                             '<div class="alert alert-warning alert-dismissible fade show">
@@ -713,7 +725,8 @@ class Penilaian_klinik_gigi extends CI_Controller
             ->get_where('tbl_klinik', ['id_klinik' => $id_klinik,])
             ->row_array();
         $data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik,
-			pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik, pfk.ttd_perwakilan_klinik,pfk.ttd_penilai1,pfk.ttd_penilai2,pfk.ttd_penilai3,pfk.ttd_penilai4')
+			pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik, pfk.ttd_perwakilan_klinik,pfk.ttd_penilai1,
+            pfk.ttd_penilai2,pfk.ttd_penilai3,pfk.ttd_penilai4,pfk.ttd_penilai5,pfk.ttd_penilai6')
             ->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
             ->join('tbl_penilaian_utama_form_ketiga as pfk', 'pfk.id_klinik = k.id_klinik', 'left')
             ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik,])
@@ -793,7 +806,8 @@ class Penilaian_klinik_gigi extends CI_Controller
             ->get_where('tbl_klinik', ['id_klinik' => $id_klinik,])
             ->row_array();
         $data['klinik'] = $this->db->select('k.id_klinik,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik,
-			pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik, pfk.ttd_perwakilan_klinik,pfk.ttd_penilai1,pfk.ttd_penilai2,pfk.ttd_penilai3,pfk.ttd_penilai4')
+			pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik, pfk.ttd_perwakilan_klinik,pfk.ttd_penilai1,
+            pfk.ttd_penilai2,pfk.ttd_penilai3,pfk.ttd_penilai4,pfk.ttd_penilai5,pfk.ttd_penilai6')
             ->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
             ->join('tbl_penilaian_utama_form_ketiga as pfk', 'pfk.id_klinik = k.id_klinik', 'left')
             ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik,])

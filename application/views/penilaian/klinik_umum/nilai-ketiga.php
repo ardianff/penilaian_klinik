@@ -212,6 +212,30 @@
                                         </div>
                                         <div class="col">
                                         </div>
+                                        <div class="w-100"></div>
+                                        <br>
+                                        <div class="col"><label>Tanda Tangan <?php echo $klinik['nama_anggota5'] ?>
+                                                :</label>
+                                            <br />
+                                            <div id="ttd5"></div>
+                                            <br />
+                                            <button class="btn-sm btn-danger" id="cls-ttd5">Clear</button>
+                                            <textarea id="signature64-ttd5" name="ttd-5"
+                                                style="display: none"></textarea>
+                                        </div>
+                                        <div class="col">
+                                        </div>
+                                        <div class="col"><label>Tanda Tangan <?php echo $klinik['nama_anggota6'] ?>
+                                                :</label>
+                                            <br />
+                                            <div id="ttd6"></div>
+                                            <br />
+                                            <button class="btn-sm btn-danger" id="cls-ttd6">Clear</button>
+                                            <textarea id="signature64-ttd6" name="ttd-6"
+                                                style="display: none"></textarea>
+                                        </div>
+                                        <div class="col">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -445,6 +469,42 @@
                                                 width="250" height="250" />
                                             <input type="hidden" name="old_ttd_penilai4"
                                                 value="<?php echo $klinik['ttd_penilai4'] ?>" />
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <br>
+                                        <div class="col">
+                                            <label>Tanda Tangan <?php echo $klinik['nama_anggota5'] ?> :</label>
+                                            <br />
+                                            <div id="ttd5"></div>
+                                            <br />
+                                            <button class="btn-sm btn-danger" id="cls-ttd5">Clear</button>
+                                            <textarea id="signature64-ttd5" name="ttd-5" style="display: none"
+                                                <?php if ($klinik['ttd_penilai5'] == null) { ?>required
+                                                <?php
+                                                                                                                                                                        } ?>></textarea>
+                                        </div>
+                                        <div class="col">
+                                            <img class="text-center"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai5']) ?>"
+                                                width="250" height="250" />
+                                            <input type="hidden" name="old_ttd_penilai5"
+                                                value="<?php echo $klinik['ttd_penilai5'] ?>" />
+                                        </div>
+                                        <div class="col"><label>Tanda Tangan <?php echo $klinik['nama_anggota6'] ?>
+                                                :</label>
+                                            <br />
+                                            <div id="ttd6"></div>
+                                            <br />
+                                            <button class="btn-sm btn-danger" id="cls-ttd6">Clear</button>
+                                            <textarea id="signature64-ttd6" name="ttd-6"
+                                                style="display: none"></textarea></textarea>
+                                        </div>
+                                        <div class="col">
+                                            <img class="text-center"
+                                                src="<?php echo base_url("assets/img/uploads/ttd/" . $klinik['ttd_penilai6']) ?>"
+                                                width="250" height="250" />
+                                            <input type="hidden" name="old_ttd_penilai6"
+                                                value="<?php echo $klinik['ttd_penilai6'] ?>" />
                                         </div>
                                     </div>
                                 </div>

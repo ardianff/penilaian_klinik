@@ -84,8 +84,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Penilai 3 <span
-                                        style="color:red">*</span></label>
+                                <label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Penilai 3</label>
                                 <div class="col-sm-6">
                                     <select
                                         class="form-control <?php if (form_error('nama_anggota3') == true) : ?>is-invalid <?php endif ?>"
@@ -126,6 +125,50 @@
                                         <?php endforeach; ?>
                                     </select>
                                     <?= form_error('nama_anggota4', '<small class="text-danger pl-3">', '</small>') ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Penilai 5</label>
+                                <div class="col-sm-6">
+                                    <select
+                                        class="form-control <?php if (form_error('nama_anggota5') == true) : ?>is-invalid <?php endif ?>"
+                                        name="nama_anggota5">
+                                        <option value="">- Pilih Nama -</option>
+                                        <?php foreach ($anggota as $p) : ?>
+                                        <?php if (set_value('nama_anggota5') == $p->nama_anggota) : ?>
+                                        <option value="<?php echo $p->nama_anggota; ?>" selected>
+                                            <?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
+                                        <?php else : ?>
+                                        <option value="<?php echo $p->nama_anggota; ?>"
+                                            <?php if ($p->nama_anggota == $id_klinik['nama_anggota5']) { ?> selected
+                                            <?php } ?>><?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?>
+                                        </option>
+                                        <?php endif ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <?= form_error('nama_anggota5', '<small class="text-danger pl-3">', '</small>') ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Penilai 6</label>
+                                <div class="col-sm-6">
+                                    <select
+                                        class="form-control <?php if (form_error('nama_anggota6') == true) : ?>is-invalid <?php endif ?>"
+                                        name="nama_anggota6">
+                                        <option value="">- Pilih Nama -</option>
+                                        <?php foreach ($anggota as $p) : ?>
+                                        <?php if (set_value('nama_anggota6') == $p->nama_anggota) : ?>
+                                        <option value="<?php echo $p->nama_anggota; ?>" selected>
+                                            <?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
+                                        <?php else : ?>
+                                        <option value="<?php echo $p->nama_anggota; ?>"
+                                            <?php if ($p->nama_anggota == $id_klinik['nama_anggota6']) { ?> selected
+                                            <?php } ?>><?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?>
+                                        </option>
+                                        <?php endif ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <?= form_error('nama_anggota6', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -278,3 +321,6 @@
     </section>
     <!-- /.content -->
 </div>
+<script>
+var id_kel = <?= $id_klinik['id_kelurahan_klinik'] ?>
+</script>

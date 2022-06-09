@@ -254,6 +254,63 @@
                 </tbody>
             </table>
         </li>
+        <li class="text-bap">
+            <table class="text-bap">
+                <tbody>
+                    <tr>
+                        <td>5.</td>
+                        <td>Nama</td>
+                        <td>:</td>
+                        <td><?php echo $penilaian['nama_anggota5'] ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>NIP</td>
+                        <td>:</td>
+                        <td><?php
+                            foreach ($anggota as $p) { ?>
+                            <?php if ($p->nama_anggota == $penilaian['nama_anggota5']) {
+                                    echo $p->nip_anggota;
+                                }
+                                ?>
+                            <?php
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </li>
+        <li class="text-bap">
+            <table class="text-bap">
+                <tbody>
+                    <tr>
+                        <td>6.</td>
+                        <td>Nama</td>
+                        <td>:</td>
+                        <td><?php echo $penilaian['nama_anggota6'] ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>NIP</td>
+                        <td>:</td>
+                        <td><?php
+                            foreach ($anggota as $p) { ?>
+                            <?php if ($p->nama_anggota == $penilaian['nama_anggota6']) {
+                                    echo $p->nip_anggota;
+                                }
+                                ?>
+                            <?php
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </li>
+
     </ol>
     <p
         style='margin-top:0in;margin-right:0in;margin-bottom:10.0pt;margin-left:13.3pt;line-height:normal;font-size:15px;font-family:"Calibri",sans-serif;'>
@@ -844,28 +901,36 @@
             <br>
             <table border="1" width="100%" height="auto">
                 <thead>
-                    <td colspan="4" class="text-center">Tim Penilaian Kesesuaian Klinik</td>
+                    <td colspan="6" class="text-center">Tim Penilaian Kesesuaian Klinik</td>
                 </thead>
                 <tbody>
                     <tr>
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
-                                width="120px" height="120px"></td>
+                                width="120px" height="120px" alt="TTD Penilai 1"></td>
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai2'] ?>"
-                                width="120px" height="120px"></td>
+                                width="120px" height="120px" alt="TTD Penilai 2"></td>
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
-                                width="120px" height="120px"></td>
+                                width="120px" height="120px" alt="TTD Penilai 3"></td>
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai4'] ?>"
                                 width="120px" height="120px" alt="TTD Penilai 4"></td>
+                        <td><img class="rounded mx-auto d-block"
+                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai5'] ?>"
+                                width="120px" height="120px" alt="TTD Penilai 5"></td>
+                        <td><img class="rounded mx-auto d-block"
+                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai6'] ?>"
+                                width="120px" height="120px" alt="TTD Penilai 6"></td>
                     </tr>
                     <tr>
                         <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota1'] ?></td>
                         <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota2'] ?></td>
                         <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota3'] ?></td>
                         <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota4'] ?></td>
+                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota5'] ?></td>
+                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota6'] ?></td>
                     </tr>
                 </tbody>
             </table>

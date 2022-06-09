@@ -54,23 +54,21 @@
 <script src="<?php echo base_url(); ?>assets/admin-lte/plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <!-- dropzonejs -->
 <script src="<?php echo base_url(); ?>assets/admin-lte/plugins/dropzone/min/dropzone.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/admin-lte/dist/js/demo.js"></script>
 <script>
-var base_url = "<?= base_url(); ?>";
-</script>
-<!-- <?php
-        $url_satu = base_url('penilaian_klinik_umum/edit/' . $klinik = $this->uri->segment(3));
-        $url_dua = base_url('penilaian_utama/edit/' . $klinik = $this->uri->segment(3));
-        $url_tiga = base_url('laporan_penilaian/cek/' . $klinik = $this->uri->segment(3));
-        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        if ($url_satu == $actual_link || $url_dua == $actual_link || $url_tiga == $actual_link) {
-            echo '<script>var id_kel = ' . $id_klinik['id_kelurahan_klinik'] . '</script>';
-        } else {
-            echo '';
-        }
-        ?> -->
-<script>
-var id_kel = $id_klinik['id_kelurahan_klinik']
+var base_url = "<?= base_url(); ?>"
+<?php
+    $url_satu = base_url('penilaian_klinik_umum/edit/' . $klinik = $this->uri->segment(3));
+    $url_dua = base_url('penilaian_klinik_gigi/edit/' . $klinik = $this->uri->segment(3));
+    $url_tiga = base_url('penilaian_klinik_umum/update/');
+    $url_empat = base_url('penilaian_klinik_gigi/update/');
+    $url_lima = base_url('laporan_penilaian/cek/' . $klinik = $this->uri->segment(3));
+    $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    if ($url_satu == $actual_link || $url_dua == $actual_link || $url_tiga == $actual_link || $url_empat == $actual_link || $url_lima == $actual_link) {
+        echo 'var id_kel = ' . $id_klinik['id_kelurahan_klinik'] . '';
+    } else {
+        echo '';
+    }
+    ?>
 </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/get-kelurahan.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/function.js"></script>
@@ -126,98 +124,22 @@ $('#cls-ttd4').click(function(e) {
     ttd4.signature('clear');
     $("#signature64-ttd4").val('');
 });
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#example1").DataTable({
-        "responsive": true,
-        stateSave: true,
-        "lengthChange": false,
-        "autoWidth": true,
-        "paging": false,
-        // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-        "paging": true,
-        stateSave: true,
-        "pageLength": 25,
-        "lengthMenu": [10, 25, 50, 100, 200, 300],
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": true,
-        "responsive": true,
-    });
+var ttd5 = $('#ttd5').signature({
+    syncField: '#signature64-ttd5',
+    syncFormat: 'PNG'
 });
-$(document).ready(function() {
-    window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function() {
-            $(this).remove();
-        });
-    }, 3500);
+$('#cls-ttd5').click(function(e) {
+    e.preventDefault();
+    ttd5.signature('clear');
+    $("#signature64-ttd5").val('');
 });
-</script>
-<!-- <script>
-function myFunction() {
-    var x = document.getElementById("myDIV");
-    if (x.style.visibility === 'hidden') {
-        x.style.visibility = 'visible';
-    } else {
-        x.style.visibility = 'hidden';
-    }
-}
-</script> -->
-
-<script>
-$(".container-foto").css({
-    'position': 'absolute',
-    'top': '0px',
-    'display': 'none',
-    'width': '100%',
-    'height': 'auto',
-    // 'background': 'rgba(0,0,0,0.1)',
+var ttd6 = $('#ttd6').signature({
+    syncField: '#signature64-ttd6',
+    syncFormat: 'PNG'
 });
-
-$(".popup").css({
-    'position': 'relative',
-    'top': '80px',
-    'width': '700px',
-    'margin': 'auto',
-    'border': '10px solid grey',
-    'z-index': '10000',
-    'background': 'white'
+$('#cls-ttd6').click(function(e) {
+    e.preventDefault();
+    ttd6.signature('clear');
+    $("#signature64-ttd6").val('');
 });
-
-$("#close").css({
-    'position': 'absolute',
-    'top': '-15px',
-    'right': '-15px',
-    'font-size': '20px'
-});
-// Show
-
-$(".gallery img").click(function() {
-
-    $(".container-foto").fadeIn("slow");
-
-    var url = $(this).attr('src');
-
-    $(".imageShow").html('<img src="' + url + '">');
-
-    $(".imageShow img").css({
-        'width': '100%'
-    });
-
-})
-
-
-
-// Close
-
-$("#close").click(function() {
-
-    $(".container-foto").fadeOut("slow");
-
-})
 </script>

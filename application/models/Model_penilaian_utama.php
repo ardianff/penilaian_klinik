@@ -11,6 +11,8 @@ class Model_penilaian_utama extends CI_Model
             'nama_anggota2' => $this->input->post('nama_anggota2'),
             'nama_anggota3' => $this->input->post('nama_anggota3'),
             'nama_anggota4' => $this->input->post('nama_anggota4'),
+            'nama_anggota5' => $this->input->post('nama_anggota5'),
+            'nama_anggota6' => $this->input->post('nama_anggota6'),
             'nama_klinik' => $this->input->post('nama_klinik'),
             'kemampuan_pelayanan' => $this->input->post('kemampuan_pelayanan'),
             'jenis_pelayanan_klinik' => $this->input->post('jenis_pelayanan'),
@@ -33,6 +35,8 @@ class Model_penilaian_utama extends CI_Model
             'nama_anggota2' => $this->input->post('nama_anggota2'),
             'nama_anggota3' => $this->input->post('nama_anggota3'),
             'nama_anggota4' => $this->input->post('nama_anggota4'),
+            'nama_anggota5' => $this->input->post('nama_anggota5'),
+            'nama_anggota6' => $this->input->post('nama_anggota6'),
             'nama_klinik' => $this->input->post('nama_klinik'),
             'kemampuan_pelayanan' => $this->input->post('kemampuan_pelayanan'),
             'jenis_pelayanan_klinik' => $this->input->post('jenis_pelayanan'),
@@ -192,7 +196,7 @@ class Model_penilaian_utama extends CI_Model
             $this->db->update('tbl_penilaian_utama_form_kedua', $data);
         }
     }
-    public function simpan_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
+    public function simpan_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4, $imagettd5, $imagettd6)
     {
         $foto_klinik = json_encode($uploadData);
         $result_foto = preg_replace("/[^a-zA-Z0-9-_.,]/", "", $foto_klinik);
@@ -207,6 +211,8 @@ class Model_penilaian_utama extends CI_Model
             'ttd_penilai2' => $imagettd2,
             'ttd_penilai3' => $imagettd3,
             'ttd_penilai4' => $imagettd4,
+            'ttd_penilai5' => $imagettd5,
+            'ttd_penilai6' => $imagettd6,
             'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
             'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
             'nama_perwakilan_pihak_klinik' => $this->input->post('nama_perwakilan_klinik'),
@@ -223,7 +229,7 @@ class Model_penilaian_utama extends CI_Model
         $this->db->where('id_klinik', $id_klinik);
         $this->db->update('tbl_klinik', $update);
     }
-    public function update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4)
+    public function update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4, $imagettd5, $imagettd6)
     {
         $foto_klinik = json_encode($uploadData);
         $result_foto = preg_replace("/[^a-zA-Z0-9-_.,]/", "", $foto_klinik);
@@ -236,6 +242,8 @@ class Model_penilaian_utama extends CI_Model
             'ttd_penilai2' => $imagettd2,
             'ttd_penilai3' => $imagettd3,
             'ttd_penilai4' => $imagettd4,
+            'ttd_penilai5' => $imagettd5,
+            'ttd_penilai6' => $imagettd6,
             'uraian_penilaian' => $this->input->post('uraian_penilaian_klinik'),
             'tindak_lanjut_klinik' => $this->input->post('pilihan_jawaban_klinik'),
             'nama_perwakilan_pihak_klinik' => $this->input->post('nama_perwakilan_klinik'),
