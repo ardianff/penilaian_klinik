@@ -76,31 +76,31 @@ class Model_laporan_klinik extends CI_Model
   public function get_count_klinik_pratama_gigi($bulan, $tahun)
   {
     $query = $this->db->query("SELECT COUNT(kemampuan_pelayanan) as total_klinik_pratama_gigi, kemampuan_pelayanan, 
-    MONTH(created_at) AS bulan, YEAR(created_at) AS tahun FROM tbl_klinik WHERE kemampuan_pelayanan='Pratama Gigi' AND MONTH(created_at)='$bulan' AND YEAR(created_at)='$tahun' AND status_penilaian='Sudah'")->result();
+    MONTH(tgl_visitasi) AS bulan, YEAR(tgl_visitasi) AS tahun FROM tbl_klinik WHERE kemampuan_pelayanan='Pratama Gigi' AND MONTH(tgl_visitasi)='$bulan' AND YEAR(tgl_visitasi)='$tahun' AND status_penilaian='Sudah'")->result();
     return $query;
   }
   public function get_count_klinik_utama_gigi($bulan, $tahun)
   {
     $query = $this->db->query("SELECT COUNT(kemampuan_pelayanan) as total_klinik_utama_gigi, kemampuan_pelayanan, 
-    MONTH(created_at) AS bulan, YEAR(created_at) AS tahun FROM tbl_klinik WHERE kemampuan_pelayanan='Utama Gigi' AND MONTH(created_at)='$bulan' AND YEAR(created_at)='$tahun' AND status_penilaian='Sudah'")->result();
+    MONTH(tgl_visitasi) AS bulan, YEAR(tgl_visitasi) AS tahun FROM tbl_klinik WHERE kemampuan_pelayanan='Utama Gigi' AND MONTH(tgl_visitasi)='$bulan' AND YEAR(tgl_visitasi)='$tahun' AND status_penilaian='Sudah'")->result();
     return $query;
   }
   public function get_count_klinik_pratama_umum($bulan, $tahun)
   {
     $query = $this->db->query("SELECT COUNT(kemampuan_pelayanan) as total_klinik_pratama_umum, kemampuan_pelayanan, 
-    MONTH(created_at) AS bulan, YEAR(created_at) AS tahun FROM tbl_klinik WHERE kemampuan_pelayanan='Pratama Umum' AND MONTH(created_at)='$bulan' AND YEAR(created_at)='$tahun' AND status_penilaian='Sudah'")->result();
+    MONTH(tgl_visitasi) AS bulan, YEAR(tgl_visitasi) AS tahun FROM tbl_klinik WHERE kemampuan_pelayanan='Pratama Umum' AND MONTH(tgl_visitasi)='$bulan' AND YEAR(tgl_visitasi)='$tahun' AND status_penilaian='Sudah'")->result();
     return $query;
   }
   public function get_count_klinik_utama_umum($bulan, $tahun)
   {
     $query = $this->db->query("SELECT COUNT(kemampuan_pelayanan) as total_klinik_utama_umum, kemampuan_pelayanan, 
-    MONTH(created_at) AS bulan, YEAR(created_at) AS tahun FROM tbl_klinik WHERE kemampuan_pelayanan='Utama Umum' AND MONTH(created_at)='$bulan' AND YEAR(created_at)='$tahun' AND status_penilaian='Sudah'")->result();
+    MONTH(tgl_visitasi) AS bulan, YEAR(tgl_visitasi) AS tahun FROM tbl_klinik WHERE kemampuan_pelayanan='Utama Umum' AND MONTH(tgl_visitasi)='$bulan' AND YEAR(tgl_visitasi)='$tahun' AND status_penilaian='Sudah'")->result();
     return $query;
   }
   public function get_count_all($bulan, $tahun)
   {
     $query = $this->db->query("SELECT COUNT(kemampuan_pelayanan) as total_klinik_semua,
-    MONTH(created_at) AS bulan, YEAR(created_at) AS tahun FROM tbl_klinik WHERE  MONTH(created_at)='$bulan' AND YEAR(created_at)='$tahun' AND status_penilaian='Sudah'")->result();
+    MONTH(tgl_visitasi) AS bulan, YEAR(tgl_visitasi) AS tahun FROM tbl_klinik WHERE  MONTH(tgl_visitasi)='$bulan' AND YEAR(tgl_visitasi)='$tahun' AND status_penilaian='Sudah'")->result();
     return $query;
   }
 
