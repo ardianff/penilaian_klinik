@@ -98,13 +98,14 @@
                                         <button type="submit" name="submit" class="btn btn-success">Get Data</button>
                                     </div>
                                     <?php if (isset($_POST['bulan_pilihan']) && isset($_POST['tahun_pilihan'])) : ?>
-                                    <table id="example2" class="table table-bordered table-striped" width="auto"
+                                    <table id="example2" class="table table-bordered table-striped" width="100%"
                                         height="auto">
                                         <thead>
                                             <tr>
                                                 <th class="text-center" width="1px">No</th>
                                                 <th class="text-center" width="100px">Nama Klinik</th>
                                                 <th class="text-center">Penanggung Jawab Klinik</th>
+                                                <th class="text-center">Tgl Visitasi</th>
                                                 <th class="text-center">Kemampuan Pelayanan</th>
                                                 <th class="text-center" width="20%"">Alamat</th>
                                                 <th class=" text-center">Nomor Siop</th>
@@ -130,6 +131,8 @@
                                                 <td class="text-center">
                                                     <?php echo $row->nama_perwakilan, '<br>Jabatan : ' . $row->jabatan_perwakilan; ?>
                                                 </td>
+                                                <td class="text-center">
+                                                    <?= date('d-m-Y', strtotime($row->tgl_visitasi)) ?></td>
                                                 <td class="text-center">
                                                     <?php echo $row->kemampuan_pelayanan, ',<br>' . $row->jenis_pelayanan_klinik; ?>
                                                 </td>

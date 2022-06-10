@@ -907,30 +907,78 @@
                     <tr>
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
-                                width="120px" height="120px" alt="TTD Penilai 1"></td>
+                                width="120px" height="120px" alt="TTD Penilai 1"
+                                onError="this.onerror=null;this.src='<?= base_url() ?>assets/img/uploads/ttd/default.jpg';">
+                        </td>
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai2'] ?>"
-                                width="120px" height="120px" alt="TTD Penilai 2"></td>
+                                width="120px" height="120px" alt="TTD Penilai 2"
+                                onError="this.onerror=null;this.src='<?= base_url() ?>assets/img/uploads/ttd/default.jpg';">
+                        </td>
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
-                                width="120px" height="120px" alt="TTD Penilai 3"></td>
+                                width="120px" height="120px" alt="TTD Penilai 3"
+                                onError="this.onerror=null;this.src='<?= base_url() ?>assets/img/uploads/ttd/default.jpg';">
+                        </td>
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai4'] ?>"
-                                width="120px" height="120px" alt="TTD Penilai 4"></td>
+                                width="120px" height="120px"
+                                onError="this.onerror=null;this.src='<?= base_url() ?>assets/img/uploads/ttd/default.jpg';"
+                                alt="TTD Penilai 4"></td>
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai5'] ?>"
-                                width="120px" height="120px" alt="TTD Penilai 5"></td>
+                                width="120px" height="120px" alt="TTD Penilai 5"
+                                onError="this.onerror=null;this.src='<?= base_url() ?>assets/img/uploads/ttd/default.jpg';">
+                        </td>
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai6'] ?>"
-                                width="120px" height="120px" alt="TTD Penilai 6"></td>
+                                width="120px" height="120px" alt="TTD Penilai 6"
+                                onError="this.onerror=null;this.src='<?= base_url() ?>assets/img/uploads/ttd/default.jpg';">
+                        </td>
                     </tr>
                     <tr>
-                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota1'] ?></td>
-                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota2'] ?></td>
-                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota3'] ?></td>
-                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota4'] ?></td>
-                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota5'] ?></td>
-                        <td width="auto" class="text-center"><?php echo $penilaian['nama_anggota6'] ?></td>
+                        <td width="auto" class="text-center">
+                            <?php if ($penilaian['nama_anggota1'] == null) :
+                                echo '-';
+                            else :
+                                echo $penilaian['nama_anggota1'];
+                            endif; ?>
+                        </td>
+                        <td width="auto" class="text-center">
+                            <?php if ($penilaian['nama_anggota2'] == null) :
+                                echo '-';
+                            else :
+                                echo $penilaian['nama_anggota2'];
+                            endif; ?>
+                        </td>
+                        <td width="auto" class="text-center">
+                            <?php if ($penilaian['nama_anggota3'] == null) :
+                                echo '-';
+                            else :
+                                echo $penilaian['nama_anggota3'];
+                            endif; ?>
+                        </td>
+                        <td width="auto" class="text-center">
+                            <?php if ($penilaian['nama_anggota4'] == null) :
+                                echo '-';
+                            else :
+                                echo $penilaian['nama_anggota4'];
+                            endif; ?>
+                        </td>
+                        <td width="auto" class="text-center">
+                            <?php if ($penilaian['nama_anggota5'] == null) :
+                                echo '-';
+                            else :
+                                echo $penilaian['nama_anggota5'];
+                            endif; ?>
+                        </td>
+                        <td width="auto" class="text-center">
+                            <?php if ($penilaian['nama_anggota6'] == null) :
+                                echo '-';
+                            else :
+                                echo $penilaian['nama_anggota6'];
+                            endif; ?>
+                        </td>
                     </tr>
                 </tbody>
             </table>
