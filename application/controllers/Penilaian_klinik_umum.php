@@ -1081,6 +1081,8 @@ class Penilaian_klinik_umum extends CI_Controller
             $mpdf = new \Mpdf\Mpdf(['orientation' => 'P', 'format' => 'Legal']);
             $mpdf->shrink_tables_to_fit = 0;
             $mpdf->debug = true;
+            $mpdf->showImageErrors = true;
+            $mpdf->curlAllowUnsafeSslRequests = true;
             $html = $this->load->view('penilaian/klinik_umum/pdf', $data, true);
             $mpdf->WriteHTML($html);
             $mpdf->Output('Berita Acara ' . $data['penilaian']['nama_klinik'] . '.pdf', 'I');

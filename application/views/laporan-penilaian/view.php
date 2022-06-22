@@ -104,6 +104,38 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Penilai 5</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="nama_anggota5" readonly disabled>
+                                        <option value="">- Pilih Nama -</option>
+                                        <?php
+                                        foreach ($anggota as $p) { ?>
+                                        <option value="<?php echo $p->nama_anggota; ?>" <?php if (
+                                                                                                $p->nama_anggota == $id_klinik['nama_anggota5']
+                                                                                            ) { ?> selected <?php } ?>>
+                                            <?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
+                                        <?php }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Penilai 6</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="nama_anggota6" readonly disabled>
+                                        <option value="">- Pilih Nama -</option>
+                                        <?php
+                                        foreach ($anggota as $p) { ?>
+                                        <option value="<?php echo $p->nama_anggota; ?>" <?php if (
+                                                                                                $p->nama_anggota == $id_klinik['nama_anggota6']
+                                                                                            ) { ?> selected <?php } ?>>
+                                            <?php echo $p->nama_anggota; ?> - <?php echo $p->nip_anggota; ?></option>
+                                        <?php }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Klinik </label>
                                 <div class="col-sm-6">
                                     <input type="name" class="form-control" name="nama_klinik" placeholder="Nama Klinik"
