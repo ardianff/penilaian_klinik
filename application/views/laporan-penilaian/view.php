@@ -216,6 +216,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="no_surat" class="col-sm-3 col-form-label">Nomor BAP </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Nomor BAP" name="no_bap"
+                                        value="<?php echo $id_klinik['no_bap']; ?>" readonly disabled></input>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="no_siop" class="col-sm-3 col-form-label">Nomor Siop <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-6">

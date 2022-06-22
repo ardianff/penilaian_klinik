@@ -190,9 +190,10 @@
                                 <div class="col-sm-6">
                                     <?php echo form_dropdown(
                                         'kemampuan_pelayanan',
-                                        ['' => '- Pilih -', 'Pratama Umum' => 'Pratama Umum', 'Utama Umum' => 'Utama Umum'],
+                                        ['' => '- Pilih -', 'Pratama Umum' => 'Pratama Umum', 'Utama Umum' => 'Utama Umum', 'Pratama Kecantikan' => 'Pratama Kecantikan', 'Utama Kecantikan' => 'Utama Kecantikan'],
                                         set_value('kemampuan_pelayanan'),
-                                        form_error('kemampuan_pelayanan') == true ? "class='form-control is-invalid'" : "class='form-control'"
+                                        form_error('kemampuan_pelayanan') == true ? "class='form-control is-invalid ' placeholder='Pilih Kemampuan Pelayanan'" : "class='form-control ' placeholder='Pilih Kemampuan Pelayanan'",
+                                        "placeholder='Test'",
                                     ); ?>
                                     <?= form_error('kemampuan_pelayanan', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
@@ -280,8 +281,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="no_surat" class="col-sm-3 col-form-label">Nomor Surat Tugas <span
-                                        style="color:red">*</span></label>
+                                <label for="no_surat" class="col-sm-3 col-form-label">Nomor Surat Tugas </label>
                                 <div class="col-sm-6">
                                     <input type="text"
                                         class="form-control <?php if (form_error('no_surat') == true) : ?>is-invalid <?php endif ?>"
@@ -291,8 +291,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="no_berita" class="col-sm-3 col-form-label">Nomor Berita Acara <span
-                                        style="color:red">*</span></label>
+                                <label for="no_berita" class="col-sm-3 col-form-label">Nomor Berita Acara </label>
                                 <div class="col-sm-6">
                                     <input type="text"
                                         class="form-control <?php if (form_error('no_bap') == true) : ?>is-invalid <?php endif ?>"

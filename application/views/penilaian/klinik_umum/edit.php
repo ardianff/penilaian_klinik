@@ -189,8 +189,7 @@
                                     <?php echo form_dropdown(
                                         'kemampuan_pelayanan',
                                         [
-                                            '' => '- Pilih -',
-                                            'Pratama Umum' => 'Pratama Umum', 'Utama Umum' => 'Utama Umum',
+                                            '' => '- Pilih -', 'Pratama Umum' => 'Pratama Umum', 'Utama Umum' => 'Utama Umum', 'Pratama Kecantikan' => 'Pratama Kecantikan', 'Utama Kecantikan' => 'Utama Kecantikan',
                                         ],
                                         set_value('kemampuan_pelayanan', $id_klinik['kemampuan_pelayanan']),
                                         form_error('kemampuan_pelayanan') == true ? "class='form-control is-invalid'" : "class='form-control'"

@@ -58,7 +58,7 @@ class Model_penilaian_pratama extends CI_Model
         $this->db->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_klinik.id_kecamatan_klinik');
         $this->db->order_by('status_penilaian', 'DESC');
         $this->db->order_by('id_klinik', 'DESC');
-        $this->db->where_in('kemampuan_pelayanan', array('Pratama Umum', 'Utama Umum'));
+        $this->db->where_in('kemampuan_pelayanan', array('Pratama Umum', 'Utama Umum', 'Pratama Kecantikan', 'Utama Kecantikan'));
         return $this->db->get();
     }
     public function get_anggota()

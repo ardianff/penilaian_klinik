@@ -45,7 +45,7 @@
                                             ); ?>"
                                 class="nav-link <?= $this->uri->segment(1) == 'penilaian_klinik_umum' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                                 <i class="fa-solid fa-list-check nav-icon"></i>
-                                <p>Pratama/Utama Umum</p>
+                                <p>Pratama/Utama Umum & Kecantikan</p>
                             </a>
                         </li>
                         <li class="nav-item">

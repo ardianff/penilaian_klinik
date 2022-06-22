@@ -75,6 +75,10 @@ var base_url = "<?= base_url(); ?>"
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.signature.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
+    integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/signature-pad.js"></script> -->
@@ -142,4 +146,7 @@ $('#cls-ttd6').click(function(e) {
     ttd6.signature('clear');
     $("#signature64-ttd6").val('');
 });
+</script>
+<script>
+$(".form-select").select2();
 </script>
