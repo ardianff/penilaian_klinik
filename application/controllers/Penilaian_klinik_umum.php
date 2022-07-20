@@ -927,6 +927,7 @@ class Penilaian_klinik_umum extends CI_Controller
     function print()
     {
         $id_klinik = $this->uri->segment(3);
+
         $data['penilaiansatu'] = $this->db
             ->join('tbl_rincian_penilaian_pratama', 'tbl_rincian_penilaian_pratama.id_rincian_penilaian = tbl_penilaian_pratama_form_satu.id_rincian_penilaian')
             ->get_where('tbl_penilaian_pratama_form_satu', array('id_klinik' => $id_klinik))

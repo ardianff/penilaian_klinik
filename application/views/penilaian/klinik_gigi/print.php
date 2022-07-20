@@ -986,9 +986,8 @@
                         <td colspan="5" class="text-center">Kepala Bidang SDK</td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-center"><img
-                                src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai1'] ?>"
-                                width="120px" height="120px">
+                        <td colspan="5" class="text-center"><img src="<?= base_url(); ?>assets/img/uploads/ttd/ttd.jpg"
+                                width="300px" height="120px">
                         </td>
                     </tr>
                     <tr>

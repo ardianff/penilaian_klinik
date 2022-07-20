@@ -21,11 +21,15 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules(
             'username',
             'Username',
-            'required|xss_clean|trim',
-            ['required' => 'Username wajib diisi']
+            'required|xss_clean|trim|min_length[5]',
+            [
+                'required' => 'Username wajib diisi',
+                'min_length' => 'Username berisi minimal 5 karakter'
+            ]
         );
-        $this->form_validation->set_rules('password', 'Password', 'required', [
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]', [
             'required' => 'Password wajib diisi',
+            'min_length' => 'Password berisi minimal 5 karakter'
         ]);
         if ($this->form_validation->run() == false) {
             $this->load->view('auth/login');
@@ -33,51 +37,46 @@ class Auth extends CI_Controller
             $username = $this->input->post('username', true);
             $password = $this->input->post('password', true);
 
-            $user = $this->db->get_where('tbl_user', ['username' => $username]);
+            $user = $this->db->get_where('tbl_user', ['BINARY (username) =' => $username]);
             if ($user->num_rows() > 0) {
                 $hasil = $user->row();
                 if (password_verify($password, $hasil->password)) {
-                    $this->session->set_userdata('id_user', $hasil->id_user);
-                    $this->session->set_userdata(
-                        'nama_user',
-                        $hasil->nama_user
-                    );
-                    $this->session->set_userdata(
-                        'level_user',
-                        $hasil->level_user
-                    );
-                    $this->session->set_userdata(['status_login' => 'ok']);
+                    $this->session->set_userdata([
+                        'id_user' => $hasil->id_user,
+                        'nama_user' => $hasil->nama_user,
+                        'level_user' => $hasil->level_user,
+                        'status_login' => 'ok'
+                    ]);
 
                     if ($this->session->userdata('level_user') == 'Admin') {
-                        // echo "Admin";
                         redirect('dashboard');
                     } elseif ($this->session->userdata('level_user') == 'Penilai') {
-                        // echo "Penilai";
-                        // redirect('member/c_member');
                         redirect('dashboard');
                     }
                 } else {
                     $this->session->set_flashdata(
                         'message',
                         '<div class="alert alert-danger alert-dismissible fade show">
-						Password yang Anda masukkan salah !
+						Password yang Anda masukkan tidak sesuai !
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>'
                     );
+                    $this->session->set_flashdata('user', $username);
                     redirect('auth');
                 }
             } else {
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-danger alert-dismissible fade show">
-					Username yang Anda masukkan tidak ditemukan !
+					Username & Password yang Anda masukkan tidak sesuai !
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>'
                 );
+                $this->session->set_flashdata('user', $username);
                 redirect('auth');
             }
         }

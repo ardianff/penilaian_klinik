@@ -36,10 +36,10 @@ class User extends CI_Controller
         $this->form_validation->set_rules(
             'nip_user',
             'NIP',
-            'required|trim|min_length[18]|max_length[20]|is_unique[tbl_user.nip_user]|is_numeric',
+            'required|trim|min_length[10]|max_length[20]|is_unique[tbl_user.nip_user]|is_numeric',
             [
                 'required' => 'NIP User Wajib di isi',
-                'min_length' => 'NIP wajib berisi minimal 18 karakter',
+                'min_length' => 'NIP wajib berisi minimal 10 karakter',
                 'max_length' => 'NIP wajib berisi maksimal 20 karakter',
                 'is_unique' => 'NIP yang diinputkan sudah ada',
             ]
@@ -66,11 +66,11 @@ class User extends CI_Controller
         $this->form_validation->set_rules(
             'password',
             'Password',
-            'required|trim|xss_clean|min_length[8]|max_length[20]',
+            'required|trim|xss_clean|min_length[8]|max_length[30]',
             [
                 'required' => 'Password Wajib di isi',
                 'min_length' => 'Password wajib berisi minimal 8 karakter',
-                'max_length' => 'Password yang diinputkan maksimal 20 karakter',
+                'max_length' => 'Password yang diinputkan maksimal 30 karakter',
             ]
         );
         if ($this->form_validation->run() == false) {
@@ -145,10 +145,10 @@ class User extends CI_Controller
         $this->form_validation->set_rules(
             'password',
             'Password',
-            'trim|xss_clean|min_length[8]|max_length[12]',
+            'trim|xss_clean|min_length[8]|max_length[30]',
             [
                 'min_length' => 'Password wajib berisi minimal 8 karakter',
-                'max_length' => 'Password yang diinputkan maksimal 20 karakter',
+                'max_length' => 'Password yang diinputkan maksimal 30 karakter',
             ]
         );
         if ($this->form_validation->run() == true) {
