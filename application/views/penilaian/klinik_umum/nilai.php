@@ -11,14 +11,10 @@
     </section>
 
     <!-- Main content -->
-    <?php
-    echo form_open(
-        'penilaian_klinik_umum/nilai?id=' . $klinik['id_klinik'],
+    <?= form_open(
+        'penilaian_klinik_umum/prosesnilai?id=' . $klinik['id_klinik'],
         'class="form-horizontal"'
     );
-    echo form_hidden('no_penilaian', $klinik['no_penilaian']);
-    echo form_hidden('id_klinik', $klinik['id_klinik']);
-    echo form_hidden('nama_klinik', $klinik['nama_klinik']);
     ?>
     <section class="content">
         <div class="container-fluid">
@@ -154,18 +150,10 @@
         </div>
         <div class="text-center">
             <div class="card-footer">
-                <!-- <?php echo anchor(
-                            'penilaian_klinik_umum/nilai_kedua/' . $klinik['no_penilaian'],
-                            '<span>Next</span>',
-                            [
-                                'class' => 'btn btn-success',
-                                'title' => 'Lanjut Ke Halaman Berikutnya',
-                                'name' => 'submit'
-                            ]
-                        ); ?> -->
                 <button type="submit" name="submit" title="Lanjut Ke Halaman Berikutnya"
-                    class="btn btn-success">Next</button>
-                <?php echo anchor('penilaian_klinik_umum', 'Kembali', ['class' => 'btn btn-warning',]); ?>
+                    class="btn btn-success">Lanjut</button>
+                <a onclick="javascript:history.go(-1)" class="btn btn-warning">Kembali</a>
+                <?php echo anchor('penilaian_klinik_umum', 'Kembali', ['class' => 'btn btn-warning', 'style' => 'visibility:hidden']); ?>
 
             </div>
         </div>

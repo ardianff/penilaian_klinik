@@ -128,8 +128,9 @@ class Rincian_penilaian_klinik_umum extends CI_Controller
     public function hapus()
     {
         $id = $this->uri->segment(3);
-        $this->db->where('id_rincian_penilaian', $id);
-        $this->db->delete('tbl_rincian_penilaian_pratama');
+        // $this->db->where('id_rincian_penilaian', $id);
+        // $this->db->delete('tbl_rincian_penilaian_pratama');
+        $this->Model_rincian_penilaian_pratama->delete_rincian_pertama($id);
         $this->session->set_flashdata(
             'delete',
             '<div class="alert alert-danger alert-dismissible fade show">

@@ -63,7 +63,7 @@ function id_klinik_pratama()
 		foreach ($q->result() as $k) {
 			$tmp = 100;
 			$tmp = ((int) $k->kd_max) + 1;
-			$kd = sprintf('%03s', $tmp);
+			$kd = sprintf('%06s', $tmp);
 		}
 	} else {
 		$kd = '001';
@@ -79,7 +79,7 @@ function id_klinik_utama()
 		foreach ($q->result() as $k) {
 			$tmp = 100;
 			$tmp = ((int) $k->kd_max) + 1;
-			$kd = sprintf('%03s', $tmp);
+			$kd = sprintf('%06s', $tmp);
 		}
 	} else {
 		$kd = '001';
@@ -295,6 +295,11 @@ function nama_bulan($nama_bulan)
 function tahun_sekarang()
 {
 	return date('Y');
+}
+function datetime_now()
+{
+	date_default_timezone_set('Asia/Jakarta');
+	return date('Y-m-d H:i:s');
 }
 function encrypt_url($string)
 {

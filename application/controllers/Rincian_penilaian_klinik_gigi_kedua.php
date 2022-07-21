@@ -37,10 +37,10 @@ class Rincian_penilaian_klinik_gigi_kedua extends CI_Controller
         $this->form_validation->set_rules(
             'jumlah_penilaian',
             'Jumlah',
-            'xss_clean|trim|min_length[3]',
+            'xss_clean|trim|min_length[1]',
             [
                 'min_length' =>
-                'Jumlah berisi minimal 3 karakter',
+                'Jumlah berisi minimal 1 karakter',
             ]
         );
         $this->form_validation->set_rules(
@@ -109,10 +109,10 @@ class Rincian_penilaian_klinik_gigi_kedua extends CI_Controller
         $this->form_validation->set_rules(
             'jumlah_penilaian',
             'Jumlah',
-            'xss_clean|trim|min_length[3]',
+            'xss_clean|trim|min_length[1]',
             [
                 'min_length' =>
-                'Jumlah berisi minimal 3 karakter',
+                'Jumlah berisi minimal 1 karakter',
             ]
         );
         $this->form_validation->set_rules(
@@ -155,8 +155,9 @@ class Rincian_penilaian_klinik_gigi_kedua extends CI_Controller
     public function hapus()
     {
         $id = $this->uri->segment(3);
-        $this->db->where('id_deskripsi', $id);
-        $this->db->delete('tbl_deskripsi_penilaian_utama');
+        // $this->db->where('id_deskripsi', $id);
+        // $this->db->delete('tbl_deskripsi_penilaian_utama');
+        $this->Model_rincian_penilaian_utama->delete_rincian_kedua($id);
         $this->session->set_flashdata(
             'delete',
             '<div class="alert alert-danger alert-dismissible fade show">
@@ -257,8 +258,9 @@ class Rincian_penilaian_klinik_gigi_kedua extends CI_Controller
     public function hapus_group()
     {
         $id = $this->uri->segment(3);
-        $this->db->where('id_group', $id);
-        $this->db->delete('tbl_group_utama');
+        // $this->db->where('id_group', $id);
+        // $this->db->delete('tbl_group_utama');
+        $this->Model_rincian_penilaian_utama->delete_group($id);
         $this->session->set_flashdata(
             'delete',
             '<div class="alert alert-danger alert-dismissible fade show">

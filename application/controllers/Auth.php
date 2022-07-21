@@ -21,15 +21,11 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules(
             'username',
             'Username',
-            'required|xss_clean|trim|min_length[5]',
-            [
-                'required' => 'Username wajib diisi',
-                'min_length' => 'Username berisi minimal 5 karakter'
-            ]
+            'required|xss_clean|trim',
+            ['required' => 'Username wajib diisi']
         );
-        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]', [
+        $this->form_validation->set_rules('password', 'Password', 'required', [
             'required' => 'Password wajib diisi',
-            'min_length' => 'Password berisi minimal 5 karakter'
         ]);
         if ($this->form_validation->run() == false) {
             $this->load->view('auth/login');
@@ -37,7 +33,7 @@ class Auth extends CI_Controller
             $username = $this->input->post('username', true);
             $password = $this->input->post('password', true);
 
-            $user = $this->db->get_where('tbl_user', ['BINARY (username) =' => $username]);
+            $user = $this->db->get_where('tbl_user', ['username' => $username]);
             if ($user->num_rows() > 0) {
                 $hasil = $user->row();
                 if (password_verify($password, $hasil->password)) {
@@ -57,26 +53,24 @@ class Auth extends CI_Controller
                     $this->session->set_flashdata(
                         'message',
                         '<div class="alert alert-danger alert-dismissible fade show">
-						Password yang Anda masukkan tidak sesuai !
+						Password yang Anda masukkan salah !
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>'
                     );
-                    $this->session->set_flashdata('user', $username);
                     redirect('auth');
                 }
             } else {
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-danger alert-dismissible fade show">
-					Username & Password yang Anda masukkan tidak sesuai !
+					Username yang Anda masukkan tidak ditemukan !
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>'
                 );
-                $this->session->set_flashdata('user', $username);
                 redirect('auth');
             }
         }

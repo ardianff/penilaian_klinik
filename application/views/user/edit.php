@@ -81,6 +81,7 @@
                                     <input type="password"
                                         class="form-control  <?php if (form_error('password') == true) : ?>is-invalid <?php endif ?>"
                                         name="password" placeholder="Password">
+                                    <p style="color:red;">* kosongkan jika tidak ingin update password</p>
                                     <?= form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
                                 </div>
                             </div>

@@ -2,6 +2,8 @@
 class Model_rincian_penilaian_utama extends CI_Model
 {
 	private $table = 'tbl_rincian_penilaian_utama';
+	private $table_kedua = 'tbl_deskripsi_penilaian_utama';
+	private $group = 'tbl_group_utama';
 	function add()
 	{
 		$data = [
@@ -12,18 +14,6 @@ class Model_rincian_penilaian_utama extends CI_Model
 		];
 		$this->db->insert($this->table, $data);
 	}
-	// function update()
-	// {
-	//     $data = [
-	//         'rincian_penilaian' => $this->input->post('rincian_penilaian'),
-	//         'keterangan_penilaian' => $this->input->post(
-	//             'keterangan_penilaian'
-	//         ),
-	//     ];
-	//     $id_rincian_penilaian = $this->input->post('id_rincian_penilaian');
-	//     $this->db->where('id_rincian_penilaian', $id_rincian_penilaian);
-	//     $this->db->update($this->table, $data);
-	// }
 	public function update($data, $id)
 	{
 		return $this->db->update($this->table, $data, [
@@ -32,7 +22,7 @@ class Model_rincian_penilaian_utama extends CI_Model
 	}
 	public function get_rincian_penilaian_klinik_utama()
 	{
-		$query = $this->db->get($this->table)->result();
+		$query = $this->db->get_where($this->table, ['delete' => '0'])->result();
 		return $query;
 	}
 	function getById($id)
@@ -45,12 +35,13 @@ class Model_rincian_penilaian_utama extends CI_Model
 	{
 		$query = $this->db
 			->join('tbl_group_utama', 'tbl_group_utama.id_group=tbl_deskripsi_penilaian_utama.id_group')
+			->where('tbl_deskripsi_penilaian_utama.delete', '0')
 			->get('tbl_deskripsi_penilaian_utama')->result();
 		return $query;
 	}
 	public function get_group_penilaian_utama()
 	{
-		$query = $this->db->get('tbl_group_utama')->result();
+		$query = $this->db->get_where('tbl_group_utama', ['delete' => '0'])->result();
 		return $query;
 	}
 	function simpan_penilaian_utama_kedua()
@@ -93,5 +84,30 @@ class Model_rincian_penilaian_utama extends CI_Model
 		return $this->db->update('tbl_group_utama', $data, [
 			'id_group' => $id,
 		]);
+	}
+
+	public function delete_rincian_pertama($id)
+	{
+		$data = [
+			'delete_at' => datetime_now(),
+			'delete' => '1'
+		];
+		return $this->db->update($this->table, $data, ['id_rincian_penilaian' => $id]);
+	}
+	public function delete_rincian_kedua($id)
+	{
+		$data = [
+			'delete_at' => datetime_now(),
+			'delete' => '1'
+		];
+		return $this->db->update($this->table_kedua, $data, ['id_deskripsi' => $id]);
+	}
+	public function delete_group($id)
+	{
+		$data = [
+			'delete_at' => datetime_now(),
+			'delete' => '1'
+		];
+		return $this->db->update($this->group, $data, ['id_group' => $id]);
 	}
 }

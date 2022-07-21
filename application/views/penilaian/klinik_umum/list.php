@@ -41,6 +41,9 @@
                                                 <th class="text-center" rowspan="2">Tgl Visitasi</th>
                                                 <th class="text-center" rowspan="2">Alamat</th>
                                                 <th class="text-center" width="25%" rowspan="2">Anggota Penilai</th>
+                                                <?php if ($this->session->userdata('level_user') == 'Admin') : ?>
+                                                <th class="text-center" rowspan="2">Post By</th>
+                                                <?php endif; ?>
                                                 <th class="text-center" width="10%" colspan="2">Aksi</th>
                                             </tr>
                                             <tr>
@@ -77,9 +80,11 @@
                                                     <br><?php echo $row->nama_anggota5; ?>
                                                     <br><?php echo $row->nama_anggota6; ?>
                                                 </td>
+                                                <?php if ($this->session->userdata('level_user') == 'Admin') : ?>
+                                                <td class="text-center"><?= $row->nama_user; ?></td>
+                                                <?php endif; ?>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <!-- <button type="button" class="btn btn-danger"><i class="fa-solid fa-ellipsis-stroke-vertical"></i></button> -->
                                                         <button type="button"
                                                             class="btn btn-success btn-sm dropdown-toggle dropdown-hover jedatombol mb-2"
                                                             data-toggle="dropdown"
@@ -98,7 +103,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <a onclick="penilaianConfirm('<?php echo site_url('penilaian_klinik_umum/nilai/' . $row->id_klinik) ?>')"
+                                                    <a onclick="penilaianConfirm('<?php echo site_url('penilaian_klinik_umum/nilai?id=' . $row->id_klinik) ?>')"
                                                         href="#" title="Penilaian <?php echo $row->nama_klinik ?>"
                                                         class="btn btn-primary btn-sm jedatombol mb-2"><i
                                                             class="fa-solid fa-book"></i></a>
@@ -113,6 +118,7 @@
                                                         title="Hapus Data <?php echo $row->nama_klinik ?>"><i
                                                             class=" fa-regular fa-trash-can"></i></a>
                                                 </td>
+
                                             </tr>
                                             <?php $no++;
                                             endforeach;

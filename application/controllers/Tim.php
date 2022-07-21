@@ -118,8 +118,7 @@ class Tim extends CI_Controller
     public function hapus()
     {
         $id = $this->uri->segment(3);
-        $this->db->where('kode_anggota', $id);
-        $this->db->delete('tbl_anggota');
+        $this->Model_tim->delete($id);
         $this->session->set_flashdata(
             'delete',
             '<div class="alert alert-danger alert-dismissible fade show">

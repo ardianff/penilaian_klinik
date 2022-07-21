@@ -117,10 +117,10 @@ class User extends CI_Controller
         $this->form_validation->set_rules(
             'nip_user',
             'NIP',
-            'required|trim|min_length[18]|max_length[20]|xss_clean',
+            'required|trim|min_length[10]|max_length[20]|xss_clean',
             [
                 'required' => 'NIP User Wajib di isi',
-                'min_length' => 'NIP berisi minimal 18 karakter',
+                'min_length' => 'NIP berisi minimal 10 karakter',
                 'max_length' => 'NIP berisi maksimal 20 karakter',
             ]
         );
@@ -201,8 +201,7 @@ class User extends CI_Controller
     public function hapus()
     {
         $id = $this->uri->segment(3);
-        $this->db->where('kode_user', $id);
-        $this->db->delete('tbl_user');
+        $this->Model_auth->delete($id);
         $this->session->set_flashdata(
             'delete',
             '<div class="alert alert-danger alert-dismissible fade show">

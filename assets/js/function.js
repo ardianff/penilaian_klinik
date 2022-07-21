@@ -47,7 +47,7 @@ $(document).ready(function () {
 	$("#example2").DataTable({
 		paging: true,
 		stateSave: true,
-		pageLength: 25,
+		pageLength: 5,
 		lengthMenu: [5, 10, 25, 50, 100, 200, 250, 300, 350],
 		lengthChange: true,
 		searching: true,

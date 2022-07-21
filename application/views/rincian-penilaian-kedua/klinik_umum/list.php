@@ -20,7 +20,7 @@
                     <div class="card">
                         <div class="card-header">
                             &nbsp;<?php echo anchor(
-                                        'rincian_penilaian_klinik_umum_kedua_kedua/add',
+                                        'rincian_penilaian_klinik_umum_kedua/add',
                                         'Input Data Rincian Penilaian',
                                         [
                                             'class' => 'btn btn-success btn-sm',

@@ -51,6 +51,14 @@ class Model_auth extends CI_Model
 	{
 		return $this->db->update($this->table, $data, ['kode_user' => $id]);
 	}
+	public function delete($id)
+	{
+		$data = [
+			'delete_at' => datetime_now(),
+			'delete' => '1'
+		];
+		return $this->db->update($this->table, $data, ['kode_user' => $id]);
+	}
 	function ubah_password()
 	{
 		$data = [
@@ -70,6 +78,6 @@ class Model_auth extends CI_Model
 	}
 	function getAll()
 	{
-		return $this->db->get($this->table)->result();
+		return $this->db->get_where($this->table, ['delete' => '0'])->result();
 	}
 }

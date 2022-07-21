@@ -27,9 +27,17 @@ class Model_tim extends CI_Model
 	{
 		return $this->db->update($this->table, $data, ['kode_anggota' => $id]);
 	}
+	public function delete($id)
+	{
+		$data = [
+			'delete_at' => datetime_now(),
+			'delete' => '1'
+		];
+		return $this->db->update($this->table, $data, ['kode_anggota' => $id]);
+	}
 	function getAll()
 	{
-		return $this->db->get($this->table)->result();
+		return $this->db->get_where($this->table, ['delete' => '0'])->result();
 	}
 	function getById($id)
 	{
