@@ -15,8 +15,8 @@
             <div class="input-group mb-3">
                 <input type="text"
                     class="form-control check <?php if (form_error('username') == TRUE) : ?> is-invalid <?php endif ?>"
-                    placeholder="Username" name="username" <?php if ($this->session->flashdata('user') == TRUE) : ?>
-                    value="<?= $this->session->flashdata('user'); ?>" <?php else : ?>
+                    placeholder="Username" name="username" <?php if ($this->session->flashdata('username') == TRUE) : ?>
+                    value="<?= $this->session->flashdata('username'); ?>" <?php else : ?>
                     value="<?= set_value('username'); ?>" <?php endif; ?>>
                 <div class="input-group-append">
                     <div class="input-group-text">
