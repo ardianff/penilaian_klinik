@@ -66,6 +66,7 @@ class Model_penilaian_pratama extends CI_Model
             ->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan = tbl_klinik.id_kelurahan_klinik')
             ->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_klinik.id_kecamatan_klinik')
             ->order_by('status_penilaian', 'DESC')
+            ->order_by('tgl_visitasi', 'DESC')
             ->order_by('id_klinik', 'DESC')
             ->where_in('kemampuan_pelayanan', array('Pratama Umum', 'Utama Umum', 'Pratama Kecantikan', 'Utama Kecantikan'))
             ->where('tbl_klinik.delete', '0');
@@ -128,7 +129,7 @@ class Model_penilaian_pratama extends CI_Model
     {
         $query = $this->db->select('pfs.id_penilaian,pr.id_rincian_penilaian, pr.rincian_penilaian, pr.keterangan_penilaian, pfs.no_penilaian, pfs.jawab_hasil, pfs.jawab_hasil_verif, pfs.catatan_hasil_penilaian')
             ->join('tbl_penilaian_pratama_form_satu as pfs', 'pfs.id_rincian_penilaian = pr.id_rincian_penilaian', 'left')
-            ->get_where('tbl_rincian_penilaian_pratama pr', ['pfs.id_klinik' => $id_klinik])
+            ->get_where('tbl_rincian_penilaian_pratama pr', ['pfs.id_klinik' => $id_klinik, 'pr.delete' => '0'])
             ->result();
         return $query;
     }
@@ -140,7 +141,7 @@ class Model_penilaian_pratama extends CI_Model
             ->join('tbl_kelurahan as kel', 'kel.id_kelurahan = k.id_kelurahan_klinik')
             ->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik', 'left')
             ->join('tbl_penilaian_pratama_form_satu as pfs', 'pfs.id_klinik = p.id_klinik', 'left')
-            ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
+            ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik, 'k.delete' => '0'])
             ->row_array();
         return $query;
     }
@@ -406,5 +407,103 @@ class Model_penilaian_pratama extends CI_Model
             }
             return $hasil;
         }
+    }
+    public function penilaiansatu($id_klinik)
+    {
+        $query = $this->db
+            ->join('tbl_rincian_penilaian_pratama', 'tbl_rincian_penilaian_pratama.id_rincian_penilaian = tbl_penilaian_pratama_form_satu.id_rincian_penilaian')
+            ->get_where('tbl_penilaian_pratama_form_satu', array('id_klinik' => $id_klinik))
+            ->result();
+        return $query;
+    }
+    public function peralatanklinik($id_klinik)
+    {
+        $query = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_pratama,pp.jumlah_minimal_penilaian_pratama,pp.satuan_penilaian_pratama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+            ->join('tbl_group_pratama gp', ' gp.id_group = pp.id_group')
+            ->join('tbl_penilaian_pratama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+            ->get_where('tbl_deskripsi_penilaian_pratama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '1'))->result();
+        return $query;
+    }
+    public function bahanhabis($id_klinik)
+    {
+        $query = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_pratama,pp.jumlah_minimal_penilaian_pratama,pp.satuan_penilaian_pratama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+            ->join('tbl_group_pratama gp', ' gp.id_group = pp.id_group')
+            ->join('tbl_penilaian_pratama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+            ->get_where('tbl_deskripsi_penilaian_pratama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '2'))->result();
+        return $query;
+    }
+    public function perlengkapan($id_klinik)
+    {
+        $query = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_pratama,pp.jumlah_minimal_penilaian_pratama,pp.satuan_penilaian_pratama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+            ->join('tbl_group_pratama gp', ' gp.id_group = pp.id_group')
+            ->join('tbl_penilaian_pratama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+            ->get_where('tbl_deskripsi_penilaian_pratama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '3'))->result();
+        return $query;
+    }
+    public function meubelair($id_klinik)
+    {
+        $query = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_pratama,pp.jumlah_minimal_penilaian_pratama,pp.satuan_penilaian_pratama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+            ->join('tbl_group_pratama gp', ' gp.id_group = pp.id_group')
+            ->join('tbl_penilaian_pratama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+            ->get_where('tbl_deskripsi_penilaian_pratama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '4'))->result();
+        return $query;
+    }
+    public function pencatatan($id_klinik)
+    {
+        $query = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_pratama,pp.jumlah_minimal_penilaian_pratama,pp.satuan_penilaian_pratama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+            ->join('tbl_group_pratama gp', ' gp.id_group = pp.id_group')
+            ->join('tbl_penilaian_pratama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+            ->get_where('tbl_deskripsi_penilaian_pratama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '5'))->result();
+
+        return $query;
+    }
+    public function ruangasi($id_klinik)
+    {
+        $query = $this->db->select('pp.id_deskripsi, pp.id_group,pp.kriteria_penilaian_pratama,pp.jumlah_minimal_penilaian_pratama,pp.satuan_penilaian_pratama,gp.group_name, pfk.no_penilaian,pfk.id_klinik,pfk.hasil_penilaian,pfk.jumlah_ketersediaan,pfk.satuan_penilaian,pfk.catatan_penilaian')
+            ->join('tbl_group_pratama gp', ' gp.id_group = pp.id_group')
+            ->join('tbl_penilaian_pratama_form_kedua pfk', 'pfk.id_deskripsi = pp.id_deskripsi')
+            ->get_where('tbl_deskripsi_penilaian_pratama pp', array('pfk.id_klinik' => $id_klinik, 'gp.id_group' => '6'))->result();
+        return $query;
+    }
+    public function penilaian($id_klinik)
+    {
+        $query = $this->db
+            ->join('tbl_penilaian as p', 'p.id_klinik = k.id_klinik')
+            ->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=k.id_kecamatan_klinik')
+            ->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=k.id_kelurahan_klinik')
+            ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
+            ->row_array();
+        return $query;
+    }
+    public function cek_data($id_klinik)
+    {
+        $query = $this->db
+            ->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan=tbl_klinik.id_kecamatan_klinik')
+            ->join('tbl_kelurahan', 'tbl_kelurahan.id_kelurahan=tbl_klinik.id_kelurahan_klinik')
+            ->get_where('tbl_klinik', ['id_klinik' => $id_klinik])
+            ->row_array();
+        return $query;
+    }
+    public function print_klinik($id_klinik)
+    {
+        $query = $this->db->select('k.id_klinik,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik,
+        pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik,pfk.ttd_perwakilan_klinik,pfk.ttd_penilai1,
+        pfk.ttd_penilai2,pfk.ttd_penilai3,pfk.ttd_penilai4,pfk.ttd_penilai5,pfk.ttd_penilai6')
+            ->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
+            ->join('tbl_penilaian_pratama_form_ketiga as pfk', 'pfk.id_klinik = k.id_klinik', 'left')
+            ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
+            ->row_array();
+        return $query;
+    }
+    public function export_pdf_klinik($id_klinik)
+    {
+        $query = $this->db->select('k.id_klinik,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik,
+        pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik, pfk.ttd_perwakilan_klinik,pfk.ttd_penilai1
+        ,pfk.ttd_penilai2,pfk.ttd_penilai3,pfk.ttd_penilai4,pfk.ttd_penilai5,pfk.ttd_penilai6')
+            ->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
+            ->join('tbl_penilaian_pratama_form_ketiga as pfk', 'pfk.id_klinik = k.id_klinik', 'left')
+            ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
+            ->row_array();
+        return $query;
     }
 }

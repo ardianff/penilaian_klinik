@@ -61,11 +61,11 @@
 
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <?php echo form_open_multipart('penilaian_klinik_umum/prosesnilaiketiga?id=' . $klinik['id_klinik'], 'class="form-horizontal"');                        ?>
+                        <?php echo form_open_multipart('penilaian_klinik_umum/prosesnilaiketiga/' . $klinik['id_klinik'], 'class="form-horizontal"');                        ?>
                         <?php if ($klinik['usulan_rekomendasi'] == null && $klinik['uraian_penilaian'] == null && $klinik['tindak_lanjut_klinik'] == null && $klinik['nama_perwakilan_pihak_klinik'] == null && $klinik['jabatan_perwakilan_pihak_klinik'] == null) : ?>
                         <input type="hidden" name="form" value="add" />
                         <div class="card-body">
-                            <?php $this->session->flashdata('simpan') ?>
+                            <?php $this->session->flashdata('save') ?>
                             <div class="form-group row">
                                 <label for="usulan_rekomendasi" class="col-sm-2 col-form-label">Usulan rekomendasi<span
                                         style="color:red">*</span></label>
@@ -513,7 +513,7 @@
                             <div class="card-footer">
                                 <button type="submit" name="submit" class="btn btn-success text-center">Simpan</button>
                                 <a onclick="javascript:history.go(-1)" class="btn btn-warning">Kembali</a>
-                                <?php echo anchor('penilaian_klinik_umum/nilai_kedua?id=' . $klinik['id_klinik'], 'Kembali', ['class' => 'btn btn-warning', 'style' => 'visibility:hidden']); ?>
+                                <?php echo anchor('penilaian_klinik_umum/nilai_kedua/' . $klinik['id_klinik'], 'Kembali', ['class' => 'btn btn-warning', 'style' => 'visibility:hidden']); ?>
                             </div>
                         </div>
                         <!-- /.card-footer -->

@@ -175,7 +175,7 @@
                                 <label for="Nama_Anggota" class="col-sm-3 col-form-label">Nama Klinik <span
                                         style="color:red">*</span></label>
                                 <div class="col-sm-6">
-                                    <input type="name"
+                                    <input type="text"
                                         class="form-control <?php if (form_error('nama_klinik') == true) : ?>is-invalid <?php endif ?>"
                                         name="nama_klinik" placeholder="Nama Klinik"
                                         value="<?= set_value('nama_klinik', $id_klinik['nama_klinik']); ?>">
@@ -302,11 +302,13 @@
                             </div>
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-                            <?php echo anchor('penilaian_klinik_umum', 'Kembali', [
-                                'class' => 'btn btn-warning',
-                            ]); ?>
+                        <div class="text-center">
+                            <div class="card-footer">
+                                <button type="submit" name="submit" class="btn btn-success">Simpan</button>
+                                <?php echo anchor('penilaian_klinik_umum', 'Kembali', [
+                                    'class' => 'btn btn-warning',
+                                ]); ?>
+                            </div>
                         </div>
                         <!-- /.card-footer -->
                         <?php echo form_close(); ?>

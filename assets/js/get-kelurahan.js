@@ -9,7 +9,6 @@ $("#id_kecamatan").change(function () {
 		async: true,
 		dataType: "json",
 		success: function (data) {
-			console.log(data);
 			var html = "";
 			var i;
 			for (i = 0; i < data.length; i++) {
@@ -39,6 +38,7 @@ $(".kecamatan").change(function () {
 		async: true,
 		dataType: "json",
 		success: function (data) {
+			console.log(data);
 			$('select[name="nama_kelurahan"]').empty();
 			$.each(data, function (key, value) {
 				if (id_kelurahan == value.id_kelurahan) {
@@ -77,6 +77,7 @@ function get_data_edit() {
 		async: true,
 		dataType: "json",
 		success: function (data) {
+			console.log(data);
 			$.each(data, function (i, item) {
 				$('[name="id_klinik"]').val(data[i].id_klinik);
 				$('[name="nama_kecamatan"]')

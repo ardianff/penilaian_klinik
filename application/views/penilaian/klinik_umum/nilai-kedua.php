@@ -12,7 +12,7 @@
     <!-- Main content -->
     <?php
     echo form_open(
-        'penilaian_klinik_umum/prosesnilaikedua?id=' . $klinik['id_klinik'],
+        'penilaian_klinik_umum/prosesnilaikedua/' . $klinik['id_klinik'],
         'class="form-horizontal"'
     );
     ?>
@@ -151,7 +151,7 @@
             <div class="card-footer">
                 <button type="submit" name="submit" class="btn btn-success text-center">Lanjut</button>
                 <a onclick="javascript:history.go(-1)" class="btn btn-warning">Kembali</a>
-                <?php echo anchor('penilaian_klinik_umum/nilai?id=' . $klinik['id_klinik'], 'Kembali', ['class' => 'btn btn-warning', 'style' => 'visibility:hidden']); ?>
+                <?php echo anchor('penilaian_klinik_umum/nilai/' . $klinik['id_klinik'], 'Kembali', ['class' => 'btn btn-warning', 'style' => 'visibility:hidden']); ?>
             </div>
         </div>
 

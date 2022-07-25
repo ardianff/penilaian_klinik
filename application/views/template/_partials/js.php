@@ -52,10 +52,10 @@
 <script>
 var base_url = "<?= base_url(); ?>"
 <?php
-    $url_satu = base_url('penilaian_klinik_umum/edit/' . $klinik = $this->uri->segment(3));
-    $url_dua = base_url('penilaian_klinik_gigi/edit/' . $klinik = $this->uri->segment(3));
-    $url_tiga = base_url('penilaian_klinik_umum/update/');
-    $url_empat = base_url('penilaian_klinik_gigi/update/');
+    $url_satu = base_url('penilaian_klinik_umum/edit?id=' . $klinik = $this->uri->segment(3));
+    $url_dua = base_url('penilaian_klinik_gigi/edit?id=' . $klinik = $this->uri->segment(3));
+    $url_tiga = base_url('penilaian_klinik_umum/update?id=' . $klinik = $this->uri->segment(3));
+    $url_empat = base_url('penilaian_klinik_gigi/update?id=' . $klinik = $this->uri->segment(3));
     $url_lima = base_url('laporan_penilaian/cek/' . $klinik = $this->uri->segment(3));
     $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     if ($url_satu == $actual_link || $url_dua == $actual_link || $url_tiga == $actual_link || $url_empat == $actual_link || $url_lima == $actual_link) {

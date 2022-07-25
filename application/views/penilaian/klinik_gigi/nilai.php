@@ -13,12 +13,9 @@
     <!-- Main content -->
     <?php
     echo form_open(
-        'penilaian_klinik_gigi/nilai',
+        'penilaian_klinik_gigi/prosesnilai/' . $klinik['id_klinik'],
         'class="form-horizontal"'
     );
-    echo form_hidden('no_penilaian', $klinik['no_penilaian']);
-    echo form_hidden('id_klinik', $klinik['id_klinik']);
-    echo form_hidden('nama_klinik', $klinik['nama_klinik']);
     ?>
     <section class="content">
         <div class="container-fluid">
@@ -153,10 +150,9 @@
         <div class="text-center">
             <div class="card-footer">
                 <button type="submit" name="submit" title="Lanjut Ke Halaman Berikutnya"
-                    class="btn btn-success">Next</button>
-                <?php echo anchor('penilaian_klinik_gigi', 'Kembali', [
-                    'class' => 'btn btn-warning',
-                ]); ?>
+                    class="btn btn-success">Lanjut</button>
+                <a onclick="javascript:history.go(-1)" class="btn btn-warning">Kembali</a>
+                <?php echo anchor('penilaian_klinik_gigi', 'Kembali', ['class' => 'btn btn-warning', 'style' => 'visibility:hidden']); ?>
             </div>
         </div>
 

@@ -998,6 +998,14 @@
             </table>
         </li>
     </ol>
+    <footer style="margin-top:40px">
+        <!-- To the right -->
+        <div class="footer-print">
+            <i style="font-size:10px;margin-top:40px"><b>Print on <?= basename(getcwd()); ?> :
+                    <?php date_default_timezone_set('Asia/Jakarta');
+                    echo date('d-m-Y H:i:s') ?></i></b>
+        </div>
+    </footer>
     <script>
     window.print();
     </script>

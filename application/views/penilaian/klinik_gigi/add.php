@@ -303,11 +303,13 @@
                             </div>
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-                            <?php echo anchor('penilaian_klinik_gigi', 'Kembali', [
-                                'class' => 'btn btn-warning',
-                            ]); ?>
+                        <div class="text-center">
+                            <div class="card-footer">
+                                <button type="submit" name="submit" class="btn btn-success">Simpan</button>
+                                <?php echo anchor('penilaian_klinik_gigi', 'Kembali', [
+                                    'class' => 'btn btn-warning',
+                                ]); ?>
+                            </div>
                         </div>
                         <!-- /.card-footer -->
                         <?php echo form_close(); ?>

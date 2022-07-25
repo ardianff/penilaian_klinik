@@ -33,7 +33,7 @@ class Auth extends CI_Controller
             $username = $this->input->post('username', true);
             $password = $this->input->post('password', true);
 
-            $user = $this->db->get_where('tbl_user', ['username' => $username]);
+            $user = $this->db->get_where('tbl_user', ['BINARY (username) =' => $username]);
             if ($user->num_rows() > 0) {
                 $hasil = $user->row();
                 if (password_verify($password, $hasil->password)) {

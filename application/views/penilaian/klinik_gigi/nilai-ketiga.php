@@ -61,7 +61,7 @@
 
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <?php echo form_open_multipart('penilaian_klinik_gigi/nilai_ketiga', 'class="form-horizontal"');
+                        <?php echo form_open_multipart('penilaian_klinik_gigi/prosesnilaiketiga/' . $klinik['id_klinik'], 'class="form-horizontal"');
                         echo form_hidden('no_penilaian', $klinik['no_penilaian']);
                         echo form_hidden('id_klinik', $klinik['id_klinik']);
                         echo form_hidden('nama_klinik', $klinik['nama_klinik']);
@@ -511,10 +511,10 @@
                         <!-- /.card-body -->
                         <div class=" text-center">
                             <div class="card-footer">
-                                <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-                                <?php echo anchor('penilaian_klinik_gigi/nilai_kedua/' . $klinik['id_klinik'], 'Kembali', [
-                                    'class' => 'btn btn-warning',
-                                ]); ?>
+                                <button type="submit" name="submit" title="Lanjut Ke Halaman Berikutnya"
+                                    class="btn btn-success">Simpan</button>
+                                <a onclick="javascript:history.go(-1)" class="btn btn-warning">Kembali</a>
+                                <?php echo anchor('penilaian_klinik_gigi/nilai_kedua/' . $klinik['id_klinik'], 'Kembali', ['class' => 'btn btn-warning', 'style' => 'visibility:hidden']); ?>
                             </div>
                         </div>
                         <!-- /.card-footer -->

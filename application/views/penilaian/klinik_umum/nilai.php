@@ -12,7 +12,7 @@
 
     <!-- Main content -->
     <?= form_open(
-        'penilaian_klinik_umum/prosesnilai?id=' . $klinik['id_klinik'],
+        'penilaian_klinik_umum/prosesnilai/' . $klinik['id_klinik'],
         'class="form-horizontal"'
     );
     ?>

@@ -103,7 +103,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <a onclick="penilaianConfirm('<?php echo site_url('penilaian_klinik_umum/nilai?id=' . $row->id_klinik) ?>')"
+                                                    <a onclick="penilaianConfirm('<?php echo site_url('penilaian_klinik_umum/nilai/' . $row->id_klinik) ?>')"
                                                         href="#" title="Penilaian <?php echo $row->nama_klinik ?>"
                                                         class="btn btn-primary btn-sm jedatombol mb-2"><i
                                                             class="fa-solid fa-book"></i></a>
