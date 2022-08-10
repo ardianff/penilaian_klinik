@@ -597,6 +597,7 @@ class Penilaian_klinik_gigi extends CI_Controller
                         $imagettd5 = $this->input->post('old_ttd_penilai5');
                         $imagettd6 = $this->input->post('old_ttd_penilai6');
                         $this->Model_penilaian_utama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4, $imagettd5, $imagettd6, $id_klinik, $no_penilaian);
+                        $this->Model_penilaian_utama->update_klinik_for_penilaian()($id_klinik);
                         $this->session->set_flashdata(
                             'simpan',
                             '<div class="alert alert-warning alert-dismissible fade show">
@@ -686,6 +687,7 @@ class Penilaian_klinik_gigi extends CI_Controller
                         $imagettd6 = str_replace('./assets/img/uploads/ttd/', '', $filettd6);
 
                         $this->Model_penilaian_utama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4, $imagettd5, $imagettd6, $id_klinik, $no_penilaian);
+                        $this->Model_penilaian_utama->update_klinik_for_penilaian($id_klinik);
                         $this->session->set_flashdata(
                             'simpan',
                             '<div class="alert alert-warning alert-dismissible fade show">
