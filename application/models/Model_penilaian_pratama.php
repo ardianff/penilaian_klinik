@@ -351,9 +351,13 @@ class Model_penilaian_pratama extends CI_Model
             $i++;
         }
         $this->db->insert_batch('tbl_penilaian_pratama_form_satu', $data);
+<<<<<<< HEAD
     }
     public function update_penilaian_klinik($id_klinik)
     {
+=======
+
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
         $update = ['status_penilaian' => 'Sedang'];
         $id_klinik = $id_klinik;
         $this->db->where('id_klinik', $id_klinik);

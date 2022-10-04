@@ -591,8 +591,13 @@ class Penilaian_klinik_umum extends CI_Controller
     }
     function prosesnilaiketiga()
     {
+<<<<<<< HEAD
         $id_klinik = $this->input->get('id');
         // $id_klinik = $this->uri->segment(3);
+=======
+        // $id_klinik = $this->input->get('id');
+        $id_klinik = $this->uri->segment(3);
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
         $klinik = $this->Model_penilaian_pratama->get_klinikwithpenilaiantiga(
             $id_klinik
         );
@@ -743,9 +748,13 @@ class Penilaian_klinik_umum extends CI_Controller
                         '',
                         $filettd6
                     );
+<<<<<<< HEAD
                     // $this->Model_penilaian_pratama->update_penilaian_klinik(
                     //     $id_klinik
                     // );
+=======
+
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
                     $this->Model_penilaian_pratama->simpan_penilaian_pratama_ketiga(
                         $uploadData,
                         $image,
@@ -758,8 +767,11 @@ class Penilaian_klinik_umum extends CI_Controller
                         $id_klinik,
                         $no_penilaian
                     );
+<<<<<<< HEAD
                     // print_r($this->db->last_query());
                     // die();
+=======
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
                     $this->session->set_flashdata(
                         'simpan',
                         '<div class="alert alert-secondary alert-dismissible fade show">
@@ -774,7 +786,10 @@ class Penilaian_klinik_umum extends CI_Controller
                     redirect('penilaian_klinik_umum');
                 }
             } elseif ($_POST['form'] == 'edit') {
-                if (isset($_POST['submit']) && !empty($_FILES['upload_Files']['name'])) {
+                if (
+                    isset($_POST['submit']) &&
+                    !empty($_FILES['upload_Files']['name'])
+                ) {
                     $nama_klinik = $klinik['nama_klinik'];
                     $data = [];
                     $filesCount = count($_FILES['upload_Files']['name']);
@@ -818,7 +833,19 @@ class Penilaian_klinik_umum extends CI_Controller
                     $imgttd5 = $this->input->post('ttd-5');
                     $imgttd6 = $this->input->post('ttd-6');
 
+<<<<<<< HEAD
                     if ($img == '' or $imgttd1 == '' or $imgttd2 == '' or $imgttd3 == '' or $imgttd4 == '' or $imgttd5 == '' or $imgttd6 == '') {
+=======
+                    if (
+                        $img == '' or
+                        $imgttd1 == '' or
+                        $imgttd2 == '' or
+                        $imgttd3 == '' or
+                        $imgttd4 == '' or
+                        $imgttd5 == '' or
+                        $imgttd6 == ''
+                    ) {
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
                         $image = $this->input->post('old_ttd_perwakilan');
                         $imagettd1 = $this->input->post('old_ttd_penilai1');
                         $imagettd2 = $this->input->post('old_ttd_penilai2');
