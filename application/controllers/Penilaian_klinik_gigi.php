@@ -319,6 +319,7 @@ class Penilaian_klinik_gigi extends CI_Controller
                 $data['rincian'] = $this->Model_penilaian_utama->get_rincian_penilaian();
                 $data['cek_hasil'] = $this->Model_penilaian_utama->cek_hasil_penilaiansatu($id_klinik);
                 $data['klinik'] = $this->Model_penilaian_utama->get_klinikwithpenilaiansatu($id_klinik);
+                // print_r($this->db->last_query());
                 $this->template->load('template', 'penilaian/klinik_gigi/nilai', $data);
             } else {
                 show_404();
@@ -537,6 +538,7 @@ class Penilaian_klinik_gigi extends CI_Controller
                     $imagettd6 = str_replace('./assets/img/uploads/ttd/', '', $filettd6);
 
                     $this->Model_penilaian_utama->simpan_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4, $imagettd5, $imagettd6, $id_klinik, $no_penilaian);
+
                     $this->session->set_flashdata(
                         'simpan',
                         '<div class="alert alert-secondary alert-dismissible fade show">
@@ -597,6 +599,7 @@ class Penilaian_klinik_gigi extends CI_Controller
                         $imagettd5 = $this->input->post('old_ttd_penilai5');
                         $imagettd6 = $this->input->post('old_ttd_penilai6');
                         $this->Model_penilaian_utama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4, $imagettd5, $imagettd6, $id_klinik, $no_penilaian);
+                        $this->Model_penilaian_utama->update_klinik_for_penilaian($id_klinik);
                         $this->session->set_flashdata(
                             'simpan',
                             '<div class="alert alert-warning alert-dismissible fade show">
@@ -686,6 +689,7 @@ class Penilaian_klinik_gigi extends CI_Controller
                         $imagettd6 = str_replace('./assets/img/uploads/ttd/', '', $filettd6);
 
                         $this->Model_penilaian_utama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4, $imagettd5, $imagettd6, $id_klinik, $no_penilaian);
+                        $this->Model_penilaian_utama->update_klinik_for_penilaian($id_klinik);
                         $this->session->set_flashdata(
                             'simpan',
                             '<div class="alert alert-warning alert-dismissible fade show">
