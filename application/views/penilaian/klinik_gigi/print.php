@@ -843,7 +843,9 @@
                     <tr>
                         <td><img class="rounded mx-auto d-block"
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_perwakilan_klinik'] ?>"
-                                width="120px" height="120px"></td>
+                                width="120px" height="120px"
+                                onError="this.onerror=null;this.src='<?= base_url() ?>assets/img/uploads/ttd/default.jpg';">
+                        </td>
                     </tr>
                     <tr>
                         <td width="auto" class="text-center">
@@ -960,7 +962,9 @@
                         <td></td>
                         <td class="text-center"><img
                                 src="<?php echo base_url(); ?>assets/img/uploads/ttd/<?php echo $klinik['ttd_penilai3'] ?>"
-                                width="120px" height="120px"></td>
+                                width="120px" height="120px"
+                                onError="this.onerror=null;this.src='<?= base_url() ?>assets/img/uploads/ttd/default.jpg';">
+                        </td>
                     </tr>
                     <tr>
                         <td></td>

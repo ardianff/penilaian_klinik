@@ -212,7 +212,7 @@ class Model_penilaian_utama extends CI_Model
             )
             ->get_where('tbl_klinik k', [
                 'k.id_klinik' => $id_klinik,
-                'pfs.delete' => '0',
+                'k.delete' => '0',
             ])
             ->row_array();
         return $query;

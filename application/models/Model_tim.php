@@ -3,14 +3,9 @@
 class Model_tim extends CI_Model
 {
 	private $table = 'tbl_anggota';
-	function add()
+	function add($value)
 	{
-		$data = [
-			'kode_anggota' => kode_anggota(),
-			'nama_anggota' => $this->input->post('nama_anggota'),
-			'nip_anggota' => $this->input->post('nip_anggota'),
-		];
-		$this->db->insert('tbl_anggota', $data);
+		$this->db->insert('tbl_anggota', $value);
 	}
 
 	// function update()

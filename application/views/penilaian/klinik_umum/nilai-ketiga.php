@@ -61,7 +61,7 @@
 
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <?php echo form_open_multipart('penilaian_klinik_umum/prosesnilaiketiga/' . $klinik['id_klinik'], 'class="form-horizontal"');                        ?>
+                        <?php echo form_open_multipart('penilaian_klinik_umum/prosesnilaiketiga?id=' . $klinik['id_klinik'], 'class="form-horizontal"');                        ?>
                         <?php if ($klinik['usulan_rekomendasi'] == null && $klinik['uraian_penilaian'] == null && $klinik['tindak_lanjut_klinik'] == null && $klinik['nama_perwakilan_pihak_klinik'] == null && $klinik['jabatan_perwakilan_pihak_klinik'] == null) : ?>
                         <input type="hidden" name="form" value="add" />
                         <div class="card-body">
