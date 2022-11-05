@@ -283,6 +283,7 @@ class Model_penilaian_pratama extends CI_Model
 				'k.id_klinik,k.nama_anggota1,k.nama_anggota2,k.nama_anggota3,k.nama_anggota4,k.nama_anggota5,k.nama_anggota6,k.nama_klinik,k.kemampuan_pelayanan, k.jenis_pelayanan_klinik, k.alamat_klinik, kec.nama_kecamatan, kel.nama_kelurahan, kel.kode_pos_kelurahan,
 		pfk.no_penilaian, pfk.usulan_rekomendasi, pfk.uraian_penilaian, pfk.tindak_lanjut_klinik,pfk.update_at, pfk.nama_perwakilan_pihak_klinik,pfk.jabatan_perwakilan_pihak_klinik,
 		p.no_penilaian,pfk.ttd_perwakilan_klinik,pfk.ttd_penilai1,pfk.ttd_penilai2,pfk.ttd_penilai3,pfk.ttd_penilai4,pfk.ttd_penilai5,pfk.ttd_penilai6,pfk.foto_klinik'
+<<<<<<< HEAD
 			)
 			->join(
 				'tbl_kecamatan kec',
@@ -411,6 +412,124 @@ class Model_penilaian_pratama extends CI_Model
 		$satuan_penilaian = $_POST['satuan_nilai'];
 		$catatan_penilaian = $_POST['catatan_penilaian'];
 		$data = [];
+=======
+            )
+            ->join(
+                'tbl_kecamatan kec',
+                'kec.id_kecamatan=k.id_kecamatan_klinik'
+            )
+            ->join(
+                'tbl_kelurahan kel',
+                'kel.id_kelurahan=k.id_kelurahan_klinik'
+            )
+            ->join('tbl_penilaian p', 'p.id_klinik=k.id_klinik')
+            ->join(
+                'tbl_penilaian_pratama_form_ketiga as pfk',
+                'pfk.id_klinik = k.id_klinik',
+                'left'
+            )
+            ->get_where('tbl_klinik k', ['k.id_klinik' => $id_klinik])
+            ->row_array();
+        return $query;
+    }
+    public function getById($id)
+    {
+        return $this->db
+            ->get_where('tbl_klinik', ['no_penilaian' => $id])
+            ->row();
+    }
+    public function get_data_kecamatan()
+    {
+        $query = $this->db
+            ->order_by('nama_kecamatan', 'ASC')
+            ->get('tbl_kecamatan')
+            ->result();
+        return $query;
+    }
+    public function get_klinik_by_id($id_klinik)
+    {
+        $query = $this->db->get_where('tbl_klinik', [
+            'id_klinik' => $id_klinik,
+        ]);
+        return $query;
+    }
+    public function get_data_kelurahan($id_kecamatan)
+    {
+        $query = $this->db->query(
+            "SELECT * FROM tbl_kelurahan WHERE tbl_kelurahan.id_kecamatan = '$id_kecamatan' ORDER BY tbl_kelurahan.nama_kelurahan ASC"
+        );
+        return $query->result();
+    }
+    public function get_data_by_id($id_klinik)
+    {
+        $query = $this->db->get_where('tbl_klinik', [
+            'id_klinik' => $id_klinik,
+        ]);
+        return $query;
+    }
+    public function simpan_penilaian_pratama_pertama($id_klinik, $no_penilaian)
+    {
+        $rincian = $_POST['rincian'];
+        $no_penilaian = $no_penilaian;
+        $id_klinik = $id_klinik;
+        $jawab_hasil = $_POST['hasil'];
+        $jawab_hasil_verif = $_POST['hasil_verifikasi'];
+        $catatan_penilaian = $_POST['catatan_penilaian'];
+        $data = [];
+        $i = 1;
+        foreach ($rincian as $rinci) {
+            array_push($data, [
+                'id_rincian_penilaian' => $rinci,
+                'id_klinik' => $id_klinik,
+                'no_penilaian' => $no_penilaian,
+                'catatan_hasil_penilaian' => $catatan_penilaian[$i],
+                'jawab_hasil' => $jawab_hasil[$i],
+                'jawab_hasil_verif' => $jawab_hasil_verif[$i],
+            ]);
+            $i++;
+        }
+        $this->db->insert_batch('tbl_penilaian_pratama_form_satu', $data);
+<<<<<<< HEAD
+    }
+    public function update_penilaian_klinik($id_klinik)
+    {
+=======
+
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
+        $update = ['status_penilaian' => 'Sedang'];
+        $id_klinik = $id_klinik;
+        $this->db->where('id_klinik', $id_klinik);
+        $this->db->update('tbl_klinik', $update);
+    }
+    public function update_penilaian_pratama_pertama($id_klinik, $no_penilaian)
+    {
+        $rincian = $_POST['rincian'];
+        $no_penilaian = $no_penilaian;
+        $id_klinik = $id_klinik;
+        $jawab_hasil = $_POST['hasil'];
+        $jawab_hasil_verif = $_POST['hasil_verifikasi'];
+        $catatan_penilaian = $_POST['catatan_penilaian'];
+        $data = [];
+        $i = 1;
+        foreach ($rincian as $rinci) {
+            $data = [
+                'id_rincian_penilaian' => $rinci,
+                'id_klinik' => $id_klinik,
+                'no_penilaian' => $no_penilaian,
+                'catatan_hasil_penilaian' => $catatan_penilaian[$i],
+                'jawab_hasil' => $jawab_hasil[$i],
+                'jawab_hasil_verif' => $jawab_hasil_verif[$i],
+            ];
+            $i++;
+            $array = [
+                'id_klinik =' => $id_klinik,
+                'no_penilaian =' => $no_penilaian,
+                'id_rincian_penilaian =' => $rinci,
+            ];
+            $this->db->where($array);
+            $this->db->update('tbl_penilaian_pratama_form_satu', $data);
+        }
+>>>>>>> 9c83f1c6dd9e6ac7ac191352efba175369100852
 
 		$i = 1;
 		foreach ($kriteria as $kt) {

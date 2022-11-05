@@ -212,7 +212,15 @@ class Model_penilaian_utama extends CI_Model
             )
             ->get_where('tbl_klinik k', [
                 'k.id_klinik' => $id_klinik,
+<<<<<<< HEAD
                 'k.delete' => '0',
+=======
+<<<<<<< HEAD
+                'k.delete' => '0',
+=======
+                'pfs.delete' => '0',
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
+>>>>>>> 9c83f1c6dd9e6ac7ac191352efba175369100852
             ])
             ->row_array();
         return $query;

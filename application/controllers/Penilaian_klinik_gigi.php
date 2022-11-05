@@ -599,7 +599,15 @@ class Penilaian_klinik_gigi extends CI_Controller
                         $imagettd5 = $this->input->post('old_ttd_penilai5');
                         $imagettd6 = $this->input->post('old_ttd_penilai6');
                         $this->Model_penilaian_utama->update_penilaian_utama_ketiga($uploadData, $image, $imagettd1, $imagettd2, $imagettd3, $imagettd4, $imagettd5, $imagettd6, $id_klinik, $no_penilaian);
+<<<<<<< HEAD
                         $this->Model_penilaian_utama->update_klinik_for_penilaian($id_klinik);
+=======
+<<<<<<< HEAD
+                        $this->Model_penilaian_utama->update_klinik_for_penilaian($id_klinik);
+=======
+                        $this->Model_penilaian_utama->update_klinik_for_penilaian()($id_klinik);
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
+>>>>>>> 9c83f1c6dd9e6ac7ac191352efba175369100852
                         $this->session->set_flashdata(
                             'simpan',
                             '<div class="alert alert-warning alert-dismissible fade show">

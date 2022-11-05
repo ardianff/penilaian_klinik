@@ -560,6 +560,7 @@ class Penilaian_klinik_umum extends CI_Controller
 		}
 	}
 
+<<<<<<< HEAD
 	public function nilai_ketiga()
 	{
 		// $id_klinik = $this->input->get('id');
@@ -645,6 +646,98 @@ class Penilaian_klinik_umum extends CI_Controller
 					$imgttd4 = $this->input->post('ttd-4');
 					$imgttd5 = $this->input->post('ttd-5');
 					$imgttd6 = $this->input->post('ttd-6');
+=======
+    public function nilai_ketiga()
+    {
+        // $id_klinik = $this->input->get('id');
+        $id_klinik = $this->uri->segment(3);
+        $klinik = $this->db
+            ->where_in('kemampuan_pelayanan', [
+                'Pratama Umum',
+                'Utama Umum',
+                'Pratama Kecantikan',
+                'Utama Kecantikan',
+            ])
+            ->get_where('tbl_klinik', ['id_klinik =' => $id_klinik]);
+        if ($klinik->num_rows() > 0) {
+            $cek = $klinik->row();
+            if ($cek->delete != 1) {
+                $data['title'] =
+                    'Form Ketiga Penilaian Klinik Pratama/Utama Umum';
+                $data['klinik'] = $this->Model_penilaian_pratama->get_klinikwithpenilaiantiga(
+                    $id_klinik
+                );
+                $this->template->load(
+                    'template',
+                    'penilaian/klinik_umum/nilai-ketiga',
+                    $data
+                );
+            } else {
+                show_404();
+            }
+        } else {
+            show_404();
+        }
+    }
+    function prosesnilaiketiga()
+    {
+<<<<<<< HEAD
+        $id_klinik = $this->input->get('id');
+        // $id_klinik = $this->uri->segment(3);
+=======
+        // $id_klinik = $this->input->get('id');
+        $id_klinik = $this->uri->segment(3);
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
+        $klinik = $this->Model_penilaian_pratama->get_klinikwithpenilaiantiga(
+            $id_klinik
+        );
+        $no_penilaian = $klinik['no_penilaian'];
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($_POST['form'] == 'add') {
+                if (
+                    isset($_POST['submit']) &&
+                    !empty($_FILES['upload_Files']['name'])
+                ) {
+                    $nama_klinik = $klinik['nama_klinik'];
+                    $data = [];
+                    $filesCount = count($_FILES['upload_Files']['name']);
+                    $no = 1;
+                    for ($i = 0; $i < $filesCount; $i++) {
+                        $_FILES['upload_File']['name'] =
+                            $_FILES['upload_Files']['name'][$i];
+                        $_FILES['upload_File']['type'] =
+                            $_FILES['upload_Files']['type'][$i];
+                        $_FILES['upload_File']['tmp_name'] =
+                            $_FILES['upload_Files']['tmp_name'][$i];
+                        $_FILES['upload_File']['error'] =
+                            $_FILES['upload_Files']['error'][$i];
+                        $_FILES['upload_File']['size'] =
+                            $_FILES['upload_Files']['size'][$i];
+                        $uploadPath = './assets/img/uploads/foto_klinik/';
+                        $config['upload_path'] = $uploadPath;
+                        $config['allowed_types'] = 'jpg|jpeg|png';
+                        $config['overwrite'] = true;
+                        $config['max_size'] = 5120;
+                        $config['file_name'] =
+                            $nama_klinik . '_foto_klinik_' . $no;
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if (!$this->upload->do_upload('upload_File')) {
+                            $data['error'] = $this->upload->display_errors();
+                        } else {
+                            $fileData = $this->upload->data();
+                            $uploadData[$i] = $fileData['file_name'];
+                        }
+                        $no++;
+                    }
+                    $img = $this->input->post('signed');
+                    $imgttd1 = $this->input->post('ttd-1');
+                    $imgttd2 = $this->input->post('ttd-2');
+                    $imgttd3 = $this->input->post('ttd-3');
+                    $imgttd4 = $this->input->post('ttd-4');
+                    $imgttd5 = $this->input->post('ttd-5');
+                    $imgttd6 = $this->input->post('ttd-6');
+>>>>>>> 9c83f1c6dd9e6ac7ac191352efba175369100852
 
 					$img = str_replace('data:image/png;base64,', '', $img);
 					$img = str_replace(' ', '+', $img);
@@ -732,6 +825,7 @@ class Penilaian_klinik_umum extends CI_Controller
 						$filettd5
 					);
 
+<<<<<<< HEAD
 					$imgttd6 = str_replace(
 						'data:image/png;base64,',
 						'',
@@ -766,6 +860,49 @@ class Penilaian_klinik_umum extends CI_Controller
 					$this->session->set_flashdata(
 						'simpan',
 						'<div class="alert alert-secondary alert-dismissible fade show">
+=======
+                    $imgttd6 = str_replace(
+                        'data:image/png;base64,',
+                        '',
+                        $imgttd6
+                    );
+                    $imgttd6 = str_replace(' ', '+', $imgttd6);
+                    $datattd6 = base64_decode($imgttd6);
+                    $filettd6 = './assets/img/uploads/ttd/' . uniqid() . '.png';
+                    $success = file_put_contents($filettd6, $datattd6);
+                    $imagettd6 = str_replace(
+                        './assets/img/uploads/ttd/',
+                        '',
+                        $filettd6
+                    );
+<<<<<<< HEAD
+                    // $this->Model_penilaian_pratama->update_penilaian_klinik(
+                    //     $id_klinik
+                    // );
+=======
+
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
+                    $this->Model_penilaian_pratama->simpan_penilaian_pratama_ketiga(
+                        $uploadData,
+                        $image,
+                        $imagettd1,
+                        $imagettd2,
+                        $imagettd3,
+                        $imagettd4,
+                        $imagettd5,
+                        $imagettd6,
+                        $id_klinik,
+                        $no_penilaian
+                    );
+<<<<<<< HEAD
+                    // print_r($this->db->last_query());
+                    // die();
+=======
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
+                    $this->session->set_flashdata(
+                        'simpan',
+                        '<div class="alert alert-secondary alert-dismissible fade show">
+>>>>>>> 9c83f1c6dd9e6ac7ac191352efba175369100852
             Penilaian Klinik Pratama/Utama Umum Form Ketiga. Data <b>' .
 							$klinik['nama_klinik'] .
 							'</b> Berhasil Disimpan!
@@ -821,6 +958,7 @@ class Penilaian_klinik_umum extends CI_Controller
 					$imgttd5 = $this->input->post('ttd-5');
 					$imgttd6 = $this->input->post('ttd-6');
 
+<<<<<<< HEAD
 					if ($img == '' or $imgttd1 == '' or $imgttd2 == '' or $imgttd3 == '' or $imgttd4 == '' or $imgttd5 == '' or $imgttd6 == '') {
 						$image = $this->input->post('old_ttd_perwakilan');
 						$imagettd1 = $this->input->post('old_ttd_penilai1');
@@ -845,6 +983,44 @@ class Penilaian_klinik_umum extends CI_Controller
 						$this->session->set_flashdata(
 							'simpan',
 							'<div class="alert alert-warning alert-dismissible fade show">
+=======
+<<<<<<< HEAD
+                    if ($img == '' or $imgttd1 == '' or $imgttd2 == '' or $imgttd3 == '' or $imgttd4 == '' or $imgttd5 == '' or $imgttd6 == '') {
+=======
+                    if (
+                        $img == '' or
+                        $imgttd1 == '' or
+                        $imgttd2 == '' or
+                        $imgttd3 == '' or
+                        $imgttd4 == '' or
+                        $imgttd5 == '' or
+                        $imgttd6 == ''
+                    ) {
+>>>>>>> df81f5d241c91f76152672a3ed13e95a3383298a
+                        $image = $this->input->post('old_ttd_perwakilan');
+                        $imagettd1 = $this->input->post('old_ttd_penilai1');
+                        $imagettd2 = $this->input->post('old_ttd_penilai2');
+                        $imagettd3 = $this->input->post('old_ttd_penilai3');
+                        $imagettd4 = $this->input->post('old_ttd_penilai4');
+                        $imagettd5 = $this->input->post('old_ttd_penilai5');
+                        $imagettd6 = $this->input->post('old_ttd_penilai6');
+                        $this->Model_penilaian_pratama->update_penilaian_pratama_ketiga(
+                            $uploadData,
+                            $image,
+                            $imagettd1,
+                            $imagettd2,
+                            $imagettd3,
+                            $imagettd4,
+                            $imagettd5,
+                            $imagettd6,
+                            $id_klinik,
+                            $no_penilaian
+                        );
+                        $this->Model_penilaian_pratama->update_klinik_for_penilaian($id_klinik);
+                        $this->session->set_flashdata(
+                            'simpan',
+                            '<div class="alert alert-warning alert-dismissible fade show">
+>>>>>>> 9c83f1c6dd9e6ac7ac191352efba175369100852
             Penilaian Klinik Pratama/Utama Umum Form Ketiga. Data <b>' .
 								$klinik['nama_klinik'] .
 								'</b> Berhasil Diupdate!
